@@ -12,3 +12,5 @@
 :set showcmd       " display incomplete commands
 :set incsearch     " do incremental searching
 :set hlsearch      " highlight matches
+
+:set relativenumber

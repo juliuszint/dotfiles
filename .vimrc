@@ -16,6 +16,8 @@
 :set hlsearch      " highlight matches
 :set laststatus=2  " Always display the status line
 
+:set relativenumber
+
 syntax on
 filetype plugin indent on
 filetype indent on
