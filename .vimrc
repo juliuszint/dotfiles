@@ -5,6 +5,7 @@
 
 if has("win32")
   " Windows options here
+  :compiler msvc
 else
   " Linux and MacOSX options here
 endif
