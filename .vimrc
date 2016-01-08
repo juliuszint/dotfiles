@@ -26,6 +26,14 @@ if has('gui_running')
 
 endif
 
+" http://vim.wikia.com/wiki/Map_extra_keys_on_non_US_keyboards
+map ü <C-]>
+map ö [
+map ä ]
+map Ö {
+map Ä }
+map ß /
+
 :set complete=.,w,b,u,t,i,kspell " these are the default vim settings with kspell added (search in dictionary only if spell is enabled) 
 :set nocompatible  " Use Vim settings, rather then Vi settings
 :set nobackup
@@ -44,3 +52,6 @@ endif
 :filetype plugin indent on
 :filetype indent on
 :filetype on
+
+" easy plugin management 
+execute pathogen#infect() 

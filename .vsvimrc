@@ -3,6 +3,13 @@
 :set vb
 :set backspace=2   " Backspace deletes like most programs in insert mode
 
+" http://vim.wikia.com/wiki/Map_extra_keys_on_non_US_keyboards
+map ü <C-]>
+map ö [
+map ä ]
+map Ö {
+map Ä }
+
 :set nocompatible  " Use Vim settings, rather then Vi settings
 :set nobackup
 :set nowritebackup
