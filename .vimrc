@@ -46,6 +46,7 @@ map ß /
 :set complete=.,w,b,u,t,i,kspell " these are the default vim settings with kspell added (search in dictionary only if spell is enabled) 
 :set nocompatible  " Use Vim settings, rather then Vi settings
 :set nobackup
+:set cursorline    " enables highlighting the complete cursorline
 :set nowritebackup
 :set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
 :set history=500
