@@ -10,12 +10,21 @@ else
   " Linux and MacOSX options here
 endif
 
+" Show highlighting group for current word
+nmap <C-i> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+	if !exists("*synstack")
+		return
+	endif
+	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
 if has('gui_running')
-  :set guifont=Consolas:h11:cANSI
-  :set guioptions-=m  " remove menu bar
-  :set guioptions-=T  " remove toolbar
-  :set guioptions-=r  " remove right-hand scroll bar
-  :set guioptions-=L  " remove left-hand scroll bar
+:set guifont=Consolas:h11:cANSI
+:set guioptions-=m  " remove menu bar
+:set guioptions-=T  " remove toolbar
+:set guioptions-=r  " remove right-hand scroll bar
+:set guioptions-=L  " remove left-hand scroll bar
   :colorscheme morning
   if has("win32")
 	 " Windows options here
@@ -55,3 +64,5 @@ map ß /
 
 " easy plugin management 
 execute pathogen#infect() 
+
+
