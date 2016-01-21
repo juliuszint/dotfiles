@@ -1,4 +1,5 @@
 @echo off
+doskey clear=cls
 doskey ls=dir $*
 doskey rm=del $*
 doskey cp=copy $*
