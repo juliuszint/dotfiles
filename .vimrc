@@ -43,6 +43,10 @@ map Ö {
 map Ä }
 map ß /
 
+" map backtick to single qouote to make it easier to jump to marks
+nnoremap ' `
+nnoremap ` '
+
 :set complete=.,w,b,u,t,i,kspell " these are the default vim settings with kspell added (search in dictionary only if spell is enabled) 
 :set nocompatible  " Use Vim settings, rather then Vi settings
 :set nobackup

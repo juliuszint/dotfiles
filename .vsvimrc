@@ -10,6 +10,11 @@ map ä ]
 map Ö {
 map Ä }
 
+" map backtick to single qouote to make it easier to jump to marks
+nnoremap ' `
+nnoremap ` '
+
+
 :set nocompatible  " Use Vim settings, rather then Vi settings
 :set nobackup
 :set nowritebackup
