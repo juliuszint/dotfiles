@@ -18,7 +18,7 @@ To speedup the keyrepeat delay and repeat under windows, i use a tool that i fou
 http://stackoverflow.com/questions/171326/how-can-i-increase-the-key-repeat-rate-beyond-the-oss-limit
 
 ## Vim Plugins
-First of all we need to setup Pathogen (a vim plugin from tpope). To do so go to https://github.com/tpope/vim-pathogen and follow the Instructions from the README file. It basically says, copy the pathogen.vim file into the ~/.vim/autoload/ folder (if it doesnt exist creat it). After you setup the call `execute pathogen#infect()` in your .vimrc file you can now download any plugin repository into the folder ~/vim/bundles/ and pathogen will take care of settings the runtime paths in the running vim instance
+First of all we need to setup Pathogen (a vim plugin from tpope). To do so go to https://github.com/tpope/vim-pathogen and follow the Instructions from the README file. It basically says, copy the pathogen.vim file into the ~/.vim/autoload/ folder (if it doesnt exist create it). After you setup the call `execute pathogen#infect()` in your .vimrc file you can now clone any plugin repository into the folder ~/vim/bundles/ and pathogen will take care of settings the runtime paths in the running vim instance
      
      
      
