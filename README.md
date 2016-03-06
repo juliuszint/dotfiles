@@ -16,6 +16,9 @@ Vim is a lot based around switching modes and you get to enter `normal` mode by 
 ## Windows Keyrepeat Settings
 To speedup the keyrepeat delay and repeat under windows, i use a tool that i found on stackoverflow. To Compile it you need to have a C Compiler installed on your System. If Visual Studio is installed just press the windows button and enter "Developer Command Prompt for VS2015" and then run the command cl keyrepeat.c user32.lib.
 http://stackoverflow.com/questions/171326/how-can-i-increase-the-key-repeat-rate-beyond-the-oss-limit
+
+## Vim Plugins
+First of all we need to setup Pathogen (a vim plugin from tpope). To do so go to https://github.com/tpope/vim-pathogen and follow the Instructions from the README file. It basically says, copy the pathogen.vim file into the ~/.vim/autoload/ folder (if it doesnt exist creat it). After you setup the call `execute pathogen#infect()` in your .vimrc file you can now download any plugin repository into the folder ~/vim/bundles/ and pathogen will take care of settings the runtime paths in the running vim instance
      
      
      
