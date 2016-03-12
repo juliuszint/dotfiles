@@ -18,22 +18,25 @@ function! <SID>SynStack()
 	endif
 	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+	if has('gui_running')
+	if has("win32")
+		:set guifont=Consolas:h11:cANSI
+	else
+		" linux font settings
+	endif
+	:set guioptions-=m  " remove menu bar
+	:set guioptions-=T  " remove toolbar
+	:set guioptions-=r  " remove right-hand scroll bar
+	:set guioptions-=L  " remove left-hand scroll bar
+	  :colorscheme morning
+	  if has("win32")
+		 " Windows options here
+		 au GUIEnter * simalt ~x " launch gvim in fullscreen
+	  else
+		  " Linux and MacOSX options here
+	  endif
 
-if has('gui_running')
-:set guifont=Consolas:h11:cANSI
-:set guioptions-=m  " remove menu bar
-:set guioptions-=T  " remove toolbar
-:set guioptions-=r  " remove right-hand scroll bar
-:set guioptions-=L  " remove left-hand scroll bar
-  :colorscheme morning
-  if has("win32")
-	 " Windows options here
-	 au GUIEnter * simalt ~x " launch gvim in fullscreen
-  else
-	  " Linux and MacOSX options here
-  endif
-
-endif
+	endif
 
 " http://vim.wikia.com/wiki/Map_extra_keys_on_non_US_keyboards
 map ü <C-]>
