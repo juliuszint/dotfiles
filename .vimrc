@@ -46,6 +46,12 @@ map Ö {
 map Ä }
 map ß /
 
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
 " map backtick to single qouote to make it easier to jump to marks
 nnoremap ' `
 nnoremap ` '
