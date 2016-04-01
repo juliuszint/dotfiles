@@ -1,26 +1,26 @@
 #!/bin/bash
 
-if [ ! -d "~/.vim/" ]; then
+if [ ! -d ~/.vim/ ]; then
 	echo "creating vim directory"
 	mkdir ~/.vim/
 fi
 
-if [ ! -d "~/.vim/bundle" ]; then
+if [ ! -d ~/.vim/bundle ]; then
 	echo "creating bundle directory"
 	mkdir ~/.vim/bundle/
 fi
 
-if [ ! -d "~/.vim/autoload" ]; then
+if [ ! -d ~/.vim/autoload ]; then
 	echo "creating autoload directory"
 	mkdir ~/.vim/autoload/
 fi
 
-if [ ! -d "~/.vim/colors" ]; then
+if [ ! -d ~/.vim/colors ]; then
 	echo "creating colors directory"
 	mkdir ~/.vim/colors/
 fi
 
-if [ ! -d "~/.vim/bundle/ctrlp.vim" ]; then
+if [ ! -d ~/.vim/bundle/ctrlp.vim ]; then
 	echo "downloading CtrlP plugin"
 	pushd ./
 	cd ~/.vim/bundle/
@@ -28,7 +28,7 @@ if [ ! -d "~/.vim/bundle/ctrlp.vim" ]; then
 	popd
 fi
 
-if [ ! -f "~/.vim/autoload/pathogen.vim" ]; then
+if [ ! -f ~/.vim/autoload/pathogen.vim ]; then
 	echo downloading pathogen vim plugin
         curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 fi
