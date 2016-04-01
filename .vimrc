@@ -52,6 +52,11 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+" More ergonomic Block movment
+nnoremap <S-j> }
+nnoremap <S-k> {
+nnoremap <C-j> A<del><esc>
+
 " map backtick to single qouote to make it easier to jump to marks
 nnoremap ' `
 nnoremap ` '
