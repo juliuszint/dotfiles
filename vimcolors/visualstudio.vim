@@ -57,7 +57,7 @@ hi Folded       guifg=NONE   guibg=NONE
 hi FoldColumn   guifg=NONE   guibg=NONE
 
 hi Statement    guifg=#569cd6   gui=NONE
-hi Type         guifg=#4ec9b0   gui=NONE
+hi Type         guifg=#569cd6   gui=NONE
 hi Structure    guifg=#4ec9b0   gui=NONE
 hi Typedef      guifg=NONE   gui=NONE
 hi StorageClass guifg=NONE   gui=NONE
@@ -76,6 +76,9 @@ hi Todo         guifg=NONE   guibg=NONE   gui=NONE
 hi Search       guifg=NONE   guibg=NONE   gui=NONE
 hi SpecialKey	guifg=NONE   guibg=NONE
 hi Special      guifg=NONE   guibg=NONE
+
+hi cStructure   guifg=#569cd6   guibg=NONE   
+hi cppStructure   guifg=#569cd6   guibg=NONE   
 
 " Diff
 hi DiffChange   guifg=NONE      guibg=NONE   gui=bold
