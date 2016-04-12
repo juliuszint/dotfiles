@@ -28,7 +28,7 @@ endfunc
 	:set guioptions-=T  " remove toolbar
 	:set guioptions-=r  " remove right-hand scroll bar
 	:set guioptions-=L  " remove left-hand scroll bar
-	  :colorscheme morning
+        :colorscheme visualstudio
 	  if has("win32")
 		 " Windows options here
 		 au GUIEnter * simalt ~x " launch gvim in fullscreen

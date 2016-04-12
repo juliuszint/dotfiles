@@ -5,8 +5,6 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let colors_name = "visualpython"
-
 " Taglist colors
 hi MyTagListFileName    guifg=NONE   guibg=NONE
 hi MyTagListTagName     guifg=NONE   guibg=NONE
