@@ -23,7 +23,7 @@ nnoremap <C-l> <C-w>l
 " More ergonomic Block movment
 nnoremap <S-j> }
 nnoremap <S-k> {
-nnoremap <C-j> A<del><esc>
+nnoremap <C-j> A<esc>dw
 
 :set nocompatible  " Use Vim settings, rather then Vi settings
 :set nobackup
