@@ -54,6 +54,9 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+" Faster save
+nnoremap <C-s> :w<cr>
+
 " More ergonomic Block movment
 nnoremap <S-j> }
 nnoremap <S-k> {
