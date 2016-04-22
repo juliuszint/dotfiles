@@ -42,8 +42,8 @@ set encoding=utf-8
 
 " http://vim.wikia.com/wiki/Map_extra_keys_on_non_US_keyboards
 map ü <C-]>
-map ö [
-map ä ]
+map ö ]
+map ä [
 map Ö {
 map Ä }
 map ß /
