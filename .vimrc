@@ -49,8 +49,13 @@ map Ö {
 map Ä }
 map ß /
 
+" Quicker Compile Shortcuts
+nmap <F5> :make<cr><cr>:cw<cr>
+nmap <F2> :cp<cr>
+nmap <F3> :cn<cr>
+
 " Quicker window movement
-nnoremap <C-j> <C-w>j
+"nnoremap <C-j> <C-w>j interferse with join command
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
@@ -61,7 +66,7 @@ nnoremap <C-s> :w<cr>
 " More ergonomic Block movment
 nnoremap <S-j> }
 nnoremap <S-k> {
-nnoremap <C-j> A<esc>dw
+nnoremap <C-j> $mb:join<cr>`b
 
 " map backtick to single qouote to make it easier to jump to marks
 nnoremap ' `
