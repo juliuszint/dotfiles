@@ -20,6 +20,14 @@ if [ ! -d ~/.vim/colors ]; then
 	mkdir ~/.vim/colors/
 fi
 
+if [ ! -d ~/.vim/bundle/TagHighlight ]; then
+	echo "downloading TagHighligh plugin"
+	pushd ./
+	cd ~/.vim/bundle/
+	git clone https://github.com/vim-scripts/TagHighlight.git
+	popd
+fi
+
 if [ ! -d ~/.vim/bundle/ctrlp.vim ]; then
 	echo "downloading CtrlP plugin"
 	pushd ./

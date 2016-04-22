@@ -5,6 +5,8 @@ if exists("syntax_on")
   syntax reset
 endif
 
+let g:colors_name = "VisualStudio"
+
 " Taglist colors
 hi MyTagListFileName    guifg=NONE   guibg=NONE
 hi MyTagListTagName     guifg=NONE   guibg=NONE
@@ -75,8 +77,23 @@ hi Search       guifg=NONE   guibg=NONE   gui=NONE
 hi SpecialKey	guifg=NONE   guibg=NONE
 hi Special      guifg=NONE   guibg=NONE
 
-hi cStructure   guifg=#569cd6   guibg=NONE   
-hi cppStructure   guifg=#569cd6   guibg=NONE   
+hi cFormat          guifg=#80ff80 guibg=NONE
+
+hi cTagsNamespace   	 guifg=#add8e6 guibg=NONE
+hi cStructure       	 guifg=#569cd6 guibg=NONE   
+hi cppStructure     	 guifg=#569cd6 guibg=NONE   
+hi cTagsDefinedName 	 guifg=#bd63c5 guibg=NONE
+hi cDefine          	 guifg=#9b9b9b guibg=NONE
+hi cTagsClass       	 guifg=#4ec9b0 guibg=NONE
+hi cTagsMember      	 guifg=#dda0dd guibg=NONE
+hi cTagsEnumerationValue guifg=#b8d7a3 guibg=NONE
+
+hi link cTagsType cTagsClass
+hi link cOperator cType
+hi link cTagsEnumeratorName cTagsClass
+hi link cPreCondit cDefine
+hi link cPreProc   cDefine
+hi link cInclude   cDefine
 
 " Diff
 hi DiffChange   guifg=NONE      guibg=NONE   gui=bold
