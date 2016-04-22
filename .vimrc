@@ -22,7 +22,15 @@ endfunc
 	if has("win32")
 		:set guifont=Consolas:h11:cANSI
 	else
-		" linux font settings
+		if has("unix")
+		  let s:uname = system("uname")
+		  if s:uname == "Darwin\n"
+			" MacOsX
+			:set guifont=Consolas:h12
+		  else
+			" linux font settings
+		  endif
+		endif
 	endif
 	:set guioptions-=m  " remove menu bar
 	:set guioptions-=T  " remove toolbar
