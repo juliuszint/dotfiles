@@ -41,12 +41,13 @@ endfunc
 set encoding=utf-8
 
 " http://vim.wikia.com/wiki/Map_extra_keys_on_non_US_keyboards
-map ü <C-]>
-map ö ]
-map ä [
-map Ö {
-map Ä }
-map ß /
+map Ã¼ <C-]>
+map Ãœ <C-t>
+map Ã¶ [
+map Ã¤ ]
+map Ã– {
+map Ã„ }
+map ÃŸ /
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j
