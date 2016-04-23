@@ -38,68 +38,66 @@ hi WildMenu     guifg=NONE   guibg=NONE
 hi IncSearch    guibg=NONE   guifg=NONE
 hi Question     guifg=NONE   guibg=NONE
 
-hi StatusLine   guifg=NONE   guibg=NONE gui=bold
-hi StatusLineNC guifg=NONE   guibg=NONE gui=bold
-hi VertSplit    guifg=NONE   guibg=NONE gui=NONE
+hi StatusLine   guifg=NONE   guibg=#2d2d30 gui=bold
+hi StatusLineNC guifg=NONE   guibg=#2d2d30 gui=bold
+hi VertSplit    guifg=NONE   guibg=NONE    gui=NONE
 
-hi String       guifg=#d69d85   gui=NONE
-hi Number       guifg=#b5cea8   gui=NONE
-hi Float        guifg=#b5cea8   gui=NONE
-hi Constant     guifg=#569cd6   gui=NONE
-hi Boolean      guifg=#569cd6   gui=NONE
-
-hi PythonBuiltin guifg=#569cd6 guibg=NONE
-
-hi Comment      guifg=#57a64a   guibg=NONE gui=NONE
 hi NonText      guifg=NONE   guibg=NONE
 hi Folded       guifg=NONE   guibg=NONE
 hi Folded       guifg=NONE   guibg=NONE
 hi FoldColumn   guifg=NONE   guibg=NONE
 
-hi Statement    guifg=#569cd6   gui=NONE
-hi Type         guifg=#569cd6   gui=NONE
-hi Structure    guifg=#4ec9b0   gui=NONE
 hi Typedef      guifg=NONE   gui=NONE
 hi StorageClass guifg=NONE   gui=NONE
 hi Identifier   guifg=NONE   gui=NONE
 hi Function     guifg=NONE   gui=NONE
-hi Repeat       guifg=NONE   gui=NONE
-hi Conditional  guifg=NONE  gui=NONE
 hi Operator     guifg=NONE   gui=NONE
 
-hi PreProc      guifg=NONE   gui=NONE
-hi Define       guifg=NONE   gui=NONE
-hi Include      guifg=#569cd6   gui=NONE
-
-hi Error        guifg=NONE   guibg=NONE   gui=bold,underline
-hi Todo         guifg=NONE   guibg=NONE   gui=NONE
-hi Search       guifg=NONE   guibg=NONE   gui=NONE
+hi Error        guifg=NONE   guibg=#FF0000   gui=bold,underline
+hi Todo         guifg=NONE   guibg=NONE      gui=NONE
+hi Note         guifg=NONE   guibg=#00FF00
+hi Search       guifg=NONE   guibg=#113d6f   gui=NONE
 hi SpecialKey	guifg=NONE   guibg=NONE
 hi Special      guifg=NONE   guibg=NONE
 
-hi cFormat          guifg=#80ff80 guibg=NONE
+" common syntax highlighting
+hi String       	 guifg=#d69d85 gui=NONE
+hi Type         	 guifg=#569cd6 gui=NONE
+hi Number       	 guifg=#b5cea8 gui=NONE
+hi Constant     	 guifg=#569cd6 gui=NONE
+hi Comment      	 guifg=#57a64a guibg=NONE gui=NONE
+hi Define                guifg=#9b9b9b gui=NONE
 
+hi link Include Define
+hi link PreProc Define
+hi link Boolean Type
+hi link float Number
+hi link Statement Type 
+
+" C/C++ Syntax highlighting with ctags 
+hi cFormat               guifg=#80ff80 guibg=NONE
 hi cTagsNamespace   	 guifg=#add8e6 guibg=NONE
 hi cStructure       	 guifg=#569cd6 guibg=NONE   
-hi cppStructure     	 guifg=#569cd6 guibg=NONE   
 hi cTagsDefinedName 	 guifg=#bd63c5 guibg=NONE
-hi cDefine          	 guifg=#9b9b9b guibg=NONE
 hi cTagsClass       	 guifg=#4ec9b0 guibg=NONE
 hi cTagsMember      	 guifg=#dda0dd guibg=NONE
 hi cTagsEnumerationValue guifg=#b8d7a3 guibg=NONE
 
+hi link cTagsStructure cTagsClass
+hi link cDefine      Define
+hi link cStatement   Type
+hi link cppStatement Type
+hi link cppStructure Type
 hi link cTagsType cTagsClass
 hi link cOperator cType
 hi link cTagsEnumeratorName cTagsClass
 hi link cPreCondit cDefine
-hi link cPreProc   cDefine
-hi link cInclude   cDefine
+hi link cConditional cType
+hi link cRepeat      cType
 
 " Diff
 hi DiffChange   guifg=NONE      guibg=NONE   gui=bold
 hi DiffText     guifg=NONE      guibg=NONE   gui=bold
 hi DiffAdd      guifg=NONE      guibg=NONE   gui=bold
 hi DiffDelete   guifg=NONE      guibg=NONE   gui=bold
-
-" set guifont=Consolas\ for\ Powerline\ FixedD\ 11
 
