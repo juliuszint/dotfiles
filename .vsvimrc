@@ -15,15 +15,17 @@ nnoremap ' `
 nnoremap ` '
 
 " Quicker window movement
-nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+" Faster save
+nnoremap <C-s> :w<cr>
+
 " More ergonomic Block movment
 nnoremap <S-j> }
 nnoremap <S-k> {
-nnoremap <C-j> A<esc>dw
+nnoremap <C-j> $mb:join<cr>`b
 
 :set nocompatible  " Use Vim settings, rather then Vi settings
 :set nobackup
