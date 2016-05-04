@@ -48,7 +48,6 @@ hi Folded       guifg=NONE   guibg=NONE
 hi FoldColumn   guifg=NONE   guibg=NONE
 
 hi Typedef      guifg=NONE   gui=NONE
-hi StorageClass guifg=NONE   gui=NONE
 hi Identifier   guifg=NONE   gui=NONE
 hi Function     guifg=NONE   gui=NONE
 hi Operator     guifg=NONE   gui=NONE
@@ -68,6 +67,7 @@ hi Constant     	 guifg=#569cd6 gui=NONE
 hi Comment      	 guifg=#57a64a guibg=NONE gui=NONE
 hi Define                guifg=#9b9b9b gui=NONE
 
+hi link StorageClass Type                                    " voltaile
 hi link Include Define
 hi link PreProc Define
 hi link Boolean Type
@@ -83,6 +83,10 @@ hi cTagsClass       	 guifg=#4ec9b0 guibg=NONE
 hi cTagsMember      	 guifg=#dda0dd guibg=NONE
 hi cTagsEnumerationValue guifg=#b8d7a3 guibg=NONE
 
+hi link cTagsUnion cTagsClass
+hi link cLabel Type
+hi link CTagsGlobalVariable Normal
+hi link cUserLabel Type
 hi link cTagsStructure cTagsClass
 hi link cDefine      Define
 hi link cStatement   Type
