@@ -69,8 +69,8 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 " Quicker Start/End Line
-nmap <A-h> ^
-nmap <A-l> $
+nnoremap H ^
+nnoremap L $
 
 " Faster save
 nnoremap <C-s> :w<cr>
