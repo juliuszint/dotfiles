@@ -72,6 +72,10 @@ nnoremap <C-l> <C-w>l
 nnoremap H ^
 nnoremap L $
 
+" more natural screen movement
+nnoremap º <C-d>
+nnoremap ∆ <C-u>
+
 " Faster save
 nnoremap <C-s> :w<cr>
 
