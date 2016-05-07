@@ -25,6 +25,10 @@ nnoremap <C-l> <C-w>l
 nnoremap H ^
 nnoremap L $
 
+" windows
+nnoremap ê <C-d>
+nnoremap ë <C-u>
+
 " Faster save
 nnoremap <C-s> :w<cr>
 
