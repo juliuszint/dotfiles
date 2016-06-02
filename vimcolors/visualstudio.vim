@@ -99,6 +99,15 @@ hi link cPreCondit cDefine
 hi link cConditional cType
 hi link cRepeat      cType
 
+" HTML / CSS highlighting
+hi htmlTag   		guifg=#808080  guibg=NONE
+hi htmlTag   		guifg=#808080  guibg=NONE
+hi htmlArg   		guifg=#9cdcfe  guibg=NONE
+hi htmlCommentError 	guifg=NONE     guibg=NONE
+
+hi link htmlTagName Type
+hi link htmlEndTag htmlTag
+
 " Diff
 hi DiffChange   guifg=NONE      guibg=NONE   gui=bold
 hi DiffText     guifg=NONE      guibg=NONE   gui=bold
