@@ -108,6 +108,15 @@ hi htmlCommentError 	guifg=NONE     guibg=NONE
 hi link htmlTagName Type
 hi link htmlEndTag htmlTag
 
+" Python highlighting
+hi link pythonInclude Type
+hi link pythonException Type
+hi link pythonExceptions cTagsClass
+hi link pythonStatement Type
+hi link pythonBuiltin Type
+hi link pythonConditional Type
+hi link pythonRepeat Type
+
 " Diff
 hi DiffChange   guifg=NONE      guibg=NONE   gui=bold
 hi DiffText     guifg=NONE      guibg=NONE   gui=bold
