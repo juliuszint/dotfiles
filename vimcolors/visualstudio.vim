@@ -5,7 +5,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let g:colors_name = "VisualStudio"
+let g:colors_name = "visualstudio"
 
 " Taglist colors
 hi MyTagListFileName    guifg=NONE   guibg=NONE
