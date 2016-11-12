@@ -20,6 +20,13 @@ if [ ! -d ~/.vim/colors ]; then
 	mkdir ~/.vim/colors/
 fi
 
+if [ ! -d ~/.vim/bundle/CSApprox ]; then
+	echo "downloading CSApprox plugin"
+	pushd ./
+	cd ~/.vim/bundle/
+	git clone https://github.com/vim-scripts/CSApprox
+	popd
+fi
 if [ ! -d ~/.vim/bundle/TagHighlight ]; then
 	echo "downloading TagHighligh plugin"
 	pushd ./
