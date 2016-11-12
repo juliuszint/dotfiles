@@ -48,6 +48,12 @@ endfunc
 
 set encoding=utf-8
 
+" <leader> 
+let mapleader=","
+
+" open quick fix window in a vertical split
+noremap <leader>q :cw<cr><C-w>L
+
 " http://vim.wikia.com/wiki/Map_extra_keys_on_non_US_keyboards
 map ü <C-]>
 map Ü <C-t>
@@ -104,6 +110,7 @@ nnoremap ` '
 :set incsearch     " do incremental searching
 :set hlsearch      " highlight matches
 :set laststatus=2  " Always display the status line
+:set shiftwidth=4  " smooth indentation
 
 :set relativenumber
 
