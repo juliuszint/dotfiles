@@ -18,7 +18,7 @@ function! <SID>SynStack()
 	endif
 	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
-if has('gui_running')
+	if has('gui_running')
 	if has("win32")
 		:set guifont=Consolas:h11:cANSI
 	else
@@ -36,6 +36,7 @@ if has('gui_running')
 	:set guioptions-=T  " remove toolbar
 	:set guioptions-=r  " remove right-hand scroll bar
 	:set guioptions-=L  " remove left-hand scroll bar
+        :colorscheme visualstudio
 	  if has("win32")
 		 " Windows options here
 		 au GUIEnter * simalt ~x " launch gvim in fullscreen
@@ -47,8 +48,8 @@ if has('gui_running')
 
 set encoding=utf-8
 
-" <leader> 
-let mapleader=","
+" <leader> key
+let mapleader="-"
 
 " open quick fix window in a vertical split
 noremap <leader>q :cw<cr><C-w>L
@@ -117,8 +118,6 @@ nnoremap ` '
 :filetype plugin indent on
 :filetype indent on
 :filetype on
-
-:colorscheme visualstudio
 
 " easy plugin management 
 execute pathogen#infect() 
