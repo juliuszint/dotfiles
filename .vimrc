@@ -69,10 +69,6 @@ nmap <F2> :cp<cr>
 nmap <F3> :cn<cr>
 
 " Quicker window movement
-"nnoremap <C-j> <C-w>j interferse with join command
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
 
 " Quicker Start/End Line
 nnoremap H ^
@@ -82,17 +78,21 @@ nnoremap L $
 " mac
 nnoremap º <C-d>
 nnoremap ∆ <C-u>
+
 " windows
-nnoremap ê <C-d>
-nnoremap ë <C-u>
+" Quicker window movement
+" More ergonomic Block movment
+" <alt-h>
+noremap è <C-W><C-h>
+" <alt-j>
+noremap ê <C-d>
+" <alt-k>
+noremap ë <C-u>
+" <alt-l>
+noremap ì <C-W><C-l>
 
 " Faster save
 nnoremap <C-s> :w<cr>
-
-" More ergonomic Block movment
-nnoremap <S-j> }
-nnoremap <S-k> {
-nnoremap <C-j> $mb:join<cr>`b
 
 " map backtick to single qouote to make it easier to jump to marks
 nnoremap ' `
