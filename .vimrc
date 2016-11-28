@@ -81,7 +81,6 @@ nnoremap ∆ <C-u>
 
 " windows
 " Quicker window movement
-" More ergonomic Block movment
 " <alt-h>
 noremap è <C-W><C-h>
 " <alt-j>
@@ -90,6 +89,11 @@ noremap ê <C-d>
 noremap ë <C-u>
 " <alt-l>
 noremap ì <C-W><C-l>
+
+" More ergonomic Block movment
+nnoremap <S-j> }
+nnoremap <S-k> {
+nnoremap <C-j> $mb:join<cr>`b
 
 " Faster save
 nnoremap <C-s> :w<cr>
