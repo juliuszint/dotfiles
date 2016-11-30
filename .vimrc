@@ -11,13 +11,24 @@ else
 endif
 
 " execute buildscript
-nmap â :call ExecuteBuildScript()<CR>
+if has("win32")
+    set shell=C:\Windows\System32\cmd.exe
+endif
+
+" Quicker Compile Shortcuts
+nmap î :cn<cr>
+nmap í :cp<cr>
+
+nmap â :call ExecuteBuildScript()<cr> :echo "build done"<cr>
 
 function! ExecuteBuildScript()
+    let wd = getcwd()
+    let buildfile = wd . "\\build.bat"
     if filereadable("build.bat")
-	:w
-	let output=system("build.bat")
-	echo output
+	silent exec ":w"
+	let output=system(buildfile)
+	cex output
+	silent exec ":cw"
     endif
 endfunc
 
@@ -74,10 +85,6 @@ map Ö {
 map Ä }
 map ß /
 
-" Quicker Compile Shortcuts
-nmap <F5> :make<cr><cr>:cw<cr>
-nmap <F2> :cp<cr>
-nmap <F3> :cn<cr>
 
 " Quicker window movement
 
@@ -93,13 +100,13 @@ nnoremap ∆ <C-u>
 " windows
 " Quicker window movement
 " <alt-h>
-noremap è <C-W><C-h>
+noremap è <C-W>h
 " <alt-j>
 noremap ê <C-d>
 " <alt-k>
 noremap ë <C-u>
 " <alt-l>
-noremap ì <C-W><C-l>
+noremap ì <C-W>l
 
 " More ergonomic Block movment
 nnoremap <S-j> }
