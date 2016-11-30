@@ -10,6 +10,17 @@ else
   " Linux and MacOSX options here
 endif
 
+" execute buildscript
+nmap â :call ExecuteBuildScript()<CR>
+
+function! ExecuteBuildScript()
+    if filereadable("build.bat")
+	:w
+	let output=system("build.bat")
+	echo output
+    endif
+endfunc
+
 " Show highlighting group for current word
 nmap <C-i> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
