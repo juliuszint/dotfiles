@@ -120,6 +120,8 @@ nnoremap <C-s> :w<cr>
 nnoremap ' `
 nnoremap ` '
 
+:vnoremap p "_dP
+
 :set complete=.,w,b,u,t,i,kspell " these are the default vim settings with kspell added (search in dictionary only if spell is enabled) 
 :set nocompatible  " Use Vim settings, rather then Vi settings
 :set nobackup

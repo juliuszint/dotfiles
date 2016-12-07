@@ -38,6 +38,7 @@ nnoremap <C-j> $mb:join<cr>`b
 
 " Faster save
 nnoremap <C-s> :w<cr>
+:vnoremap p "_dP
 
 :set nocompatible  " Use Vim settings, rather then Vi settings
 :set nobackup
