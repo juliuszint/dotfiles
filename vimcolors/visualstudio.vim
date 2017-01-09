@@ -55,7 +55,7 @@ hi Operator     guifg=NONE   gui=NONE
 hi Error        guifg=NONE   guibg=#FF0000   gui=bold,underline
 hi Todo         guifg=NONE   guibg=NONE      gui=NONE
 hi Note         guifg=NONE   guibg=#00FF00
-hi Search       guifg=NONE   guibg=#113d6f   gui=NONE
+hi Search       guifg=NONE   guibg=#623003   gui=NONE
 hi SpecialKey	guifg=NONE   guibg=NONE
 hi Special      guifg=NONE   guibg=NONE
 

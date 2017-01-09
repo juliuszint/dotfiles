@@ -17,8 +17,8 @@ nnoremap ' `
 nnoremap ` '
 
 " Quicker Start/End Line
-nnoremap H ^
-nnoremap L $
+noremap H ^
+noremap L $
 
 " Quicker window movement
 " windows

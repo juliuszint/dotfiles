@@ -27,7 +27,7 @@ function! ExecuteBuildScript()
     if filereadable("build.bat")
 	silent exec ":w"
 	let output=system(buildfile)
-	cex output
+	cgete output
 	silent exec ":cw"
     endif
 endfunc
@@ -89,8 +89,8 @@ map ß /
 " Quicker window movement
 
 " Quicker Start/End Line
-nnoremap H ^
-nnoremap L $
+noremap H ^
+noremap L $
 
 " more natural screen movement
 " mac
