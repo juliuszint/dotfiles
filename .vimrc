@@ -19,18 +19,22 @@ endif
 nmap î :cn<cr>
 nmap í :cp<cr>
 
-nmap â :call ExecuteBuildScript()<cr> :echo "build done"<cr>
+" close without writing and save
+" these characters can be inserted ergonomically using the AltGr Key
+" and the specially crafted keyboard layout that inserts symbols when
+" when a character key is pressed when also alt and control is down so
+" vim is able to process it
+nmap @ :q<cr>
+nmap Ó :w<cr>
 
-function! ExecuteBuildScript()
-    let wd = getcwd()
-    let buildfile = wd . "\\build.bat"
-    if filereadable("build.bat")
-	silent exec ":w"
-	let output=system(buildfile)
-	cgete output
-	silent exec ":cw"
-    endif
-endfunc
+function! s:build()
+  let &makeprg='build.bat'
+  silent make
+  copen
+endfunction
+
+command! Build call s:build()
+nnoremap <silent>â :Build<cr>
 
 " Show highlighting group for current word
 nmap <C-i> :call <SID>SynStack()<CR>
@@ -146,4 +150,12 @@ nnoremap ` '
 " easy plugin management 
 execute pathogen#infect() 
 
+" ctrl p mapping
+" 'c' - the directory of the current file.
+" 'r' - the nearest ancestor that contains one of these directories or files: .git .hg .svn .bzr _darcs
+" 'a' - like c, but only if the current working directory outside of CtrlP is not a direct ancestor of the directory of the 
+let g:ctrlp_cmd = 'CtrlP'
+nmap ð :CtrlP<cr>
+let g:ctrlp_working_path_mode = 'r'
 
+syn keyword cppType local_persist internal_var internal_function global_var constant_var r32 r64 ubyte uint ulong i8 u8 i32 u32 i64 u64 i16 u16 b32
