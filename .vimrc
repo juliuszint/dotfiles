@@ -117,14 +117,13 @@ nnoremap <S-j> }
 nnoremap <S-k> {
 nnoremap <C-j> $mb:join<cr>`b
 
-" Faster save
-nnoremap <C-s> :w<cr>
+"better intenting in visual mode
+vnoremap <Tab> > gv
+vnoremap <S-Tab> < gv
 
 " map backtick to single qouote to make it easier to jump to marks
 nnoremap ' `
 nnoremap ` '
-
-:vnoremap p "_dP
 
 :set complete=.,w,b,u,t,i,kspell " these are the default vim settings with kspell added (search in dictionary only if spell is enabled) 
 :set nocompatible  " Use Vim settings, rather then Vi settings
