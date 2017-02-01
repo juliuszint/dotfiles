@@ -23,6 +23,7 @@ map ß /
 " vim is able to process it
 nmap @ :q<cr>
 nmap Ó :w<cr>
+inoremap Ó <esc>:w<cr>
 
 " map backtick to single qouote to make it easier to jump to marks
 nnoremap ' `

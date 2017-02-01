@@ -26,6 +26,7 @@ nmap í :cp<cr>
 " vim is able to process it
 nmap @ :q<cr>
 nmap Ó :w<cr>
+inoremap Ó <esc>:w<cr>
 
 function! s:build()
   let &makeprg='build.bat'
