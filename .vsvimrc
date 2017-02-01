@@ -2,53 +2,6 @@
 :set nowrap
 :set vb
 :set backspace=2   " Backspace deletes like most programs in insert mode
-"
-"better intenting in visual mode
-vnoremap <Tab> > gv
-vnoremap <S-Tab> < gv
-
-" http://vim.wikia.com/wiki/Map_extra_keys_on_non_US_keyboards
-map ü <C-]>
-map Ü <C-t>
-map ö [
-map ä ]
-map Ö {
-map Ä }
-map ß /
-
-" close without writing and save
-" these characters can be inserted ergonomically using the AltGr Key
-" and the specially crafted keyboard layout that inserts symbols when
-" when a character key is pressed when also alt and control is down so
-" vim is able to process it
-nmap @ :q<cr>
-nmap Ó :w<cr>
-inoremap Ó <esc>:w<cr>
-
-" map backtick to single qouote to make it easier to jump to marks
-nnoremap ' `
-nnoremap ` '
-
-" Quicker Start/End Line
-noremap H ^
-noremap L $
-
-" Quicker window movement
-" windows
-" <alt-h>
-noremap è <C-W><C-h>
-" <alt-j>
-noremap ê <C-d>
-" <alt-k>
-noremap ë <C-u>
-" <alt-l>
-noremap ì <C-W><C-l>
-
-" More ergonomic Block movment
-nnoremap <S-j> }
-nnoremap <S-k> {
-nnoremap <C-j> $mb:join<cr>`b
-
 :set nocompatible  " Use Vim settings, rather then Vi settings
 :set nobackup
 :set nowritebackup
@@ -58,5 +11,45 @@ nnoremap <C-j> $mb:join<cr>`b
 :set showcmd       " display incomplete commands
 :set incsearch     " do incremental searching
 :set hlsearch      " highlight matches
-
 :set relativenumber
+
+"better intenting in visual mode
+vnoremap <Tab> > gv
+vnoremap <S-Tab> < gv
+" http://vim.wikia.com/wiki/Map_extra_keys_on_non_US_keyboards
+map ü <C-]>
+map Ü <C-t>
+map ö [
+map ä ]
+map Ö {
+map Ä }
+map ß /
+" close without writing and save
+" these characters can be inserted ergonomically using the AltGr Key
+" and the specially crafted keyboard layout that inserts symbols when
+" when a character key is pressed when also alt and control is down so
+" vim is able to process it
+nmap @ :q<cr>
+nmap Ó :w<cr>
+inoremap Ó <esc>:w<cr>
+" map backtick to single qouote to make it easier to jump to marks
+nnoremap ' `
+nnoremap ` '
+" Quicker Start/End Line
+noremap H ^
+noremap L $
+" Quicker window movement windows
+" <alt-h>
+noremap è <C-W><C-h>
+" <alt-j>
+noremap ê <C-d>
+" <alt-k>
+noremap ë <C-u>
+" <alt-l>
+noremap ì <C-W><C-l>
+" More ergonomic Block movment
+nnoremap <S-j> }
+nnoremap <S-k> {
+nnoremap <C-j> $mb:join<cr>`b
+
+

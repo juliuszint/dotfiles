@@ -20,6 +20,11 @@ if [ ! -d ~/.vim/colors ]; then
 	mkdir ~/.vim/colors/
 fi
 
+if [ ! -d ~/.vim/after/syntax ]; then
+	echo "creating syntax directory"
+	mkdir ~/.vim/after/syntax/
+fi
+
 if [ ! -d ~/.vim/bundle/CSApprox ]; then
 	echo "downloading CSApprox plugin"
 	pushd ./
@@ -55,5 +60,10 @@ cp ./../.vimrc ~/.vimrc
 # copy vim colorschemes
 echo "overwriting colorscheme"
 cp ./../vimcolors/visualstudio.vim ~/.vim/colors/visualstudio.vim
+
+# copy 
+echo "overwriting syntax files"
+cp ./../after/syntax/c.vim ~/.vim/after/syntax/c.vim
+
 
 
