@@ -87,9 +87,12 @@ map ß /
 
 " scripting
 function! s:build()
-  let &makeprg='build.bat'
-  silent make
-  copen
+    let &makeprg='build.bat'
+    if has("unix")
+	let &makeprg='./build.sh'
+    endif
+    silent make
+    copen
 endfunction
 
 command! Build call s:build()
