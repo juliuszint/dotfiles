@@ -16,9 +16,14 @@
 :set laststatus=2  " Always display the status line
 :set shiftwidth=4  " smooth indentation
 :set relativenumber
-:set guifont=DejaVu_Sans_Mono:h11:cANSI:qDRAFT
 :set encoding=utf-8
 :let mapleader="-"
+
+if has("win32") " when running on windows
+    :set guifont=DejaVu_Sans_Mono:h11:cANSI:qDRAFT
+else
+    :set guifont=DejaVu\ Sans\ Mono\ 12
+endif
 
 if has('gui_running')
     :set guioptions-=m  " remove menu bar

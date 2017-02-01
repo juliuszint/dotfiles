@@ -20,6 +20,11 @@ if [ ! -d ~/.vim/colors ]; then
 	mkdir ~/.vim/colors/
 fi
 
+if [ ! -d ~/.vim/after ]; then
+	echo "creating after directory"
+	mkdir ~/.vim/after/
+fi
+
 if [ ! -d ~/.vim/after/syntax ]; then
 	echo "creating syntax directory"
 	mkdir ~/.vim/after/syntax/
@@ -63,7 +68,7 @@ cp ./../vimcolors/visualstudio.vim ~/.vim/colors/visualstudio.vim
 
 # copy 
 echo "overwriting syntax files"
-cp ./../after/syntax/c.vim ~/.vim/after/syntax/c.vim
+cp ./../syntax/c.vim ~/.vim/after/syntax/c.vim
 
 
 
