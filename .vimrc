@@ -55,15 +55,15 @@ noremap L $
 " more natural screen movement mac
 nnoremap º <C-d>
 nnoremap ∆ <C-u>
-" windows Quicker window movement "
-" <alt-h>
+
+" windows Quicker window movement 
 noremap è <C-W>h
-" <alt-j>
-noremap ê <C-d>
-" <alt-k>
-noremap ë <C-u>
-" <alt-l>
 noremap ì <C-W>l
+
+" More ergonomic Page movmenet
+noremap ê <C-d>
+noremap ë <C-u>
+
 " More ergonomic Block movment
 nnoremap <S-j> }
 nnoremap <S-k> {
@@ -93,6 +93,9 @@ function! s:build()
     endif
     silent make
     copen
+    " moving into vertical split only works when a vertical split not already
+    "exe "norm! \<C-w>t"
+    "exe "norm! \<C-w>H"
 endfunction
 
 command! Build call s:build()
