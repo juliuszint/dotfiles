@@ -74,8 +74,8 @@ vnoremap <S-Tab> < gv
 " map backtick to single qouote to make it easier to jump to marks
 nnoremap ' `
 nnoremap ` '
-" compiling <Alt-b>
-nnoremap <silent>â :Build<cr>
+" compiling <AltGr-b>
+nnoremap <silent>Â :Build<cr>
 " http://vim.wikia.com/wiki/Map_extra_keys_on_non_US_keyboards
 map ü <C-]>
 map Ü <C-t>
