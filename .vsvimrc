@@ -51,5 +51,8 @@ noremap ì <C-W><C-l>
 nnoremap <S-j> }
 nnoremap <S-k> {
 nnoremap <C-j> $mb:join<cr>`b
+vnoremap <S-j> }
+vnoremap <S-k> {
+
 
 

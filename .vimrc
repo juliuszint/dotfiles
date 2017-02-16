@@ -68,6 +68,9 @@ noremap ë <C-u>
 nnoremap <S-j> }
 nnoremap <S-k> {
 nnoremap <C-j> $mb:join<cr>`b
+vnoremap <S-j> }
+vnoremap <S-k> {
+
 "better intenting in visual mode
 vnoremap <Tab> > gv
 vnoremap <S-Tab> < gv

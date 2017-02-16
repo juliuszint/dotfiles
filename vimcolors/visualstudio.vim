@@ -117,6 +117,13 @@ hi link pythonBuiltin Type
 hi link pythonConditional Type
 hi link pythonRepeat Type
 
+" C# highlighting
+hi link csUnspecifiedStatement Type
+hi link csException Type
+hi link csRepeat Type
+hi link csConditional Type
+hi link csLabel Type
+
 " Diff
 hi DiffChange   guifg=NONE      guibg=NONE   gui=bold
 hi DiffText     guifg=NONE      guibg=NONE   gui=bold
