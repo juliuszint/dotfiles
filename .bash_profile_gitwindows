@@ -1,0 +1,25 @@
+if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
+
+LS_COMMON="-h --color=auto"
+LS_COMMON="$LS_COMMON -I \\\$RECYCLE.BIN"
+LS_COMMON="$LS_COMMON -I System\ Volume\ Information"
+
+startfunction() 
+{
+	start $1 $2
+}
+
+alias ls="ls $LS_COMMON"
+alias la="ls -la $LS_COMMON"
+alias open=startfunction
+alias gvim="open gvim $1"
+
+PS1="\[\033[0;32m\]\u@\h \[\033[0m\]\W\[\033[0m\] \$ "
+
+if [ -d "/n" ]; then
+    cd /n
+else
+    cd ~
+fi
+
+ll
