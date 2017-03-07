@@ -30,6 +30,11 @@ IF NOT EXIST %HOMEDRIVE%%HOMEPATH%\vimfiles\after\syntax (
 	mkdir %HOMEDRIVE%%HOMEPATH%\vimfiles\after\syntax
 )
 
+IF NOT EXIST %HOMEDRIVE%%HOMEPATH%\vimfiles\after\ftplugin (
+	echo "creating after.ftplugin directory"
+	mkdir %HOMEDRIVE%%HOMEPATH%\vimfiles\after\ftplugin
+)
+
 IF NOT EXIST %HOMEDRIVE%%HOMEPATH%\vimfiles\autoload\pathogen.vim (
 	echo "downloading pathongen vim plugin"
 	bitsadmin.exe /transfer "pathogenvim" https://tpo.pe/pathogen.vim %HOMEDRIVE%%HOMEPATH%\vimfiles\autoload\pathogen.vim
@@ -54,6 +59,9 @@ copy /Y .\..\.vsvimrc %HOMEDRIVE%%HOMEPATH%\.vsvimrc
 
 echo "overwriting syntax files"
 copy /Y .\..\syntax\c.vim %HOMEDRIVE%%HOMEPATH%\vimfiles\after\syntax\c.vim
+
+echo "overwriting syntax files"
+copy /Y .\..\ftplugin\html.vim %HOMEDRIVE%%HOMEPATH%\vimfiles\after\ftplugin\html.vim
 
 echo "overwriting colorscheme files"
 copy /Y .\..\vimcolors\visualstudio.vim %HOMEDRIVE%%HOMEPATH%\vimfiles\colors\visualstudio.vim
