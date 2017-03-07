@@ -18,8 +18,8 @@ PS1="\[\033[0;32m\]\u@\h \[\033[0m\]\W\[\033[0m\] \$ "
 
 if [ -d "/n" ]; then
     cd /n
+    ll
 else
     cd ~
 fi
 
-ll
