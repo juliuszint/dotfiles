@@ -12,6 +12,7 @@
 :set incsearch     " do incremental searching
 :set hlsearch      " highlight matches
 :set relativenumber
+:set clipboard=unnamed
 
 "better intenting in visual mode
 vnoremap <Tab> > gv
@@ -29,7 +30,7 @@ map ß /
 " and the specially crafted keyboard layout that inserts symbols when
 " when a character key is pressed when also alt and control is down so
 " vim is able to process it
-nmap @ :q<cr>
+nmap Ã :q<cr>
 nmap Ó :w<cr>
 inoremap Ó <esc>:w<cr>
 " map backtick to single qouote to make it easier to jump to marks

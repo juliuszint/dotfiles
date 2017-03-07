@@ -17,6 +17,7 @@
 :set shiftwidth=4  " smooth indentation
 :set relativenumber
 :set encoding=utf-8
+:set clipboard=unnamed
 :let mapleader="-"
 
 if has("win32") " when running on windows
@@ -46,7 +47,7 @@ nmap í :cp<cr>
 " and the specially crafted keyboard layout that inserts symbols when
 " when a character key is pressed when also alt and control is down so
 " vim is able to process it
-nmap @ :q<cr>
+nmap Ã :q<cr>
 nmap Ó :w<cr>
 inoremap Ó <esc>:w<cr>
 " Quicker Start/End Line
