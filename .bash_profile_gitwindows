@@ -4,22 +4,33 @@ LS_COMMON="-h --color=auto"
 LS_COMMON="$LS_COMMON -I \\\$RECYCLE.BIN"
 LS_COMMON="$LS_COMMON -I System\ Volume\ Information"
 
-startfunction() 
+startdefault() 
 {
-	start $1 $2
+	cmd //c "start /wait %WINDIR%\\explorer.exe $1"
+}
+
+startvim()
+{
+	if ! tasklist | grep -q gvim.exe
+	then
+		startdefault "C:\\Program Files (x86)\\Vim\\vim80\\gvim.exe"
+	fi
+
+	gvim.exe --remote $1
 }
 
 alias ls="ls $LS_COMMON"
 alias la="ls -la $LS_COMMON"
-alias open=startfunction
-alias gvim="open gvim $1"
+alias open=startdefault
+alias gvim="startvim $1"
 
 PS1="\[\033[0;32m\]\u@\h \[\033[0m\]\W\[\033[0m\] \$ "
 
 if [ -d "/n" ]; then
     cd /n
-    ll
+	ll
 else
-    cd ~
+    cd ~/Documents
 fi
 
+set -o vi
