@@ -14,11 +14,12 @@
 :set incsearch     " do incremental searching
 :set hlsearch      " highlight matches
 :set laststatus=2  " Always display the status line
-:set shiftwidth=4  " smooth indentation
 :set relativenumber
 :set encoding=utf-8
 :set clipboard=unnamed
 :let mapleader="-"
+:set shiftwidth=4  " smooth indentation // overwritten in filetype plugins
+:set tabstop=4
 
 if has("win32") " when running on windows
     :set guifont=DejaVu_Sans_Mono:h11:cANSI:qDRAFT
@@ -37,6 +38,9 @@ if has('gui_running')
 	au GUIEnter * simalt ~x " launch gvim in fullscreen
     endif
 endif
+
+" indenting with alt-i // get overwritten in ftp plugin
+nmap é <esc>ma=4{'a
 
 " keyboard mappings
 " Quicker Compile Shortcuts
@@ -89,17 +93,16 @@ map Ö {
 map Ä }
 map ß /
 
+
 " scripting
 function! s:build()
     let &makeprg='build.bat'
     if has("unix")
-	let &makeprg='./build.sh'
+		let &makeprg='./build.sh'
     endif
     silent make
-    copen
-    " moving into vertical split only works when a vertical split not already
-    "exe "norm! \<C-w>t"
-    "exe "norm! \<C-w>H"
+    :vert copen
+	:call feedkeys("\<C-w>=")
 endfunction
 
 command! Build call s:build()
@@ -124,8 +127,8 @@ execute pathogen#infect()
 " 'r' - the nearest ancestor that contains one of these directories or files: .git .hg .svn .bzr _darcs
 " 'a' - like c, but only if the current working directory outside of CtrlP is not a direct ancestor of the directory of the 
 let g:ctrlp_cmd = 'CtrlP'
-nmap ð :CtrlP<cr>
-let g:ctrlp_working_path_mode = 'r'
+nmap ð :CtrlP .<cr>
+let g:ctrlp_working_path_mode = 'c'
 
 " Show highlighting group for current word
 nmap <C-i> :call <SID>SynStack()<CR>
