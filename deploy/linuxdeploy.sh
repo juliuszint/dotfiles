@@ -20,6 +20,16 @@ if [ ! -d ~/.vim/colors ]; then
 	mkdir ~/.vim/colors/
 fi
 
+if [ ! -d ~/.vim/ftdetect ]; then
+	echo "creating ftdetect directory"
+	mkdir ~/.vim/ftdetect/
+fi
+
+if [ ! -d ~/.vim/syntax ]; then
+	echo "creating syntax directory"
+	mkdir ~/.vim/syntax/
+fi
+
 if [ ! -d ~/.vim/after ]; then
 	echo "creating after directory"
 	mkdir ~/.vim/after/
@@ -62,13 +72,17 @@ fi
 echo "overwriting rc file"
 cp ./../.vimrc ~/.vimrc
 
-# copy vim colorschemes
-echo "overwriting colorscheme"
-cp ./../vimcolors/visualstudio.vim ~/.vim/colors/visualstudio.vim
+echo "overwriting ftdetect files"
+cp ./../vim/vimfiles/ftdetect/hex.vim ~/.vim/ftdetect/hex.vim
 
 # copy 
 echo "overwriting syntax files"
-cp ./../syntax/c.vim ~/.vim/after/syntax/c.vim
+cp ./../vim/vimfiles/after/syntax/c.vim ~/.vim/after/syntax/c.vim
+cp ./../vim/vimfiles/syntax/hex.vim ~/.vim/syntax/hex.vim
 
+echo "overwriting ftplugin files"
+cp ./../vim/vimfiles/ftplugin/html.vim ~/.vim/after/ftplugin/html.vim
 
-
+# copy vim colorschemes
+echo "overwriting colorscheme"
+cp ./../vimcolors/visualstudio.vim ~/.vim/colors/visualstudio.vim

@@ -21,6 +21,16 @@ IF NOT EXIST %HOMEDRIVE%%HOMEPATH%\vimfiles\colors (
 )
 
 IF NOT EXIST %HOMEDRIVE%%HOMEPATH%\vimfiles\after (
+	echo "creating ftdetect directory"
+	mkdir %HOMEDRIVE%%HOMEPATH%\vimfiles\ftdetect
+)
+
+IF NOT EXIST %HOMEDRIVE%%HOMEPATH%\vimfiles\after (
+	echo "creating syntax directory"
+	mkdir %HOMEDRIVE%%HOMEPATH%\vimfiles\syntax
+)
+
+IF NOT EXIST %HOMEDRIVE%%HOMEPATH%\vimfiles\after (
 	echo "creating after directory"
 	mkdir %HOMEDRIVE%%HOMEPATH%\vimfiles\after
 )
@@ -52,16 +62,20 @@ echo "overwriting bash_profile file"
 copy /Y .\..\.bash_profile_gitwindows %HOMEDRIVE%%HOMEPATH%\.bash_profile
 
 echo "overwriting vimrc file"
-copy /Y .\..\.vimrc %HOMEDRIVE%%HOMEPATH%\.vimrc
+copy /Y .\vim\.vimrc %HOMEDRIVE%%HOMEPATH%\.vimrc
 
 echo "overwriting vsvimrc file"
 copy /Y .\..\.vsvimrc %HOMEDRIVE%%HOMEPATH%\.vsvimrc 
 
-echo "overwriting syntax files"
-copy /Y .\..\syntax\c.vim %HOMEDRIVE%%HOMEPATH%\vimfiles\after\syntax\c.vim
+echo "overwriting ftdectect file"
+copy /Y .\..\vim\vimfiles\ftdetect\hext.vim %HOMEDRIVE%%HOMEPATH%\vimfiles\ftdetect\c.vim
 
 echo "overwriting syntax files"
-copy /Y .\..\ftplugin\html.vim %HOMEDRIVE%%HOMEPATH%\vimfiles\after\ftplugin\html.vim
+copy /Y .\..\vim\vimfiles\after\syntax\c.vim %HOMEDRIVE%%HOMEPATH%\vimfiles\after\syntax\c.vim
+copy /Y .\..\vim\vimfiles\syntax\hex.vim %HOMEDRIVE%%HOMEPATH%\vimfiles\after\syntax\hex.vim
+
+echo "overwriting ftplugin files"
+copy /Y .\..vim\vimfiles\ftplugin\html.vim %HOMEDRIVE%%HOMEPATH%\vimfiles\after\ftplugin\html.vim
 
 echo "overwriting colorscheme files"
-copy /Y .\..\vimcolors\visualstudio.vim %HOMEDRIVE%%HOMEPATH%\vimfiles\colors\visualstudio.vim
+copy /Y .\..\vim\vimfiles\vimcolors\visualstudio.vim %HOMEDRIVE%%HOMEPATH%\vimfiles\colors\visualstudio.vim
