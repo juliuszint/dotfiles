@@ -31,7 +31,7 @@ hi Normal       guifg=#c8c8c8   guibg=#1e1e1e
 hi LineNr       guifg=#2b91af   guibg=NONE 
 hi CursorLineNr guifg=#2b91af   guibg=NONE
 hi Visual       guifg=NONE   guibg=#264f78
-hi Cursor       guifg=NONE   guibg=#ababab
+hi Cursor       guifg=NONE   guibg=#00ff00
 
 hi ModeMsg      guifg=NONE   guibg=NONE
 hi WildMenu     guifg=NONE   guibg=NONE
@@ -65,7 +65,7 @@ hi Type         	 guifg=#569cd6 gui=NONE
 hi Number       	 guifg=#b5cea8 gui=NONE
 hi Constant     	 guifg=#569cd6 gui=NONE
 hi Comment      	 guifg=#57a64a guibg=NONE gui=NONE
-hi Define                guifg=#9b9b9b gui=NONE
+hi Define            guifg=#9b9b9b gui=NONE
 
 hi link StorageClass Type                                    " voltaile
 hi link Include Define
@@ -124,9 +124,23 @@ hi link csRepeat Type
 hi link csConditional Type
 hi link csLabel Type
 
+" Resharper XML Highlighting
+hi xmlTag			guifg=#DADADA      guibg=NONE
+hi xmlTagName    	guifg=#ADD8E6      guibg=NONE
+hi xmlAttribPunct 	guifg=#DCDCDC      guibg=NONE
+hi xmlAttrib		guifg=#EE82EE      guibg=NONE
+hi link xmlEndTag xmlTagName
+hi link xmlNamespace xmlAttrib
+hi link xmlString String
+hi link xmlTag xmlTagName
+
 " Diff
 hi DiffChange   guifg=NONE      guibg=NONE   gui=bold
 hi DiffText     guifg=NONE      guibg=NONE   gui=bold
 hi DiffAdd      guifg=NONE      guibg=NONE   gui=bold
 hi DiffDelete   guifg=NONE      guibg=NONE   gui=bold
 
+" Hex Files
+hi link hexAddress cTagsClass
+hi link hexOctetGroup Normal
+hi link hexAscii String

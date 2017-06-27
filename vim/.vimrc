@@ -20,6 +20,8 @@
 :let mapleader="-"
 :set shiftwidth=4  " smooth indentation // overwritten in filetype plugins
 :set tabstop=4
+:set nowrapscan
+:set autoindent
 
 if has("win32") " when running on windows
     :set guifont=DejaVu_Sans_Mono:h11:cANSI:qDRAFT
@@ -35,11 +37,11 @@ if has('gui_running')
     :colorscheme visualstudio
 
     if has("win32") " when running on windows
-	au GUIEnter * simalt ~x " launch gvim in fullscreen
+		au GUIEnter * simalt ~x " launch gvim in fullscreen
     endif
 endif
 
-" indenting with alt-i // get overwritten in ftp plugin
+" fix indentation with alt-i // get overwritten in ftp plugin
 nmap é <esc>ma=4{'a
 
 " keyboard mappings
@@ -51,7 +53,7 @@ nmap í :cp<cr>
 " and the specially crafted keyboard layout that inserts symbols when
 " when a character key is pressed when also alt and control is down so
 " vim is able to process it
-nmap Ã :q<cr>
+nmap Ã :bd<cr>
 nmap Ó :w<cr>
 inoremap Ó <esc>:w<cr>
 " Quicker Start/End Line
@@ -92,7 +94,14 @@ map ä ]
 map Ö {
 map Ä }
 map ß /
+" more ergonomic autocomplete
+inoremap ð <C-p>
 
+" open explorer
+map € :E<cr>
+
+" Xaml
+au BufNewFile,BufRead *.xaml        setf xml
 
 " scripting
 function! s:build()
@@ -127,8 +136,11 @@ execute pathogen#infect()
 " 'r' - the nearest ancestor that contains one of these directories or files: .git .hg .svn .bzr _darcs
 " 'a' - like c, but only if the current working directory outside of CtrlP is not a direct ancestor of the directory of the 
 let g:ctrlp_cmd = 'CtrlP'
-nmap ð :CtrlP .<cr>
-let g:ctrlp_working_path_mode = 'c'
+nmap ð :CtrlP<cr>
+let g:ctrlp_working_path_mode = 'ra'
 
 " Show highlighting group for current word
 nmap <C-i> :call <SID>SynStack()<CR>
+
+" netwr config
+let g:netrw_bufsettings = 'nu'
