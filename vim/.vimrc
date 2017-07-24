@@ -11,7 +11,6 @@
 :set history=500
 :set ruler         " show the cursor position all the time
 :set showcmd       " display incomplete commands
-:set incsearch     " do incremental searching
 :set hlsearch      " highlight matches
 :set laststatus=2  " Always display the status line
 :set relativenumber
@@ -22,6 +21,9 @@
 :set tabstop=4
 :set nowrapscan
 :set autoindent
+:set incsearch     " do incremental searching
+:set ignorecase
+:set smartcase     " search string with UpperCaseLetter -> case sensitiv, only lowercaseletters -> case insensitiv
 
 if has("win32") " when running on windows
     :set guifont=DejaVu_Sans_Mono:h11:cANSI:qDRAFT

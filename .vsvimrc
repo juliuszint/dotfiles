@@ -9,10 +9,12 @@
 :set history=500
 :set ruler         " show the cursor position all the time
 :set showcmd       " display incomplete commands
-:set incsearch     " do incremental searching
 :set hlsearch      " highlight matches
 :set relativenumber
 :set clipboard=unnamed
+:set incsearch     " do incremental searching
+:set ignorecase
+:set smartcase     " search string with UpperCaseLetter -> case sensitiv, only lowercaseletters -> case insensitiv
 
 "better intenting in visual mode
 vnoremap <Tab> > gv
