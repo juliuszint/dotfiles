@@ -86,14 +86,20 @@ nnoremap ' `
 nnoremap ` '
 " compiling <AltGr-b>
 nnoremap <silent>Â :Build<cr>
-" http://vim.wikia.com/wiki/Map_extra_keys_on_non_US_keyboards
-map ü <C-]>
-map Ü <C-t>
-map ö [
-map ä ]
-map Ö {
-map Ä }
-map ß /
+
+" in normal mode closer to us keyboard layout
+nmap ö ;
+nmap Ö :
+nmap ä '
+nmap Ä "
+nmap ü [
+nmap Ü {
+nmap ^ `
+nmap ° ~
+nnoremap - /
+nnoremap _ ?
+
+"
 " more ergonomic autocomplete
 inoremap ð <C-p>
 

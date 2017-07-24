@@ -17,14 +17,18 @@
 "better intenting in visual mode
 vnoremap <Tab> > gv
 vnoremap <S-Tab> < gv
-" http://vim.wikia.com/wiki/Map_extra_keys_on_non_US_keyboards
-map ü <C-]>
-map Ü <C-t>
-map ö [
-map ä ]
-map Ö {
-map Ä }
-map ß /
+
+nmap ö ;
+nmap Ö :
+nmap ä '
+nmap Ä "
+nmap ü [
+nmap Ü {
+nmap ^ `
+nmap ° ~
+nnoremap - /
+nnoremap _ ?
+
 " close without writing and save
 " these characters can be inserted ergonomically using the AltGr Key
 " and the specially crafted keyboard layout that inserts symbols when
@@ -48,12 +52,13 @@ noremap ê <C-d>
 noremap ë <C-u>
 " <alt-l>
 noremap ì <C-W><C-l>
+
 " More ergonomic Block movment
-nnoremap <S-j> }
-nnoremap <S-k> {
+nnoremap J }
+nnoremap K {
+vnoremap J }
+vnoremap K {
 nnoremap <C-j> $mb:join<cr>`b
-vnoremap <S-j> }
-vnoremap <S-k> {
 
 
 
