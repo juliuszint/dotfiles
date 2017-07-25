@@ -70,7 +70,7 @@ fi
 
 # copy vimrc file
 echo "overwriting rc file"
-cp ./../.vimrc ~/.vimrc
+cp ./../vim/.vimrc ~/.vimrc
 
 echo "overwriting ftdetect files"
 cp ./../vim/vimfiles/ftdetect/hex.vim ~/.vim/ftdetect/hex.vim
@@ -85,4 +85,4 @@ cp ./../vim/vimfiles/ftplugin/html.vim ~/.vim/after/ftplugin/html.vim
 
 # copy vim colorschemes
 echo "overwriting colorscheme"
-cp ./../vimcolors/visualstudio.vim ~/.vim/colors/visualstudio.vim
+cp ./../vim/vimfiles/vimcolors/visualstudio.vim ~/.vim/colors/visualstudio.vim
