@@ -83,9 +83,6 @@ vnoremap <S-k> {
 "better intenting in visual mode
 vnoremap <Tab> > gv
 vnoremap <S-Tab> < gv
-" map backtick to single qouote to make it easier to jump to marks
-nnoremap ' `
-nnoremap ` '
 " compiling <AltGr-b>
 nnoremap <silent>Â :Build<cr>
 

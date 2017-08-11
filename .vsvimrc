@@ -39,9 +39,6 @@ nnoremap _ ?
 nmap Ã :q<cr>
 nmap Ó :w<cr>
 inoremap Ó <esc>:w<cr>
-" map backtick to single qouote to make it easier to jump to marks
-nnoremap ' `
-nnoremap ` '
 " Quicker Start/End Line
 noremap H ^
 noremap L $
