@@ -57,6 +57,13 @@ IF NOT EXIST %HOMEDRIVE%%HOMEPATH%\vimfiles\bundle\ctrlp.vim (
 	git clone https://github.com/ctrlpvim/ctrlp.vim.git
 	popd
 )
+IF NOT EXIST %HOMEDRIVE%%HOMEPATH%\vimfiles\bundle\vim-airline (
+	echo "downloading ctrlp vim plugin"
+	pushd .\
+	cd  %HOMEDRIVE%%HOMEPATH%\vimfiles\bundle\
+	git clone https://github.com/vim-airline/vim-airline.git
+	popd
+)
 
 echo "overwriting bash_profile file"
 copy /Y .\..\.bash_profile_gitwindows %HOMEDRIVE%%HOMEPATH%\.bash_profile
