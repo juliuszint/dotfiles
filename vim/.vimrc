@@ -26,7 +26,7 @@
 :set smartcase     " search string with UpperCaseLetter -> case sensitiv, only lowercaseletters -> case insensitiv
 
 if has("win32") " when running on windows
-    :set guifont=DejaVu_Sans_Mono:h11:cANSI:qDRAFT
+	:set guifont=DejaVu_Sans_Mono_for_Powerline:h11:cANSI:qDRAFT
 else
     :set guifont=DejaVu\ Sans\ Mono\ 12
 endif
@@ -97,6 +97,16 @@ nmap ^ `
 nmap ° ~
 nnoremap - /
 nnoremap _ ?
+vmap ö ;
+vmap Ö :
+vmap ä '
+vmap Ä "
+vmap ü [
+vmap Ü {
+vmap ^ `
+vmap ° ~
+vnoremap - /
+vnoremap _ ?
 
 "
 " more ergonomic autocomplete
@@ -149,3 +159,12 @@ nmap <C-i> :call <SID>SynStack()<CR>
 
 " netwr config
 let g:netrw_bufsettings = 'nu'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_right_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_left_alt_sep= ''
+let g:airline_left_sep = ''
+let g:airline#extensions#tabline#right_sep = ''
+let g:airline#extensions#tabline#right_alt_sep = ''
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''

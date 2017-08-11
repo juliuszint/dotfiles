@@ -30,6 +30,16 @@ nmap ^ `
 nmap ° ~
 nnoremap - /
 nnoremap _ ?
+vmap ö ;
+vmap Ö :
+vmap ä '
+vmap Ä "
+vmap ü [
+vmap Ü {
+vmap ^ `
+vmap ° ~
+vnoremap - /
+vnoremap _ ?
 
 " close without writing and save
 " these characters can be inserted ergonomically using the AltGr Key
