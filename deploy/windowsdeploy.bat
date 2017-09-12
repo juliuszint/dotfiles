@@ -57,11 +57,11 @@ IF NOT EXIST %HOMEDRIVE%%HOMEPATH%\vimfiles\bundle\ctrlp.vim (
 	git clone https://github.com/ctrlpvim/ctrlp.vim.git
 	popd
 )
-IF NOT EXIST %HOMEDRIVE%%HOMEPATH%\vimfiles\bundle\vim-airline (
-	echo "downloading ctrlp vim plugin"
+IF NOT EXIST %HOMEDRIVE%%HOMEPATH%\vimfiles\bundle\auto-pairs (
+	echo "downloading auto-pairs"
 	pushd .\
 	cd  %HOMEDRIVE%%HOMEPATH%\vimfiles\bundle\
-	git clone https://github.com/vim-airline/vim-airline.git
+	git clone https://github.com/jiangmiao/auto-pairs.git
 	popd
 )
 

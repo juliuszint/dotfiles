@@ -40,13 +40,14 @@ if [ ! -d ~/.vim/after/syntax ]; then
 	mkdir ~/.vim/after/syntax/
 fi
 
-if [ ! -d ~/.vim/bundle/CSApprox ]; then
-	echo "downloading CSApprox plugin"
+if [ ! -d ~/.vim/bundle/auto-pairs ]; then
+	echo "downloading auto-pairs plugin"
 	pushd ./
 	cd ~/.vim/bundle/
-	git clone https://github.com/vim-scripts/CSApprox
+	git clone https://github.com/jiangmiao/auto-pairs.git
 	popd
 fi
+
 if [ ! -d ~/.vim/bundle/TagHighlight ]; then
 	echo "downloading TagHighligh plugin"
 	pushd ./
