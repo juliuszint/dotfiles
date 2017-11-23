@@ -20,6 +20,7 @@
 vnoremap <Tab> > gv
 vnoremap <S-Tab> < gv
 
+nmap <space> @@
 nmap ö ;
 nmap Ö :
 nmap ä '
@@ -68,6 +69,3 @@ nnoremap K {
 vnoremap J }
 vnoremap K {
 nnoremap <C-j> $mb:join<cr>`b
-
-
-

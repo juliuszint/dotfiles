@@ -24,6 +24,7 @@
 :set incsearch     " do incremental searching
 :set ignorecase
 :set smartcase     " search string with UpperCaseLetter -> case sensitiv, only lowercaseletters -> case insensitiv
+:set expandtab
 
 if has("win32") " when running on windows
 	:set guifont=DejaVu_Sans_Mono_for_Powerline:h11:cANSI:qDRAFT
@@ -86,6 +87,7 @@ vnoremap <S-Tab> < gv
 " compiling <AltGr-b>
 nnoremap <silent>Â :Build<cr>
 
+nmap <space> @@
 " in normal mode closer to us keyboard layout
 nmap ö ;
 nmap Ö :

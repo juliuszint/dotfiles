@@ -35,6 +35,11 @@ IF NOT EXIST %HOMEDRIVE%%HOMEPATH%\vimfiles\after (
 	mkdir %HOMEDRIVE%%HOMEPATH%\vimfiles\after
 )
 
+IF NOT EXIST %HOMEDRIVE%%HOMEPATH%\vimfiles\after\ftplugin (
+	echo "creating after.ftplugin directory"
+	mkdir %HOMEDRIVE%%HOMEPATH%\vimfiles\after\ftplugin
+)
+
 IF NOT EXIST %HOMEDRIVE%%HOMEPATH%\vimfiles\after\syntax (
 	echo "creating after.syntax directory"
 	mkdir %HOMEDRIVE%%HOMEPATH%\vimfiles\after\syntax
@@ -73,6 +78,10 @@ copy /Y .\vim\.vimrc %HOMEDRIVE%%HOMEPATH%\.vimrc
 
 echo "overwriting vsvimrc file"
 copy /Y .\..\.vsvimrc %HOMEDRIVE%%HOMEPATH%\.vsvimrc 
+
+echo "overwriting after ftplugin files"
+copy /Y .\..\vim\vimfiles\after\ftplugin\xml.vim %HOMEDRIVE%%HOMEPATH%\vimfiles\after\ftplugin\xml.vim
+copy /Y .\..\vim\vimfiles\after\ftplugin\html.vim %HOMEDRIVE%%HOMEPATH%\vimfiles\after\ftplugin\html.vim
 
 echo "overwriting ftdectect file"
 copy /Y .\..\vim\vimfiles\ftdetect\hext.vim %HOMEDRIVE%%HOMEPATH%\vimfiles\ftdetect\c.vim

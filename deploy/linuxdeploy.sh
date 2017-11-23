@@ -40,6 +40,11 @@ if [ ! -d ~/.vim/after/syntax ]; then
 	mkdir ~/.vim/after/syntax/
 fi
 
+if [ ! -d ~/.vim/after/ftplugin ]; then
+	echo "creating ftplugin directory"
+	mkdir ~/.vim/after/ftplugin/
+fi
+
 if [ ! -d ~/.vim/bundle/auto-pairs ]; then
 	echo "downloading auto-pairs plugin"
 	pushd ./
@@ -75,6 +80,10 @@ cp ./../vim/.vimrc ~/.vimrc
 
 echo "overwriting ftdetect files"
 cp ./../vim/vimfiles/ftdetect/hex.vim ~/.vim/ftdetect/hex.vim
+
+echo "overwriting ftplugin files"
+cp ./../vim/vimfiles/after/ftplugin/xml.vim ~/.vim/after/ftplugin/xml.vim
+cp ./../vim/vimfiles/after/ftplugin/html.vim ~/.vim/after/ftplugin/html.vim
 
 # copy 
 echo "overwriting syntax files"
