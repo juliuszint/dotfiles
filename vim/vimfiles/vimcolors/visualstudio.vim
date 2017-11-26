@@ -124,6 +124,11 @@ hi link csRepeat Type
 hi link csConditional Type
 hi link csLabel Type
 
+" Java highlighting
+hi link javaOperator Type
+hi link javaStatement Type
+hi link javaRepeat Type
+
 " Resharper XML Highlighting
 hi xmlTag			guifg=#DADADA      guibg=NONE
 hi xmlTagName    	guifg=#ADD8E6      guibg=NONE
