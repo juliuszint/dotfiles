@@ -128,6 +128,10 @@ hi link csLabel Type
 hi link javaOperator Type
 hi link javaStatement Type
 hi link javaRepeat Type
+hi link javaTypedef Type
+
+" Json highlighting
+hi jsonKeyword	    guifg=#D7BA7D      guibg=NONE
 
 " Resharper XML Highlighting
 hi xmlTag			guifg=#DADADA      guibg=NONE
