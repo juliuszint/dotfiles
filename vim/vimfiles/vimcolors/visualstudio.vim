@@ -123,6 +123,8 @@ hi link csException Type
 hi link csRepeat Type
 hi link csConditional Type
 hi link csLabel Type
+hi link csContextualStatement Type
+hi link csUnsupportedStatement Type
 
 " Java highlighting
 hi link javaOperator Type
