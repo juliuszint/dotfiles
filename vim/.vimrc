@@ -27,7 +27,8 @@
 :set expandtab
 
 if has("win32") " when running on windows
-	:set guifont=DejaVu_Sans_Mono_for_Powerline:h11:cANSI:qDRAFT
+	:set guifont=DejaVu_Sans_Mono:h10:cANSI:qDRAFT
+    au GUIEnter * simalt ~x " launch gvim in fullscreen
 else
     :set guifont=DejaVu\ Sans\ Mono\ 12
 endif
@@ -38,41 +39,24 @@ if has('gui_running')
     :set guioptions-=r  " remove right-hand scroll bar
     :set guioptions-=L  " remove left-hand scroll bar
     :colorscheme visualstudio
-
-    if has("win32") " when running on windows
-		au GUIEnter * simalt ~x " launch gvim in fullscreen
-    endif
 endif
 
 " fix indentation with alt-i // get overwritten in ftp plugin
 nmap é <esc>ma=4{'a
 
 " keyboard mappings
-" Quicker Compile Shortcuts
 nmap î :cn<cr> 
 nmap í :cp<cr>
-" close without writing and save
-" these characters can be inserted ergonomically using the AltGr Key
-" and the specially crafted keyboard layout that inserts symbols when
-" when a character key is pressed when also alt and control is down so
-" vim is able to process it
+imap Ó <esc>:w<cr>
 nmap Ã :bd<cr>
 nmap Ó :w<cr>
-inoremap Ó <esc>:w<cr>
+
 " Quicker Start/End Line
 noremap H ^
 noremap L $
 " more natural screen movement mac
 nnoremap º <C-d>
 nnoremap ∆ <C-u>
-
-" windows Quicker window movement 
-noremap è <C-W>h
-noremap ì <C-W>l
-
-" More ergonomic Page movmenet
-noremap ê <C-d>
-noremap ë <C-u>
 
 " More ergonomic Block movment
 nnoremap <S-j> }
@@ -88,7 +72,6 @@ vnoremap <S-Tab> < gv
 nnoremap <silent>Â :Build<cr>
 
 nmap <space> @@
-" in normal mode closer to us keyboard layout
 nmap ö ;
 nmap Ö :
 nmap ä '
@@ -109,10 +92,15 @@ vmap ^ `
 vmap ° ~
 vnoremap - /
 vnoremap _ ?
-
-"
-" more ergonomic autocomplete
-inoremap ð <C-p>
+imap <M-7> {
+imap <M-0> }
+imap <M-8> [
+imap <M-9> ]
+nmap <M-j> <C-d>
+nmap <M-k> <C-u>
+nmap <M-l> <C-w>l
+nmap <M-h> <C-w>h
+imap <M-p> <C-p>
 
 " open explorer
 map € :E<cr>
@@ -147,26 +135,18 @@ endfunc
 
 " easy plugin management 
 execute pathogen#infect() 
+let g:AutoPairsShortcutToggle=''
 
 " ctrl p mapping
 " 'c' - the directory of the current file.
 " 'r' - the nearest ancestor that contains one of these directories or files: .git .hg .svn .bzr _darcs
-" 'a' - like c, but only if the current working directory outside of CtrlP is not a direct ancestor of the directory of the 
-let g:ctrlp_cmd = 'CtrlP'
-nmap ð :CtrlP<cr>
+" 'a' - the directory of the current file, unless it is a subdirectory of the cwd
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_cmd = 'CtrlP'
+nmap <M-p> :CtrlP<cr>
 
 " Show highlighting group for current word
 nmap <C-i> :call <SID>SynStack()<CR>
 
 " netwr config
 let g:netrw_bufsettings = 'nu'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_right_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_left_alt_sep= ''
-let g:airline_left_sep = ''
-let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
