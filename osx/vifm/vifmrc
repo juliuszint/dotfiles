@@ -1,1 +1,4 @@
 :colorscheme mint
+filetype * open
+:set vifminfo=bookmarks,bmark,dhistory,savedirs
+:set incsearch
