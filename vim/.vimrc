@@ -21,56 +21,72 @@
 :set tabstop=4
 :set nowrapscan
 :set autoindent
-:set incsearch     " do incremental searching
+:set incsearch     
 :set ignorecase
-:set smartcase     " search string with UpperCaseLetter -> case sensitiv, only lowercaseletters -> case insensitiv
+:set smartcase    
 :set expandtab
+:set guifont=DejaVu\ Sans\ Mono\ 12
+:syntax on
+:filetype plugin indent on
+:filetype indent on
+:filetype on
 
-if has("win32") " when running on windows
-	:set guifont=DejaVu_Sans_Mono:h10:cANSI:qDRAFT
-    au GUIEnter * simalt ~x " launch gvim in fullscreen
-else
-    :set guifont=DejaVu\ Sans\ Mono\ 12
+if has('macunix')
+    imap <D-c> <esc>:w<cr>
+    imap <D-7> {
+    imap <D-0> }
+    imap <D-8> [
+    imap <D-9> ]
+    imap <D-p> <C-p>
+
+    nmap <D-c> <esc>:w<cr>
+    nmap <D-t> :wq<cr>
+    nmap <D-j> <C-d>
+    nmap <D-k> <C-u>
+    nmap <D-l> <C-w>l
+    nmap <D-h> <C-w>h
+    nmap <M-n> :cn<cr>
+    nmap <M-m> :cp<cr>
+
+    nmap <D-s> :w<cr>
+    imap <D-s> <esc>:w<cr>
 endif
 
-if has('gui_running')
-    :set guioptions-=m  " remove menu bar
-    :set guioptions-=T  " remove toolbar
-    :set guioptions-=r  " remove right-hand scroll bar
-    :set guioptions-=L  " remove left-hand scroll bar
-    :colorscheme visualstudio
+if has("win32") 
+    imap <M-7> {
+    imap <M-0> }
+    imap <M-8> [
+    imap <M-9> ]
+    imap <M-p> <C-p>
+
+    nmap <M-j> <C-d>
+    nmap <M-k> <C-u>
+    nmap <M-l> <C-w>l
+    nmap <M-h> <C-w>h
+    nmap <M-n> :cn<cr>
+    nmap <M-m> :cp<cr>
+
+    " Ó Alt-Gr-s
+    " Ã Alt-Gr-c
+    imap Ó <esc>:w<cr>
+    nmap Ó :w<cr>
+    nmap Ã :bd<cr>
 endif
 
-" fix indentation with alt-i // get overwritten in ftp plugin
-nmap é <esc>ma=4{'a
-
-" keyboard mappings
-nmap î :cn<cr> 
-nmap í :cp<cr>
-imap Ó <esc>:w<cr>
-nmap Ã :bd<cr>
-nmap Ó :w<cr>
-
-" Quicker Start/End Line
+" default of H (move to top of the screen)
+" default of L (move to bottom of the screen)
+" default of K (open man page for word under the cursor)
+" default of J (join lines -> replaced with <C-j>)
 noremap H ^
 noremap L $
-" more natural screen movement mac
-nnoremap º <C-d>
-nnoremap ∆ <C-u>
-
-" More ergonomic Block movment
-nnoremap <S-j> }
-nnoremap <S-k> {
+nnoremap J }
+nnoremap K {
+vnoremap J }
+vnoremap K {
 nnoremap <C-j> $mb:join<cr>`b
-vnoremap <S-j> }
-vnoremap <S-k> {
 
-"better intenting in visual mode
-vnoremap <Tab> > gv
-vnoremap <S-Tab> < gv
-" compiling <AltGr-b>
-nnoremap <silent>Â :Build<cr>
-
+nnoremap - /
+nnoremap _ ?
 nmap <space> @@
 nmap ö ;
 nmap Ö :
@@ -80,8 +96,6 @@ nmap ü [
 nmap Ü {
 nmap ^ `
 nmap ° ~
-nnoremap - /
-nnoremap _ ?
 vmap ö ;
 vmap Ö :
 vmap ä '
@@ -92,23 +106,15 @@ vmap ^ `
 vmap ° ~
 vnoremap - /
 vnoremap _ ?
-imap <M-7> {
-imap <M-0> }
-imap <M-8> [
-imap <M-9> ]
-nmap <M-j> <C-d>
-nmap <M-k> <C-u>
-nmap <M-l> <C-w>l
-nmap <M-h> <C-w>h
-imap <M-p> <C-p>
 
-" open explorer
-map € :E<cr>
+vnoremap <Tab> > gv
+vnoremap <S-Tab> < gv
 
-" Xaml
-au BufNewFile,BufRead *.xaml        setf xml
+au BufNewFile,BufRead *.xaml setf xml
 
-" scripting
+" 
+" custom compile function
+"
 function! s:build()
     let &makeprg='build.bat'
     if has("unix")
@@ -121,6 +127,9 @@ endfunction
 
 command! Build call s:build()
 
+"
+" Evaluate and print current syntax stack for word under cursor
+" 
 function! <SID>SynStack()
 	if !exists("*synstack")
 		return
@@ -128,13 +137,8 @@ function! <SID>SynStack()
 	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-:syntax on
-:filetype plugin indent on
-:filetype indent on
-:filetype on
-
-" easy plugin management 
 execute pathogen#infect() 
+
 let g:AutoPairsShortcutToggle=''
 
 " ctrl p mapping
@@ -147,6 +151,3 @@ nmap <M-p> :CtrlP<cr>
 
 " Show highlighting group for current word
 nmap <C-i> :call <SID>SynStack()<CR>
-
-" netwr config
-let g:netrw_bufsettings = 'nu'
