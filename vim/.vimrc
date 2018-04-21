@@ -25,7 +25,6 @@
 :set ignorecase
 :set smartcase    
 :set expandtab
-:set guifont=DejaVu\ Sans\ Mono\ 12
 :syntax on
 :filetype plugin indent on
 :filetype indent on

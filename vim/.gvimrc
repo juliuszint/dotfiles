@@ -1,4 +1,5 @@
 if has("win32") 
+    :set guifont=DejaVu_Sans_Mono:h10:cANSI:qDRAFT
     :set guioptions-=m       " remove menu bar
     :set guioptions-=T       " remove toolbar
     :set guioptions-=r       " remove right-hand scroll bar
@@ -7,6 +8,7 @@ if has("win32")
 endif
 
 if has('gui_macvim') 
+    :set guifont=DejaVu\ Sans\ Mono\ 12
     :set guioptions=
     :macmenu File.Save key=<nop>
     :macmenu File.New\ Tab key=<nop>
