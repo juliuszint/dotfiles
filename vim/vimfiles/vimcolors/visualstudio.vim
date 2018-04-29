@@ -28,7 +28,7 @@ hi Title        guifg=NONE   gui=NONE
 hi Underlined   guifg=NONE   gui=underline
 
 hi Normal       guifg=#c8c8c8   guibg=#1e1e1e
-hi LineNr       guifg=#2b91af   guibg=NONE 
+hi LineNr       guifg=#2b91af   guibg=#3e3e3e 
 hi CursorLineNr guifg=#2b91af   guibg=NONE
 hi Visual       guifg=NONE   guibg=#264f78
 hi Cursor       guifg=NONE   guibg=#00ff00
