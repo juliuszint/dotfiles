@@ -6,3 +6,4 @@ endif
 
 syn match slideSeperator '^##.*'
 syn match slideComment '^//.*'
+syn region slideBlockComment start=/\/\*/ end=/\*\//
