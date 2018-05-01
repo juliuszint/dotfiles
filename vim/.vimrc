@@ -1,23 +1,23 @@
 :set number
 :set nowrap
 :set vb
-:set backspace=2   " Backspace deletes like most programs in insert mode
-:set complete=.,w,b,u,t,i,kspell " these are the default vim settings with kspell added (search in dictionary only if spell is enabled) 
-:set nocompatible  " Use Vim settings, rather then Vi settings
+:set backspace=2   
+:set complete=.,w,b,u,t,i,kspell 
+:set nocompatible  
 :set nobackup
-:set cursorline    " enables highlighting the complete cursorline
+:set cursorline   
 :set nowritebackup
-:set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+:set noswapfile  
 :set history=500
-:set ruler         " show the cursor position all the time
-:set showcmd       " display incomplete commands
-:set hlsearch      " highlight matches
-:set laststatus=2  " Always display the status line
+:set ruler         
+:set showcmd      
+:set hlsearch    
+:set laststatus=2  
 :set relativenumber
 :set encoding=utf-8
 :set clipboard=unnamed
 :let mapleader="-"
-:set shiftwidth=4  " smooth indentation // overwritten in filetype plugins
+:set shiftwidth=4
 :set tabstop=4
 :set nowrapscan
 :set autoindent
@@ -25,6 +25,8 @@
 :set ignorecase
 :set smartcase    
 :set expandtab
+:set hidden
+:set colorcolumn=110
 :syntax on
 :filetype plugin indent on
 :filetype indent on
@@ -44,6 +46,7 @@ if has('macunix')
     nmap <D-k> <C-u>
     nmap <D-l> <C-w>l
     nmap <D-h> <C-w>h
+    nmap <D-c> :bd<cr>
     nmap <M-n> :cn<cr>
     nmap <M-m> :cp<cr>
 
