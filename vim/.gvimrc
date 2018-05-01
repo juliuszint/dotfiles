@@ -24,6 +24,9 @@ if has('gui_macvim')
     :macmenu Edit.Paste key=<nop>
     :macmenu Edit.Cut key=<nop>
     :macmenu Tools.List\ Errors key=<nop>
+
+    :let g:OmniSharp_server_path = '/Users/juliuszint/omnisharp.http-osx/omnisharp/omnisharp.exe'
 endif
 
 :colorscheme visualstudio
+:set guicursor+=n-v-c:blinkon0
