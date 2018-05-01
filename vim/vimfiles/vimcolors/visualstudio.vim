@@ -160,4 +160,5 @@ hi link hexAscii String
 " slides
 hi slideSeperator guifg=#672179     guibg=#2d2d30
 hi link slideComment Comment
+hi link slideBlockComment Comment
 
