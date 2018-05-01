@@ -158,6 +158,6 @@ hi link hexOctetGroup Normal
 hi link hexAscii String
 
 " slides
-hi slideSeperator guifg=#672179     guibg=NONE
+hi slideSeperator guifg=#672179     guibg=#2d2d30
 hi link slideComment Comment
 
