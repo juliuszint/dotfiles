@@ -31,6 +31,7 @@
 :filetype plugin indent on
 :filetype indent on
 :filetype on
+:set errorformat=\ %#%f(%l\\\,%c):\ %m
 
 if has('macunix')
     imap <D-c> <esc>:w<cr>
@@ -47,7 +48,7 @@ if has('macunix')
     nmap <D-l> <C-w>l
     nmap <D-h> <C-w>h
     nmap <D-c> :bd<cr>
-    nmap <D-n> :cn<cr>
+    nmap <D-n> :call Wrapping_cNext()<cr>
     nmap <D-N> :cp<cr>
 
     nmap <D-s> :w<cr>
@@ -116,7 +117,18 @@ vnoremap _ ?
 vnoremap <Tab> > gv
 vnoremap <S-Tab> < gv
 
+nnoremap gm :w<cr>:Make<cr>
+
 au BufNewFile,BufRead *.xaml setf xml
+
+function Wrapping_cNext()
+    try
+        execute "cn"
+    catch /^Vim\%((\a\+)\)\=:E553/
+        execute "cf"
+    catch /^Vim\%((\a\+)\)\=:E\%(325\|776\|42\):/
+    endtry
+endfunction
 
 "
 " Evaluate and print current syntax stack for word under cursor
