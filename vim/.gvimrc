@@ -12,6 +12,7 @@ if has('gui_macvim')
     :set guioptions=
     :macmenu File.Save key=<nop>
     :macmenu File.New\ Tab key=<nop>
+    :macmenu File.New\ Window key=<nop>
     ":macmenu File.Open... key=<nop>
     ":macmenu File.Open\ Tab key=<nop>
     ":macmenu File.Save\ As Tab key=<nop>
