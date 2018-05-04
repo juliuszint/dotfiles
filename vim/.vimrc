@@ -52,6 +52,8 @@ if has('macunix')
 
     nmap <D-s> :w<cr>
     imap <D-s> <esc>:w<cr>
+    
+    nmap <D-p> :CtrlP<cr>
 endif
 
 if has("win32") 
@@ -73,6 +75,8 @@ if has("win32")
     imap Ó <esc>:w<cr>
     nmap Ó :w<cr>
     nmap Ã :bd<cr>
+
+    nmap <M-p> :CtrlP<cr>
 endif
 
 " default of H (move to top of the screen)
@@ -114,21 +118,6 @@ vnoremap <S-Tab> < gv
 
 au BufNewFile,BufRead *.xaml setf xml
 
-" 
-" custom compile function
-"
-function! s:build()
-    let &makeprg='build.bat'
-    if has("unix")
-		let &makeprg='./build.sh'
-    endif
-    silent make
-    :vert copen
-	:call feedkeys("\<C-w>=")
-endfunction
-
-command! Build call s:build()
-
 "
 " Evaluate and print current syntax stack for word under cursor
 " 
@@ -149,7 +138,6 @@ let g:AutoPairsShortcutToggle=''
 " 'a' - the directory of the current file, unless it is a subdirectory of the cwd
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_cmd = 'CtrlP'
-nmap <M-p> :CtrlP<cr>
 
 " Show highlighting group for current word
 nmap <C-i> :call <SID>SynStack()<CR>
