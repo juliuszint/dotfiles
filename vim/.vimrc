@@ -47,8 +47,8 @@ if has('macunix')
     nmap <D-l> <C-w>l
     nmap <D-h> <C-w>h
     nmap <D-c> :bd<cr>
-    nmap <M-n> :cn<cr>
-    nmap <M-m> :cp<cr>
+    nmap <D-n> :cn<cr>
+    nmap <D-N> :cp<cr>
 
     nmap <D-s> :w<cr>
     imap <D-s> <esc>:w<cr>
