@@ -60,6 +60,9 @@ hi Search       guifg=NONE   guibg=#623003   gui=NONE
 hi SpecialKey	guifg=NONE   guibg=NONE
 hi Special      guifg=NONE   guibg=NONE
 
+hi Pmenu        guifg=NONE   guibg=#363636
+hi PmenuSel     guifg=NONE   guibg=#623003
+
 " common syntax highlighting
 hi String       	 guifg=#6b8e23 gui=NONE
 hi Type         	 guifg=#cd950c gui=NONE
