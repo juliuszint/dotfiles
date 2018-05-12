@@ -28,7 +28,7 @@ if has('gui_macvim')
     :macmenu Tools.List\ Errors key=<nop>
     :macmenu Tools.Make key=<nop>
 
-    :let g:OmniSharp_server_path = '/Users/juliuszint/omnisharp.http-osx/omnisharp/omnisharp.exe'
+    :let g:OmniSharp_server_path = '/usr/local/omnisharp/run'
     :colorscheme caseymuratori
     :set fu
 endif

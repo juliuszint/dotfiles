@@ -78,6 +78,11 @@ hi link Boolean Type
 hi link float Number
 hi link Statement Type 
 
+"NERDtree
+hi link NERDTreeDir Type
+hi link NERDTreeOpenable Type
+hi link NERDTreeClosable Type
+
 " C# highlighting
 hi link csUnspecifiedStatement Type
 hi link csException Type

@@ -16,7 +16,7 @@
 :set relativenumber
 :set encoding=utf-8
 :set clipboard=unnamed
-:let mapleader="-"
+:let mapleader=","
 :set shiftwidth=4
 :set tabstop=4
 :set nowrapscan
@@ -32,6 +32,7 @@
 :filetype indent on
 :filetype on
 :set errorformat=\ %#%f(%l\\\,%c):\ %m
+:set timeoutlen=250
 
 if has('macunix')
     imap <D-c> <esc>:w<cr>
@@ -45,16 +46,22 @@ if has('macunix')
     nmap <D-t> :wq<cr>
     nmap <D-j> <C-d>
     nmap <D-k> <C-u>
+    vmap <D-j> <C-d>
+    vmap <D-k> <C-u>
     nmap <D-l> <C-w>l
     nmap <D-h> <C-w>h
     nmap <D-c> :bd<cr>
     nmap <D-n> :call Wrapping_cNext()<cr>
     nmap <D-N> :cp<cr>
+    
+    nmap <D-e> :NERDTreeToggle<CR>
 
     nmap <D-s> :w<cr>
     imap <D-s> <esc>:w<cr>
+    inoremap <D-n> <C-n>
     
     nmap <D-p> :CtrlP<cr>
+    nmap <D-b> :CtrlPBuffer<cr>
 endif
 
 if has("win32") 
@@ -114,6 +121,9 @@ vmap ° ~
 vnoremap - /
 vnoremap _ ?
 
+autocmd FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
+autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
+
 vnoremap <Tab> > gv
 vnoremap <S-Tab> < gv
 
@@ -144,12 +154,11 @@ execute pathogen#infect()
 
 let g:AutoPairsShortcutToggle=''
 
-" ctrl p mapping
-" 'c' - the directory of the current file.
-" 'r' - the nearest ancestor that contains one of these directories or files: .git .hg .svn .bzr _darcs
-" 'a' - the directory of the current file, unless it is a subdirectory of the cwd
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_working_path_mode = 'a'
 let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_custom_ignore = {
+  \ 'file': '\.cache$\|\.exe$\|\.obj$\|\.dll$'
+  \ }
 
 " Show highlighting group for current word
 nmap <C-i> :call <SID>SynStack()<CR>
