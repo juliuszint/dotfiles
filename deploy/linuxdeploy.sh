@@ -36,6 +36,10 @@ if [ ! -d ~/.vim/after/ftplugin ]; then
 	mkdir ~/.vim/after/ftplugin/
 fi
 
+if [ ! -d ~/.vim/after/plugin ]; then
+	mkdir ~/.vim/after/plugin/
+fi
+
 if [ ! -d ~/.vim/bundle/auto-pairs ]; then
 	pushd ./
 	cd ~/.vim/bundle/
@@ -64,6 +68,7 @@ fi
 cp ./../vim/.vimrc ~/.vimrc
 cp ./../vim/.gvimrc ~/.gvimrc
 
+cp ./../vim/vimfiles/after/plugin/my_nerdtree.vim ~/.vim/after/plugin/my_nerdtree.vim
 cp ./../vim/vimfiles/after/ftplugin/xml.vim ~/.vim/after/ftplugin/xml.vim
 cp ./../vim/vimfiles/after/ftplugin/html.vim ~/.vim/after/ftplugin/html.vim
 cp ./../vim/vimfiles/after/syntax/c.vim ~/.vim/after/syntax/c.vim

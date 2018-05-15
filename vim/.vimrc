@@ -32,7 +32,13 @@
 :filetype indent on
 :filetype on
 :set errorformat=\ %#%f(%l\\\,%c):\ %m
-:set timeoutlen=250
+:set timeoutlen=300
+
+:let g:NERDTreeHijackNetrw=1
+:let g:NERDTreeWinSize=60
+:let g:AutoPairsShortcutToggle=''
+:let g:ctrlp_working_path_mode = 'a'
+:let g:ctrlp_cmd = 'CtrlP'
 
 if has('macunix')
     imap <D-c> <esc>:w<cr>
@@ -54,7 +60,7 @@ if has('macunix')
     nmap <D-n> :call Wrapping_cNext()<cr>
     nmap <D-N> :cp<cr>
     
-    nmap <D-e> :NERDTreeToggle<CR>
+    nmap <D-e> :e .<cr>
 
     nmap <D-s> :w<cr>
     imap <D-s> <esc>:w<cr>
@@ -86,6 +92,8 @@ if has("win32")
 
     nmap <M-p> :CtrlP<cr>
 endif
+
+nmap gnh :noh<cr>
 
 " default of H (move to top of the screen)
 " default of L (move to bottom of the screen)
@@ -123,6 +131,9 @@ vnoremap _ ?
 
 autocmd FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
 autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
+autocmd FileType cs nnoremap <buffer> <Leader>gd :OmniSharpGotoDefinition<CR>
+autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
+autocmd FileType cs nnoremap <buffer> <Leader><Space> :OmniSharpGetCodeActions<CR>
 
 vnoremap <Tab> > gv
 vnoremap <S-Tab> < gv
@@ -152,10 +163,6 @@ endfunc
 
 execute pathogen#infect() 
 
-let g:AutoPairsShortcutToggle=''
-
-let g:ctrlp_working_path_mode = 'a'
-let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = {
   \ 'file': '\.cache$\|\.exe$\|\.obj$\|\.dll$'
   \ }
