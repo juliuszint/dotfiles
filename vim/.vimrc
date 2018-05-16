@@ -32,8 +32,9 @@
 :filetype indent on
 :filetype on
 :set errorformat=\ %#%f(%l\\\,%c):\ %m
-:set timeoutlen=300
+:set timeoutlen=500
 
+:let NERDTreeIgnore=['.*obj[[dir]]', '.*bin[[dir]]']
 :let g:NERDTreeHijackNetrw=1
 :let g:NERDTreeWinSize=60
 :let g:AutoPairsShortcutToggle=''
@@ -94,6 +95,8 @@ if has("win32")
 endif
 
 nmap gnh :noh<cr>
+vmap gkc :s/^/\/\/<cr>:noh<cr>
+vmap gku :s/^\/\//<cr>:noh<cr>
 
 " default of H (move to top of the screen)
 " default of L (move to bottom of the screen)
