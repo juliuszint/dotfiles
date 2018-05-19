@@ -69,6 +69,7 @@ if has('macunix')
     
     nmap <D-p> :CtrlP<cr>
     nmap <D-b> :CtrlPBuffer<cr>
+    autocmd FileType cs inoremap <buffer> <D-a> <C-x><C-o>
 endif
 
 if has("win32") 
@@ -97,6 +98,10 @@ endif
 nmap gnh :noh<cr>
 vmap gkc :s/^/\/\/<cr>:noh<cr>
 vmap gku :s/^\/\//<cr>:noh<cr>
+
+vnoremap <Tab> > gv
+vnoremap <S-Tab> < gv
+nnoremap <silent> gm :call Timed_Make()<cr>
 
 " default of H (move to top of the screen)
 " default of L (move to bottom of the screen)
@@ -138,12 +143,19 @@ autocmd FileType cs nnoremap <buffer> <Leader>gd :OmniSharpGotoDefinition<CR>
 autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
 autocmd FileType cs nnoremap <buffer> <Leader><Space> :OmniSharpGetCodeActions<CR>
 
-vnoremap <Tab> > gv
-vnoremap <S-Tab> < gv
-
-nnoremap gm :w<cr>:Make<cr>
-
 au BufNewFile,BufRead *.xaml setf xml
+
+function Timed_Make()
+    try
+        :execute ":w"
+    catch
+    endtry
+    :echo "make task started"
+    :let start = reltime()
+    silent :execute "Make"
+    :let elapsedTimeString = reltimestr(reltime(start))
+    :echo "make task finished in:" . elapsedTimeString . "s"
+endfunction
 
 function Wrapping_cNext()
     try

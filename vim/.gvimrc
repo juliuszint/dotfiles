@@ -25,6 +25,7 @@ if has('gui_macvim')
     :macmenu Edit.Copy key=<nop>
     :macmenu Edit.Paste key=<nop>
     :macmenu Edit.Cut key=<nop>
+    :macmenu Edit.Select\ All key=<nop>
     :macmenu Tools.List\ Errors key=<nop>
     :macmenu Tools.Make key=<nop>
 
