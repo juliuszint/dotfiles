@@ -14,13 +14,8 @@ if has('gui_macvim')
     :macmenu File.Save key=<nop>
     :macmenu File.New\ Tab key=<nop>
     :macmenu File.New\ Window key=<nop>
-    ":macmenu File.Open... key=<nop>
-    ":macmenu File.Open\ Tab key=<nop>
-    ":macmenu File.Save\ As Tab key=<nop>
-    ":macmenu File.Close\ Window key=<nop>
     :macmenu File.Close key=<nop>
     :macmenu File.Print key=<nop>
-    ":macmenu MacVim.Hide key=<nop>
 
     :macmenu Edit.Copy key=<nop>
     :macmenu Edit.Paste key=<nop>
@@ -30,7 +25,7 @@ if has('gui_macvim')
     :macmenu Tools.Make key=<nop>
 
     :let g:OmniSharp_server_path = '/usr/local/omnisharp/run'
-    :colorscheme caseymuratori
+    :colorscheme visualstudio
     :set fu
 endif
 

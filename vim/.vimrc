@@ -13,7 +13,6 @@
 :set showcmd      
 :set hlsearch    
 :set laststatus=2  
-:set relativenumber
 :set encoding=utf-8
 :set clipboard=unnamed
 :let mapleader=","
@@ -40,6 +39,7 @@
 :let g:AutoPairsShortcutToggle=''
 :let g:ctrlp_working_path_mode = 'a'
 :let g:ctrlp_cmd = 'CtrlP'
+:autocmd FileType nerdtree :setlocal colorcolumn=0
 
 if has('macunix')
     imap <D-c> <esc>:w<cr>
@@ -55,8 +55,6 @@ if has('macunix')
     nmap <D-k> <C-u>
     vmap <D-j> <C-d>
     vmap <D-k> <C-u>
-    nmap <D-l> <C-w>l
-    nmap <D-h> <C-w>h
     nmap <D-c> :bd<cr>
     nmap <D-n> :call Wrapping_cNext()<cr>
     nmap <D-N> :cp<cr>
@@ -69,7 +67,7 @@ if has('macunix')
     
     nmap <D-p> :CtrlP<cr>
     nmap <D-b> :CtrlPBuffer<cr>
-    autocmd FileType cs inoremap <buffer> <D-a> <C-x><C-o>
+    "autocmd FileType cs inoremap <buffer> <D-a> <C-x><C-o>
 endif
 
 if has("win32") 
@@ -95,13 +93,22 @@ if has("win32")
     nmap <M-p> :CtrlP<cr>
 endif
 
+nmap gj <C-w>j
+nmap gk <C-w>k
+nmap gl <C-w>l
+nmap gh <C-w>h
+nmap gd <C-]>
+nmap go <C-o>
+nmap gi <C-i>
+nmap gm :call Timed_Make()<cr>
+nmap gr :Make run<cr>
+
 nmap gnh :noh<cr>
 vmap gkc :s/^/\/\/<cr>:noh<cr>
 vmap gku :s/^\/\//<cr>:noh<cr>
 
 vnoremap <Tab> > gv
 vnoremap <S-Tab> < gv
-nnoremap <silent> gm :call Timed_Make()<cr>
 
 " default of H (move to top of the screen)
 " default of L (move to bottom of the screen)
@@ -137,23 +144,33 @@ vmap ° ~
 vnoremap - /
 vnoremap _ ?
 
-autocmd FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
-autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
-autocmd FileType cs nnoremap <buffer> <Leader>gd :OmniSharpGotoDefinition<CR>
-autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
-autocmd FileType cs nnoremap <buffer> <Leader><Space> :OmniSharpGetCodeActions<CR>
+"autocmd FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
+"autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
+"autocmd FileType cs nnoremap <buffer> <Leader>gd :OmniSharpGotoDefinition<CR>
+"autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
+"autocmd FileType cs nnoremap <buffer> <Leader><Space> :OmniSharpGetCodeActions<CR>
 
 au BufNewFile,BufRead *.xaml setf xml
 
 function Timed_Make()
+    echo ""
     try
-        :execute ":w"
+        :silent :execute ":w"
     catch
     endtry
-    :echo "make task started"
+    :echo "make started ..."
     :let start = reltime()
-    silent :execute "Make"
+    :redir => buildoutput
+    :silent :execute "!make"
+    :redir END
     :let elapsedTimeString = reltimestr(reltime(start))
+    if buildoutput=~#"Error"
+        :copen
+    else
+        :cclose
+    endif
+    :cexp buildoutput
+    :redraw!
     :echo "make task finished in:" . elapsedTimeString . "s"
 endfunction
 
