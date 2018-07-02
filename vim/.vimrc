@@ -56,7 +56,7 @@ if has('macunix')
     vmap <D-j> <C-d>
     vmap <D-k> <C-u>
     nmap <D-c> :bd<cr>
-    nmap <D-n> :call Wrapping_cNext()<cr>
+    nmap <D-n> :cn<cr>
     nmap <D-N> :cp<cr>
     
     nmap <D-e> :e .<cr>
@@ -101,7 +101,7 @@ nmap gd <C-]>
 nmap go <C-o>
 nmap gi <C-i>
 nmap gm :call Timed_Make()<cr>
-nmap gr :Make run<cr>
+nmap gr :silent :!make run :redraw!<cr>
 
 nmap gnh :noh<cr>
 vmap gkc :s/^/\/\/<cr>:noh<cr>
@@ -169,18 +169,10 @@ function Timed_Make()
     else
         :cclose
     endif
+    :let buildoutput = substitute(buildoutput, '\r', "", "g")
     :cexp buildoutput
     :redraw!
     :echo "make task finished in:" . elapsedTimeString . "s"
-endfunction
-
-function Wrapping_cNext()
-    try
-        execute "cn"
-    catch /^Vim\%((\a\+)\)\=:E553/
-        execute "cf"
-    catch /^Vim\%((\a\+)\)\=:E\%(325\|776\|42\):/
-    endtry
 endfunction
 
 "
