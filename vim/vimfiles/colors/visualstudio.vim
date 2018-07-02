@@ -27,8 +27,8 @@ endif
 hi Title        guifg=NONE   gui=NONE
 hi Underlined   guifg=NONE   gui=underline
 
-hi Normal       guifg=#c8c8c8   guibg=#1e1e1e
-hi LineNr       guifg=#2b91af   guibg=#3e3e3e 
+hi Normal       guifg=#dcdcdc   guibg=#1e1e1e
+hi LineNr       guifg=#2b91af   guibg=NONE 
 hi CursorLineNr guifg=#2b91af   guibg=NONE
 hi Visual       guifg=NONE   guibg=#264f78
 hi Cursor       guifg=NONE   guibg=#00ff00
@@ -96,9 +96,9 @@ hi link cppStructure Type
 hi link cTagsType cTagsClass
 hi link cOperator cType
 hi link cTagsEnumeratorName cTagsClass
-hi link cPreCondit cDefine
 hi link cConditional cType
 hi link cRepeat      cType
+hi csPreCondit guifg=#9b9b9b guibg=NONE
 
 " HTML / CSS highlighting
 hi htmlTag   		guifg=#808080  guibg=NONE
@@ -124,8 +124,18 @@ hi link csException Type
 hi link csRepeat Type
 hi link csConditional Type
 hi link csLabel Type
+hi link csNew Constant
+hi link csIsAs Constant
+hi link csVar Constant
+hi link csIsType Default
+hi link csType Default
+hi link csNewType Default
+hi link csClassType Default
 hi link csContextualStatement Type
 hi link csUnsupportedStatement Type
+hi link csLinq Type
+hi link csXmlComment Comment
+hi link csXmlTag Comment
 
 " Java highlighting
 hi link javaOperator Type
@@ -162,3 +172,10 @@ hi slideSeperator guifg=#672179     guibg=#2d2d30
 hi link slideComment Comment
 hi link slideBlockComment Comment
 
+" NERDTree
+hi link NERDTreeHelp Comment
+hi link NERDTreeCWD Number
+hi link NERDTreeUp Constant
+hi link NERDTreeDir Constant
+hi NERDTreeOpenable guifg=#D8AC6A guibg=NONE
+hi link NERDTreeClosable NERDTreeOpenable
