@@ -128,7 +128,7 @@ hi link csNew Constant
 hi link csIsAs Constant
 hi link csVar Constant
 hi link csIsType Default
-hi link csType Default
+hi link csType Constant
 hi link csNewType Default
 hi link csClassType Default
 hi link csContextualStatement Type
@@ -179,3 +179,6 @@ hi link NERDTreeUp Constant
 hi link NERDTreeDir Constant
 hi NERDTreeOpenable guifg=#D8AC6A guibg=NONE
 hi link NERDTreeClosable NERDTreeOpenable
+
+" Quickfix
+hi qfFileName guifg=#FA3535 guibg=NONE

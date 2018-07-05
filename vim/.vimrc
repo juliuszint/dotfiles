@@ -39,7 +39,6 @@
 :let g:AutoPairsShortcutToggle=''
 :let g:ctrlp_working_path_mode = 'a'
 :let g:ctrlp_cmd = 'CtrlP'
-:autocmd FileType nerdtree :setlocal colorcolumn=0
 
 if has('macunix')
     imap <D-c> <esc>:w<cr>
@@ -103,6 +102,8 @@ nmap gi <C-i>
 nmap gm :call Timed_Make()<cr>
 nmap gr :silent :!make run :redraw!<cr>
 
+nmap gfu :call FindUsagesForWordUnderCursor()<cr>
+nmap gut :!ctags -R .<cr> :redraw!<cr>:echo "updated tags"<cr>
 nmap gnh :noh<cr>
 vmap gkc :s/^/\/\/<cr>:noh<cr>
 vmap gku :s/^\/\//<cr>:noh<cr>
@@ -150,7 +151,10 @@ vnoremap _ ?
 "autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
 "autocmd FileType cs nnoremap <buffer> <Leader><Space> :OmniSharpGetCodeActions<CR>
 
-au BufNewFile,BufRead *.xaml setf xml
+:autocmd FileType nerdtree :setlocal colorcolumn=0
+:autocmd FileType qf :setlocal colorcolumn=0
+:autocmd FileType qf wincmd J
+:autocmd BufNewFile,BufRead *.xaml setf xml
 
 function Timed_Make()
     echo ""
@@ -166,13 +170,21 @@ function Timed_Make()
     :let elapsedTimeString = reltimestr(reltime(start))
     if buildoutput=~#"Error"
         :copen
+        :let buildoutput = substitute(buildoutput, '\r', "", "g")
+        :cexp buildoutput
     else
         :cclose
     endif
-    :let buildoutput = substitute(buildoutput, '\r', "", "g")
-    :cexp buildoutput
     :redraw!
     :echo "make task finished in:" . elapsedTimeString . "s"
+endfunction
+
+function FindUsagesForWordUnderCursor()
+    :echo "looking for usages ..."
+    let wordUnderCursor = expand("<cword>")
+    :silent :execute "vimgrep /" . wordUnderCursor .  "/gj ./**/*.cs"
+    :copen
+    :redraw!
 endfunction
 
 "
