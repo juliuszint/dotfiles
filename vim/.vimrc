@@ -33,7 +33,7 @@
 :set errorformat=\ %#%f(%l\\\,%c):\ %m
 :set timeoutlen=500
 
-:let NERDTreeIgnore=['.*obj[[dir]]', '.*bin[[dir]]']
+:let NERDTreeIgnore=['.*obj$[[dir]]', '.*bin$[[dir]]']
 :let g:NERDTreeHijackNetrw=1
 :let g:NERDTreeWinSize=60
 :let g:AutoPairsShortcutToggle=''
@@ -102,8 +102,9 @@ nmap gi <C-i>
 nmap gm :call Timed_Make()<cr>
 nmap gr :silent :!make run :redraw!<cr>
 
+nmap gur :call RunUnitTests()<cr>
 nmap gfu :call FindUsagesForWordUnderCursor()<cr>
-nmap gut :!ctags -R .<cr> :redraw!<cr>:echo "updated tags"<cr>
+nmap gtu :!ctags -R .<cr> :redraw!<cr>:echo "updated tags"<cr>
 nmap gnh :noh<cr>
 vmap gkc :s/^/\/\/<cr>:noh<cr>
 vmap gku :s/^\/\//<cr>:noh<cr>
@@ -155,6 +156,19 @@ vnoremap _ ?
 :autocmd FileType qf :setlocal colorcolumn=0
 :autocmd FileType qf wincmd J
 :autocmd BufNewFile,BufRead *.xaml setf xml
+
+function RunUnitTests()
+    :echo "running unit tests ..."
+    :let start = reltime()
+    :redir => nunitoutput
+    :silent :execute "!nunit nunit.nunit"
+    :redir END
+    :let elapsedTimeString = reltimestr(reltime(start))
+    :let failedTests = matchstr(nunitoutput, 'Failed: \(\d*\),')
+    :let runTests = matchstr(nunitoutput, 'Test Count: \(\d*\),')
+    :redraw!
+    :echo "finished in:" . elapsedTimeString "s. " . runTests . " " . failedTests
+endfunction
 
 function Timed_Make()
     echo ""
