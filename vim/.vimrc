@@ -54,7 +54,7 @@ if has('macunix')
     nmap <D-k> <C-u>
     vmap <D-j> <C-d>
     vmap <D-k> <C-u>
-    nmap <D-c> :bd<cr>
+    nmap <D-c> :Bclose<cr>
     nmap <D-n> :cn<cr>
     nmap <D-N> :cp<cr>
     
@@ -66,7 +66,6 @@ if has('macunix')
     
     nmap <D-p> :CtrlP<cr>
     nmap <D-b> :CtrlPBuffer<cr>
-    "autocmd FileType cs inoremap <buffer> <D-a> <C-x><C-o>
 endif
 
 if has("win32") 
@@ -99,15 +98,16 @@ nmap gh <C-w>h
 nmap gd <C-]>
 nmap go <C-o>
 nmap gi <C-i>
-nmap gm :call Timed_Make()<cr>
+nmap gm :call ExecuteMake()<cr>
 nmap gr :silent :!make run :redraw!<cr>
 
 nmap gur :call RunUnitTests()<cr>
 nmap gfu :call FindUsagesForWordUnderCursor()<cr>
-nmap gtu :!ctags -R .<cr> :redraw!<cr>:echo "updated tags"<cr>
+nmap gtu :!ctags -R . /Volumes/awin/frameworkSource/xamarin.mac<cr> :redraw!<cr>:echo "updated tags"<cr>
 nmap gnh :noh<cr>
 vmap gkc :s/^/\/\/<cr>:noh<cr>
 vmap gku :s/^\/\//<cr>:noh<cr>
+nmap ggs :call GitStatus()<cr>
 
 vnoremap <Tab> > gv
 vnoremap <S-Tab> < gv
@@ -146,12 +146,6 @@ vmap ° ~
 vnoremap - /
 vnoremap _ ?
 
-"autocmd FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
-"autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
-"autocmd FileType cs nnoremap <buffer> <Leader>gd :OmniSharpGotoDefinition<CR>
-"autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
-"autocmd FileType cs nnoremap <buffer> <Leader><Space> :OmniSharpGetCodeActions<CR>
-
 :autocmd FileType nerdtree :setlocal colorcolumn=0
 :autocmd FileType qf :setlocal colorcolumn=0
 :autocmd FileType qf wincmd J
@@ -160,17 +154,17 @@ vnoremap _ ?
 function RunUnitTests()
     :echo "running unit tests ..."
     :let start = reltime()
-    :redir => nunitoutput
-    :silent :execute "!nunit nunit.nunit"
-    :redir END
+    :let nunitoutput = system("nunit nunit.nunit")
     :let elapsedTimeString = reltimestr(reltime(start))
     :let failedTests = matchstr(nunitoutput, 'Failed: \(\d*\),')
     :let runTests = matchstr(nunitoutput, 'Test Count: \(\d*\),')
-    :redraw!
+    :call ShowInReadonlyBuffer(nunitoutput)
+    :setlocal filetype=nunit
     :echo "finished in:" . elapsedTimeString "s. " . runTests . " " . failedTests
+    :redraw!
 endfunction
 
-function Timed_Make()
+function ExecuteMake()
     echo ""
     try
         :silent :execute ":w"
@@ -178,13 +172,10 @@ function Timed_Make()
     endtry
     :echo "make started ..."
     :let start = reltime()
-    :redir => buildoutput
-    :silent :execute "!make"
-    :redir END
+    :let buildoutput = system("make")
     :let elapsedTimeString = reltimestr(reltime(start))
     if buildoutput=~#"Error"
         :copen
-        :let buildoutput = substitute(buildoutput, '\r', "", "g")
         :cexp buildoutput
     else
         :cclose
@@ -199,6 +190,22 @@ function FindUsagesForWordUnderCursor()
     :silent :execute "vimgrep /" . wordUnderCursor .  "/gj ./**/*.cs"
     :copen
     :redraw!
+endfunction
+
+function GitStatus()
+    :let gitstatusoutput = system("git status")
+    :let gitdiffoutput = system("git diff")
+    :call ShowInReadonlyBuffer(gitstatusoutput . gitdiffoutput)
+    :setlocal filetype=git
+endfunction
+
+function ShowInReadonlyBuffer(content)
+    :enew
+    :$put=a:content
+    :setlocal buftype=nofile
+    :setlocal nomodifiable
+    :setlocal nobuflisted
+    :setlocal bufhidden=delete
 endfunction
 
 "
