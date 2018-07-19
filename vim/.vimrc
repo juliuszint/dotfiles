@@ -99,10 +99,11 @@ nmap gd <C-]>
 nmap go <C-o>
 nmap gi <C-i>
 nmap gm :call ExecuteMake()<cr>
-nmap gr :silent :!make run :redraw!<cr>
+nmap zr :call system('open /Volumes/awin/notenboxacht/source/notenbox.mac/bin/Debug/NotenBox.app')<cr>:echo "launching application ..."<cr>
 
 nmap gur :call RunUnitTests()<cr>
 nmap gfu :call FindUsagesForWordUnderCursor()<cr>
+nmap gfi :call FindImplementationForWordUnderCursor()<cr>
 nmap gtu :!ctags -R . /Volumes/awin/frameworkSource/xamarin.mac<cr> :redraw!<cr>:echo "updated tags"<cr>
 nmap gnh :noh<cr>
 vmap gkc :s/^/\/\/<cr>:noh<cr>
@@ -184,10 +185,18 @@ function ExecuteMake()
     :echo "make task finished in:" . elapsedTimeString . "s"
 endfunction
 
+function FindImplementationForWordUnderCursor()
+    :echo "looking for implementations ..."
+    let wordUnderCursor = expand("<cword>")
+    :silent :execute 'vimgrep /\(class\|interface\)\_s\+\w*\_s\+:\_s*\(\w+\_s*,\)*\_s*' . wordUnderCursor .  '/gj ./**/*.cs'
+    :copen
+    :redraw!
+endfunction
+
 function FindUsagesForWordUnderCursor()
     :echo "looking for usages ..."
     let wordUnderCursor = expand("<cword>")
-    :silent :execute "vimgrep /" . wordUnderCursor .  "/gj ./**/*.cs"
+    :silent :execute "vimgrep /\\<" . wordUnderCursor .  "\\>/gj ./**/*.cs"
     :copen
     :redraw!
 endfunction
@@ -206,6 +215,7 @@ function ShowInReadonlyBuffer(content)
     :setlocal nomodifiable
     :setlocal nobuflisted
     :setlocal bufhidden=delete
+    :setlocal colorcolumn=0
 endfunction
 
 "
