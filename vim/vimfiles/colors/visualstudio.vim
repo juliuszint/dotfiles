@@ -185,8 +185,18 @@ hi qfFileName guifg=#FA3535 guibg=NONE
 
 " git
 hi diffAdded   guifg=#8AE234 guibg=NONE
-hi diffRemoved guifg=#EF2929 guibg=NONE
+hi diffRemoved guifg=#FF5B5E guibg=NONE
 hi diffLine guifg=#06989A guibg=NONE
 hi link diffSubname Default
 hi link diffFile Default
 hi link diffIndexLine Default
+
+" nunit output
+"grün
+"F4FF5B
+hi nunitSectionHeader guifg=#34E2E2 guibg=NONE
+hi nunitTestFailed guifg=#FF5B5E guibg=NONE
+hi nunitTestIgnored guifg=#F4FF5B guibg=NONE
+hi nunitSectionAttribute guifg=#5BFF80  guibg=NONE
+hi link nunitTestError nunitTestFailed
+hi link nunitTestAssemblyForOutput nunitSectionHeader
