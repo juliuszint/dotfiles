@@ -188,7 +188,7 @@ endfunction
 function FindImplementationForWordUnderCursor()
     :echo "looking for implementations ..."
     let wordUnderCursor = expand("<cword>")
-    :silent :execute 'vimgrep /\(class\|interface\)\_s\+\w*\_s\+:\_s*\(\w+\_s*,\)*\_s*' . wordUnderCursor .  '/gj ./**/*.cs'
+    :silent :execute 'vimgrep /\(class\|interface\)\_[^{]\{-}' . wordUnderCursor .  '/gj ./**/*.cs'
     :copen
     :redraw!
 endfunction
@@ -196,7 +196,7 @@ endfunction
 function FindUsagesForWordUnderCursor()
     :echo "looking for usages ..."
     let wordUnderCursor = expand("<cword>")
-    :silent :execute "vimgrep /\\<" . wordUnderCursor .  "\\>/gj ./**/*.cs"
+    :silent :execute 'vimgrep /\<' . wordUnderCursor .  '\>/gj ./**/*.cs'
     :copen
     :redraw!
 endfunction
