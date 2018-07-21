@@ -176,9 +176,12 @@ hi link slideBlockComment Comment
 hi link NERDTreeHelp Comment
 hi link NERDTreeCWD Number
 hi link NERDTreeUp Constant
-hi link NERDTreeDir Constant
-hi NERDTreeOpenable guifg=#D8AC6A guibg=NONE
+hi NERDTreeDir guifg=#A6CA54 guibg=NONE
+hi link NERDTreeOpenable Default
 hi link NERDTreeClosable NERDTreeOpenable
+hi NERDTreeCsharpDesignerFile guifg=#7a7a7a gui=NONE
+hi NERDTreeCsharpSolutionFile guifg=#CAB4FA gui=NONE
+hi NERDTreeCsharpProjectFile guifg=#8FC1FF gui=NONE
 
 " Quickfix
 hi qfFileName guifg=#FA3535 guibg=NONE
@@ -192,8 +195,6 @@ hi link diffFile Default
 hi link diffIndexLine Default
 
 " nunit output
-"grün
-"F4FF5B
 hi nunitSectionHeader guifg=#34E2E2 guibg=NONE
 hi nunitTestFailed guifg=#FF5B5E guibg=NONE
 hi nunitTestIgnored guifg=#F4FF5B guibg=NONE

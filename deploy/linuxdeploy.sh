@@ -54,10 +54,10 @@ if [ ! -d ~/.vim/bundle/ctrlp.vim ]; then
 	popd
 fi
 
-if [ ! -d ~/.vim/bundle/vim-dispatch ]; then
+if [ ! -d ~/.vim/bundle/vim-devicons ]; then
 	pushd ./
 	cd ~/.vim/bundle/
-	git clone https://github.com/tpope/vim-dispatch.git
+	git clone https://github.com/ryanoasis/vim-devicons.git
 	popd
 fi
 
@@ -68,15 +68,19 @@ fi
 cp ./../vim/.vimrc ~/.vimrc
 cp ./../vim/.gvimrc ~/.gvimrc
 
+cp ./../vim/vimfiles/after/syntax/c.vim ~/.vim/after/syntax/c.vim
+cp ./../vim/vimfiles/after/syntax/cs.vim ~/.vim/after/syntax/cs.vim
+cp ./../vim/vimfiles/after/syntax/nerdtree.vim ~/.vim/after/syntax/nerdtree.vim
+
 cp ./../vim/vimfiles/after/plugin/my_nerdtree.vim ~/.vim/after/plugin/my_nerdtree.vim
+
 cp ./../vim/vimfiles/after/ftplugin/xml.vim ~/.vim/after/ftplugin/xml.vim
 cp ./../vim/vimfiles/after/ftplugin/html.vim ~/.vim/after/ftplugin/html.vim
-cp ./../vim/vimfiles/after/syntax/c.vim ~/.vim/after/syntax/c.vim
 
 cp ./../vim/vimfiles/syntax/hex.vim ~/.vim/syntax/hex.vim
 cp ./../vim/vimfiles/syntax/slide.vim ~/.vim/syntax/slide.vim
+cp ./../vim/vimfiles/syntax/nunit.vim ~/.vim/syntax/nunit.vim
 
 cp ./../vim/vimfiles/ftdetect/hex.vim ~/.vim/ftdetect/hex.vim
-cp ./../vim/vimfiles/ftplugin/html.vim ~/.vim/after/ftplugin/html.vim
 
 cp ./../vim/vimfiles/colors/visualstudio.vim ~/.vim/colors/visualstudio.vim

@@ -1,3 +1,4 @@
+:set encoding=utf8
 :set number
 :set nowrap
 :set vb
@@ -13,7 +14,6 @@
 :set showcmd      
 :set hlsearch    
 :set laststatus=2  
-:set encoding=utf-8
 :set clipboard=unnamed
 :let mapleader=","
 :set shiftwidth=4
@@ -33,6 +33,7 @@
 :set errorformat=\ %#%f(%l\\\,%c):\ %m
 :set timeoutlen=500
 
+:let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 :let NERDTreeIgnore=['.*obj$[[dir]]', '.*bin$[[dir]]']
 :let g:NERDTreeHijackNetrw=1
 :let g:NERDTreeWinSize=60
@@ -151,6 +152,7 @@ vnoremap _ ?
 :autocmd FileType qf :setlocal colorcolumn=0
 :autocmd FileType qf wincmd J
 :autocmd BufNewFile,BufRead *.xaml setf xml
+:autocmd BufNewFile,BufRead *.nunit setf xml
 
 function RunUnitTests()
     :echo "running unit tests ..."
