@@ -12,26 +12,29 @@
 :set history=500
 :set ruler         
 :set showcmd      
-:set hlsearch    
 :set laststatus=2  
 :set clipboard=unnamed
 :let mapleader=","
-:set shiftwidth=4
-:set tabstop=4
-:set nowrapscan
-:set autoindent
-:set incsearch     
-:set ignorecase
-:set smartcase    
-:set expandtab
+:set autoread
 :set hidden
 :set colorcolumn=110
-:syntax on
-:filetype plugin indent on
-:filetype indent on
-:filetype on
 :set errorformat=\ %#%f(%l\\\,%c):\ %m
 :set timeoutlen=500
+
+:set wrapscan
+:set smartcase    
+:set ignorecase
+:set incsearch     
+:set hlsearch    
+
+:set expandtab
+:set shiftwidth=4
+:set softtabstop=4
+:set autoindent
+:set cinoptions=W(0,W1s,l1s
+:filetype plugin indent on
+
+:syntax on
 
 :let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 :let NERDTreeIgnore=['.*obj$[[dir]]', '.*bin$[[dir]]']
