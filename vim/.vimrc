@@ -103,7 +103,7 @@ nmap gd <C-]>
 nmap go <C-o>
 nmap gi <C-i>
 nmap gm :call ExecuteMake()<cr>
-nmap zr :call system('open /Volumes/awin/notenboxacht/source/notenbox.mac/bin/Debug/NotenBox.app')<cr>:echo "launching application ..."<cr>
+nmap zr :echo 'running project ...'<cr>:call ProjectRun()<cr>:echo 'done'<cr>
 
 nmap gur :call RunUnitTests()<cr>
 nmap gfu :call FindUsagesForWordUnderCursor()<cr>
@@ -151,11 +151,18 @@ vmap ° ~
 vnoremap - /
 vnoremap _ ?
 
+:autocmd VimEnter * call LoadProjectVimrc()
 :autocmd FileType nerdtree :setlocal colorcolumn=0
 :autocmd FileType qf :setlocal colorcolumn=0
 :autocmd FileType qf wincmd J
 :autocmd BufNewFile,BufRead *.xaml setf xml
 :autocmd BufNewFile,BufRead *.nunit setf xml
+
+function! LoadProjectVimrc()
+    if filereadable('project.vim')
+        execute 'source' 'project.vim'
+    endif
+endfunction
 
 function RunUnitTests()
     :echo "running unit tests ..."
