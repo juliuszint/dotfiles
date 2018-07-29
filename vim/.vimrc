@@ -44,6 +44,8 @@
 :let g:ctrlp_working_path_mode = 'a'
 :let g:ctrlp_cmd = 'CtrlP'
 
+:command -nargs=1 Csgrep :vimgrep <args> **/*.cs
+
 if has('macunix')
     imap <D-c> <esc>:w<cr>
     imap <D-7> {
@@ -108,7 +110,7 @@ nmap zr :echo 'running project ...'<cr>:call ProjectRun()<cr>:echo 'done'<cr>
 nmap gur :call RunUnitTests()<cr>
 nmap gfu :call FindUsagesForWordUnderCursor()<cr>
 nmap gfi :call FindImplementationForWordUnderCursor()<cr>
-nmap gtu :!ctags -R . /Volumes/awin/frameworkSource/xamarin.mac<cr> :redraw!<cr>:echo "updated tags"<cr>
+nmap gut :call UpdateTags()<cr>
 nmap gnh :noh<cr>
 vmap gkc :s/^/\/\/<cr>:noh<cr>
 vmap gku :s/^\/\//<cr>:noh<cr>
@@ -162,6 +164,13 @@ function! LoadProjectVimrc()
     if filereadable('project.vim')
         execute 'source' 'project.vim'
     endif
+endfunction
+
+function UpdateTags()
+    :echo "updating tags ..."
+    :let tagsoutput = system('ctags -R . /Volumes/awin/frameworkSource/xamarin.mac')
+    :redraw!
+    :echo "done"
 endfunction
 
 function RunUnitTests()
