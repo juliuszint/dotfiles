@@ -7,12 +7,11 @@ endif
 
 let g:colors_name = "visualstudio"
 
-" Taglist colors
 hi MyTagListFileName    guifg=NONE   guibg=NONE
 hi MyTagListTagName     guifg=NONE   guibg=NONE
 
 if version >= 700
-  hi CursorLine     guibg=#0f0f0f
+  hi CursorLine     guibg=#020202
   hi CursorColumn   guibg=NONE
   hi MatchParen     guifg=NONE     guibg=#133f71
 
@@ -32,16 +31,21 @@ hi LineNr       guifg=#2b91af   guibg=NONE
 hi CursorLineNr guifg=#2b91af   guibg=NONE
 hi Visual       guifg=NONE   guibg=#264f78
 hi Cursor       guifg=NONE   guibg=#00ff00
+hi VertSplit    guifg=#68217A  guibg=#68217A  
 
 hi ModeMsg      guifg=NONE   guibg=NONE
 hi WildMenu     guifg=NONE   guibg=NONE
-hi IncSearch    guibg=NONE   guifg=NONE
 hi Question     guifg=NONE   guibg=NONE
 
-hi StatusLine   guifg=NONE   guibg=#2d2d30 gui=bold
+hi StatusLine   guifg=#FFFFFF   guibg=#0071CC gui=bold
 hi StatusLineNC guifg=NONE   guibg=#2d2d30 gui=bold
-hi VertSplit    guifg=NONE   guibg=NONE    gui=NONE
 hi ColorColumn  guifg=NONE   guibg=#2d2d30
+
+hi Todo         guifg=NONE   guibg=NONE      gui=NONE
+hi Error        guifg=NONE   guibg=#FF0000   gui=bold,underline
+hi Note         guifg=NONE   guibg=#00FF00
+hi Search       guifg=NONE   guibg=#015F60   gui=NONE
+hi link IncSearch Search
 
 hi NonText      guifg=NONE   guibg=NONE
 hi Folded       guifg=NONE   guibg=NONE
@@ -52,21 +56,16 @@ hi Typedef      guifg=NONE   gui=NONE
 hi Identifier   guifg=NONE   gui=NONE
 hi Function     guifg=NONE   gui=NONE
 hi Operator     guifg=NONE   gui=NONE
-
-hi Error        guifg=NONE   guibg=#FF0000   gui=bold,underline
-hi Todo         guifg=NONE   guibg=NONE      gui=NONE
-hi Note         guifg=NONE   guibg=#00FF00
-hi Search       guifg=NONE   guibg=#623003   gui=NONE
 hi SpecialKey	guifg=NONE   guibg=NONE
 hi Special      guifg=NONE   guibg=NONE
 
 " common syntax highlighting
-hi String       	 guifg=#d69d85 gui=NONE
-hi Type         	 guifg=#569cd6 gui=NONE
-hi Number       	 guifg=#b5cea8 gui=NONE
-hi Constant     	 guifg=#569cd6 gui=NONE
-hi Comment      	 guifg=#57a64a guibg=NONE gui=NONE
-hi Define            guifg=#9b9b9b gui=NONE
+hi String   guifg=#d69d85 gui=NONE
+hi Type     guifg=#569cd6 gui=NONE
+hi Number   guifg=#b5cea8 gui=NONE
+hi Constant guifg=#569cd6 gui=NONE
+hi Comment  guifg=#57a64a guibg=NONE gui=NONE
+hi Define   guifg=#9b9b9b gui=NONE
 
 hi link StorageClass Type                                    " voltaile
 hi link Include Define
