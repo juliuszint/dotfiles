@@ -17,7 +17,6 @@
 :let mapleader=","
 :set autoread
 :set hidden
-:set colorcolumn=110
 :set errorformat=\ %#%f(%l\\\,%c):\ %m
 :set timeoutlen=500
 
@@ -41,8 +40,9 @@
 :let g:NERDTreeHijackNetrw=1
 :let g:NERDTreeWinSize=60
 :let g:AutoPairsShortcutToggle=''
-:let g:ctrlp_working_path_mode = 'a'
-:let g:ctrlp_cmd = 'CtrlP'
+
+" fzf setup
+:set rtp+=/usr/local/opt/fzf
 
 :command -nargs=1 Csgrep :vimgrep <args> **/*.cs
 
@@ -69,9 +69,6 @@ if has('macunix')
     nmap <D-s> :w<cr>
     imap <D-s> <esc>:w<cr>
     inoremap <D-n> <C-n>
-    
-    nmap <D-p> :CtrlP<cr>
-    nmap <D-b> :CtrlPBuffer<cr>
 endif
 
 if has("win32") 
@@ -93,16 +90,14 @@ if has("win32")
     imap Ó <esc>:w<cr>
     nmap Ó :w<cr>
     nmap Ã :bd<cr>
-
-    nmap <M-p> :CtrlP<cr>
 endif
 
+nmap go <C-o>
 nmap gj <C-w>j
 nmap gk <C-w>k
 nmap gl <C-w>l
 nmap gh <C-w>h
 nmap gd <C-]>
-nmap go <C-o>
 nmap gi <C-i>
 nmap gm :call ExecuteMake()<cr>
 nmap zr :echo 'running project ...'<cr>:call ProjectRun()<cr>:echo 'done'<cr>
@@ -115,6 +110,9 @@ nmap gnh :noh<cr>
 vmap gkc :s/^/\/\/<cr>:noh<cr>
 vmap gku :s/^\/\//<cr>:noh<cr>
 nmap ggs :call GitStatus()<cr>
+nmap gca :%bd<cr>
+nmap gff  :call fzf#run({'source': 'git ls-files', 'sink': 'e', 'down': '20'})<cr>
+nmap gft  :Tags<cr>
 
 vnoremap <Tab> > gv
 vnoremap <S-Tab> < gv
@@ -154,11 +152,10 @@ vnoremap - /
 vnoremap _ ?
 
 :autocmd VimEnter * call LoadProjectVimrc()
-:autocmd FileType nerdtree :setlocal colorcolumn=0
-:autocmd FileType qf :setlocal colorcolumn=0
 :autocmd FileType qf wincmd J
 :autocmd BufNewFile,BufRead *.xaml setf xml
 :autocmd BufNewFile,BufRead *.nunit setf xml
+:autocmd FileType cs :setlocal colorcolumn=110
 
 function! LoadProjectVimrc()
     if filereadable('project.vim')
@@ -196,12 +193,12 @@ function ExecuteMake()
     :let start = reltime()
     :let buildoutput = system("make")
     :let elapsedTimeString = reltimestr(reltime(start))
-    if buildoutput=~#"Error"
+    if buildoutput=~#'\cerror' || buildoutput=~#'\cwarning'
         :copen
-        :cexp buildoutput
     else
         :cclose
     endif
+    :cexp buildoutput
     :redraw!
     :echo "make task finished in:" . elapsedTimeString . "s"
 endfunction
@@ -250,10 +247,6 @@ function! <SID>SynStack()
 endfunc
 
 execute pathogen#infect() 
-
-let g:ctrlp_custom_ignore = {
-  \ 'file': '\.cache$\|\.exe$\|\.obj$\|\.dll$'
-  \ }
 
 " Show highlighting group for current word
 nmap <C-i> :call <SID>SynStack()<CR>

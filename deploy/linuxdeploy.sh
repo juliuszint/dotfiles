@@ -47,10 +47,17 @@ if [ ! -d ~/.vim/bundle/auto-pairs ]; then
 	popd
 fi
 
-if [ ! -d ~/.vim/bundle/ctrlp.vim ]; then
+if [ ! -d ~/.vim/bundle/fzf.vim.vim ]; then
 	pushd ./
 	cd ~/.vim/bundle/
-	git clone https://github.com/ctrlpvim/ctrlp.vim.git 
+	git clone https://github.com/junegunn/fzf.vim.git
+	popd
+fi
+
+if [ ! -d ~/.vim/bundle/nerdtree ]; then
+	pushd ./
+	cd ~/.vim/bundle/
+	git clone https://github.com/scrooloose/nerdtree.git
 	popd
 fi
 
