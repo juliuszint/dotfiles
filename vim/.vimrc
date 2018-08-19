@@ -63,6 +63,9 @@ if has('macunix')
     nmap <D-c> :Bclose<cr>
     nmap <D-n> :cn<cr>
     nmap <D-N> :cp<cr>
+    nmap <D-b> :Buffers<cr>
+    nmap <D-f> :call fzf#run({'source': 'git ls-files', 'sink': 'e', 'down': '20'})<cr>
+    nmap <D-v> :vsp<cr>
     
     nmap <D-e> :e .<cr>
 
@@ -111,7 +114,6 @@ vmap gkc :s/^/\/\/<cr>:noh<cr>
 vmap gku :s/^\/\//<cr>:noh<cr>
 nmap ggs :call GitStatus()<cr>
 nmap gca :%bd<cr>
-nmap gff  :call fzf#run({'source': 'git ls-files', 'sink': 'e', 'down': '20'})<cr>
 nmap gft  :Tags<cr>
 
 vnoremap <Tab> > gv
@@ -164,8 +166,13 @@ function! LoadProjectVimrc()
 endfunction
 
 function UpdateTags()
-    :echo "updating tags ..."
-    :let tagsoutput = system('ctags -R . /Volumes/awin/frameworkSource/xamarin.mac')
+    if exists("*ProjectUpdateTags")
+        :echo "updating tags with project settings ..."
+        :call ProjectUpdateTags()
+    else
+        :echo "updating tags ..."
+        :let output = system('ctags -R .')
+    endif
     :redraw!
     :echo "done"
 endfunction
