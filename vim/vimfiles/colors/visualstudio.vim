@@ -13,7 +13,7 @@ hi MyTagListTagName     guifg=NONE   guibg=NONE
 if version >= 700
   hi CursorLine     guibg=#020202
   hi CursorColumn   guibg=NONE
-  hi MatchParen     guifg=NONE     guibg=#133f71
+  hi MatchParen     guifg=#1E1E1E     guibg=#FFFFFF
 
   hi TabLine        guifg=NONE     guibg=NONE
   hi TabLineFill    guifg=NONE
@@ -123,18 +123,26 @@ hi link csException Type
 hi link csRepeat Type
 hi link csConditional Type
 hi link csLabel Type
+hi link csAsync Type
 hi link csNew Constant
 hi link csIsAs Constant
 hi link csVar Constant
 hi link csIsType Default
 hi link csType Constant
 hi link csNewType Default
-hi link csClassType Default
+hi link csEndColon Default
+hi link csLogicSymbols Default
+hi link csXamarinType cTagsClass
+hi link csClassType cTagsClass
 hi link csContextualStatement Type
 hi link csUnsupportedStatement Type
 hi link csLinq Type
 hi link csXmlComment Comment
 hi link csXmlTag Comment
+hi link csEnumType cTagsEnumerationValue
+hi link csInterfaceType csEnumType
+hi link csStructType csClassType
+hi link csCharacter String
 
 " Java highlighting
 hi link javaOperator Type
@@ -183,7 +191,9 @@ hi NERDTreeCsharpSolutionFile guifg=#CAB4FA gui=NONE
 hi NERDTreeCsharpProjectFile guifg=#8FC1FF gui=NONE
 
 " Quickfix
-hi qfFileName guifg=#FA3535 guibg=NONE
+hi qfFileName  guifg=#CAB4FA guibg=NONE
+hi qfCsError   guifg=#FF5B5E guibg=NONE
+hi qfCsWarning guifg=#FEFF5B guibg=NONE
 
 " git
 hi diffAdded   guifg=#8AE234 guibg=NONE
