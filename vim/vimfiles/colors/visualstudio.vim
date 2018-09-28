@@ -1,4 +1,4 @@
-set background=dark
+et background=dark
 
 hi clear
 if exists("syntax_on")
@@ -19,8 +19,8 @@ if version >= 700
   hi TabLineFill    guifg=NONE
   hi TabLineSel     guifg=NONE     guibg=NONE gui=bold
 
-  hi Pmenu          guifg=NONE     guibg=NONE
-  hi PmenuSel       guifg=NONE     guibg=NONE
+  hi Pmenu          guifg=NONE     guibg=#5E5E5E
+  hi PmenuSel       guifg=NONE     guibg=#0071CC
 endif
 
 hi Title        guifg=NONE   gui=NONE
@@ -45,6 +45,7 @@ hi Todo         guifg=NONE   guibg=NONE      gui=NONE
 hi Error        guifg=NONE   guibg=#FF0000   gui=bold,underline
 hi Note         guifg=NONE   guibg=#00FF00
 hi Search       guifg=NONE   guibg=#015F60   gui=NONE
+hi link WordUnderTheCursor Search
 hi link IncSearch Search
 
 hi NonText      guifg=NONE   guibg=NONE
