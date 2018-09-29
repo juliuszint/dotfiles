@@ -8,15 +8,31 @@
 
 
 if !exists('g:WordUnderTheCursor')
-    let g:WordUnderTheCursorDelay = 600
+    let g:WordUnderTheCursorDelay = 700
+    let g:CurrentBufferTypeWantsMatch = 0
 endif
 
 augroup WordUnderTheCursorAutoCommands
     autocmd!
-    autocmd  CursorMoved  *  call s:CursorMoved()
+    autocmd CursorMoved  *  call s:CursorMoved()
+    autocmd BufEnter * call s:BufferOrFileTypeChanged()
+    autocmd FileType * call s:BufferOrFileTypeChanged()
 augroup END
 
+function! s:BufferOrFileTypeChanged()
+    let g:CurrentBufferTypeWantsMatch = 0
+    let currentBufferNumber = bufnr("%")
+    let bufFiletype = getbufvar(currentBufferNumber, '&filetype')
+    if bufFiletype == 'cs'
+        let g:CurrentBufferTypeWantsMatch = 1
+    endif
+endfunction
+
 function! s:CursorMoved()
+    if g:CurrentBufferTypeWantsMatch == 0
+        return
+    endif
+
     call s:RemoveWordUnderTheCursorMatch()
     call s:RescheduleTimer()
 endfunction
