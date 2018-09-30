@@ -26,7 +26,6 @@ if has('gui_macvim')
 
     :let g:OmniSharp_server_path = '/usr/local/omnisharp/run'
     :colorscheme visualstudio
-    :set fu
 endif
 
 :set guicursor+=n-v-c:blinkon0
