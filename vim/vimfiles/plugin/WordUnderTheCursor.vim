@@ -8,79 +8,93 @@
 
 if !exists('g:WordUnderTheCursor')
     let g:WordUnderTheCursorDelay = 1000
-    let w:CurrentBufferTypeWantsMatch = 0
-    let w:ActiveWindow = 0
+    let s:ActiveWindowWantsWordUnderCursor = 0
+    let s:ActiveWindowId = -1
+    let s:TimerId = -1
+    let s:MatchId = -1
 endif
 
 augroup WordUnderTheCursorAutoCommands
     autocmd!
-    autocmd CursorMoved  *  call s:CursorMoved()
-    autocmd BufEnter * call s:BufferOrFileTypeChanged()
-    autocmd FileType * call s:BufferOrFileTypeChanged()
-    autocmd WinLeave * call s:WinLeave()
-    autocmd WinEnter * call s:WinEnter()
+    autocmd CursorMoved  * call s:CursorMoved()
+    autocmd FileType     * call s:EvaluateActiveWindowWantsWordUnderCursor()
+    autocmd WinLeave     * call s:WinLeave()
+    autocmd WinEnter     * call s:WinEnter()
 augroup END
 
 function! s:WinEnter()
-    let w:ActiveWindow = 1
+    let s:ActiveWindowId = win_getid()
+    call s:EvaluateActiveWindowWantsWordUnderCursor()
 endfunction
 
 function! s:WinLeave()
+    if s:ActiveWindowId < 0
+        return
+    endif
+
     call s:StopTimer()
     call s:RemoveWordUnderTheCursorMatch()
-    let w:ActiveWindow = 0
-endfunction
-
-function! s:BufferOrFileTypeChanged()
-    let w:CurrentBufferTypeWantsMatch = 0
-    let currentBufferNumber = bufnr("%")
-    let bufFiletype = getbufvar(currentBufferNumber, '&filetype')
-    if bufFiletype == 'cs'
-        let w:CurrentBufferTypeWantsMatch = 1
-    endif
+    let s:ActiveWindowId = -1
 endfunction
 
 function! s:CursorMoved()
-    if w:CurrentBufferTypeWantsMatch == 0
+    if s:ActiveWindowId < 0
         return
     endif
-    if w:ActiveWindow == 0
+    if s:ActiveWindowWantsWordUnderCursor == 0
         return
     endif
 
     call s:RemoveWordUnderTheCursorMatch()
-    call s:RescheduleTimer()
+    call s:ResetTimer()
+endfunction
+
+function! s:EvaluateActiveWindowWantsWordUnderCursor()
+    let s:ActiveWindowWantsWordUnderCursor = 0
+    let currentBufferNumber = bufnr("%")
+    let bufFiletype = getbufvar(currentBufferNumber, '&filetype')
+    if bufFiletype == 'cs'
+        let s:ActiveWindowWantsWordUnderCursor = 1
+    endif
 endfunction
 
 function! s:RemoveWordUnderTheCursorMatch()
-    if exists('w:MatchId')
-        call matchdelete(w:MatchId)
-        unlet w:MatchId
+    if s:MatchId < 0
+        return
     endif
-endfunction
-
-function! s:RescheduleTimer()
-    call s:StopTimer()
-    let w:TimerId = timer_start(g:WordUnderTheCursorDelay, 'WordUnderTheCursorTimerElapsed')
-endfunction
-
-function! s:StopTimer()
-    if exists('w:TimerId')
-        call timer_stop(w:TimerId)
-        unlet w:TimerId
-    endif
+    call matchdelete(s:MatchId)
+    let s:MatchId = -1
 endfunction
 
 function! WordUnderTheCursorTimerElapsed(...)
+    call s:RemoveWordUnderTheCursorMatch()
     let wordUnderCursor = s:GetWordUnderTheCursor()
     if strlen(wordUnderCursor) == 0
         return
     endif
     let matchWord = '\C\V\<' . wordUnderCursor . '\>'
-    let w:MatchId = matchadd('WordUnderTheCursor', wordUnderCursor)
+    let s:MatchId = matchadd('WordUnderTheCursor', wordUnderCursor, 10, -1, { 'window': s:ActiveWindowId })
 endfunction
 
 function! s:GetWordUnderTheCursor()
     let result = matchstr(getline('.'), '\k*\%' . col('.') . 'c\k\+')
     return result
+endfunction
+
+function! s:ResetTimer()
+    call s:StopTimer()
+    call s:StartTimer()
+endfunction
+
+function! s:StartTimer()
+    if s:TimerId < 0
+        let s:TimerId = timer_start(g:WordUnderTheCursorDelay, 'WordUnderTheCursorTimerElapsed')
+    endif
+endfunction
+
+function! s:StopTimer()
+    if s:TimerId > 0
+        call timer_stop(s:TimerId)
+        let s:TimerId = -1
+    endif
 endfunction
