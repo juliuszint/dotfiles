@@ -1,4 +1,4 @@
-if has("win32") 
+if has("win32")
     :set guifont=DejaVu_Sans_Mono:h10:cANSI:qDRAFT
     :set guioptions-=m       " remove menu bar
     :set guioptions-=T       " remove toolbar
@@ -8,14 +8,17 @@ if has("win32")
     :colorscheme visualstudio
 endif
 
-if has('gui_macvim') 
-    :set guifont=DejaVu\ Sans\ Mono:h14
+if has('gui_macvim')
+    :set guifont=DejaVu\ Sans\ Mono\ Nerd\ Font\ Complete:h13
     :set guioptions=
     :macmenu File.Save key=<nop>
     :macmenu File.New\ Tab key=<nop>
     :macmenu File.New\ Window key=<nop>
     :macmenu File.Close key=<nop>
     :macmenu File.Print key=<nop>
+
+    :macmenu Edit.Find.Find\.\.\. key=<nop>
+    :macmenu Edit.Find.Use\ Selection\ \for\ Find key=<nop>
 
     :macmenu Edit.Copy key=<nop>
     :macmenu Edit.Paste key=<nop>

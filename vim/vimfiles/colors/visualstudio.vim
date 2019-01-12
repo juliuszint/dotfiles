@@ -1,4 +1,4 @@
-et background=dark
+set background=dark
 
 hi clear
 if exists("syntax_on")
@@ -9,11 +9,12 @@ let g:colors_name = "visualstudio"
 
 hi MyTagListFileName    guifg=NONE   guibg=NONE
 hi MyTagListTagName     guifg=NONE   guibg=NONE
+hi Search       guifg=#000000   guibg=#C4A002
 
 if version >= 700
   hi CursorLine     guibg=#020202
   hi CursorColumn   guibg=NONE
-  hi MatchParen     guifg=#1E1E1E     guibg=#FFFFFF
+  hi link MatchParen Search
 
   hi TabLine        guifg=NONE     guibg=NONE
   hi TabLineFill    guifg=NONE
@@ -27,11 +28,11 @@ hi Title        guifg=NONE   gui=NONE
 hi Underlined   guifg=NONE   gui=underline
 
 hi Normal       guifg=#dcdcdc   guibg=#1e1e1e
-hi LineNr       guifg=#2b91af   guibg=NONE 
+hi LineNr       guifg=#2b91af   guibg=NONE
 hi CursorLineNr guifg=#2b91af   guibg=NONE
 hi Visual       guifg=NONE   guibg=#264f78
 hi Cursor       guifg=NONE   guibg=#00ff00
-hi VertSplit    guifg=#68217A  guibg=#68217A  
+hi VertSplit    guifg=#68217A  guibg=#68217A
 
 hi ModeMsg      guifg=NONE   guibg=NONE
 hi WildMenu     guifg=NONE   guibg=NONE
@@ -44,8 +45,7 @@ hi ColorColumn  guifg=NONE   guibg=#2d2d30
 hi Todo         guifg=NONE   guibg=NONE      gui=NONE
 hi Error        guifg=NONE   guibg=#FF0000   gui=bold,underline
 hi Note         guifg=NONE   guibg=#00FF00
-hi Search       guifg=NONE   guibg=#015F60   gui=NONE
-hi link WordUnderTheCursor Search
+hi WordUnderTheCursor       guifg=NONE   guibg=#014343
 hi link IncSearch Search
 
 hi NonText      guifg=NONE   guibg=NONE
@@ -67,23 +67,25 @@ hi Number   guifg=#b5cea8 gui=NONE
 hi Constant guifg=#569cd6 gui=NONE
 hi Comment  guifg=#57a64a guibg=NONE gui=NONE
 hi Define   guifg=#9b9b9b gui=NONE
+hi ExtraWhitespace guifg=NONE guibg=#FF5B5E
 
 hi link StorageClass Type                                    " voltaile
 hi link Include Define
 hi link PreProc Define
 hi link Boolean Type
 hi link float Number
-hi link Statement Type 
+hi link Statement Type
 
-" C/C++ Syntax highlighting with ctags 
+" C/C++ Syntax highlighting with ctags
 hi cFormat               guifg=#80ff80 guibg=NONE
 hi cTagsNamespace   	 guifg=#add8e6 guibg=NONE
-hi cStructure       	 guifg=#569cd6 guibg=NONE   
+hi cStructure       	 guifg=#569cd6 guibg=NONE
 hi cTagsDefinedName 	 guifg=#bd63c5 guibg=NONE
 hi cTagsClass       	 guifg=#4ec9b0 guibg=NONE
 hi cTagsMember      	 guifg=#dda0dd guibg=NONE
 hi cTagsEnumerationValue guifg=#b8d7a3 guibg=NONE
 
+hi link cCharacter String
 hi link cTagsUnion cTagsClass
 hi link cLabel Type
 hi link CTagsGlobalVariable Normal
@@ -101,13 +103,30 @@ hi link cRepeat      cType
 hi csPreCondit guifg=#9b9b9b guibg=NONE
 
 " HTML / CSS highlighting
-hi htmlTag   		guifg=#808080  guibg=NONE
-hi htmlTag   		guifg=#808080  guibg=NONE
-hi htmlArg   		guifg=#9cdcfe  guibg=NONE
-hi htmlCommentError 	guifg=NONE     guibg=NONE
+hi htmlTag   		guifg=#808080 guibg=NONE
+hi htmlArg   		guifg=#9cdcfe guibg=NONE
+hi htmlCommentError 	guifg=NONE    guibg=NONE
 
+hi cssTagName    	guifg=#D7BA7D guibg=NONE
+hi cssBoxProp           guifg=#9CDCFE guibg=NONE
+hi cssMediaProp         guifg=#9CDCFE guibg=NONE
+hi cssPositioningAttr   guifg=#d69d85 gui=NONE
+
+hi link htmlSpecialChar Type
+hi link htmlSpecialTagName Type
 hi link htmlTagName Type
 hi link htmlEndTag htmlTag
+
+hi link cssFontProp cssBoxProp
+hi link cssPseudoClassId cssTagName
+hi link cssPositioningProp cssBoxProp
+hi link cssIdentifier cssTagName
+hi link cssClassname cssTagName
+hi link cssClassnameDot cssTagName
+hi link cssBackgroundProp cssBoxProp
+hi link cssBorderProp cssBoxProp
+hi link cssTransitionProp cssBoxProp
+hi link cssColorProp cssBoxProp
 
 " Python highlighting
 hi link pythonInclude Type
@@ -120,6 +139,7 @@ hi link pythonRepeat Type
 
 " C# highlighting
 hi link csUnspecifiedStatement Type
+hi link csUnspecifiedKeyword Type
 hi link csException Type
 hi link csRepeat Type
 hi link csConditional Type
@@ -150,6 +170,11 @@ hi link javaOperator Type
 hi link javaStatement Type
 hi link javaRepeat Type
 hi link javaTypedef Type
+hi link javaDocTags Comment
+hi link javaDocParam Comment
+hi link javaCommentTitle Comment
+hi link javaExceptions Type
+hi link javaBranch Type
 
 " Json highlighting
 hi jsonKeyword	    guifg=#D7BA7D      guibg=NONE
@@ -211,3 +236,6 @@ hi nunitTestIgnored guifg=#F4FF5B guibg=NONE
 hi nunitSectionAttribute guifg=#5BFF80  guibg=NONE
 hi link nunitTestError nunitTestFailed
 hi link nunitTestAssemblyForOutput nunitSectionHeader
+
+" java
+hi link javaConditional Constant

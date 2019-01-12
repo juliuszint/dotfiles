@@ -2,17 +2,17 @@
 :set number
 :set nowrap
 :set vb
-:set backspace=2   
-:set complete=.,w,b,u,t,i,kspell 
-:set nocompatible  
+:set backspace=2
+:set complete=.,w,b,u,t,i,kspell
+:set nocompatible
 :set nobackup
-:set cursorline   
+:set cursorline
 :set nowritebackup
-:set noswapfile  
+:set noswapfile
 :set history=500
-:set ruler         
-:set showcmd      
-:set laststatus=2  
+:set ruler
+:set showcmd
+:set laststatus=2
 :set clipboard=unnamed
 :let mapleader=","
 :set autoread
@@ -21,10 +21,10 @@
 :set timeoutlen=500
 
 :set wrapscan
-:set smartcase    
+:set smartcase
 :set ignorecase
-:set incsearch     
-:set hlsearch    
+:set incsearch
+:set hlsearch
 
 :set expandtab
 :set shiftwidth=4
@@ -32,6 +32,7 @@
 :set autoindent
 :set cinoptions=W(0,W1s,l1s
 :filetype plugin indent on
+:colorscheme visualstudioterm
 
 :syntax on
 
@@ -41,10 +42,16 @@
 :let g:NERDTreeWinSize=60
 :let g:AutoPairsShortcutToggle=''
 
+:let g:ackprg = 'ag --nogroup --nocolor --column --path-to-ignore ~/.ignore'
+
 " fzf setup
 :set rtp+=/usr/local/opt/fzf
 
+" ultisnip setup
+:let g:UltiSnipsExpandTrigger="<tab>"
+
 :command -nargs=1 Csgrep :vimgrep <args> **/*.cs
+:command -nargs=1 Xmlgrep :vimgrep <args> **/*.xml **/*.xaml
 
 if has('macunix')
     imap <D-c> <esc>:w<cr>
@@ -54,8 +61,8 @@ if has('macunix')
     imap <D-9> ]
     imap <D-p> <C-p>
 
+    nmap <D-Enter> :set fu<cr>
     nmap <D-c> <esc>:w<cr>
-    nmap <D-t> :wq<cr>
     nmap <D-j> <C-d>
     nmap <D-k> <C-u>
     vmap <D-j> <C-d>
@@ -66,7 +73,9 @@ if has('macunix')
     nmap <D-b> :Buffers<cr>
     nmap <D-f> :call fzf#run({'source': 'git ls-files', 'sink': 'e', 'down': '20'})<cr>
     nmap <D-v> :vsp<cr>
-    
+    nmap <D-t> :Tags<cr>
+    nmap <D-a> :Ack 
+
     nmap <D-e> :e .<cr>
 
     nmap <D-s> :w<cr>
@@ -74,7 +83,7 @@ if has('macunix')
     inoremap <D-n> <C-n>
 endif
 
-if has("win32") 
+if has("win32")
     imap <M-7> {
     imap <M-0> }
     imap <M-8> [
@@ -114,7 +123,6 @@ vmap gkc :s/^/\/\/<cr>:noh<cr>
 vmap gku :s/^\/\//<cr>:noh<cr>
 nmap ggs :call GitStatus()<cr>
 nmap gca :%bd<cr>
-nmap gft  :Tags<cr>
 
 vnoremap <Tab> > gv
 vnoremap <S-Tab> < gv
@@ -134,6 +142,7 @@ nnoremap <C-j> $mb:join<cr>`b
 nnoremap - /
 nnoremap _ ?
 nmap <space> @@
+nmap <S-Tab> :b#<cr>
 nmap ö ;
 nmap Ö :
 nmap ä '
@@ -152,12 +161,25 @@ vmap ^ `
 vmap ° ~
 vnoremap - /
 vnoremap _ ?
+if has("autocmd")
 
-:autocmd VimEnter * call LoadProjectVimrc()
-:autocmd FileType qf wincmd J
-:autocmd BufNewFile,BufRead *.xaml setf xml
-:autocmd BufNewFile,BufRead *.nunit setf xml
-:autocmd FileType cs :setlocal colorcolumn=110
+    :autocmd FileType qf wincmd J
+    :autocmd VimEnter * call LoadProjectVimrc()
+    :autocmd BufNewFile,BufRead *.xaml setf xml
+    :autocmd BufNewFile,BufRead *.nunit setf xml
+    :autocmd FileType cs,slide :setlocal colorcolumn=110
+
+    highlight ExtraWhitespace ctermbg=red guibg=red
+    match ExtraWhitespace /\s\+$/
+    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd BufWinLeave * call clearmatches()
+
+    augroup templates
+        autocmd BufNewFile *.cs 0r ~/.vim/templates/skeleton.cs
+    augroup END
+endif
 
 function! LoadProjectVimrc()
     if filereadable('project.vim')
@@ -180,7 +202,7 @@ endfunction
 function RunUnitTests()
     :echo "running unit tests ..."
     :let start = reltime()
-    :let nunitoutput = system("nunit nunit.nunit")
+    :let nunitoutput = system("nunit mac.nunit")
     :let elapsedTimeString = reltimestr(reltime(start))
     :let failedTests = matchstr(nunitoutput, 'Failed: \(\d*\),')
     :let runTests = matchstr(nunitoutput, 'Test Count: \(\d*\),')
@@ -188,6 +210,16 @@ function RunUnitTests()
     :setlocal filetype=nunit
     :echo "finished in:" . elapsedTimeString "s. " . runTests . " " . failedTests
     :redraw!
+endfunction
+
+function ExecuteMakeClean()
+    :echo ""
+    :echo "clean started ..."
+    :let start = reltime()
+    :let buildoutput = system("make clean")
+    :let elapsedTimeString = reltimestr(reltime(start))
+    :redraw!
+    :echo "make clean finished in:" . elapsedTimeString . "s"
 endfunction
 
 function ExecuteMake()
@@ -240,12 +272,11 @@ function ShowInReadonlyBuffer(content)
     :setlocal nomodifiable
     :setlocal nobuflisted
     :setlocal bufhidden=delete
-    :setlocal colorcolumn=0
 endfunction
 
 "
 " Evaluate and print current syntax stack for word under cursor
-" 
+"
 function! <SID>SynStack()
 	if !exists("*synstack")
 		return
@@ -253,7 +284,7 @@ function! <SID>SynStack()
 	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-execute pathogen#infect() 
+execute pathogen#infect()
 
 " Show highlighting group for current word
 nmap <C-i> :call <SID>SynStack()<CR>
