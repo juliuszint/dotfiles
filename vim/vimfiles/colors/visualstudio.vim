@@ -12,7 +12,7 @@ hi MyTagListTagName     guifg=NONE   guibg=NONE
 hi Search       guifg=#000000   guibg=#C4A002
 
 if version >= 700
-  hi CursorLine     guibg=#020202
+  hi CursorLine     guifg=NONE guibg=#020202
   hi CursorColumn   guibg=NONE
   hi link MatchParen Search
 
@@ -28,10 +28,10 @@ hi Title        guifg=NONE   gui=NONE
 hi Underlined   guifg=NONE   gui=underline
 
 hi Normal       guifg=#dcdcdc   guibg=#1e1e1e
-hi LineNr       guifg=#2b91af   guibg=NONE
+hi LineNr       guifg=#6e6e6e   guibg=NONE
 hi CursorLineNr guifg=#2b91af   guibg=NONE
 hi Visual       guifg=NONE   guibg=#264f78
-hi Cursor       guifg=NONE   guibg=#00ff00
+hi Cursor       guifg=#0F0F0F   guibg=#DFDFDF
 hi VertSplit    guifg=#68217A  guibg=#68217A
 
 hi ModeMsg      guifg=NONE   guibg=NONE
@@ -138,6 +138,7 @@ hi link pythonConditional Type
 hi link pythonRepeat Type
 
 " C# highlighting
+hi link csTodo Comment
 hi link csUnspecifiedStatement Type
 hi link csUnspecifiedKeyword Type
 hi link csException Type
@@ -239,3 +240,12 @@ hi link nunitTestAssemblyForOutput nunitSectionHeader
 
 " java
 hi link javaConditional Constant
+
+" vimscript
+hi vimFuncName guifg=#DCDCAA guibg=NONE
+hi vimOption guifg=#C586C0 guibg=NONE
+hi vimVar guifg=#9CDCFE guibg=NONE
+hi link vimcommand Type
+hi link vimSetSep Default
+hi link vimIsCommand Type
+hi link vimHiGroup cTagsClass

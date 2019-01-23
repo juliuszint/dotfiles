@@ -37,7 +37,7 @@
 :syntax on
 
 :let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-:let NERDTreeIgnore=['.*obj$[[dir]]', '.*bin$[[dir]]']
+:let g:NERDTreeIgnore=['.*obj$[[dir]]', '.*bin$[[dir]]']
 :let g:NERDTreeHijackNetrw=1
 :let g:NERDTreeWinSize=60
 :let g:AutoPairsShortcutToggle=''
@@ -206,8 +206,7 @@ function RunUnitTests()
     :let elapsedTimeString = reltimestr(reltime(start))
     :let failedTests = matchstr(nunitoutput, 'Failed: \(\d*\),')
     :let runTests = matchstr(nunitoutput, 'Test Count: \(\d*\),')
-    :call ShowInReadonlyBuffer(nunitoutput)
-    :setlocal filetype=nunit
+    :call ShowInReadonlyBuffer(nunitoutput, 1, 'nunit')
     :echo "finished in:" . elapsedTimeString "s. " . runTests . " " . failedTests
     :redraw!
 endfunction
@@ -261,17 +260,65 @@ endfunction
 function GitStatus()
     :let gitstatusoutput = system("git status")
     :let gitdiffoutput = system("git diff")
-    :call ShowInReadonlyBuffer(gitstatusoutput . gitdiffoutput)
-    :setlocal filetype=git
+    :call ShowInReadonlyBuffer(gitstatusoutput . gitdiffoutput, 1, 'git')
 endfunction
 
-function ShowInReadonlyBuffer(content)
+function ShowInReadonlyBuffer(content, preferInactiveWindowSplit,...)
+    if a:preferInactiveWindowSplit
+        call EnsureTopRowHasTwoColumns()
+        let inactiveWindowId = GetInactiveTopRowWindow()
+        let windowState = winnr()
+        exe inactiveWindowId . "wincmd w"
+    endif
+
+    " create buffer, paste content and configure buffer
     :enew
     :$put=a:content
     :setlocal buftype=nofile
     :setlocal nomodifiable
     :setlocal nobuflisted
     :setlocal bufhidden=delete
+
+    if a:0 == 1
+        execute 'setlocal filetype=' . a:1
+    endif
+
+    " restore active window
+    if a:preferInactiveWindowSplit
+        exe windowState . "wincmd w"
+    endif
+endfunction
+
+function! GetInactiveTopRowWindow()
+    let currentWindow = winnr()
+    let openWindows = range(1,winnr('$'))
+    for w in openWindows
+        let screenPos = win_screenpos(w)
+        if screenPos[0] == 1 && w != currentWindow
+            return w
+        endif
+    endfor
+endfunction
+
+function! EnsureTopRowHasTwoColumns()
+    let openWindows = range(1,winnr('$'))
+    let topLeftWindowId = -1
+    let topRowColumns = 0
+    for w in openWindows
+        let screenPos = win_screenpos(w)
+        if screenPos[0] == 1
+            let topRowColumns = topRowColumns + 1
+            if screenPos[1] == 1
+                let topLeftWindowId = w
+            endif
+        endif
+    endfor
+    if topRowColumns <= 1
+        let windowState = winnr()
+        exe topLeftWindowId . "wincmd w"
+        :vsp
+        exe windowState . "wincmd w"
+    endif
 endfunction
 
 "
