@@ -249,3 +249,8 @@ hi link vimcommand Type
 hi link vimSetSep Default
 hi link vimIsCommand Type
 hi link vimHiGroup cTagsClass
+
+"ag
+hi link agFilename NERDTreeDir
+hi agLineNumber guifg=#E8E366 guibg=NONE
+hi link agColumnNumber agLineNumber

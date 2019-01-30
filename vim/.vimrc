@@ -50,8 +50,8 @@
 " ultisnip setup
 :let g:UltiSnipsExpandTrigger="<tab>"
 
-:command -nargs=1 Csgrep :vimgrep <args> **/*.cs
-:command -nargs=1 Xmlgrep :vimgrep <args> **/*.xml **/*.xaml
+:command! -nargs=1 Csgrep :vimgrep <args> **/*.cs
+:command! -nargs=1 Xmlgrep :vimgrep <args> **/*.xml **/*.xaml
 
 if has('macunix')
     imap <D-c> <esc>:w<cr>
@@ -187,7 +187,7 @@ function! LoadProjectVimrc()
     endif
 endfunction
 
-function UpdateTags()
+function! UpdateTags()
     if exists("*ProjectUpdateTags")
         :echo "updating tags with project settings ..."
         :call ProjectUpdateTags()
@@ -199,7 +199,7 @@ function UpdateTags()
     :echo "done"
 endfunction
 
-function RunUnitTests()
+function! RunUnitTests()
     :echo "running unit tests ..."
     :let start = reltime()
     :let nunitoutput = system("nunit mac.nunit")
@@ -211,7 +211,7 @@ function RunUnitTests()
     :redraw!
 endfunction
 
-function ExecuteMakeClean()
+function! ExecuteMakeClean()
     :echo ""
     :echo "clean started ..."
     :let start = reltime()
@@ -221,7 +221,7 @@ function ExecuteMakeClean()
     :echo "make clean finished in:" . elapsedTimeString . "s"
 endfunction
 
-function ExecuteMake()
+function! ExecuteMake()
     echo ""
     try
         :silent :execute ":w"
@@ -241,7 +241,7 @@ function ExecuteMake()
     :echo "make task finished in:" . elapsedTimeString . "s"
 endfunction
 
-function FindImplementationForWordUnderCursor()
+function! FindImplementationForWordUnderCursor()
     :echo "looking for implementations ..."
     let wordUnderCursor = expand("<cword>")
     :silent :execute 'vimgrep /\(class\|interface\)\_[^{]\{-}' . wordUnderCursor .  '/gj ./**/*.cs'
@@ -249,12 +249,14 @@ function FindImplementationForWordUnderCursor()
     :redraw!
 endfunction
 
-function FindUsagesForWordUnderCursor()
-    :echo "looking for usages ..."
+function! FindUsagesForWordUnderCursor()
+    echo "looking for usages ..."
     let wordUnderCursor = expand("<cword>")
-    :silent :execute 'vimgrep /\<' . wordUnderCursor .  '\>/gj ./**/*.cs'
-    :copen
-    :redraw!
+    "let query = "ag \"\\b" . wordUnderCursor . "\\b\""
+    let query = "ag --group --column --path-to-ignore ~/.ignore \"" . wordUnderCursor . "\""
+    let agoutput = system(query)
+    call ShowInReadonlyBuffer(agoutput, 1, 'ag')
+    redraw!
 endfunction
 
 function GitStatus()
@@ -263,7 +265,7 @@ function GitStatus()
     :call ShowInReadonlyBuffer(gitstatusoutput . gitdiffoutput, 1, 'git')
 endfunction
 
-function ShowInReadonlyBuffer(content, preferInactiveWindowSplit,...)
+function! ShowInReadonlyBuffer(content, preferInactiveWindowSplit,...)
     if a:preferInactiveWindowSplit
         call EnsureTopRowHasTwoColumns()
         let inactiveWindowId = GetInactiveTopRowWindow()

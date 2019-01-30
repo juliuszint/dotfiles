@@ -9,7 +9,7 @@ if has("win32")
 endif
 
 if has('gui_macvim')
-    :set guifont=DejaVu\ Sans\ Mono\ Nerd\ Font\ Complete:h13
+    :set guifont=DejaVu\ Sans\ Mono\ Nerd\ Font\ Complete:h14
     :set guioptions=
     :macmenu File.Save key=<nop>
     :macmenu File.New\ Tab key=<nop>
@@ -30,5 +30,4 @@ if has('gui_macvim')
     :let g:OmniSharp_server_path = '/usr/local/omnisharp/run'
     :colorscheme visualstudio
 endif
-
-:set guicursor+=n-v-c:blinkon0
+:set guicursor=n-v-c-i:blinkwait900-blinkon500-blinkoff500
