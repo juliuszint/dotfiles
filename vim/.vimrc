@@ -42,7 +42,7 @@
 :let g:NERDTreeWinSize=60
 :let g:AutoPairsShortcutToggle=''
 
-:let g:ackprg = 'ag --nogroup --nocolor --column --path-to-ignore ~/.ignore'
+:let g:agprg = 'ag --group --column --path-to-ignore ~/.ignore'
 
 " fzf setup
 :set rtp+=/usr/local/opt/fzf
@@ -50,8 +50,7 @@
 " ultisnip setup
 :let g:UltiSnipsExpandTrigger="<tab>"
 
-:command! -nargs=1 Csgrep :vimgrep <args> **/*.cs
-:command! -nargs=1 Xmlgrep :vimgrep <args> **/*.xml **/*.xaml
+:command! -complete=file -nargs=+ Ag :call SearchWithAg(<f-args>)
 
 if has('macunix')
     imap <D-c> <esc>:w<cr>
@@ -74,7 +73,7 @@ if has('macunix')
     nmap <D-f> :call fzf#run({'source': 'git ls-files', 'sink': 'e', 'down': '20'})<cr>
     nmap <D-v> :vsp<cr>
     nmap <D-t> :Tags<cr>
-    nmap <D-a> :Ack 
+    nmap <D-a> :Ag 
 
     nmap <D-e> :e .<cr>
 
@@ -252,9 +251,20 @@ endfunction
 function! FindUsagesForWordUnderCursor()
     echo "looking for usages ..."
     let wordUnderCursor = expand("<cword>")
-    "let query = "ag \"\\b" . wordUnderCursor . "\\b\""
-    let query = "ag --group --column --path-to-ignore ~/.ignore \"" . wordUnderCursor . "\""
-    let agoutput = system(query)
+    let query = "\"\\b" . wordUnderCursor . "\\b\""
+    let queryCommand = g:agprg . ' ' . query
+    let agoutput = system(queryCommand)
+    call ShowInReadonlyBuffer(agoutput, 1, 'ag')
+    redraw!
+endfunction
+
+function! SearchWithAg(...)
+    echo "searching ..."
+    let l:queryCommand = g:agprg
+    for l:args in a:000
+        let l:queryCommand = l:queryCommand . ' ' . l:args
+    endfor
+    let agoutput = system(queryCommand)
     call ShowInReadonlyBuffer(agoutput, 1, 'ag')
     redraw!
 endfunction
