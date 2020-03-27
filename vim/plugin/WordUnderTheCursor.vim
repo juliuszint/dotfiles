@@ -7,7 +7,7 @@
 
 
 if !exists('g:WordUnderTheCursor')
-    let g:WordUnderTheCursorDelay = 1000
+    let g:WordUnderTheCursorDelay = 250
     let s:ActiveWindowWantsWordUnderCursor = 0
     let s:ActiveWindowId = -1
     let s:TimerId = -1
@@ -62,7 +62,12 @@ function! s:RemoveWordUnderTheCursorMatch()
     if s:MatchId < 0
         return
     endif
-    call matchdelete(s:MatchId)
+    " it is possible that a match gets removed automatically when for example
+    " clearallmatches gets called
+    try
+        call matchdelete(s:MatchId)
+    catch /./
+    endtry
     let s:MatchId = -1
 endfunction
 
@@ -73,7 +78,7 @@ function! WordUnderTheCursorTimerElapsed(...)
         return
     endif
     let matchWord = '\C\V\<' . wordUnderCursor . '\>'
-    let s:MatchId = matchadd('WordUnderTheCursor', wordUnderCursor, 10, -1, { 'window': s:ActiveWindowId })
+    let s:MatchId = matchadd('WordUnderTheCursor', matchWord, -1, -1, { 'window': s:ActiveWindowId })
 endfunction
 
 function! s:GetWordUnderTheCursor()

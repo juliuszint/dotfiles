@@ -1,15 +1,5 @@
-if has("win32")
-    :set guifont=DejaVu_Sans_Mono:h10:cANSI:qDRAFT
-    :set guioptions-=m       " remove menu bar
-    :set guioptions-=T       " remove toolbar
-    :set guioptions-=r       " remove right-hand scroll bar
-    :set guioptions-=L       " remove left-hand scroll bar
-    :au GUIEnter * simalt ~x " launch gvim in fullscreen
-    :colorscheme visualstudio
-endif
-
 if has('gui_macvim')
-    :set guifont=DejaVu\ Sans\ Mono\ Nerd\ Font\ Complete:h14
+    :set guifont=JetBrainsMonoNerdFont-Regular:h15
     :set guioptions=
     :macmenu File.Save key=<nop>
     :macmenu File.New\ Tab key=<nop>
@@ -26,8 +16,4 @@ if has('gui_macvim')
     :macmenu Edit.Select\ All key=<nop>
     :macmenu Tools.List\ Errors key=<nop>
     :macmenu Tools.Make key=<nop>
-
-    :let g:OmniSharp_server_path = '/usr/local/omnisharp/run'
-    :colorscheme visualstudio
 endif
-:set guicursor=n-v-c-i:blinkwait900-blinkon500-blinkoff500
