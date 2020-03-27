@@ -1,4 +1,5 @@
 ﻿command! SearchForWordUnderCursor :call SearchForWordUnderCursor(0)
+command! SearchForWordUnderCursorQf :call SearchForWordUnderCursor(1)
 command! SearchForImplementation :call SearchForImplementation()
 command! -complete=file -nargs=* SearchForRegex :call SearchForRegex(<f-args>)
 
@@ -6,19 +7,23 @@ nmap <leader>r :SearchForRegex
 
 function! SearchForWordUnderCursor(qfTarget)
     let l:wordUnderCursor = expand("<cword>")
-    let l:command = ['rg', '--heading', '--column', '--case-sensitive', '--word-regexp']
+    "let l:command = ['rg', '--heading', '--column', '--case-sensitive', '--word-regexp']
+    let l:command = ['rg', '--word-regexp', '--vimgrep']
     let l:opts = {}
     let l:opts['msg'] = 'Searching for word under cursor'
     let l:opts['exit_msg'] = 'Finished searching for word under cursor'
     let l:opts['bringToFront'] = 1
     let l:opts['ft'] = 'ag'
-    "let l:opts['out_io'] = 'pipe'
-    "let l:opts['exitcb'] = function('UpdateQuickfix')
+    let l:bufferName = '<Searching>'
     if a:qfTarget == 1
-        call add(l:command, '--vimgrep')
+        let l:opts['out_io'] = 'pipe'
+        let l:opts['exitcb'] = function('UpdateQuickfix')
+        let l:command = ['rg', '--word-regexp', '--vimgrep']
+        let l:bufferName = ''
+        let l:opts['bringToFront'] = 0
     endif
     call add(l:command, l:wordUnderCursor)
-    call RunCommandAsJob(l:command, '<SearchResult>', l:opts)
+    call RunCommandAsJob(l:command, l:bufferName, l:opts)
 endfunction
 
 function! SearchForRegex(...)
@@ -41,3 +46,5 @@ function! SearchForImplementation()
     let l:opts["bringToFront"] = 1
     call RunCommandAsJob(l:args, "<SearchOutput>", l:opts)
 endfunction
+
+" AppDelegateMain
