@@ -1,6 +1,7 @@
-nnoremap <buffer> <cr> :call JumpToTarget()<cr>
+nnoremap <buffer> O :call JumpToTarget(0)<cr>
+nnoremap <buffer> o :call JumpToTarget(1)<cr>
 
-function! JumpToTarget()
+function! JumpToTarget(inCurrentBuffer)
     let l:columnNr = 0
     let l:rowNr = 0
     let l:lineNumber = line('.')
@@ -28,12 +29,11 @@ function! JumpToTarget()
         endif
     endwhile
 
-    " open file in window
-    call EnsureTopRowHasTwoColumns()
-    let l:inactiveWindowId = GetInactiveTopRowWindow()
-    "let l:windowState = winnr()
-    exe l:inactiveWindowId . "wincmd w"
+    if !a:inCurrentBuffer
+        call EnsureTopRowHasTwoColumns()
+        let l:inactiveWindowId = GetInactiveTopRowWindow()
+        exe l:inactiveWindowId . "wincmd w"
+    endif
     execute ':e ' . l:lineContent
     call cursor(l:rowNr, l:columnNr)
-    "exe l:windowState . "wincmd w"
 endfunction

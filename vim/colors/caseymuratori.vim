@@ -95,6 +95,9 @@ hi link NERDTreeOpenable Comment
 hi link NERDTreeClosable Comment
 
 " C# highlighting
+hi link csNew Type
+hi link csVar Type
+hi link csIsAs Type
 hi link csUnspecifiedStatement Type
 hi link csException Type
 hi link csRepeat Type
@@ -109,6 +112,9 @@ hi link xmlTag Comment
 hi link xmlEqual Comment
 hi link csPreCondit Define
 hi link csNumber Constant
+hi csClassType guifg=NONE guibg=NONE
+hi csNewType guifg=NONE guibg=NONE
+hi csIsType guifg=NONE  guibg=NONE
 
 " Hex Files
 hi link hexAddress cTagsClass

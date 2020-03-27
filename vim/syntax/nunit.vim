@@ -8,10 +8,10 @@ if exists("b:current_syntax")
 endif
 
 syn match nunitTestAssemblyForOutput '^=>\s.*'
-syn match nunitTestSkipped '^\d\+) Skipped : \_.\{-}\n\s*\n'
-syn match nunitTestIgnored '^\d\+) Ignored : \_.\{-}\n\s*\n'
-syn match nunitTestFailed '^\d\+) Failed : \_.\{-}\n\n'
-syn match nunitTestError '^\d\+) Error : \_.\{-}\n\n'
+syn region nunitTestSkipped start='^\d\+) Skipped : ' end='\n\n'
+syn region nunitTestIgnored start='^\d\+) Ignored : ' end='\n\n'
+syn region nunitTestFailed  start='^\d\+) Failed : ' end='\n\n'
+syn region nunitTestError   start='^\d\+) Error : ' end='\n\n'
 
 syn match nunitSectionAttribute '\s\+\(\w\|\s\|-\)\+:\s' contained
 syn region nunitRunEnv start='^Runtime Environment' end='\n\n' contains=nunitSectionAttribute

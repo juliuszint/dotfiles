@@ -19,6 +19,7 @@ let s:cs_cpo_save = &cpo
 set cpo&vim
 
 
+syn keyword     csXamarinType nfloat nint
 syn keyword	csType	bool byte char decimal double float int long object sbyte short string T uint ulong ushort var void dynamic
 syn keyword	csStorage	delegate namespace
 syn keyword	csRepeat	break continue do for foreach goto return while
@@ -148,7 +149,9 @@ syn region	csBracketed	matchgroup=csParens start=+(+ end=+)+ contained transpare
 syn cluster	csAll	contains=csCharacter,csClassType,csComment,csContextualStatement,csEndColon,csInterpolatedString,csIsType,csLabel,csLogicSymbols,csNewType,csConstant,csNumber,csOpSymbols,csOperatorError,csParens,csPreCondit,csRegion,csString,csSummary,csUnicodeNumber,csUnicodeSpecifier,csVerbatimString
 
 " The default highlighting.
-hi def link	csType	Type
+"
+hi def link	csXamarinType	Type
+hi def link	csType	        Type
 hi def link	csNewType	Type
 hi def link	csClassType	Type
 hi def link	csIsType	Type

@@ -9,10 +9,10 @@ let g:colors_name = "visualstudio"
 
 hi MyTagListFileName    guifg=NONE   guibg=NONE
 hi MyTagListTagName     guifg=NONE   guibg=NONE
-hi Search       guifg=#000000   guibg=#C4A002
+hi Search       guifg=#000000   guibg=#FFFB04
 
 if version >= 700
-  hi CursorLine     guifg=NONE guibg=#020202
+  hi CursorLine     guifg=NONE guibg=#2F3239
   hi CursorColumn   guibg=NONE
   hi link MatchParen Search
 
@@ -27,12 +27,19 @@ endif
 hi Title        guifg=NONE   gui=NONE
 hi Underlined   guifg=NONE   gui=underline
 
-hi Normal       guifg=#dcdcdc   guibg=#1e1e1e
-hi LineNr       guifg=#6e6e6e   guibg=NONE
-hi CursorLineNr guifg=#2b91af   guibg=NONE
+if has("autocmd")
+    :augroup cursorcolor
+        :autocmd InsertLeave * hi Cursor guifg=#FFFFFF guibg=#FFA500
+        :autocmd InsertEnter * hi Cursor guifg=#FFFFFF   guibg=#FFFFFF
+    :augroup END
+endif
+
+hi Normal       guifg=#ffffff   guibg=#292A30
+hi LineNr       guifg=#747478   guibg=NONE
+hi CursorLineNr guifg=#ffffff   guibg=NONE
 hi Visual       guifg=NONE   guibg=#264f78
-hi Cursor       guifg=#0F0F0F   guibg=#DFDFDF
-hi VertSplit    guifg=#68217A  guibg=#68217A
+hi Cursor       guifg=#FFFFFF   guibg=#FFA500
+hi VertSplit    guifg=#292A30  guibg=#000000
 
 hi ModeMsg      guifg=NONE   guibg=NONE
 hi WildMenu     guifg=NONE   guibg=NONE
@@ -40,15 +47,15 @@ hi Question     guifg=NONE   guibg=NONE
 
 hi StatusLine   guifg=#FFFFFF   guibg=#0071CC gui=bold
 hi StatusLineNC guifg=NONE   guibg=#2d2d30 gui=bold
-hi ColorColumn  guifg=NONE   guibg=#2d2d30
+hi ColorColumn  guifg=NONE   guibg=#2F3239
 
 hi Todo         guifg=NONE   guibg=NONE      gui=NONE
 hi Error        guifg=NONE   guibg=#FF0000   gui=bold,underline
 hi Note         guifg=NONE   guibg=#00FF00
-hi WordUnderTheCursor       guifg=NONE   guibg=#014343
+hi WordUnderTheCursor       guifg=NONE   guibg=#353A3F
 hi link IncSearch Search
 
-hi NonText      guifg=NONE   guibg=NONE
+hi NonText      guifg=#292A30   guibg=NONE
 hi Folded       guifg=NONE   guibg=NONE
 hi Folded       guifg=NONE   guibg=NONE
 hi FoldColumn   guifg=NONE   guibg=NONE
@@ -61,11 +68,11 @@ hi SpecialKey	guifg=NONE   guibg=NONE
 hi Special      guifg=NONE   guibg=NONE
 
 " common syntax highlighting
-hi String   guifg=#d69d85 gui=NONE
-hi Type     guifg=#569cd6 gui=NONE
-hi Number   guifg=#b5cea8 gui=NONE
-hi Constant guifg=#569cd6 gui=NONE
-hi Comment  guifg=#57a64a guibg=NONE gui=NONE
+hi String   guifg=#FF8170 gui=NONE
+hi Type     guifg=#FF7AB2 gui=NONE
+hi Number   guifg=#A79DF7 gui=NONE
+hi Constant guifg=#FF7AB2 gui=NONE
+hi Comment  guifg=#7F8C98 guibg=NONE gui=italic
 hi Define   guifg=#9b9b9b gui=NONE
 hi ExtraWhitespace guifg=NONE guibg=#FF5B5E
 
@@ -81,7 +88,7 @@ hi cFormat               guifg=#80ff80 guibg=NONE
 hi cTagsNamespace   	 guifg=#add8e6 guibg=NONE
 hi cStructure       	 guifg=#569cd6 guibg=NONE
 hi cTagsDefinedName 	 guifg=#bd63c5 guibg=NONE
-hi cTagsClass       	 guifg=#4ec9b0 guibg=NONE
+hi cTagsClass       	 guifg=#8AD1C3 guibg=NONE
 hi cTagsMember      	 guifg=#dda0dd guibg=NONE
 hi cTagsEnumerationValue guifg=#b8d7a3 guibg=NONE
 
@@ -210,17 +217,9 @@ hi link slideBlockComment Comment
 hi link NERDTreeHelp Comment
 hi link NERDTreeCWD Number
 hi link NERDTreeUp Constant
-hi NERDTreeDir guifg=#A6CA54 guibg=NONE
+hi link NERDTreeDir Default
 hi link NERDTreeOpenable Default
-hi link NERDTreeClosable NERDTreeOpenable
-hi NERDTreeCsharpDesignerFile guifg=#7a7a7a gui=NONE
-hi NERDTreeCsharpSolutionFile guifg=#CAB4FA gui=NONE
-hi NERDTreeCsharpProjectFile guifg=#8FC1FF gui=NONE
-
-" Quickfix
-hi qfFileName  guifg=#CAB4FA guibg=NONE
-hi qfCsError   guifg=#FF5B5E guibg=NONE
-hi qfCsWarning guifg=#FEFF5B guibg=NONE
+hi link NERDTreeClosable Default
 
 " git
 hi diffAdded   guifg=#8AE234 guibg=NONE
@@ -233,7 +232,7 @@ hi link diffIndexLine Default
 " nunit output
 hi nunitSectionHeader guifg=#34E2E2 guibg=NONE
 hi nunitTestFailed guifg=#FF5B5E guibg=NONE
-hi nunitTestIgnored guifg=#F4FF5B guibg=NONE
+"hi nunitTestIgnored guifg=#F4FF5B guibg=NONE
 hi nunitSectionAttribute guifg=#5BFF80  guibg=NONE
 hi link nunitTestError nunitTestFailed
 hi link nunitTestAssemblyForOutput nunitSectionHeader
@@ -251,6 +250,76 @@ hi link vimIsCommand Type
 hi link vimHiGroup cTagsClass
 
 "ag
-hi link agFilename NERDTreeDir
-hi agLineNumber guifg=#E8E366 guibg=NONE
+hi agFilename   guifg=#D94658 guibg=NONE
+hi agLineNumber guifg=#7AAE3A guibg=NONE
+hi agLineColumnNumberColon guifg=#6e6e6e guibg=NONE
 hi link agColumnNumber agLineNumber
+
+" dotnet test output
+hi dotnetTestTotalTestLabel guifg=#8AE234 guibg=NONE
+hi link dotnetTestPassedTestLabel dotnetTestTotalTestLabel
+hi dotnetTestFailedTestLabel guifg=#FF5B5E guibg=NONE
+
+hi link dotnetTestTotalTestValue Number
+hi link dotnetTestPassedTestValue dotnetTestTotalTestValue
+hi link dotnetTestFailedTestValue dotnetTestTotalTestValue
+
+hi link dotnetStackTraceLoc dotnetTestFailedTestLabel
+
+"msbuild
+hi msbuildFilename guifg=#6e6e6e guibg=NONE gui=underline
+hi msbuildErrorLevelError guifg=#FF5B5E guibg=NONE
+hi msbuildErrorLevelWarning guifg=#FEFF5B guibg=NONE
+hi link msbuildLocation msbuildFilename
+
+"ultisnip
+hi link snipSnippetHeaderKeyword Type
+hi link snipSnippetFooterKeyword Type
+hi link snipGlobalHeaderKeyword Type
+hi link snipGlobalFooterKeyword Type
+hi link snipMirror cTagsClass
+hi link snipTabStopDefault Default
+hi snipSnippetTrigger guifg=#C586C0 guibg=NONE
+hi snipSnippetTrigger guifg=#C586C0 guibg=NONE
+hi snipTabStop guifg=#9CDCFE guibg=NONE
+
+"swift
+hi swiftImport guifg=#FF7AB2 guibg=NONE
+hi swiftTypeDefinition guifg=#FF7AB2 guibg=NONE
+hi swiftDefinitionModifier guifg=#FF7AB2 guibg=NONE
+hi swiftFuncDefinition guifg=#FF7AB2 guibg=NONE
+hi swiftKeyword guifg=#FF7AB2 guibg=NONE
+hi swiftVarDefinition guifg=#FF7AB2 guibg=NONE
+hi swiftTypePair guifg=#BAF28F guibg=NONE
+hi swiftTypeName guifg=#BAF28F guibg=NONE
+hi swiftPreproc guifg=#FFA14F guibg=NONE
+hi swiftComment guifg=#7F8C98 guibg=NONE gui=italic
+hi swiftString guifg=#FF8170 guibg=NONE gui=italic
+hi swiftDecimal guifg=#A79DF7 guibg=NONE gui=italic
+hi link swiftLineComment swiftComment
+hi link swiftType Default
+
+" TURTLE
+hi link ttlLabel cTagsClass
+
+" Latex
+hi link texStatement Constant
+hi link texBeginEnd Constant
+hi link texDocType Constant
+hi texBeginEndName guifg=#A0D975 guibg=NONE
+hi link texInputFile texBeginEndName
+
+" sh
+hi link shDerefSimple texBeginEndName
+hi link shStatement Constant
+hi link shSet Constant
+hi link shRepeat Constant
+hi link shCondition Constant
+hi link shConditional Constant
+hi link shVariable texBeginEndName
+
+" Quickfix
+hi link qfFileName texBeginEndName
+hi qfMsbuildCsError guifg=#FF5B5E guibg=NONE
+hi qfMsbuildCsWarning guifg=#FEFF5B guibg=NONE
+
