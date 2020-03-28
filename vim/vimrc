@@ -147,6 +147,15 @@ autocmd filetype nerdtree syn match swift_icon /  / containedin=NERDTreeFile
 autocmd filetype nerdtree syn match solution_icon /  / containedin=NERDTreeFile
 autocmd FileType nerdtree syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
 
+function! StartOmniSharpServer()
+    let l:solutions = glob('*.sln', 0, 1)
+    if len(l:solutions) == 1
+        call OmniSharp#StartServer(fnamemodify(l:solutions[0], ':p'))
+    endif
+endfunction
+
+autocmd VimEnter * call StartOmniSharpServer()
+
 packadd minpac
 call minpac#init()
 
