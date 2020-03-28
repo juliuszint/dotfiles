@@ -1,56 +1,76 @@
-﻿:set encoding=utf8
-:set number
-:set nowrap
-:set vb
-:set backspace=2
-:set complete=.,w,b,u,t,i,kspell
-:set nocompatible
-:set nobackup
-:set cursorline
-:set nowritebackup
-:set noswapfile
-:set history=500
-:set ruler
-:set showcmd
-:set laststatus=2
-:set clipboard=unnamed
-:let mapleader=","
-:set autoread
-:set hidden
-:set timeoutlen=500
-:set shortmess=I
-:set fileencodings-=ucs-bom
-:set wrapscan
-:set smartcase
-:set ignorecase
-:set incsearch
-:set hlsearch
-:set expandtab
-:set shiftwidth=4
-:set softtabstop=4
-:set autoindent
-:set cinoptions=W(0,W1s,l1s
-:set guicursor=n-v-c:block-blinkwait900-blinkon500-blinkoff500,i:hor10
-:filetype plugin indent on
-:syntax on
-:set exrc
-:set nosecure
-:setglobal bomb
+﻿set encoding=utf8
+set number
+set nowrap
+set vb
+set backspace=2
+set complete=.,w,b,u,t,i,kspell
+set nocompatible
+set nobackup
+set cursorline
+set nowritebackup
+set noswapfile
+set history=500
+set ruler
+set showcmd
+set laststatus=2
+set clipboard=unnamed
+let mapleader=","
+set autoread
+set hidden
+set timeoutlen=500
+set shortmess=I
+set fileencodings-=ucs-bom
+set wrapscan
+set smartcase
+set ignorecase
+set incsearch
+set hlsearch
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+set cinoptions=W(0,W1s,l1s
+set guicursor=n-v-c:block-blinkwait900-blinkon500-blinkoff500,i:hor10
+filetype plugin indent on
+syntax on
+set exrc
+set nosecure
+setglobal bomb
 
-:set rtp+=/usr/local/opt/fzf
+set rtp+=/usr/local/opt/fzf
 
-:let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-:let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
-:let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cs'] = ''
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cs'] = ''
 
-:let g:NERDTreeIgnore=['.*obj$[[dir]]', '.*bin$[[dir]]']
-:let g:NERDTreeHijackNetrw=1
-:let g:NERDTreeWinSize=60
-:let g:AutoPairsShortcutToggle=''
-:let g:bclose_no_plugin_maps=1
-:let g:UltiSnipsExpandTrigger="<tab>"
+let g:NERDTreeIgnore=['.*obj$[[dir]]', '.*bin$[[dir]]']
+let g:NERDTreeHijackNetrw=1
+let g:NERDTreeWinSize=60
+let g:AutoPairsShortcutToggle=''
+let g:bclose_no_plugin_maps=1
+let g:UltiSnipsExpandTrigger="<tab>"
 
-:command! GitDiff :call RunCommandAsJob('git diff', '<MiscOutput>', { 'bringToFront' : 1, 'ft' : 'git'})
+let g:OmniSharp_server_stdio = 1
+let g:OmniSharp_highlight_types = 2
+let g:OmniSharp_highlight_debug = 0
+
+let g:OmniSharp_highlight_groups = {
+\ 'csString': ['string'],
+\ 'csClass': ['class name'],
+\ 'csDelegateName': ['delegate name'],
+\ 'csKeyword': ['keyword', 'keyword - control'],
+\ 'csComment': ['comment'],
+\ 'csStruct': ['struct name'],
+\ 'csInterface': ['interface name'],
+\ 'csNumber': ['number'],
+\ 'csEnum': ['enum name'],
+\ 'csEnumMemberName': ['enum member name'],
+\ 'csPreprocessor' : [ 'preprocessor keyword', 'preprocessor text' ],
+\ 'csTypeParamName': ['type parameter name'],
+\ 'csExcludedCode': ['excluded code'],
+\}
+
+command! GitDiff :call RunCommandAsJob('git diff', '<MiscOutput>', { 'bringToFront' : 1, 'ft' : 'git'})
 
 nmap <leader>v :vsp<cr>
 nmap <leader>f :call fzf#run({'source': 'git ls-files', 'sink': 'e', 'down': '20'})<cr>
@@ -59,15 +79,16 @@ nmap <leader>h :History:<cr>
 nmap <leader>t :Tags<cr>
 nmap <leader>e :e .<cr>
 nmap <leader>c :Bclose<cr>
+
 nmap <C-s> :w<cr>
 imap <C-s> <esc>:w<cr>
 
+nmap gd :OmniSharpGotoDefinition<cr>
 nmap go <C-o>
 nmap gj <C-w>j
 nmap gk <C-w>k
 nmap gl <C-w>l
 nmap gh <C-w>h
-nmap gd <C-]>
 nmap gi <C-i>
 map <C-n> :cn<cr>
 map <C-p> :cp<cr>
@@ -110,6 +131,7 @@ autocmd BufRead,BufNewFile *.swift set filetype=swift
 autocmd BufNewFile,BufRead *.nunit setf xml
 autocmd FileType cs,slide :setlocal colorcolumn=110
 
+autocmd FileType cs :setlocal syntax=off
 autocmd filetype nerdtree highlight folder_icon guifg=#D8AC6A guibg=NONE
 autocmd filetype nerdtree highlight csharp_icon guifg=#88D184 guibg=NONE
 autocmd filetype nerdtree highlight solution_icon guifg=#D294E2 guibg=NONE
@@ -136,6 +158,7 @@ call minpac#add('scrooloose/nerdtree')
 call minpac#add('ryanoasis/vim-devicons')
 call minpac#add('rbgrouleff/bclose.vim')
 call minpac#add('tpope/vim-surround')
+call minpac#add('OmniSharp/omnisharp-vim')
 
 "call minpac#add('prabirshrestha/asyncomplete.vim')
 "call minpac#add('prabirshrestha/asyncomplete-buffer.vim')

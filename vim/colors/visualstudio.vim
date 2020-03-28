@@ -145,33 +145,19 @@ hi link pythonConditional Type
 hi link pythonRepeat Type
 
 " C# highlighting
-hi link csTodo Comment
-hi link csUnspecifiedStatement Type
-hi link csUnspecifiedKeyword Type
-hi link csException Type
-hi link csRepeat Type
-hi link csConditional Type
-hi link csLabel Type
-hi link csAsync Type
-hi link csNew Constant
-hi link csIsAs Constant
-hi link csVar Constant
-hi link csIsType Default
-hi link csType Constant
-hi link csNewType Default
-hi link csEndColon Default
-hi link csLogicSymbols Default
-hi link csXamarinType cTagsClass
-hi link csClassType cTagsClass
-hi link csContextualStatement Type
-hi link csUnsupportedStatement Type
-hi link csLinq Type
-hi link csXmlComment Comment
-hi link csXmlTag Comment
-hi link csEnumType cTagsEnumerationValue
-hi link csInterfaceType csEnumType
-hi link csStructType csClassType
-hi link csCharacter String
+hi link csString String
+hi link csKeyword Type
+hi link csClass cTagsClass
+hi link csInterface cTagsEnumerationValue
+hi link csEnum cTagsEnumerationValue
+hi link csComment Comment
+hi link csNumber Number
+hi link csPreprocessor swiftPreproc
+hi link csTypeParamName swiftTypePair
+hi link csDelegateName csClass
+hi link csStruct csInterface
+hi csExcludedCode guifg=#7F8C98 guibg=NONE
+hi csEnumMemberName guifg=#9CDCFE guibg=NONE
 
 " Java highlighting
 hi link javaOperator Type
@@ -319,7 +305,8 @@ hi link shConditional Constant
 hi link shVariable texBeginEndName
 
 " Quickfix
-hi link qfFileName texBeginEndName
+hi link qfFileName csClassType
+hi link qfLineNr Number
 hi qfMsbuildCsError guifg=#FF5B5E guibg=NONE
 hi qfMsbuildCsWarning guifg=#FEFF5B guibg=NONE
 
