@@ -2,6 +2,7 @@
 command! SearchForWordUnderCursorQf :call SearchForWordUnderCursor(1)
 command! SearchForImplementation :call SearchForImplementation()
 command! -complete=file -nargs=* SearchForRegex :call SearchForRegex(<f-args>)
+command! -complete=file -nargs=* SearchForRegexQf :call SearchForRegexQf(<f-args>)
 
 nmap <leader>r :SearchForRegex 
 
@@ -34,6 +35,17 @@ function! SearchForRegex(...)
     let l:opts["msg"] = "Searching for regular expression ..."
     let l:opts["bringToFront"] = 1
     call RunCommandAsJob(l:args, "<SearchOutput>", l:opts)
+endfunction
+
+function! SearchForRegexQf(...)
+    let l:command = ['rg', '--word-regexp', '--vimgrep']
+    let l:command += a:000
+    let l:opts = {}
+    let l:opts["msg"] = "Searching for regular expression ..."
+    let l:opts["msg"] = "Finished searching for regular expression"
+    let l:opts['out_io'] = 'pipe'
+    let l:opts['exitcb'] = function('UpdateQuickfix')
+    call RunCommandAsJob(l:command, '', l:opts)
 endfunction
 
 function! SearchForImplementation()

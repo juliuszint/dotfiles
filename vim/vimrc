@@ -69,6 +69,8 @@ nmap gl <C-w>l
 nmap gh <C-w>h
 nmap gd <C-]>
 nmap gi <C-i>
+map <C-n> :cn<cr>
+map <C-p> :cp<cr>
 
 nmap gnh :noh<cr>
 
@@ -100,6 +102,8 @@ vmap ^ `
 vmap ° ~
 vnoremap - /
 vnoremap _ ?
+
+autocmd filetype qf :setlocal nocursorline
 
 autocmd BufNewFile,BufRead *.xaml setf xml
 autocmd BufRead,BufNewFile *.swift set filetype=swift
