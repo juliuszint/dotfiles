@@ -1,56 +1,40 @@
-﻿let s:ExitHandlerTransit = {}
-let s:ChannelStdOutTransit = {}
-let s:JobId = 0
-
-command! CloseAll :call CloseAll()
+﻿command! CloseAll :call CloseAll()
 command! CloseAllButThis :call CloseAllButThis()
 command! PrintSynStack :call PrintSynStack()
 
-function! ChannelCloseHandler(channel)
+function! ChannelCloseHandler(params, channel)
     if ch_canread(a:channel)
         let l:stdout = ch_read(a:channel)
-        let s:ChannelStdOutTransit[a:channel] = l:stdout
+        let a:params['output'] = l:stdout
     else
-        let s:ChannelStdOutTransit[a:channel] = ''
+        let a:params['output'] = ''
     endif
-    let l:job = ch_getjob(a:channel)
-    let l:jobInfo = job_info(l:job)
-    let l:jobId = l:jobInfo['tag']
-    if has_key(s:ExitHandlerTransit, l:jobId)
-        let l:params = remove(s:ExitHandlerTransit, l:jobId)
-        let l:stdout = remove(s:ChannelStdOutTransit, l:channel)
-        let l:unused = l:params['exitcb'](l:stdout)
+    if !has_key(a:params, 'exit_called')
+        let l:stdout = a:params['output']
+        let l:unused = a:params['exitcb'](l:stdout)
     endif
 endfunction
 
-function! JobExitHandler(job, exitstatus)
-    let l:jobInfo = job_info(a:job)
-    let l:jobId = l:jobInfo['tag']
-    let l:params = s:ExitHandlerTransit[l:jobId]
-    let l:elapsedTime = split(reltimestr(reltime(l:params['startTime'])))[0]
+function! JobExitHandler(params, job, exitstatus)
+    let l:elapsedTime = split(reltimestr(reltime(a:params['startTime'])))[0]
     let l:channel = job_getchannel(a:job)
     redraw
-    if has_key(l:params, 'exitcb')
-        if has_key(s:ChannelStdOutTransit, l:channel)
-            let l:stdout = remove(s:ChannelStdOutTransit, l:channel)
-            let l:unused = l:params['exitcb'](l:stdout)
-            call remove(s:ExitHandlerTransit, l:jobId)
+    if has_key(a:params, 'exitcb')
+        if has_key(a:params, 'output')
+            let l:stdout = a:params['output'] 
+            let l:unused = a:params['exitcb'](l:stdout)
+            let a:params['exit_called'] = 1
         endif
-    else
-        call remove(s:ExitHandlerTransit, l:jobId)
     endif
-    if has_key(l:params, 'exitMessage')
-        echo l:params['exitMessage'] . '. Elapsed Time: ' l:elapsedTime 'ms. With status: ' . a:exitstatus
+    if has_key(a:params, 'exitMessage')
+        echo a:params['exitMessage'] . '. Elapsed Time: ' l:elapsedTime 'ms. With status: ' . a:exitstatus
     else
         echo 'Finished job: ' . a:job . ' in: '. l:elapsedTime . 'ms with status: ' . a:exitstatus
     endif
 endfunc
 
 function! RunCommandAsJob(command, bufferName, options = {})
-    let l:jobid = s:JobId
-    let s:JobId = s:JobId + 1
     let l:handlerParams = {}
-    let s:ExitHandlerTransit[l:jobid] = l:handlerParams
     let l:bufnr = 0
     if strlen(a:bufferName) > 0
         let l:bufnr = bufadd(a:bufferName)
@@ -77,14 +61,13 @@ function! RunCommandAsJob(command, bufferName, options = {})
     let jobOpts['out_msg'] = 0
     let jobOpts['out_modifiable'] = 0
     let jobOpts['cwd'] = l:cwd
-    let jobOpts['tag'] = l:jobid
-    let jobOpts['exit_cb'] = 'JobExitHandler'
+    let jobOpts['exit_cb'] = function('JobExitHandler', [ l:handlerParams ]) 
     if strlen(a:bufferName) > 0
         let jobOpts['out_buf'] = l:bufnr
     endif
     if has_key(a:options, 'exitcb')
         let l:handlerParams['exitcb'] = a:options['exitcb']
-        let jobOpts['close_cb'] = 'ChannelCloseHandler'
+        let jobOpts['close_cb'] = function('ChannelCloseHandler', [ l:handlerParams ])
     endif
     if has_key(a:options, 'out_io')
         let jobOpts['out_io'] = a:options['out_io']

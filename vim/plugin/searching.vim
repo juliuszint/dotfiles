@@ -8,8 +8,7 @@ nmap <leader>r :SearchForRegex
 
 function! SearchForWordUnderCursor(qfTarget)
     let l:wordUnderCursor = expand("<cword>")
-    "let l:command = ['rg', '--heading', '--column', '--case-sensitive', '--word-regexp']
-    let l:command = ['rg', '--word-regexp', '--vimgrep']
+    let l:command = ['rg', '--heading', '--column', '--case-sensitive', '--word-regexp']
     let l:opts = {}
     let l:opts['msg'] = 'Searching for word under cursor'
     let l:opts['exit_msg'] = 'Finished searching for word under cursor'
