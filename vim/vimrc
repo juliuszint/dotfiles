@@ -3,7 +3,6 @@ set number
 set nowrap
 set vb
 set backspace=2
-set complete=.,w,b,u,t,i,kspell
 set nocompatible
 set nobackup
 set cursorline
@@ -36,6 +35,10 @@ syntax on
 set exrc
 set nosecure
 setglobal bomb
+let &errorformat =
+    \ '%f:%l:%c:%m,' .
+    \ '%f:%l:%c:\ %m,' .
+    \ '%f(%l\,%c):\ %m'
 
 set rtp+=/usr/local/opt/fzf
 
@@ -48,7 +51,7 @@ let g:NERDTreeHijackNetrw=1
 let g:NERDTreeWinSize=60
 let g:AutoPairsShortcutToggle=''
 let g:bclose_no_plugin_maps=1
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger='<C-e>'
 
 let g:OmniSharp_server_stdio = 1
 let g:OmniSharp_highlight_types = 2
@@ -70,7 +73,20 @@ let g:OmniSharp_highlight_groups = {
 \ 'csExcludedCode': ['excluded code'],
 \}
 
+autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+        \ 'name': 'ultisnips',
+        \ 'whitelist': ['*'],
+        \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+        \ }))
+
 command! GitDiff :call RunCommandAsJob('git diff', '<MiscOutput>', { 'bringToFront' : 1, 'ft' : 'git'})
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+
+nnoremap <silent>  * :let @/='\C\<' . expand('<cword>') . '\>'<CR>:let v:searchforward=1<CR>nN
+nnoremap <silent>  # :let @/='\C\<' . expand('<cword>') . '\>'<CR>:let v:searchforward=0<CR>nN
 
 nmap <leader>v :vsp<cr>
 nmap <leader>f :call fzf#run({'source': 'git ls-files', 'sink': 'e', 'down': '20'})<cr>
@@ -79,6 +95,7 @@ nmap <leader>h :History:<cr>
 nmap <leader>t :Tags<cr>
 nmap <leader>e :e .<cr>
 nmap <leader>c :Bclose<cr>
+nmap <leader>w :SearchForWordUnderCursorQf<cr>
 
 nmap <C-s> :w<cr>
 imap <C-s> <esc>:w<cr>
@@ -168,8 +185,9 @@ call minpac#add('ryanoasis/vim-devicons')
 call minpac#add('rbgrouleff/bclose.vim')
 call minpac#add('tpope/vim-surround')
 call minpac#add('OmniSharp/omnisharp-vim')
-
-"call minpac#add('prabirshrestha/asyncomplete.vim')
+call minpac#add('prabirshrestha/asyncomplete.vim')
+call minpac#add('prabirshrestha/asyncomplete-ultisnips.vim')
+  
 "call minpac#add('prabirshrestha/asyncomplete-buffer.vim')
 
 command! PackUpdate call minpac#update()

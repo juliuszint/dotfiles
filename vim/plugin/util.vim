@@ -84,7 +84,6 @@ function! RunCommandAsJob(command, bufferName, options = {})
 endfunction
 
 function! UpdateQuickfix(content)
-    echo a:content
     cgete a:content
     if len(getqflist()) > 0
         copen
