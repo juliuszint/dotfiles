@@ -27,12 +27,19 @@ endif
 hi Title        guifg=NONE   gui=NONE
 hi Underlined   guifg=NONE   gui=underline
 
-if has("autocmd")
-    :augroup cursorcolor
-        :autocmd InsertLeave * hi Cursor guifg=#FFFFFF guibg=#FFA500
-        :autocmd InsertEnter * hi Cursor guifg=#FFFFFF   guibg=#FFFFFF
-    :augroup END
-endif
+augroup cursorcolor
+    autocmd InsertLeave * hi Cursor guifg=#FFFFFF guibg=#FFA500
+    autocmd InsertEnter * hi Cursor guifg=#FFFFFF guibg=#FFFFFF
+augroup END
+autocmd User jobs_changed call UpdateJobIndicatorColors()
+
+function! UpdateJobIndicatorColors()
+    if exists('g:RunningJobs') && g:RunningJobs > 0
+        hi StatusLine guifg=#FFFFFF guibg=#FF5B5E gui=bold
+    else
+        hi StatusLine guifg=#FFFFFF guibg=#0071CC gui=bold
+    endif
+endfunction
 
 hi Normal       guifg=#ffffff   guibg=#292A30
 hi LineNr       guifg=#747478   guibg=NONE
@@ -155,7 +162,7 @@ hi link csNumber Number
 hi link csPreprocessor swiftPreproc
 hi link csTypeParamName swiftTypePair
 hi link csDelegateName csClass
-hi link csStruct csInterface
+hi link csStruct csClass
 hi csExcludedCode guifg=#7F8C98 guibg=NONE
 hi csEnumMemberName guifg=#9CDCFE guibg=NONE
 
@@ -235,12 +242,6 @@ hi link vimSetSep Default
 hi link vimIsCommand Type
 hi link vimHiGroup cTagsClass
 
-"ag
-hi agFilename   guifg=#D94658 guibg=NONE
-hi agLineNumber guifg=#7AAE3A guibg=NONE
-hi agLineColumnNumberColon guifg=#6e6e6e guibg=NONE
-hi link agColumnNumber agLineNumber
-
 " dotnet test output
 hi dotnetTestTotalTestLabel guifg=#8AE234 guibg=NONE
 hi link dotnetTestPassedTestLabel dotnetTestTotalTestLabel
@@ -305,8 +306,22 @@ hi link shConditional Constant
 hi link shVariable texBeginEndName
 
 " Quickfix
-hi link qfFileName csClassType
+hi link qfFileName csClass
 hi link qfLineNr Number
 hi qfMsbuildCsError guifg=#FF5B5E guibg=NONE
 hi qfMsbuildCsWarning guifg=#FEFF5B guibg=NONE
 
+"ag
+hi link agFilename csClass
+hi link agLineNumber Number
+hi agLineColumnNumberColon guifg=#6e6e6e guibg=NONE
+hi link agColumnNumber agLineNumber
+
+
+hi ALESignColumnWithErrors guifg=NONE guibg=NONE
+hi ALESignColumnWithoutErrors guifg=NONE guibg=NONE
+hi ALEInfoSign guifg=#9CDCFE guibg=NONE
+hi ALEWarningSign guifg=#FFFB04 guibg=NONE
+hi ALEErrorSign guifg=#FF5B5E guibg=NONE
+hi clear ALEWarning
+hi clear ALEError

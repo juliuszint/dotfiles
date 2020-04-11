@@ -1,4 +1,6 @@
-﻿command! CloseAll :call CloseAll()
+﻿let g:RunningJobs = 0
+
+command! CloseAll :call CloseAll()
 command! CloseAllButThis :call CloseAllButThis()
 command! PrintSynStack :call PrintSynStack()
 
@@ -12,13 +14,16 @@ function! ChannelCloseHandler(params, channel)
     if !has_key(a:params, 'exit_called')
         let l:stdout = a:params['output']
         let l:unused = a:params['exitcb'](l:stdout)
+        if has_key(a:params, 'fmt_exit_msg')
+            redraw
+            echo a:params.fmt_exit_msg
+        endif
     endif
 endfunction
 
 function! JobExitHandler(params, job, exitstatus)
-    let l:elapsedTime = split(reltimestr(reltime(a:params['startTime'])))[0]
+    let l:elapsedTime = reltimefloat(reltime(a:params['startTime']))
     let l:channel = job_getchannel(a:job)
-    redraw
     if has_key(a:params, 'exitcb')
         if has_key(a:params, 'output')
             let l:stdout = a:params['output'] 
@@ -26,11 +31,17 @@ function! JobExitHandler(params, job, exitstatus)
             let a:params['exit_called'] = 1
         endif
     endif
+    redraw!
+    let l:fmt_exit_msg = ''
     if has_key(a:params, 'exitMessage')
-        echo a:params['exitMessage'] . '. Elapsed Time: ' l:elapsedTime 'ms. With status: ' . a:exitstatus
+        let l:fmt_exit_msg = printf('%s. Elapsed Time: %.1fs. With status: %d', a:params.exitMessage, l:elapsedTime, a:exitstatus)
     else
-        echo 'Finished job: ' . a:job . ' in: '. l:elapsedTime . 'ms with status: ' . a:exitstatus
+        let l:fmt_exit_msg = printf('Finished job %s in: %.1fs with status: %d', a:job, l:elapsedTime, a:exitstatus)
     endif
+    echo l:fmt_exit_msg
+    let a:params['fmt_exit_msg'] = l:fmt_exit_msg
+    let g:RunningJobs = g:RunningJobs - 1
+    doautocmd User jobs_changed
 endfunc
 
 function! RunCommandAsJob(command, bufferName, options = {})
@@ -75,6 +86,8 @@ function! RunCommandAsJob(command, bufferName, options = {})
     elseif strlen(a:bufferName) <= 0
         let jobOpts['out_io'] = "null"
     endif
+    let g:RunningJobs = g:RunningJobs + 1
+    doautocmd User jobs_changed
     let jobObject = job_start(a:command, jobOpts)
     if get(a:options, 'bringToFront', 0)
         execute "buffer " . l:bufnr

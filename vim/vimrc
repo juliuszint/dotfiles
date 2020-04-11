@@ -39,6 +39,7 @@ let &errorformat =
     \ '%f:%l:%c:%m,' .
     \ '%f:%l:%c:\ %m,' .
     \ '%f(%l\,%c):\ %m'
+let completeopt='menu,popup'
 
 set rtp+=/usr/local/opt/fzf
 
@@ -54,8 +55,9 @@ let g:bclose_no_plugin_maps=1
 let g:UltiSnipsExpandTrigger='<C-e>'
 
 let g:OmniSharp_server_stdio = 1
-let g:OmniSharp_highlight_types = 2
+let g:OmniSharp_highlight_types = 3
 let g:OmniSharp_highlight_debug = 0
+let g:OmniSharp_diagnostic_showid = 1
 
 let g:OmniSharp_highlight_groups = {
 \ 'csString': ['string'],
@@ -73,6 +75,14 @@ let g:OmniSharp_highlight_groups = {
 \ 'csExcludedCode': ['excluded code'],
 \}
 
+let g:ale_linters = { 'cs': ['OmniSharp'] }
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
+let g:ale_sign_info = ''
+let g:ale_change_sign_column_color = 1
+
+let g:asyncomplete_auto_popup = 1
+
 autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
         \ 'name': 'ultisnips',
         \ 'whitelist': ['*'],
@@ -81,6 +91,7 @@ autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#s
 
 command! GitDiff :call RunCommandAsJob('git diff', '<MiscOutput>', { 'bringToFront' : 1, 'ft' : 'git'})
 
+imap <c-space> <Plug>(asyncomplete_force_refresh)
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
@@ -96,6 +107,7 @@ nmap <leader>t :Tags<cr>
 nmap <leader>e :e .<cr>
 nmap <leader>c :Bclose<cr>
 nmap <leader>w :SearchForWordUnderCursorQf<cr>
+nmap <leader>q :OmniSharpGetCodeActions<cr>
 
 nmap <C-s> :w<cr>
 imap <C-s> <esc>:w<cr>
@@ -141,7 +153,9 @@ vmap ° ~
 vnoremap - /
 vnoremap _ ?
 
-autocmd filetype qf :setlocal nocursorline
+autocmd FileType qf wincmd J
+autocmd FileType qf resize 20
+autocmd FileType qf setlocal nocursorline
 
 autocmd BufNewFile,BufRead *.xaml setf xml
 autocmd BufRead,BufNewFile *.swift set filetype=swift
@@ -187,9 +201,8 @@ call minpac#add('tpope/vim-surround')
 call minpac#add('OmniSharp/omnisharp-vim')
 call minpac#add('prabirshrestha/asyncomplete.vim')
 call minpac#add('prabirshrestha/asyncomplete-ultisnips.vim')
+call minpac#add('dense-analysis/ale')
   
-"call minpac#add('prabirshrestha/asyncomplete-buffer.vim')
-
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
 
