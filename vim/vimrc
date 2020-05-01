@@ -178,11 +178,11 @@ autocmd filetype nerdtree highlight vim_icon guifg=#6ED65F guibg=NONE
 autocmd filetype nerdtree highlight swift_icon guifg=#FA5637 guibg=NONE
 
 autocmd filetype nerdtree syn match folder_icon /  / containedin=NERDTreeFlags
-autocmd filetype nerdtree syn match batch_icon /  / containedin=NERDTreeFile
-autocmd filetype nerdtree syn match vim_icon /  / containedin=NERDTreeFile
-autocmd filetype nerdtree syn match csharp_icon /  / containedin=NERDTreeFile
-autocmd filetype nerdtree syn match swift_icon /  / containedin=NERDTreeFile
-autocmd filetype nerdtree syn match solution_icon /  / containedin=NERDTreeFile
+autocmd filetype nerdtree syn match batch_icon /  / containedin=NERDTreeFlags
+autocmd filetype nerdtree syn match vim_icon /  / containedin=NERDTreeFlags
+autocmd filetype nerdtree syn match csharp_icon /  / containedin=NERDTreeFlags
+autocmd filetype nerdtree syn match swift_icon /  / containedin=NERDTreeFlags
+autocmd filetype nerdtree syn match solution_icon /  / containedin=NERDTreeFlags
 autocmd FileType nerdtree syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
 
 function! StartOmniSharpServer()
@@ -202,7 +202,6 @@ call minpac#add('jiangmiao/auto-pairs')
 call minpac#add('junegunn/fzf.vim')
 call minpac#add('SirVer/ultisnips')
 call minpac#add('scrooloose/nerdtree')
-call minpac#add('ryanoasis/vim-devicons')
 call minpac#add('rbgrouleff/bclose.vim')
 call minpac#add('tpope/vim-surround')
 call minpac#add('OmniSharp/omnisharp-vim')
@@ -210,6 +209,7 @@ call minpac#add('prabirshrestha/asyncomplete.vim')
 call minpac#add('prabirshrestha/asyncomplete-ultisnips.vim')
 call minpac#add('prabirshrestha/asyncomplete-buffer.vim')
 call minpac#add('dense-analysis/ale')
+call minpac#add('ryanoasis/vim-devicons')
   
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
