@@ -56,7 +56,7 @@ let g:UltiSnipsExpandTrigger='<C-e>'
 
 let g:OmniSharp_server_stdio = 1
 let g:OmniSharp_highlight_types = 3
-let g:OmniSharp_highlight_debug = 0
+let g:OmniSharp_highlight_debug = 1
 let g:OmniSharp_diagnostic_showid = 1
 
 let g:OmniSharp_highlight_groups = {
@@ -64,7 +64,7 @@ let g:OmniSharp_highlight_groups = {
 \ 'csClass': ['class name'],
 \ 'csDelegateName': ['delegate name'],
 \ 'csKeyword': ['keyword', 'keyword - control'],
-\ 'csComment': ['comment'],
+\ 'csComment': ['comment', 'xml doc comment - text', 'xml doc comment - name', 'xml doc comment - delimiter'],
 \ 'csStruct': ['struct name'],
 \ 'csInterface': ['interface name'],
 \ 'csNumber': ['number'],
@@ -80,6 +80,7 @@ let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
 let g:ale_sign_info = ''
 let g:ale_change_sign_column_color = 1
+let g:ale_enabled = 0
 
 let g:asyncomplete_auto_popup = 1
 
@@ -88,6 +89,12 @@ autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#s
         \ 'whitelist': ['*'],
         \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
         \ }))
+autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'whitelist': ['*'],
+    \ 'blacklist': ['cs'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ }))
 
 command! GitDiff :call RunCommandAsJob('git diff', '<MiscOutput>', { 'bringToFront' : 1, 'ft' : 'git'})
 
@@ -180,7 +187,7 @@ autocmd FileType nerdtree syntax match NERDTreeDirSlash #/$# containedin=NERDTre
 
 function! StartOmniSharpServer()
     let l:solutions = glob('*.sln', 0, 1)
-    if len(l:solutions) == 1
+    if len(l:solutions) == 1 && len(argv()) == 0
         call OmniSharp#StartServer(fnamemodify(l:solutions[0], ':p'))
     endif
 endfunction
@@ -201,6 +208,7 @@ call minpac#add('tpope/vim-surround')
 call minpac#add('OmniSharp/omnisharp-vim')
 call minpac#add('prabirshrestha/asyncomplete.vim')
 call minpac#add('prabirshrestha/asyncomplete-ultisnips.vim')
+call minpac#add('prabirshrestha/asyncomplete-buffer.vim')
 call minpac#add('dense-analysis/ale')
   
 command! PackUpdate call minpac#update()
