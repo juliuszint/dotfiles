@@ -1,19 +1,4 @@
 if has('gui_macvim')
-    :set guifont=JetBrainsMonoNerdFont-Regular:h15
+    :set guifont=JetBrainsMonoNerdFontComplete-Regular:h16
     :set guioptions=
-    :macmenu File.Save key=<nop>
-    :macmenu File.New\ Tab key=<nop>
-    :macmenu File.New\ Window key=<nop>
-    :macmenu File.Close key=<nop>
-    :macmenu File.Print key=<nop>
-
-    :macmenu Edit.Find.Find\.\.\. key=<nop>
-    :macmenu Edit.Find.Use\ Selection\ \for\ Find key=<nop>
-
-    :macmenu Edit.Copy key=<nop>
-    :macmenu Edit.Paste key=<nop>
-    :macmenu Edit.Cut key=<nop>
-    :macmenu Edit.Select\ All key=<nop>
-    :macmenu Tools.List\ Errors key=<nop>
-    :macmenu Tools.Make key=<nop>
 endif

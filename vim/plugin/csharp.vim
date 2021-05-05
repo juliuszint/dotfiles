@@ -1,8 +1,6 @@
-﻿command! Tests :call RunCommandAsJob('./tests.sh', '<DotnetTestOutput>', { 'msg' : 'Running all tests from Solution ...', 'exit_msg' : 'Finished running all tests from Solution', 'ft' : "dnt", 'bringToFront' : 1})
+﻿command! Tests :call JCStartJobInBuffer('./tests.sh', '<DotnetTestOutput>', { 'start_msg' : 'Running all tests from Solution ...', 'end_msg' : 'Finished running all tests from Solution', 'ft' : "dnt", 'bringToFront' : 1})
 command! TestFixture :call TestFixture()
 command! ImportSymbolUnderCursor :call ImportSymbolUnderCursor()
-
-nmap <leader>i :ImportSymbolUnderCursor<cr>
 
 function! TestFixture()
     " create filter expression
@@ -24,32 +22,17 @@ function! TestFixture()
     " run job
     let options = {}
     let options['ft'] = 'dnt'
-    let options['msg'] = "Running tests matching filter: " . filterExp
-    let options['exit_msg'] = "Dotnet test job finished"
-    let jobCommand = "dotnet test --no-build --no-restore --nologo " . csProjFile . " --filter " . filterExp
-    call RunCommandAsJob(jobCommand, '<DotnetTestOutput>', options)
+    let options['start_msg'] = "Running tests matching filter: " . filterExp
+    let options['end_msg'] = "Dotnet test job finished"
+    let jobCommand = "dotnet test --no-restore --nologo " . csProjFile . " --filter " . filterExp
+    call JCStartJobInBuffer(jobCommand, '<DotnetTestOutput>', options)
 endfunction
 
-function! ImportSymbolUnderCursor()
-    let command = "rg -l '(interface|class|struct|enum) " . expand("<cword>") . "\\b' | head -n 1 | xargs rg -o 'namespace\\s+([a-zA-Z.]+)' | awk '{print $2}'"
-    let residingNamespace = system(command)
-    let residingNamespace = trim(residingNamespace)
-    let usingDirective = 'using ' . residingNamespace . ';'
-    let save_pos = getpos(".")
-    call setpos('.', [0, 0, 0, 0])
-    let usingDirectivePattern = '\V\C' . usingDirective
-    let existingUsingLn = search(usingDirectivePattern, 'n')
-    if(existingUsingLn != 0)
-        echo "Bereits importiert in Zeile:" . existingUsingLn
-    else
-        let lastLineNr = line('$')
-        call setpos('.', [0, lastLineNr, 0, 0])
-        let lastUsingLn = search('^using ', 'nb')
-        if(lastUsingLn == 0)
-            let lastUsingLn = 4
-        endif
-        let save_pos[1] += 1
-        call append(lastUsingLn, usingDirective)
-    endif
-    call setpos('.', save_pos)
-endfunction
+let g:local_csharp_symbol_regex = 'rg --column --line-number --no-heading --smart-case -- '.shellescape('(enum|class|struct|interface) \w+')
+let g:xamarin_ios_csharp_symbol_regex = 'rg --column --line-number --no-heading --smart-case -- '.shellescape('(enum|class|struct|interface) \w+').' /Volumes/awin/frameworkSource/Xamarin.iOS'
+let g:xamarin_mac_csharp_symbol_regex = 'rg --column --line-number --no-heading --smart-case -- '.shellescape('(enum|class|struct|interface) \w+').' /Volumes/awin/frameworkSource/Xamarin.Mac'
+let g:fzf_symbol_options = { 'options': ['--with-nth=4', '--delimiter=:', '--color=hl:#AFD7AF,hl+:#AFD7AF', '--preview=echo {} | cut -d: -f1'] }
+nmap <leader>xi :call fzf#vim#grep(g:xamarin_ios_csharp_symbol_regex, 1, copy(g:fzf_symbol_options), 0)<cr>
+nmap <leader>xm :call fzf#vim#grep(g:xamarin_mac_csharp_symbol_regex, 1, copy(g:fzf_symbol_options), 0)<cr>
+nmap <C-t> :call fzf#vim#grep(g:local_csharp_symbol_regex, 1, copy(g:fzf_symbol_options), 0)<cr>
+
