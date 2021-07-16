@@ -1,0 +1,86 @@
+" You can edit this file by hand.
+" The " character at the beginning of a line comments out the line.
+" Blank lines are ignored.
+
+" The Default color scheme is used for any directory that does not have
+" a specified scheme and for parts of user interface like menus. A
+" color scheme set for a base directory will also
+" be used for the sub directories.
+
+" The standard ncurses colors are:
+" Default = -1 = None, can be used for transparency or default color
+" Black = 0
+" Red = 1
+" Green = 2
+" Yellow = 3
+" Blue = 4
+" Magenta = 5
+" Cyan = 6
+" White = 7
+
+" Light versions of colors are also available (set bold attribute):
+" LightBlack
+" LightRed
+" LightGreen
+" LightYellow
+" LightBlue
+" LightMagenta
+" LightCyan
+" LightWhite
+
+" Available attributes (some of them can be combined):
+" bold
+" underline
+" reverse or inverse
+" standout
+" none
+
+" Vifm supports 256 colors you can use color numbers 0-255
+" (requires properly set up terminal: set your TERM environment variable
+" (directly or using resources) to some color terminal name (e.g.
+" xterm-256color) from /usr/lib/terminfo/; you can check current number
+" of colors in your terminal with tput colors command)
+
+" highlight group cterm=attrs ctermfg=foreground_color ctermbg=background_color
+"
+"       Available group-name values:
+"	- Win - color of all windows (views, dialogs, menus) and default color for their content (e.g. regular files in views)
+"	- AuxWin - color of auxiliary areas of windows
+"	- OtherWin - color of inactive pane
+"	- Border - color of vertical parts of the border
+"	- TabLine - tab line color (for 'tabscope' set to global)
+"	- TabLineSel  - color of the tip of selected tab (regardless of 'tab-scope')
+"	- TopLine - top line color of the other pane
+"	- TopLineSel - top line color of the current pane
+"	- CmdLine - the command line/status bar color
+"	- ErrorMsg - color of error messages in the status bar
+"	- StatusLine - color of the line above the status bar
+"	- JobLine - color of job line that appears above the status line
+"	- WildMenu - color of the wild menu items
+""	- SuggestBox - color of key suggestion box
+"	- CurrLine - line at cursor position in active view
+"	- OtherLine - line at cursor position in inactive view
+"	- OddLine - color of every second entry line in a pane
+"	- LineNr - line number column of views
+"	- Selected - color of selected files
+"	- Directory - color of directories
+"	- Link - color of symbolic links in the views
+"	- BrokenLink - color of broken symbolic links
+"	- HardLink - color of regular files with more than one hard link
+"	- Socket - color of sockets
+"	- Device - color of block and character devices
+"	- Executable - color of executable files
+"	- Fifo - color of fifo pipes
+"	- CmpMismatch - color of mismatched files in  side-by-side  comparison by path
+"	- User1..User9 - 9 colors which can be used via %* 'statusline' macro
+
+highlight clear
+
+highlight Win		ctermfg=Default	ctermbg=Default
+highlight Directory	ctermfg=Blue 	ctermbg=Default
+highlight Border	ctermfg=Default	ctermbg=Default
+highlight StatusLine	ctermfg=Black	ctermbg=Green
+highlight TopLine	ctermfg=Default	ctermbg=Default
+highlight TopLineSel	ctermfg=Red	ctermbg=Default
+highlight CmdLine	ctermfg=Default	ctermbg=Default
+highlight Selected	ctermfg=Black	ctermbg=Yellow

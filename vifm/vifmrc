@@ -1,14 +1,10 @@
-:colorscheme mint
-filetype * open
-:set vifminfo=bookmarks,bmark,dhistory,savedirs
+:colorscheme mine
 :set incsearch
 :set ignorecase
 :set caseoptions=g
 :set smartcase
 
-map gs :sh<cr>
-map gr :cd/<cr>
 map gh <C-w>h
 map gl <C-w>l
-map - /
-map _ ?
+map gnh :nohl<cr>
+source ~/.vifm/plugins/vifm_devicons/favicons.vifm
