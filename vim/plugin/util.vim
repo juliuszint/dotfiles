@@ -3,29 +3,34 @@
 command! CloseAll :call CloseAll()
 command! CloseAllButThis :call CloseAllButThis()
 
-function! PromptUserToSaveBuffers()
+function! PromptUserToSaveBuffers(options = {})
+    let l:only_in_wd = get(a:options, 'only_in_wd', 0)
     let l:buffers = getbufinfo()
-    let l:changedbuffers = []
+    let l:cur_buffer = bufnr('%')
     for l:buffer in l:buffers
         if l:buffer['changed']
-            call add(l:changedbuffers, l:buffer)
+            if l:only_in_wd && !l:buffer['name'] =~ getcwd()
+                continue
+            endif
+            echo l:buffer['name'] . " has unwritten changes\n\n(s)ave\nsave (a)ll\n(r)eload\n(c)ancel"
+            let l:choice = nr2char(getchar())
+            echo l:choice
+            if l:choice ==# 's'
+                execute 'buffer' . l:buffer['bufnr']
+                write
+            elseif l:choice ==# 'a'
+                wall
+                break
+            elseif l:choice ==# 'r'
+                execute 'buffer' . l:buffer['bufnr']
+                edit!
+            elseif l:choice ==# 'c'
+                return -1
+            endif
         endif
     endfor
-    if len(l:changedbuffers) > 0
-        echo 'The following buffers contain unwritten changes'
-        echo " "
-        for l:buffer in l:changedbuffers
-            echo l:buffer['name']
-        endfor
-        echo " "
-        let l:choice = input("Save all and continue? Yes(y)/No(n): ")
-        if l:choice == 'y'
-            execute 'wa'
-        else
-            return -1
-        endif
-    endif
-    return 0
+    execute 'buffer' . l:cur_buffer
+    redraw
 endfunction
 
 function! CloseAll()

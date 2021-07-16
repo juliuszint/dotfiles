@@ -7,82 +7,83 @@ let g:colors_name = "mine"
 
 "                                  Vim-Editor
 " =============================================================================
-hi Default              guifg=#ffffff guibg=NONE
-hi Search               guifg=#000000 guibg=#fffb04
-hi CursorLine           guifg=NONE    guibg=#2f3239 gui=NONE cterm=NONE term=NONE
-hi CursorLineNr         guifg=#ffffff cterm=NONE                        term=NONE
-hi Pmenu                guifg=NONE    guibg=#5E5E5E
-hi PmenuSel             guifg=NONE    guibg=#0071CC
-hi Normal               guifg=#ffffff guibg=#292A30
-hi LineNr               guifg=#747478
-hi Visual               guifg=NONE    guibg=#264f78
-hi Cursor               guifg=#FFFFFF guibg=#ff2a62
-hi VertSplit            guifg=#292a30 guibg=#000000
-hi Note                 guifg=NONE    guibg=#00ff00
-hi StatusLine           guifg=#ffffff guibg=#0071cc gui=bold cterm=bold term=bold
-hi StatusLineNC         guifg=NONE    guibg=#2d2d30 gui=bold cterm=bold term=bold
-hi ColorColumn          guifg=NONE    guibg=#2f3239
-hi NonText              guifg=#292a30 guibg=NONE
-hi link MatchParen Search
-hi link IncSearch  Search
+hi Default		guifg=#ffffff guibg=NONE
+hi Search		guifg=#000000 guibg=#fffb04
+hi CursorLine		guifg=NONE    guibg=#2f3239 gui=NONE cterm=NONE term=NONE
+hi CursorLineNr		guifg=#ffffff cterm=NONE                        term=NONE
+hi Pmenu		guifg=NONE    guibg=#5E5E5E
+hi PmenuSel		guifg=NONE    guibg=#0071CC
+hi Normal		guifg=#ffffff guibg=#292A30
+hi LineNr		guifg=#747478
+hi Visual		guifg=NONE    guibg=#264f78
+hi Cursor		guifg=#FFFFFF guibg=#ff2a62
+hi VertSplit		guifg=#292a30 guibg=#000000
+hi Note			guifg=NONE    guibg=#00ff00
+hi StatusLine		guifg=#ffffff guibg=#0071cc gui=bold cterm=bold term=bold
+hi StatusLineNC		guifg=NONE    guibg=#2d2d30 gui=bold cterm=bold term=bold
+hi ColorColumn		guifg=NONE    guibg=#2f3239
+hi NonText		guifg=#292a30 guibg=NONE
+hi SpecialKey		guifg=#7f8c98
+hi link MatchParen	Search
+hi link IncSearch	Search
 
 "                               Generic Language
 " =============================================================================
-hi String               guifg=#ff8170
-hi Type                 guifg=#ff7ab2
-hi Number               guifg=#a79df7
-hi Constant             guifg=#ff7ab2
-hi Comment              guifg=#7f8c98 gui=italic cterm=italic
-hi Define               guifg=#ffa14f
-hi Identifier           guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
-hi link Include Define
-hi link PreProc Define
-hi link StorageClass Type
-hi link Boolean Type
-hi link float Number
-hi link Statement Type
-hi link Operator Default
+hi String		guifg=#ff8170
+hi Type			guifg=#ff7ab2 gui=none
+hi Number		guifg=#a79df7
+hi Constant		guifg=#ff7ab2
+hi Comment		guifg=#7f8c98 gui=italic cterm=italic
+hi Define		guifg=#ffa14f
+hi Identifier		guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi link Include		Default
+hi link PreProc		Define
+hi link StorageClass	Type
+hi link Boolean 	Type
+hi link float 		Number
+hi link Statement 	Type
+hi link Operator 	Default
 
 "                                    C#
 " =============================================================================
-hi csExcludedCode       guifg=#7f8c98
-hi csEnumMemberName     guifg=#9cdcfe
-hi csClass              guifg=#8ad1c3
-hi csInterface          guifg=#b8d7a3
-hi csTypeParamName      guifg=#baf28f
-hi csPreCondit          guifg=#9b9b9b
-hi link csEnum csInterface
-hi link csString String
-hi link csKeyword Type
-hi link csComment Comment
-hi link csNumber Number
-hi link csPreprocessor Define
-hi link csDelegateName csClass
-hi link csStruct csClass
+hi csExcludedCode	guifg=#7f8c98
+hi csEnumMemberName	guifg=#9cdcfe
+hi csClass		guifg=#8ad1c3
+hi csInterface		guifg=#b8d7a3
+hi csTypeParamName	guifg=#baf28f
+hi csPreCondit		guifg=#9b9b9b
+hi link csEnum		csInterface
+hi link csString	String
+hi link csKeyword	Type
+hi link csComment	Comment
+hi link csNumber	Number
+hi link csPreprocessor	Define
+hi link csDelegateName	csClass
+hi link csStruct	csClass
 
 "                                 Vim-Quickfix
 " =============================================================================
-hi qfMsbuildCsError     guifg=#ff5b5e
-hi qfMsbuildCsWarning   guifg=#feff5b
-hi link qfFileName csClass
-hi link qfLineNr Number
+hi qfMsbuildCsError	guifg=#ff5b5e
+hi qfMsbuildCsWarning	guifg=#feff5b
+hi link qfFileName	csClass
+hi link qfLineNr	Number
 
 "                                 Vim-Help
 " =============================================================================
-hi link helpHyperTextEntry Number
-hi link helpSectionDelim PreProc
-hi link helpHeadline csInterface
-hi link helpHeader csClass
+hi link helpHyperTextEntry	Number
+hi link helpSectionDelim	PreProc
+hi link helpHeadline		csInterface
+hi link helpHeader		csClass
 
 "                                  Python
 " =============================================================================
-hi link pythonInclude Type
-hi link pythonException Type
-hi link pythonExceptions csClass
-hi link pythonStatement Type
-hi link pythonBuiltin Type
-hi link pythonConditional Type
-hi link pythonRepeat Type
+hi link pythonInclude		Type
+hi link pythonException		Type
+hi link pythonExceptions	csClass
+hi link pythonStatement		Type
+hi link pythonBuiltin		Type
+hi link pythonConditional	Type
+hi link pythonRepeat		Type
 
 "                                    XML
 " =============================================================================
@@ -134,7 +135,7 @@ hi link shConditional Constant
 
 "                                  Json
 " =============================================================================
-hi jsonKeyword	           guifg=#d7ba7d
+hi jsonKeyword             guifg=#d7ba7d
 
 "                                  Rust
 " =============================================================================
@@ -159,14 +160,30 @@ hi link rustStructure rustKeyword
 hi link rustDerive rustEnumVariant
 hi link rustDeriveTrait rustEnumVariant
 hi link rustAttribute rustEnumVariant
-hi link rustSigil rustEnum
+hi link rustSigil rustKeyword
 hi link rustAssert rustMacro
 hi link rustStringDelimiter rustString
-hi link rustStorage rustEnum
+hi link rustStorage rustKeyword
 hi link rustModPath Default
 hi link rustModPathSep rustModPath
 hi link rustPanic Define
 hi link rustUnsafeKeyword Type
+
+"                                  Markdown
+" =============================================================================
+hi link markdownH1		rustLifetime
+hi link markdownH2		rustLifetime
+hi link markdownH3		rustLifetime
+hi link markdownH4		rustLifetime
+hi link markdownH5		rustLifetime
+hi link markdownH6		rustLifetime
+hi link markdownH1Delimiter	rustLifetime
+hi link markdownH2Delimiter	rustLifetime
+hi link markdownH3Delimiter	rustLifetime
+hi link markdownH4Delimiter	rustLifetime
+hi link markdownH5Delimiter	rustLifetime
+hi link markdownH6Delimiter	rustLifetime
+
 "                                    C
 " =============================================================================
 hi link cStructure rustKeyword
@@ -186,11 +203,11 @@ hi link cLabel rustKeyword
 hi link cNumber cConstant
 hi link cppModifier rustKeyword
 hi link cppType rustKeyword
-
+hi cTodo	guifg=#47ff6a
 "                                NERDTree
 " =============================================================================
-hi NERDTreeDir          guifg=#cbecfe guibg=NONE
-hi link NERDTreeExecFile Type
+hi NERDTreeDir           guifg=#cbecfe
+hi link NERDTreeExecFile csClass
 hi link NERDTreeClosable Number
 hi link NERDTreeOpenable NERDTreeClosable
 hi link NERDTreeHelp     Comment

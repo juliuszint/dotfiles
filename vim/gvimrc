@@ -1,4 +1,4 @@
 if has('gui_macvim')
-    :set guifont=JetBrainsMonoNerdFontComplete-Regular:h16
+    :set guifont=JetBrainsMonoNerdFontComplete-Regular:h17
     :set guioptions=
 endif

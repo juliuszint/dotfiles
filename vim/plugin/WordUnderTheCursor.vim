@@ -3,8 +3,6 @@
 " Provides highlighting the word under the cursor after a certain amount of
 " time and does not interfere with searching
 " The initial source was copied from https://www.vim.org/scripts/script.php?script_id=4306
-" but this code was not clean enough.
-
 
 if !exists('g:WordUnderTheCursor')
     let g:WordUnderTheCursorDelay = 250

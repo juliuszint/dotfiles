@@ -1,6 +1,6 @@
 ﻿if !exists('g:TrailingWhitespaces')
     let g:TrailingWhitespaces = 1
-    let g:TrailingWhitespacesBufferFileTypes = ["cs", "c", "xaml", "dcg"]
+    let g:TrailingWhitespacesBufferFileTypes = ["cs", "c", "xaml", "dcg", "vim"]
     highlight ExtraWhitespace ctermbg=red guibg=red
 endif
 

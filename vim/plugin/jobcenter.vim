@@ -44,6 +44,7 @@ function! JCStartJobInBuffer(command, bufferName, options = {})
     endif
     redraw
     let l:vim_job_opts = s:get_common_vim_job_opts(a:options)
+    let l:vim_job_opts['err_io'] = "out"
     let l:vim_job_opts['out_io'] = "buffer"
     let l:vim_job_opts['out_buf'] = l:bufnr
 
@@ -59,6 +60,7 @@ endfunction
 function! JCStartJobInQuickfix(command, options = {})
     let a:options['completed_cb'] = function('s:show_in_quickfix')
     let l:vim_job_opts = s:get_common_vim_job_opts(a:options)
+    let l:vim_job_opts['err_io'] = "out"
     let l:vim_job_opts['out_io'] = "pipe"
     let l:vim_job_opts['out_mode'] = 'raw'
     let l:start_message = get(a:options, 'start_msg', "Starting new job")
