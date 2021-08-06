@@ -1,3 +1,5 @@
+export ZSH="/home/juliuszint/.oh-my-zsh"
+
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
@@ -16,6 +18,7 @@ export MOZ_ENABLE_WAYLAND=1
 export TERM=xterm-256color
 
 plugins=(encode64 z fzf colored-man-pages shrink-path)
+source $ZSH/oh-my-zsh.sh
 
 alias ll='ls -lah --color=auto --group-directories-first'
 
