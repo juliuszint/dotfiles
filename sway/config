@@ -61,7 +61,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_2048x1536.png fill
 input type:keyboard {
 	xkb_layout "de"
 	xkb_variant "nodeadkeys"
-	xkb_options "caps:escape,altwin:swap_lalt_lwin,altwin:swap_alt_win"
+	xkb_options "caps:escape,altwin:swap_lalt_lwin"
 }
 input type:touchpad {
 	natural_scroll enabled
