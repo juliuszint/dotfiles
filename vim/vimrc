@@ -26,6 +26,7 @@ set list
 set listchars=tab:↹-
 set history=5000
 set shm+=I
+set noesckeys
 
 filetype plugin indent on
 syntax enable
