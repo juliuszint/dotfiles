@@ -8,7 +8,7 @@ set cursorline
 set nowritebackup
 set noswapfile
 set laststatus=2
-set clipboard=unnamed
+set clipboard=unnamedplus
 set autoread
 set hidden
 set ignorecase
@@ -22,11 +22,12 @@ set nocompatible
 set termguicolors
 set completeopt=
 set belloff=all
-set list
+set nolist
 set listchars=tab:↹-
 set history=5000
 set shm+=I
 set noesckeys
+set cinoptions=N-s,g0
 
 filetype plugin indent on
 syntax enable
