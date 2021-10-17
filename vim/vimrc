@@ -26,8 +26,10 @@ set nolist
 set listchars=tab:↹-
 set history=5000
 set shm+=I
-set noesckeys
 set cinoptions=N-s,g0
+if !has('nvim')
+	set noesckeys
+endif
 
 filetype plugin indent on
 syntax enable
@@ -36,12 +38,12 @@ let mapleader="\<space>"
 " msbuild error format
 set errorformat^=%f(%l\\,%c):\ %m
 
-command! ToggleFullscreen :set invfu
 command! Vb normal! <C-v>
 
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
+nmap <F11> :call GuiWindowFullScreen(!g:GuiWindowFullScreen)<cr>
 nmap <C-v> :vsp<cr>
 nmap <C-s> :w<cr>
 nmap go <C-o>
@@ -68,9 +70,9 @@ autocmd filetype cs :setlocal syntax=off
 
 "                                   RipGrep
 " =============================================================================
-nmap <C-g>g :SearchForRegexQf 
-nmap <C-g>w :execute "SearchForRegexQf " . expand('<cword>')<cr>
-nmap <C-g>c :execute "SearchForRegexQf " . '(new\s+'.expand('<cword>').'\|ForPartsOf<'.expand('<cword>').'>)'<cr>
+nmap <C-g>g :Rg 
+nmap <C-g>w :execute "Rg " . expand('<cword>')<cr>
+nmap <C-g>c :execute "Rg " . '(new\s+'.expand('<cword>').'\|ForPartsOf<'.expand('<cword>').'>)'<cr>
 
 "                                  FZF(.vim)
 " =============================================================================
@@ -197,6 +199,7 @@ call minpac#add('tpope/vim-fugitive')
 call minpac#add('mbbill/undotree')
 call minpac#add('tpope/vim-commentary')
 call minpac#add('cespare/vim-toml')
+call minpac#add('nvim-treesitter/nvim-treesitter')
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
 
