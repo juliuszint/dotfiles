@@ -16,11 +16,14 @@ export FZF_DEFAULT_COMMAND='rg --files'
 export HYPHEN_INSENSITIVE="true"
 export MOZ_ENABLE_WAYLAND=1
 export TERM=xterm-256color
+export PATH="/home/juliuszint/.local/bin:$PATH"
 
 plugins=(encode64 z fzf colored-man-pages shrink-path)
 source $ZSH/oh-my-zsh.sh
 
-alias ll='ls -lah --color=auto --group-directories-first'
+alias ll='ls -lh --color=auto --group-directories-first'
+alias vim='nvim'
+alias gvim='nvim-qt'
 
 # combines z and fzf so if z does not find a single match it calls
 # fzf with all the options
@@ -31,4 +34,4 @@ z() {
   cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
 }
 
-PROMPT='%F{green}%D{%A %d.%m.%Y} %F{blue}$(shrink_path -f) %f%(!.#.$) '
+PROMPT='%F{green}%D{%A %d.%m.%Y} %F{blue}%0d %f%(!.#.$) '
