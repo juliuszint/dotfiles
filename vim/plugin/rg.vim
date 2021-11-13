@@ -1,5 +1,7 @@
 command! -complete=file -nargs=* Rg :call SearchForRegexQf(<f-args>)
 
+let s:MatchCount=0
+
 function! SearchForRegexQf(...)
     let l:command = ['rg', '--vimgrep', '--smart-case']
     let l:command += a:000
@@ -15,8 +17,13 @@ endfunction
 
 function! s:JobEventHandler(job_id, data, event)
 	if a:event == 'stdout'
+		if len(a:data) == 1 && strlen(a:data[0]) == 0
+			cclose
+			return
+		endif
 		cgete a:data
-		if len(getqflist()) > 0
+		let s:MatchCount=len(getqflist())
+		if s:MatchCount > 0
 			copen
 		else
 			cclose
@@ -27,6 +34,7 @@ function! s:JobEventHandler(job_id, data, event)
 		endif
 		echom a:data
 	elseif a:event == 'exit'
-		echo "Done searching"
+		echo "Done searching: " . s:MatchCount . " matches"
+		let s:MatchCount=0
 	endif
 endfunction

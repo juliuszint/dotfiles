@@ -41,7 +41,7 @@ function! TestFixture()
         echo "No project file found"
         return
     endif
-    
+
     " run job
     let options = {}
     let options['ft'] = 'dnt'

@@ -1,0 +1,1 @@
+﻿nmap gs :CSymbolsInFile<cr>
