@@ -4,7 +4,7 @@ command! CloseAll :call CloseAll()
 command! CloseAllButThis :call CloseAllButThis()
 
 function! PromptUserToSaveBuffers(options = {})
-    let l:only_in_wd = get(a:options, 'only_in_wd', 0)
+    let l:only_in_wd = get(a:options, 'only_in_wd', 1)
     let l:buffers = getbufinfo()
     let l:cur_buffer = bufnr('%')
     for l:buffer in l:buffers
@@ -31,6 +31,7 @@ function! PromptUserToSaveBuffers(options = {})
     endfor
     execute 'buffer' . l:cur_buffer
     redraw
+    return 0
 endfunction
 
 function! CloseAll()

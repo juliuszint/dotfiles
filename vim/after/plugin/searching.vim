@@ -1,4 +1,4 @@
-﻿command! -complete=file -nargs=* Rg :call SearchForRegexQf(<f-args>)
+﻿command! -complete=file -nargs=* Rx :call SearchForRegexQf(<f-args>)
 
 function! SearchForRegexQf(...)
     let l:command = ['rg', '--vimgrep', '--smart-case']
@@ -16,5 +16,6 @@ endfunction
 
 "                                   Mappings
 " =============================================================================
-nmap gr :Rg 
-nmap gw :execute "Rg " . expand('<cword>')<cr>
+"
+nmap gr :Rx 
+nmap gw :execute "Rx " . expand('<cword>')<cr>
