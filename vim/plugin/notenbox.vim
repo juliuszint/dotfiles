@@ -4,12 +4,12 @@ endif
 
 let g:MakeTarget = "ios"
 
-command! Tests :call JCStartJobInBuffer('./tests.sh', '<DotnetTestOutput>', { 'start_msg' : 'Running all tests from Solution ...', 'end_msg' : 'Finished running all tests from Solution', 'ft' : "dnt", 'bringToFront' : 1})
-command! UpdateText :call JCStartJobInBuffer('../bin/updateText.sh', '<MiscOutput>', { 'start_msg' : 'Updating text resources ...', 'end_msg' : "Finished updating text resources" })
-command! GenerateCode :call JCStartJobInBuffer('../bin/updateCode.sh', '<MiscOutput>', { 'start_msg' : 'Generating code ...', 'end_msg' : "Finished generating code" })
-command! GenerateStoryboardCode :call JCStartJobInBuffer('../bin/updateStoryboardCode.sh', '<MiscOutput>', { 'start_msg' : 'Generating code ...', 'end_msg' : "Finished generating code" })
-
+command! Tests :call ExecuteCommand('./tests.sh')
 command! TestFixture :call TestFixture()
+command! UpdateText :call ExecuteCommand('../bin/updateText.sh')
+command! GenerateCode :call ExecuteCommand('../bin/updateCode.sh')
+command! GenerateStoryboardCode :call ExecuteCommand('../bin/updateStoryboardCode.sh')
+
 function! TestFixture()
     " create filter expression
     let filterExpCmd = "rg -oNr'$1' '\\s+class\\s+(\\w+)' " . expand('%:p') . " | sed 's/^/FullyQualifiedName\\~/' | paste -sd '|' -"
@@ -27,15 +27,66 @@ function! TestFixture()
         return
     endif
 
-    " run job
-    let options = {}
-    let options['ft'] = 'dnt'
-    let options['start_msg'] = "Running tests matching filter: " . filterExp
-    let options['end_msg'] = "Dotnet test job finished"
-    let jobCommand = "dotnet test --no-restore --nologo " . csProjFile . " --filter " . filterExp
-    call JCStartJobInBuffer(jobCommand, '<DotnetTestOutput>', options)
+    let job_command = "dotnet test --no-restore --nologo " . csProjFile . " --filter " . filterExp
+    call ExecuteCommand(job_command)
 endfunction
 
+function! ExecuteCommand(command)
+	echo "Executing " . a:command
+	let l:job_command = [ a:command ]
+	let l:start_time = reltime()
+	let l:job_opts = {}
+	let l:bufnr = s:get_scratch_buffer("NeovimJobOutput")
+	let l:job_opts["stdin"] = "null"
+	let l:job_opts["on_stdout"] = function('s:job_cb', [l:start_time, l:bufnr])
+	let l:job_opts["on_stderr"] = function('s:job_cb', [l:start_time, l:bufnr])
+	let l:job_opts["on_exit"] = function('s:job_cb', [l:start_time, l:bufnr])
+	call jobstart(l:job_command, l:job_opts)
+endfunction
+
+function! s:get_scratch_buffer(name, options = {})
+    if strlen(a:name) <= 0
+	    return -1
+    endif
+
+    let l:bufnr = bufadd(a:name)
+    call bufload(l:bufnr)
+    call setbufvar(l:bufnr, "&buftype", get(a:options, 'buftype', 'nofile'))
+    call setbufvar(l:bufnr, "&buflisted", get(a:options, 'buflisted', 1))
+    call setbufvar(l:bufnr, "&modifiable", get(a:options, 'modifiable', 1))
+    call deletebufline(l:bufnr, 1, '$')
+    return l:bufnr
+endfunction
+
+let s:stdout_line=''
+let s:stderr_line=''
+function! s:job_cb(start_time, bufnr, job_id, data, event)
+	if a:event == 'stdout'
+		for d in a:data
+			if len(d) == 0
+				call appendbufline(a:bufnr, "$", s:stdout_line)
+				let s:stdout_line=''
+			endif
+			let s:stdout_line .= d
+		endfor
+	elseif a:event == 'stderr'
+		for d in a:data
+			if len(d) == 0
+				call appendbufline(a:bufnr, "$", s:stderr_line)
+				let s:stderr_line=''
+			endif
+			let s:stderr_line .= d
+		endfor
+	elseif a:event == 'exit'
+		let l:elapsed_time = reltimefloat(reltime(a:start_time))
+		echo printf('Job completed in %.1fs', l:elapsed_time)
+		let s:error_count=0
+	endif
+endfunction
+
+"                                   Mappings
+" =============================================================================
+"
 nmap gs :CSharpTypes<cr>
 nmap <leader>xi :CSharpiOSTypes<cr>
 nmap <leader>xm :CSharpmacOSTypes<cr>
