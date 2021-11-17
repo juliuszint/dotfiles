@@ -9,31 +9,32 @@ let g:colors_name = "mine"
 " =============================================================================
 hi Default		guifg=#ffffff guibg=NONE
 hi Search		guifg=#000000 guibg=#fffb04
-hi CursorLine		guifg=NONE    guibg=#2f3239 gui=NONE cterm=NONE term=NONE
+hi CursorLine		guifg=NONE    guibg=#212121 gui=NONE cterm=NONE term=NONE
 hi CursorLineNr		guifg=#ffffff cterm=NONE                        term=NONE
 hi Pmenu		guifg=NONE    guibg=#5E5E5E
 hi PmenuSel		guifg=NONE    guibg=#0071CC
-hi Normal		guifg=#ffffff guibg=#292A30
-hi LineNr		guifg=#747478
+hi Normal		guifg=#ffffff guibg=#232627
+hi LineNr		guifg=#555555
 hi Visual		guifg=NONE    guibg=#264f78
 hi Cursor		guifg=#FFFFFF guibg=#ff2a62
-hi VertSplit		guifg=#292a30 guibg=#000000
+hi VertSplit		guifg=#232627 guibg=#141414
 hi Note			guifg=NONE    guibg=#00ff00
 hi StatusLine		guifg=#ffffff guibg=#0071cc gui=bold cterm=bold term=bold
 hi StatusLineNC		guifg=NONE    guibg=#2d2d30 gui=bold cterm=bold term=bold
 hi ColorColumn		guifg=NONE    guibg=#2f3239
-hi NonText		guifg=#292a30 guibg=NONE
+hi NonText		guifg=#404040 guibg=NONE
 hi SpecialKey		guifg=#7f8c98
+hi TODO			guifg=NONE    guibg=NONE
 hi link MatchParen	Search
 hi link IncSearch	Search
 
 "                               Generic Language
 " =============================================================================
-hi String		guifg=#ff8170
+hi String		guifg=#d69d85
 hi Type			guifg=#ff7ab2 gui=none
-hi Number		guifg=#a79df7
+hi Number		guifg=#b5cea8
 hi Constant		guifg=#ff7ab2
-hi Comment		guifg=#7f8c98 gui=italic cterm=italic
+hi Comment		guifg=#57a64a
 hi Define		guifg=#ffa14f
 hi Identifier		guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
 hi link Include		Default
@@ -65,7 +66,7 @@ hi link csStruct	csClass
 " =============================================================================
 hi qfMsbuildCsError	guifg=#ff5b5e
 hi qfMsbuildCsWarning	guifg=#feff5b
-hi link qfFileName	csClass
+hi link qfFileName	csEnumMemberName
 hi link qfLineNr	Number
 
 "                                 Vim-Help
@@ -186,24 +187,38 @@ hi link markdownH6Delimiter	rustLifetime
 
 "                                    C
 " =============================================================================
-hi link cStructure rustKeyword
-hi link cStorageClass rustKeyword
-hi link cType rustKeyword
-hi link cConditional rustKeyword
-hi link cStatement rustKeyword
-hi link cConstant rustEnumVariant
-hi link cString rustString
-hi link cUserLabel csEnumMemberName
-hi link cDefine rustMacro
-hi link cIncluded rustMacro
-hi link cInclude rustMacro
-hi link cPreCondit rustMacro
-hi link cRepeat rustKeyword
-hi link cLabel rustKeyword
-hi link cNumber cConstant
-hi link cppModifier rustKeyword
-hi link cppType rustKeyword
-hi cTodo	guifg=#47ff6a
+hi cDefine		guifg=#9b9b9b
+hi cIncluded 		guifg=#d69d85
+hi cType 		guifg=#569cd6
+hi cConditional 	guifg=#d8a0df
+hi cTodo		guifg=#47ff6a
+hi link cStatement 	cConditional
+hi link cStorageClass 	cType
+hi link cPreCondit	cDefine
+hi link cInclude 	cDefine
+hi link cString 	String
+hi link cStructure 	cType
+hi link cConstant 	Number
+hi link cUserLabel 	csEnumMemberName
+hi link cRepeat 	cConditional
+hi link cNumber 	cConstant
+hi link cLabel 		cDefine
+hi link cTypedef	cType
+
+"                                    C++
+" =============================================================================
+hi link cppStatement 	cType
+hi link cppModifier	cType
+hi link cppType 	cType
+hi link cppStructure	cType
+hi link cppBoolean	cType
+hi link cppConstant	cType
+hi link cppExceptions	cType
+
+"                                    QT
+" =============================================================================
+hi qtMacro		guifg=#beb7ff
+
 "                                NERDTree
 " =============================================================================
 hi NERDTreeDir           guifg=#cbecfe
@@ -241,7 +256,33 @@ hi link tomlTable csClass
 hi link tomlTableArray csClass
 hi link tomlKey csEnumMemberName
 
+"                                 qml
+" =============================================================================
+hi link qmlBindingProperty csEnumMemberName
+hi link qmlObjectLiteralType csClass
+hi link qmlConditional Type
+hi link qmlStatement Type
+hi link qmlNull Type
+hi link qmlReserved Define
+
+"                                 LaTex
+" =============================================================================
+hi link texInputFile csEnumMemberName
+hi link texStatement csClass
+hi link texBeginEnd csClass
+hi link texNewCmd csClass
+hi link texSection csClass
+hi link texCmdName csClass
+hi link texBeginEndName Normal
+
 "                                 Plugins
 " =============================================================================
 hi WordUnderTheCursor   guifg=NONE    guibg=#353a3f
 hi ExtraWhitespace      guifg=NONE    guibg=#ff5b5e
+
+"                                 cMake
+" =============================================================================
+hi link cmakeCommandConditional rustKeyword
+hi link cmakeCommand rustMacro
+hi link cmakeString rustString
+

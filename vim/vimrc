@@ -23,7 +23,7 @@ set termguicolors
 set completeopt=
 set belloff=all
 set nolist
-set listchars=tab:↹-
+set listchars=tab:»·
 set history=5000
 set shm+=I
 set cinoptions=N-s,g0
@@ -68,12 +68,6 @@ autocmd BufNewFile,BufRead *.xaml setf xml
 autocmd BufRead,BufNewFile *.swift set filetype=swift
 autocmd filetype cs :setlocal syntax=off
 
-"                                   RipGrep
-" =============================================================================
-nmap <C-g>g :Rg 
-nmap <C-g>w :execute "Rg " . expand('<cword>')<cr>
-nmap <C-g>c :execute "Rg " . '(new\s+'.expand('<cword>').'\|ForPartsOf<'.expand('<cword>').'>)'<cr>
-
 "                                  FZF(.vim)
 " =============================================================================
 set rtp+=/usr/local/opt/fzf
@@ -91,7 +85,7 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cs'] = ''
 
 "                                  NERDTree
 " =============================================================================
-" 
+"
 let g:NERDTreeIgnore=['.*obj$[[dir]]', '.*bin$[[dir]]']
 let g:NERDTreeHijackNetrw=1
 let g:NERDTreeDirArrowCollapsible=''
@@ -106,19 +100,23 @@ autocmd filetype nerdtree highlight batch_icon guifg=#82aef7 guibg=NONE
 autocmd filetype nerdtree highlight vim_icon guifg=#6ed65f guibg=NONE
 autocmd filetype nerdtree highlight swift_icon guifg=#fa5637 guibg=NONE
 autocmd filetype nerdtree highlight rust_icon guifg=#ff8170 guibg=NONE
+autocmd filetype nerdtree highlight cxx_header_icon guifg=#ee6868 guibg=NONE
+autocmd filetype nerdtree highlight cxx_source_icon guifg=#ee6868 guibg=NONE
 autocmd filetype nerdtree highlight link script_icon csClass
 
 autocmd filetype nerdtree syn match script_icon /  / containedin=NERDTreeFlags
 autocmd filetype nerdtree syn match folder_icon /  / containedin=NERDTreeFlags
 autocmd filetype nerdtree syn match vim_icon /  / containedin=NERDTreeFlags
 autocmd filetype nerdtree syn match csharp_icon /  / containedin=NERDTreeFlags
+autocmd filetype nerdtree syn match cxx_header_icon /  / containedin=NERDTreeFlags
+autocmd filetype nerdtree syn match cxx_source_icon /  / containedin=NERDTreeFlags
 autocmd filetype nerdtree syn match swift_icon /  / containedin=NERDTreeFlags
 autocmd filetype nerdtree syn match solution_icon /  / containedin=NERDTreeFlags
 autocmd filetype nerdtree syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
 autocmd filetype nerdtree syn match rust_icon /  / containedin=NERDTreeFlags
 "                                 Omnisharp
 " =============================================================================
-" 
+"
 let g:OmniSharp_highlighting = 1
 let g:OmniSharp_server_stdio = 1
 let g:OmniSharp_highlight_debug = 0
@@ -200,6 +198,7 @@ call minpac#add('mbbill/undotree')
 call minpac#add('tpope/vim-commentary')
 call minpac#add('cespare/vim-toml')
 call minpac#add('nvim-treesitter/nvim-treesitter')
+call minpac#add('peterhoeg/vim-qml')
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
 

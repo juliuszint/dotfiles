@@ -51,11 +51,7 @@ function! TestFixture()
     call JCStartJobInBuffer(jobCommand, '<DotnetTestOutput>', options)
 endfunction
 
-let g:rg_command = 'rg --column --line-number --no-heading --smart-case -o -r=foo -r=\$2 -- '
-let g:local_csharp_symbol_regex = g:rg_command.shellescape('(enum|class|struct|interface) (\w+)')
-let g:xamarin_ios_csharp_symbol_regex = g:rg_command.shellescape('(enum|class|struct|interface) (\w+)').' /Volumes/awin/frameworkSource/Xamarin.iOS'
-let g:xamarin_mac_csharp_symbol_regex = g:rg_command.shellescape('(enum|class|struct|interface) (\w+)').' /Volumes/awin/frameworkSource/Xamarin.Mac'
-let g:fzf_symbol_options = { 'options': ['--with-nth=4', '--delimiter=:', '--color=hl:#AFD7AF,hl+:#AFD7AF', '--preview=echo {} | cut -d: -f1'] }
 nmap <leader>xi :call fzf#vim#grep(g:xamarin_ios_csharp_symbol_regex, 1, copy(g:fzf_symbol_options), 0)<cr>
 nmap <leader>xm :call fzf#vim#grep(g:xamarin_mac_csharp_symbol_regex, 1, copy(g:fzf_symbol_options), 0)<cr>
 nmap <C-t> :call fzf#vim#grep(g:local_csharp_symbol_regex, 1, copy(g:fzf_symbol_options), 0)<cr>
+nmap ggc :execute "Rg " . '(new\s+'.expand('<cword>').'\|ForPartsOf<'.expand('<cword>').'>)'<cr>
