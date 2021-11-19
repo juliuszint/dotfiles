@@ -1,8 +1,8 @@
 if !exists('g:MakeTarget')
-	let g:MakeTarget=''
+	let g:MakeTarget='default'
 endif
 
-function Compile()
+function! Compile()
 	if !filereadable('Makefile')
 		echom "No Makefile found"
 		return
@@ -13,7 +13,7 @@ function Compile()
 	endif
 
 	echo "Making target " . g:MakeTarget
-	let l:make_command = ["make", g:MakeTarget]
+	let l:make_command = ["make", "-s", g:MakeTarget]
 	let l:start_time = reltime()
 	let l:job_opts = {}
 	let l:job_opts["stdin"] = "null"
@@ -31,21 +31,13 @@ function! s:job_cb(start_time, job_id, data, event)
 			cclose
 			return
 		endif
-		let l:errorformat_backup = &errorformat
-		let &errorformat = s:guess_errorformat()
-		cgete a:data
-		let &errorformat = l:errorformat_backup
-		let s:error_count=len(getqflist())
-		if s:error_count > 0
-			copen
-		else
-			cclose
-		endif
+		call s:display_errors_in_quickfix(a:data)
 	elseif a:event == 'stderr'
 		if len(a:data) == 1 && strlen(a:data[0]) == 0
+			cclose
 			return
 		endif
-		echom a:data
+		call s:display_errors_in_quickfix(a:data)
 	elseif a:event == 'exit'
 		let l:elapsed_time = reltimefloat(reltime(a:start_time))
 		echo printf('Make completed in %.1fs', l:elapsed_time)
@@ -53,14 +45,27 @@ function! s:job_cb(start_time, job_id, data, event)
 	endif
 endfunction
 
+function! s:display_errors_in_quickfix(errors)
+	let l:efm_bak = &errorformat
+	let &errorformat = s:guess_errorformat()
+	cgete a:errors
+	let s:error_count=len(getqflist())
+	if s:error_count > 0
+		copen
+	else
+		cclose
+	endif
+	let &errorformat = l:efm_bak
+endfunction
+
 function! s:guess_errorformat()
-	if !filereadable('*.sln')
+	if filereadable('*.sln')
 		return '%f(%l\,%c): %m'
 	endif
-	if !filereadable('*.csproj')
+	if filereadable('*.csproj')
 		return '%f(%l\,%c): %m'
 	endif
-	if !filereadable('Cargo.toml')
+	if filereadable('Cargo.toml')
 		"set errorformat^=
 		"            \%-G,
 		"            \%-Gerror:\ aborting\ %.%#,
