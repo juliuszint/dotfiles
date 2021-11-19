@@ -1,19 +1,28 @@
 if !exists('g:MakeTarget')
-	let g:MakeTarget='default'
+	let g:MakeTarget=''
+endif
+if !exists('g:MakeDir')
+	let s:MakeDir='./'
 endif
 
 function! Compile()
-	if !filereadable('Makefile')
-		echom "No Makefile found"
-		return
-	endif
+	while !filereadable(s:MakeDir . "Makefile")
+		let s:MakeDir = input("Makefile Directory: ", "./", "dir")
+		if len(s:MakeDir) == 0
+			echom "Makefile is required. Quitting"
+			return
+		endif
+	endwhile
 
 	if PromptUserToSaveBuffers() < 0
 		return
 	endif
 
 	echo "Making target " . g:MakeTarget
-	let l:make_command = ["make", "-s", g:MakeTarget]
+	let l:make_command = ["make", "-s"]
+	if len(g:MakeTarget) > 0
+		call append(l:make_command, g:MakeTarget)
+	endif
 	let l:start_time = reltime()
 	let l:job_opts = {}
 	let l:job_opts["stdin"] = "null"
@@ -22,6 +31,9 @@ function! Compile()
 	let l:job_opts["on_stdout"] = function('s:job_cb', [l:start_time])
 	let l:job_opts["on_stderr"] = function('s:job_cb', [l:start_time])
 	let l:job_opts["on_exit"] = function('s:job_cb', [l:start_time])
+	if len(s:MakeDir) > 0
+		let l:job_opts["cwd"] = s:MakeDir
+	endif
 	call jobstart(l:make_command, l:job_opts)
 endfunction
 
