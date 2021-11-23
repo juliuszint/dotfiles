@@ -1,14 +1,16 @@
 if !exists('g:MakeTarget')
 	let g:MakeTarget=''
 endif
-if !exists('g:MakeDir')
+if !exists('s:MakeDir')
 	let s:MakeDir='./'
 endif
+
+let s:make_counter=0
 
 function! Compile()
 	while !filereadable(s:MakeDir . "Makefile")
 		let s:MakeDir = input("Makefile Directory: ", "./", "dir")
-		if len(s:MakeDir) == 0
+		if strlen(s:MakeDir) == 0
 			echom "Makefile is required. Quitting"
 			return
 		endif
@@ -18,26 +20,28 @@ function! Compile()
 		return
 	endif
 
-	echo "Making target " . g:MakeTarget
+	let l:job_num = s:make_counter
+	let s:make_counter += 1
+	echom "Making target " . g:MakeTarget . " - " . l:job_num . " ..."
 	let l:make_command = ["make", "-s"]
-	if len(g:MakeTarget) > 0
-		call append(l:make_command, g:MakeTarget)
+	if strlen(g:MakeTarget) > 0
+		call add(l:make_command, g:MakeTarget)
 	endif
 	let l:start_time = reltime()
 	let l:job_opts = {}
 	let l:job_opts["stdin"] = "null"
 	let l:job_opts["stdout_buffered"] = 1
 	let l:job_opts["stderr_buffered"] = 1
-	let l:job_opts["on_stdout"] = function('s:job_cb', [l:start_time])
-	let l:job_opts["on_stderr"] = function('s:job_cb', [l:start_time])
-	let l:job_opts["on_exit"] = function('s:job_cb', [l:start_time])
-	if len(s:MakeDir) > 0
+	let l:job_opts["on_stdout"] = function('s:job_cb', [l:job_num, l:start_time])
+	let l:job_opts["on_stderr"] = function('s:job_cb', [l:job_num, l:start_time])
+	let l:job_opts["on_exit"] = function('s:job_cb', [l:job_num, l:start_time])
+	if strlen(s:MakeDir) > 0
 		let l:job_opts["cwd"] = s:MakeDir
 	endif
 	call jobstart(l:make_command, l:job_opts)
 endfunction
 
-function! s:job_cb(start_time, job_id, data, event)
+function! s:job_cb(job_num, start_time, job_id, data, event)
 	if a:event == 'stdout'
 		if len(a:data) == 1 && strlen(a:data[0]) == 0
 			cclose
@@ -52,7 +56,7 @@ function! s:job_cb(start_time, job_id, data, event)
 		call s:display_errors_in_quickfix(a:data)
 	elseif a:event == 'exit'
 		let l:elapsed_time = reltimefloat(reltime(a:start_time))
-		echo printf('Make completed in %.1fs', l:elapsed_time)
+		echom printf('Make completed in %.1fs - %d', l:elapsed_time, a:job_num)
 		let s:error_count=0
 	endif
 endfunction

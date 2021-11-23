@@ -65,10 +65,10 @@ autocmd filetype cs :setlocal syntax=off
 "                                  FZF(.vim)
 " =============================================================================
 set rtp+=/usr/local/opt/fzf
-nmap <C-f> :Files<cr>
-nmap <C-b> :Buffers<cr>
-nmap <C-c> :Commands<cr>
-nmap <C-h> :History:<cr>
+nmap gff :Files<cr>
+nmap gfb :Buffers<cr>
+nmap gfc :Commands<cr>
+nmap gfh :History:<cr>
 
 "                                  DevIcons
 " =============================================================================
@@ -85,7 +85,7 @@ let g:NERDTreeHijackNetrw=1
 let g:NERDTreeDirArrowCollapsible=''
 let g:NERDTreeDirArrowExpandable=''
 
-nmap <C-e> :e .<cr>
+nmap ge :e .<cr>
 
 autocmd filetype nerdtree highlight folder_icon guifg=#60d1ff guibg=NONE
 autocmd filetype nerdtree highlight csharp_icon guifg=#88d184 guibg=NONE
