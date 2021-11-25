@@ -6,6 +6,7 @@ if !exists('s:MakeDir')
 endif
 
 let s:make_counter=0
+let s:error_count=0
 
 function! Compile()
 	while !filereadable(s:MakeDir . "Makefile")
@@ -56,7 +57,13 @@ function! s:job_cb(job_num, start_time, job_id, data, event)
 		call s:display_errors_in_quickfix(a:data)
 	elseif a:event == 'exit'
 		let l:elapsed_time = reltimefloat(reltime(a:start_time))
+		if s:error_count > 0
+			echohl EchoError
+		else
+			echohl EchoSuccess
+		endif
 		echom printf('Make completed in %.1fs - %d', l:elapsed_time, a:job_num)
+		echohl None
 		let s:error_count=0
 	endif
 endfunction
@@ -65,7 +72,12 @@ function! s:display_errors_in_quickfix(errors)
 	let l:efm_bak = &errorformat
 	let &errorformat = s:guess_errorformat()
 	cgete a:errors
-	let s:error_count=len(getqflist())
+	let s:error_count = 0
+	for e in getqflist()
+		if e.valid
+			let s:error_count += 1
+		endif
+	endfor
 	if s:error_count > 0
 		copen
 	else
@@ -75,24 +87,14 @@ function! s:display_errors_in_quickfix(errors)
 endfunction
 
 function! s:guess_errorformat()
-	if filereadable('*.sln')
-		return '%f(%l\,%c): %m'
-	endif
-	if filereadable('*.csproj')
-		return '%f(%l\,%c): %m'
-	endif
-	if filereadable('Cargo.toml')
-		"set errorformat^=
-		"            \%-G,
-		"            \%-Gerror:\ aborting\ %.%#,
-		"            \%-Gerror:\ Could\ not\ compile\ %.%#,
-		"            \%-G%\\s%#To\ learn\ more\\,%.%#,
-		"            \%Eerror:\ %m,
-		"            \%Eerror[E%n]:\ %m,
-		"            \%Wwarning:\ %m,
-		"            \%Inote:\ %m,
-		"            \%C\ %#-->\ %f:%l:%c,
-		"            \%E\ \ left:%m,%C\ right:%m\ %f:%l:%c,%Z
+	if len(glob('*.sln')) > 0 || len(glob('*.csproj')) > 0
+		return
+			\ '%-G,' .
+			\ '%-Gtime\ elapsed\ %.%#,' .
+			\ '%-G\ \ \ \ %.%#,' .
+			\ '%-Gmake:\ *** %.%#,' .
+			\ '%-GBuild\ %.%#,' .
+			\ '%f(%l\,%c): %m'
 	endif
 	return &errorformat
 endfunction

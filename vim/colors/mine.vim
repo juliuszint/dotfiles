@@ -286,3 +286,7 @@ hi link cmakeCommandConditional rustKeyword
 hi link cmakeCommand rustMacro
 hi link cmakeString rustString
 
+"                                  Echo
+" =============================================================================
+hi EchoError		guifg=#ff5b5e	guibg=NONE
+hi EchoSuccess		guifg=#83a300	guibg=NONE
