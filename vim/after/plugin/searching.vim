@@ -18,4 +18,4 @@ endfunction
 " =============================================================================
 "
 nmap gr :Rx 
-nmap gw :execute "Rx " . expand('<cword>')<cr>
+nmap gw :execute "Rx " . '\b' . expand('<cword>') . '\b'<cr>

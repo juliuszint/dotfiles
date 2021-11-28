@@ -27,6 +27,7 @@ set listchars=tab:»·
 set history=5000
 set shm+=I
 set cinoptions=N-s,g0
+set title
 if !has('nvim')
 	set noesckeys
 endif
