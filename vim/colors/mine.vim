@@ -24,6 +24,8 @@ hi StatusLineNC		guifg=NONE    guibg=#2d2d30 gui=bold cterm=bold term=bold
 hi ColorColumn		guifg=NONE    guibg=#2f3239
 hi NonText		guifg=#404040 guibg=NONE
 hi SpecialKey		guifg=#7f8c98
+hi iCursor		guifg=#ffffff	guibg=#11d116
+hi nCursor		guifg=#ffffff	guibg=#ffb846
 hi TODO			guifg=NONE    guibg=NONE
 hi link MatchParen	Search
 hi link IncSearch	Search
@@ -64,10 +66,11 @@ hi link csStruct	csClass
 
 "                                 Vim-Quickfix
 " =============================================================================
+hi qfFileName		guifg=#11d116
+hi qfLineNr		guifg=#555555
+hi qfSeparator		guifg=#555555
 hi qfMsbuildCsError	guifg=#ff5b5e
 hi qfMsbuildCsWarning	guifg=#feff5b
-hi link qfFileName	csEnumMemberName
-hi link qfLineNr	Number
 
 "                                 Vim-Help
 " =============================================================================
@@ -88,11 +91,12 @@ hi link pythonRepeat		Type
 
 "                                    XML
 " =============================================================================
-hi xmlTag	        guifg=#dadada
-hi xmlTagName    	guifg=#add8e6
+hi xmlTag	        guifg=#b4b4b4
+hi xmlTagName    	guifg=#679ad1
 hi xmlAttribPunct 	guifg=#dcdcdc
-hi xmlAttrib		guifg=#ee82ee
-hi link xmlString String
+hi xmlAttrib		guifg=#9ec8f0
+hi xmlString 		guifg=#c8c8c8
+hi link xmlProcessingDelim xmlTag
 hi link xmlEndTag xmlTagName
 hi link xmlNamespace xmlAttrib
 hi link xmlTag xmlTagName
@@ -288,5 +292,5 @@ hi link cmakeString rustString
 
 "                                  Echo
 " =============================================================================
-hi EchoError		guifg=#ff5b5e	guibg=NONE
-hi EchoSuccess		guifg=#83a300	guibg=NONE
+hi EchoError		guifg=#ed1515	guibg=NONE
+hi EchoSuccess		guifg=#11d116	guibg=NONE
