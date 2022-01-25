@@ -33,7 +33,7 @@ hi link IncSearch	Search
 "                               Generic Language
 " =============================================================================
 hi String		guifg=#d69d85
-hi Type			guifg=#ff7ab2 gui=none
+hi Type			guifg=#569cd6 gui=none
 hi Number		guifg=#b5cea8
 hi Constant		guifg=#ff7ab2
 hi Comment		guifg=#57a64a
@@ -66,7 +66,7 @@ hi link csStruct	csClass
 
 "                                 Vim-Quickfix
 " =============================================================================
-hi qfFileName		guifg=#11d116
+hi qfFileName		guifg=#8ad1c3
 hi qfLineNr		guifg=#555555
 hi qfSeparator		guifg=#555555
 hi qfMsbuildCsError	guifg=#ff5b5e
@@ -289,6 +289,15 @@ hi ExtraWhitespace      guifg=NONE    guibg=#ff5b5e
 hi link cmakeCommandConditional rustKeyword
 hi link cmakeCommand rustMacro
 hi link cmakeString rustString
+
+"                                  Git
+" =============================================================================
+hi diffRemoved		guifg=#ed1515	guibg=NONE
+hi diffAdded		guifg=#11d116	guibg=NONE
+hi diffLine		guifg=#1abc9c	guibg=NONE
+hi link diffFile	Default
+hi link diffIndexLine	Default
+hi link diffSubname	Default
 
 "                                  Echo
 " =============================================================================

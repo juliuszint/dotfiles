@@ -28,6 +28,7 @@ set history=5000
 set shm+=I
 set cinoptions=N-s,g0
 set title
+set list
 if !has('nvim')
 	set noesckeys
 endif
@@ -171,8 +172,6 @@ let g:ale_sign_info = ''
 let g:ale_change_sign_column_color = 1
 let g:ale_enabled = 0
 let g:ale_sign_column_always = 1
-
-command! GitDiff :call JCStartJobInBuffer('git diff', '<MiscOutput>', { 'bringToFront' : 1, 'ft' : 'git'})
 
 "                                   cursorword
 " =============================================================================
