@@ -5,7 +5,7 @@ let s:rg_common_options='--column --vimgrep --line-number --no-heading --smart-c
 "
 " C++ Typen (struct, class, enum)
 "
-let s:rg_cpp_type_options='--pcre2 --replace ''$2'' -- ''(class|struct|enum)\s+(\w{4,}+)\s*($|[^;])'''
+let s:rg_cpp_type_options='--pcre2 --replace ''$3'' -- ''(class|struct|enum)\s+([A-Z_]{2,}\s+)?(\w{4,}+)\s*($|[:{])'''
 let s:rg_cpp_type_command='rg ' . s:rg_common_options . s:rg_cpp_type_options
 
 command! CppTypes :call fzf#vim#grep(s:rg_cpp_type_command, 1, copy(s:fzf_common_options), 0)
