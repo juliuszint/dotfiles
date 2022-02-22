@@ -87,7 +87,7 @@ endfunction
 "                                   Mappings
 " =============================================================================
 "
-nmap gs :CSharpTypes<cr>
+nmap <Space>s :CSharpTypes<cr>
 nmap <leader>xi :CSharpiOSTypes<cr>
 nmap <leader>xm :CSharpmacOSTypes<cr>
 nmap ggc :execute "Rx " . '(new\s+'.expand('<cword>').'\|ForPartsOf<'.expand('<cword>').'>)'<cr>
