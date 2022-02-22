@@ -40,21 +40,26 @@ let mapleader="\<space>"
 command! Vb normal! <C-v>
 
 nmap <F11> :call GuiWindowFullScreen(!g:GuiWindowFullScreen)<cr>
-nmap <C-v> :vsp<cr>
 nmap <C-s> :w<cr>
 nmap go <C-o>
-nmap gj <C-w>j
-nmap gk <C-w>k
-nmap gl <C-w>l
-nmap gh <C-w>h
 nmap gnh :noh<cr>
-nmap gi <C-i>
 map <C-n> :cn<cr>
 map <C-p> :cp<cr>
 vnoremap <Tab> > gv
 vnoremap <S-Tab> < gv
 imap <C-s> <esc>:w<cr>
 inoremap <C-o> <C-x><C-o>
+
+nnoremap gj <C-w>j
+nnoremap gk <C-w>k
+nnoremap gl <C-w>l
+nnoremap gh <C-w>h
+
+if has('nvim')
+	autocmd TermOpen * setlocal nonumber
+	tnoremap <Esc> <C-\><C-n>
+	tnoremap <C-v><Esc> <Esc>
+endif
 
 autocmd FileType qf wincmd J
 autocmd FileType qf resize 20
@@ -63,15 +68,19 @@ autocmd FileType qf setlocal nocursorline
 autocmd BufNewFile,BufRead *.xaml setf xml
 autocmd BufRead,BufNewFile *.swift set filetype=swift
 autocmd filetype cs :setlocal syntax=off
+autocmd VimEnter * :clearjumps
 
 "                                  FZF(.vim)
 " =============================================================================
 set rtp+=/usr/local/opt/fzf
-nmap gff :Files<cr>
-nmap gfb :Buffers<cr>
-nmap gfc :Commands<cr>
-nmap gfh :History:<cr>
+nmap <Space>h :History<cr>
+nmap <Space>c :Commands<cr>
+nmap <Space>b :Buffers<cr>
+nmap <Space>f :Files<cr>
 
+if has('nvim')
+	autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
+endif
 "                                  DevIcons
 " =============================================================================
 let WebDevIconsUnicodeDecorateFolderNodesExactMatches = 0
@@ -86,6 +95,7 @@ let g:NERDTreeIgnore=['.*obj$[[dir]]', '.*bin$[[dir]]']
 let g:NERDTreeHijackNetrw=1
 let g:NERDTreeDirArrowCollapsible=''
 let g:NERDTreeDirArrowExpandable=''
+let g:NERDTreeCreatePrefix='silent keepalt keepjumps'
 
 nmap ge :e .<cr>
 
