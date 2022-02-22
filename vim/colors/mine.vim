@@ -19,8 +19,8 @@ hi Visual		guifg=NONE    guibg=#264f78
 hi Cursor		guifg=#FFFFFF guibg=#ff2a62
 hi VertSplit		guifg=#232627 guibg=#141414
 hi Note			guifg=NONE    guibg=#00ff00
-hi StatusLine		guifg=#ffffff guibg=#0071cc gui=bold cterm=bold term=bold
-hi StatusLineNC		guifg=NONE    guibg=#2d2d30 gui=bold cterm=bold term=bold
+hi StatusLine		guifg=#ffffff guibg=#57a64a gui=bold cterm=bold term=bold
+hi StatusLineNC		guifg=NONE    guibg=#005177 gui=NONE cterm=NONE term=NONE
 hi ColorColumn		guifg=NONE    guibg=#2f3239
 hi NonText		guifg=#404040 guibg=NONE
 hi SpecialKey		guifg=#7f8c98
@@ -91,25 +91,25 @@ hi link pythonRepeat		Type
 
 "                                    XML
 " =============================================================================
-hi xmlTag	        guifg=#b4b4b4
+hi xmlTag		guifg=#b4b4b4
 hi xmlTagName    	guifg=#679ad1
 hi xmlAttribPunct 	guifg=#dcdcdc
 hi xmlAttrib		guifg=#9ec8f0
 hi xmlString 		guifg=#c8c8c8
-hi link xmlProcessingDelim xmlTag
-hi link xmlEndTag xmlTagName
-hi link xmlNamespace xmlAttrib
-hi link xmlTag xmlTagName
+hi link xmlProcessingDelim	xmlTag
+hi link xmlEndTag		xmlTagName
+hi link xmlNamespace		xmlAttrib
+hi link xmlTag			xmlTagName
 
 "                                 Vim Script
 " =============================================================================
-hi vimFuncName          guifg=#dcdcaa
-hi vimOption            guifg=#c586c0
-hi vimVar               guifg=#9cdcfe
-hi link vimcommand Type
-hi link vimIsCommand Type
-hi link vimSetSep Default
-hi link vimHiGroup csClass
+hi vimFuncName		guifg=#dcdcaa
+hi vimOption		guifg=#c586c0
+hi vimVar		guifg=#9cdcfe
+hi link vimcommand	Type
+hi link vimIsCommand	Type
+hi link vimSetSep	Default
+hi link vimHiGroup	csClass
 
 "                                 Swift
 " =============================================================================
@@ -298,6 +298,12 @@ hi diffLine		guifg=#1abc9c	guibg=NONE
 hi link diffFile	Default
 hi link diffIndexLine	Default
 hi link diffSubname	Default
+
+"                                  Git Fugitive
+" =============================================================================
+hi link FugitiveblameTime	Default
+hi link FugitiveblameAnnotation	Default
+hi link FugitiveblameDelimiter	Default
 
 "                                  Echo
 " =============================================================================
