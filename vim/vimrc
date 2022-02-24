@@ -55,6 +55,8 @@ nnoremap gk <C-w>k
 nnoremap gl <C-w>l
 nnoremap gh <C-w>h
 
+nmap <Space>v :vsp<cr>
+
 if has('nvim')
 	autocmd TermOpen * setlocal nonumber
 	tnoremap <Esc> <C-\><C-n>
@@ -73,7 +75,7 @@ autocmd VimEnter * :clearjumps
 "                                  FZF(.vim)
 " =============================================================================
 set rtp+=/usr/local/opt/fzf
-nmap <Space>h :History<cr>
+nmap <Space>h :History:<cr>
 nmap <Space>c :Commands<cr>
 nmap <Space>b :Buffers<cr>
 nmap <Space>f :Files<cr>
@@ -97,7 +99,7 @@ let g:NERDTreeDirArrowCollapsible=''
 let g:NERDTreeDirArrowExpandable=''
 let g:NERDTreeCreatePrefix='silent keepalt keepjumps'
 
-nmap ge :e .<cr>
+nmap <Space>e :e .<cr>
 
 autocmd filetype nerdtree highlight folder_icon guifg=#60d1ff guibg=NONE
 autocmd filetype nerdtree highlight csharp_icon guifg=#88d184 guibg=NONE
@@ -210,6 +212,7 @@ call minpac#add('cespare/vim-toml')
 call minpac#add('nvim-treesitter/nvim-treesitter')
 call minpac#add('peterhoeg/vim-qml')
 call minpac#add('itchyny/vim-cursorword')
+call minpac#add('kassio/neoterm')
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
 

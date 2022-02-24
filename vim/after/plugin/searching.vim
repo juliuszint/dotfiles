@@ -17,5 +17,5 @@ endfunction
 "                                   Mappings
 " =============================================================================
 "
-nmap gr :Rx 
-nmap gw :execute "Rx " . '\b' . expand('<cword>') . '\b'<cr>
+nmap <Space>r :Rx 
+nmap <Space>w :execute "Rx " . '\b' . expand('<cword>') . '\b'<cr>
