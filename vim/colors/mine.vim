@@ -17,7 +17,7 @@ hi Normal		guifg=#ffffff	guibg=#232627
 hi LineNr		guifg=#555555
 hi Visual		guifg=none	guibg=#264f78
 hi Cursor		guifg=#FFFFFF	guibg=#ff2a62
-hi VertSplit		guifg=#232627	guibg=#141414
+hi VertSplit		guifg=#005177	guibg=#005177
 hi Note			guifg=none	guibg=#00ff00
 hi StatusLine		guifg=#ffffff	guibg=#57a64a	gui=bold cterm=bold term=bold
 hi StatusLineNC		guifg=none	guibg=#005177	gui=none cterm=none term=none
@@ -67,6 +67,15 @@ hi link vimcommand	Type
 hi link vimIsCommand	Type
 hi link vimSetSep	Default
 
+"                                 Vim-Help
+" =============================================================================
+hi helpURL			guifg=#909090
+hi link helpHyperTextEntry	Type
+hi link helpSectionDelim	Comment
+hi link helpHeadline		Comment
+hi link helpHeader		csClass
+hi link helpExample		vimHiGuiRgb
+hi link helpCommand		vimHiGuiRgb
 
 "                                    C#
 " =============================================================================
@@ -92,13 +101,6 @@ hi qfLineNr		guifg=#555555
 hi qfSeparator		guifg=#555555
 hi qfMsbuildCsError	guifg=#ff5b5e
 hi qfMsbuildCsWarning	guifg=#feff5b
-
-"                                 Vim-Help
-" =============================================================================
-hi link helpHyperTextEntry	Number
-hi link helpSectionDelim	PreProc
-hi link helpHeadline		csInterface
-hi link helpHeader		csClass
 
 "                                  Python
 " =============================================================================
@@ -315,6 +317,14 @@ hi link diffSubname	Default
 hi link FugitiveblameTime	Default
 hi link FugitiveblameAnnotation	Default
 hi link FugitiveblameDelimiter	Default
+
+"                                  minpac
+" =============================================================================
+hi minpacPrgsUpdated		guifg=#11d116
+hi minpacPrgsRemoved		guifg=#ed1515
+hi minpacPrgsString		guifg=#ffa14f
+hi minpacPrgsTitle		guifg=#909090
+hi link minpacPrgsInstalled	minpacPrgsUpdated
 
 "                                  Echo
 " =============================================================================

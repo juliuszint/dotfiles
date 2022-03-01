@@ -213,6 +213,7 @@ call minpac#add('nvim-treesitter/nvim-treesitter')
 call minpac#add('peterhoeg/vim-qml')
 call minpac#add('itchyny/vim-cursorword')
 call minpac#add('kassio/neoterm')
+call minpac#add('neovim/nvim-lspconfig')
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
 
