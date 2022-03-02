@@ -89,6 +89,9 @@ let WebDevIconsUnicodeDecorateFolderNodesExactMatches = 0
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cs'] = ''
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:DevIconsDefaultFolderOpenSymbol=''
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol=''
 
 "                                  NERDTree
 " =============================================================================
@@ -98,10 +101,11 @@ let g:NERDTreeHijackNetrw=1
 let g:NERDTreeDirArrowCollapsible=''
 let g:NERDTreeDirArrowExpandable=''
 let g:NERDTreeCreatePrefix='silent keepalt keepjumps'
+let g:NERDTreeMinimalUI=1
 
 nmap <Space>e :e .<cr>
 
-autocmd filetype nerdtree highlight folder_icon guifg=#60d1ff guibg=NONE
+autocmd filetype nerdtree highlight folder_icon guifg=#ffa13f guibg=NONE
 autocmd filetype nerdtree highlight csharp_icon guifg=#88d184 guibg=NONE
 autocmd filetype nerdtree highlight solution_icon guifg=#d294e2 guibg=NONE
 autocmd filetype nerdtree highlight batch_icon guifg=#82aef7 guibg=NONE
@@ -113,7 +117,8 @@ autocmd filetype nerdtree highlight cxx_source_icon guifg=#ee6868 guibg=NONE
 autocmd filetype nerdtree highlight link script_icon csClass
 
 autocmd filetype nerdtree syn match script_icon /  / containedin=NERDTreeFlags
-autocmd filetype nerdtree syn match folder_icon /  / containedin=NERDTreeFlags
+autocmd filetype nerdtree syn match folder_icon /  / containedin=NERDTreeFlags
+autocmd filetype nerdtree syn match folder_icon /  / containedin=NERDTreeFlags
 autocmd filetype nerdtree syn match vim_icon /  / containedin=NERDTreeFlags
 autocmd filetype nerdtree syn match csharp_icon /  / containedin=NERDTreeFlags
 autocmd filetype nerdtree syn match cxx_header_icon /  / containedin=NERDTreeFlags

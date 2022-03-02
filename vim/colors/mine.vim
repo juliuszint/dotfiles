@@ -238,13 +238,14 @@ hi qtMacro		guifg=#beb7ff
 
 "                                NERDTree
 " =============================================================================
-hi NERDTreeDir			guifg=#cbecfe
-hi link NERDTreeExecFile	csClass
-hi link NERDTreeClosable	Number
+hi NERDTreeHelp			guifg=#555555
+hi NERDTreeExecFile		guifg=#1cdc9a
+hi NERDTreeClosable		guifg=#ffa14f
+hi NERDTreeCWD			guifg=#9b9b9b
+hi NERDTreeLinkFile		guifg=#beb7ff
+hi link NERDTreeDir		Default
 hi link NERDTreeOpenable	NERDTreeClosable
-hi link NERDTreeHelp		Comment
-hi link NERDTreeCWD		csClass
-hi link NERDTreeUp		Constant
+hi link NERDTreeUp		NERDTreeHelp
 hi link NERDTreeFlags		Default
 
 "                                  ALE
