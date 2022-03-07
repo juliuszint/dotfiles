@@ -6,4 +6,4 @@ setlocal cinoptions=W(0,W1s,l1s
 
 let b:cursorword=1
 
-nmap <buffer> <Space>s :CSymbols<cr>
+nmap <buffer> <Space>s :CSharpTypes<cr>
