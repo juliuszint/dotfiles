@@ -17,13 +17,14 @@ hi Normal		guifg=#ffffff	guibg=#232627
 hi LineNr		guifg=#555555
 hi Visual		guifg=none	guibg=#264f78
 hi Cursor		guifg=#FFFFFF	guibg=#ff2a62
-hi VertSplit		guifg=#005177	guibg=#005177
+hi VertSplit		guifg=#232627	guibg=#111111
 hi Note			guifg=none	guibg=#00ff00
-hi StatusLine		guifg=#ffffff	guibg=#57a64a	gui=bold cterm=bold term=bold
-hi StatusLineNC		guifg=none	guibg=#005177	gui=none cterm=none term=none
-hi ColorColumn		guifg=none	guibg=#2f3239
+hi StatusLine		guifg=#ffffff	guibg=#333333	gui=bold cterm=bold term=bold
+hi StatusLineNC		guifg=none	guibg=none	gui=none cterm=none term=none
+hi ColorColumn		guifg=none	guibg=#333333
 hi NonText		guifg=#404040	guibg=none
 hi SpecialKey		guifg=#7f8c98
+hi SignColumn		guibg=#232627
 hi iCursor		guifg=#ffffff	guibg=#11d116
 hi nCursor		guifg=#ffffff	guibg=#ffb846
 hi TODO			guifg=none	guibg=none
@@ -158,15 +159,18 @@ hi jsonKeyword		guifg=#d7ba7d
 "                                  Rust
 " =============================================================================
 hi rustKeyword			guifg=#ab8ac1
-hi rustString			guifg=#83a300
 hi rustEnum			guifg=#769acb
 hi rustCommentLineDoc		guifg=#8d8d8b
 hi rustEnumVariant		guifg=#ee6868
-hi rustMacro			guifg=#3e999f
 hi rustLifetime			guifg=#d97f26
+hi link rustMacro		Define
+hi link rustString		String
+hi link rustAttribute		Default
+hi link rustDerive		Default
+hi link rustDeriveTrait		Default
 hi link rustQuestionMark	rustLifetime
 hi link rustEscape		rustLifetime
-hi link rustCharacter		rustString
+hi link rustCharacter		String
 hi link rustTypedef		rustKeyword
 hi link rustType		Default
 hi link rustTrait		Default
@@ -175,12 +179,9 @@ hi link rustRepeat		rustKeyword
 hi link rustSelf		rustEnumVariant
 hi link rustBoolean		rustEnumVariant
 hi link rustStructure		rustKeyword
-hi link rustDerive		rustEnumVariant
-hi link rustDeriveTrait		rustEnumVariant
-hi link rustAttribute		rustEnumVariant
 hi link rustSigil		rustKeyword
 hi link rustAssert		rustMacro
-hi link rustStringDelimiter	rustString
+hi link rustStringDelimiter	String
 hi link rustStorage		rustKeyword
 hi link rustModPath		Default
 hi link rustModPathSep		rustModPath
@@ -247,14 +248,6 @@ hi link NERDTreeDir		Default
 hi link NERDTreeOpenable	Default
 hi link NERDTreeUp		NERDTreeHelp
 hi link NERDTreeFlags		Default
-
-"                                  ALE
-" =============================================================================
-hi ALEInfoSign		guifg=#9cdcfe
-hi ALEWarningSign	guifg=#fffb04
-hi ALEErrorSign		guifg=#ff5b5e
-hi clear		ALEWarning
-hi clear		ALEError
 
 "                                  UltiSnip
 " =============================================================================
@@ -327,7 +320,18 @@ hi minpacPrgsString		guifg=#ffa14f
 hi minpacPrgsTitle		guifg=#909090
 hi link minpacPrgsInstalled	minpacPrgsUpdated
 
+"                                rst
+" =============================================================================
+hi rstSections		guifg=#1abc9c
+
 "                                  Echo
 " =============================================================================
 hi EchoError		guifg=#ed1515	guibg=none
 hi EchoSuccess		guifg=#11d116	guibg=none
+
+"                                  LSP
+" =============================================================================
+hi DiagnosticError			guifg=#ff5b5e
+hi DiagnosticWarn			guifg=#fffb04
+hi DiagnosticInfo			guifg=#9cdcfe
+hi DiagnosticHint			guifg=#9cdcfe

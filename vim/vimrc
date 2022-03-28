@@ -64,7 +64,7 @@ if has('nvim')
 endif
 
 autocmd FileType qf wincmd J
-autocmd FileType qf resize 20
+autocmd FileType qf resize 15
 autocmd FileType qf setlocal nocursorline
 
 autocmd BufNewFile,BufRead *.xaml setf xml
@@ -180,16 +180,6 @@ let g:AutoPairs = {
 \}
 command! ToggleAutoPairs :call AutoPairsToggle()
 
-"                                    ALE
-" =============================================================================
-let g:ale_linters = { 'cs': ['OmniSharp'] }
-let g:ale_sign_error = ''
-let g:ale_sign_warning = ''
-let g:ale_sign_info = ''
-let g:ale_change_sign_column_color = 1
-let g:ale_enabled = 0
-let g:ale_sign_column_always = 1
-
 "                                   cursorword
 " =============================================================================
 "
@@ -207,7 +197,6 @@ call minpac#add('junegunn/fzf.vim')
 call minpac#add('SirVer/ultisnips')
 call minpac#add('scrooloose/nerdtree')
 call minpac#add('OmniSharp/omnisharp-vim')
-call minpac#add('dense-analysis/ale')
 call minpac#add('ryanoasis/vim-devicons')
 call minpac#add('rust-lang/rust.vim')
 call minpac#add('tpope/vim-fugitive')
@@ -220,5 +209,21 @@ call minpac#add('kassio/neoterm')
 call minpac#add('neovim/nvim-lspconfig')
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
+
+"                                   LUA stuff
+" =============================================================================
+"
+lua << EOF
+local function lspSymbol(name, icon)
+vim.fn.sign_define(
+	'DiagnosticSign' .. name,
+	{ text = icon, texthl = 'DiagnosticSign' .. name }
+)
+end
+lspSymbol('Error', '')
+lspSymbol('Warn', '')
+lspSymbol('Info', '')
+lspSymbol('Hint', '')
+EOF
 
 colorscheme mine
