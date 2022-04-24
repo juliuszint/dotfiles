@@ -20,7 +20,7 @@ hi Cursor		guifg=#FFFFFF	guibg=#ff2a62
 hi VertSplit		guifg=#232627	guibg=#111111
 hi Note			guifg=none	guibg=#00ff00
 hi StatusLine		guifg=#ffffff	guibg=#333333	gui=bold cterm=bold term=bold
-hi StatusLineNC		guifg=none	guibg=none	gui=none cterm=none term=none
+hi StatusLineNC		guifg=none	guibg=#1F1F1F	gui=none cterm=none term=none
 hi ColorColumn		guifg=none	guibg=#333333
 hi NonText		guifg=#404040	guibg=none
 hi SpecialKey		guifg=#7f8c98
@@ -206,14 +206,15 @@ hi link markdownH6Delimiter	rustLifetime
 "                                    C
 " =============================================================================
 hi cDefine		guifg=#9b9b9b
-hi cIncluded 		guifg=#d69d85
 hi cType 		guifg=#569cd6
 hi cConditional 	guifg=#d8a0df
 hi cTodo		guifg=#47ff6a
+hi cIncluded 		guifg=#999999
+hi link cPreProc	rustLifetime
+hi link cPreCondit	rustLifetime
+hi link cInclude 	rustLifetime
 hi link cStatement 	cConditional
 hi link cStorageClass 	cType
-hi link cPreCondit	cDefine
-hi link cInclude 	cDefine
 hi link cString 	String
 hi link cStructure 	cType
 hi link cConstant 	Number

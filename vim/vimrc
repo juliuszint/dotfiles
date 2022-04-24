@@ -41,6 +41,7 @@ command! Vb normal! <C-v>
 
 nmap <F11> :call GuiWindowFullScreen(!g:GuiWindowFullScreen)<cr>
 nmap <C-s> :w<cr>
+nmap <Space>s :w<cr>
 nmap go <C-o>
 nmap gnh :noh<cr>
 map <C-n> :cn<cr>
