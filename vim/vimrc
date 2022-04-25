@@ -57,6 +57,7 @@ nnoremap gl <C-w>l
 nnoremap gh <C-w>h
 
 nmap <Space>v :vsp<cr>
+nmap <Space>a :A<cr>
 
 if has('nvim')
 	autocmd TermOpen * setlocal nonumber
@@ -187,6 +188,11 @@ command! ToggleAutoPairs :call AutoPairsToggle()
 let g:cursorword_delay=800
 let g:cursorword=0
 
+"                                   A.vim
+" =============================================================================
+"
+let g:alternateNoDefaultAlternate=1
+
 "                                   minPack
 " =============================================================================
 "
@@ -208,6 +214,7 @@ call minpac#add('peterhoeg/vim-qml')
 call minpac#add('itchyny/vim-cursorword')
 call minpac#add('kassio/neoterm')
 call minpac#add('neovim/nvim-lspconfig')
+call minpac#add('vim-scripts/a.vim')
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
 
