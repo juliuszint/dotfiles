@@ -114,8 +114,8 @@ autocmd filetype nerdtree highlight batch_icon guifg=#82aef7 guibg=NONE
 autocmd filetype nerdtree highlight vim_icon guifg=#6ed65f guibg=NONE
 autocmd filetype nerdtree highlight swift_icon guifg=#fa5637 guibg=NONE
 autocmd filetype nerdtree highlight rust_icon guifg=#ff8170 guibg=NONE
-autocmd filetype nerdtree highlight cxx_header_icon guifg=#ee6868 guibg=NONE
-autocmd filetype nerdtree highlight cxx_source_icon guifg=#ee6868 guibg=NONE
+autocmd filetype nerdtree highlight cxx_header_icon guifg=#11d116 guibg=NONE
+autocmd filetype nerdtree highlight cxx_source_icon guifg=#11d116 guibg=NONE
 autocmd filetype nerdtree highlight link script_icon csClass
 
 autocmd filetype nerdtree syn match script_icon /  / containedin=NERDTreeFlags
@@ -193,6 +193,12 @@ let g:cursorword=0
 "
 let g:alternateNoDefaultAlternate=1
 
+"                                EditorConfig
+" =============================================================================
+"
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+au FileType gitcommit let b:EditorConfig_disable = 1
+
 "                                   minPack
 " =============================================================================
 "
@@ -215,6 +221,8 @@ call minpac#add('itchyny/vim-cursorword')
 call minpac#add('kassio/neoterm')
 call minpac#add('neovim/nvim-lspconfig')
 call minpac#add('vim-scripts/a.vim')
+call minpac#add('vim-scripts/a.vim')
+call minpac#add('editorconfig/editorconfig-vim')
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
 
