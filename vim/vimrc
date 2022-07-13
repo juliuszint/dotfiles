@@ -1,4 +1,4 @@
-﻿"                                     VIM
+"                                     VIM
 " =============================================================================
 set encoding=utf8
 set number
@@ -104,6 +104,7 @@ let g:NERDTreeDirArrowCollapsible=''
 let g:NERDTreeDirArrowExpandable=''
 let g:NERDTreeCreatePrefix='silent keepalt keepjumps'
 let g:NERDTreeMinimalUI=1
+let g:NERDTreeCascadeSingleChildDir=0
 
 nmap <Space>e :e .<cr>
 

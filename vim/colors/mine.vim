@@ -40,8 +40,8 @@ hi Constant		guifg=#ff7ab2
 hi Comment		guifg=#57a64a
 hi Define		guifg=#ffa14f
 hi Identifier		guifg=none guibg=none ctermfg=none ctermbg=none cterm=none
+hi PreProc		guifg=#d97f26
 hi link Include		Default
-hi link PreProc		Define
 hi link StorageClass	Type
 hi link Boolean 	Type
 hi link float 		Number
@@ -97,21 +97,22 @@ hi link csStruct	csClass
 
 "                                 Vim-Quickfix
 " =============================================================================
-hi qfFileName		guifg=#8ad1c3
-hi qfLineNr		guifg=#555555
-hi qfSeparator		guifg=#555555
+hi qfFileName		guifg=#fc6f65
+hi qfLineNr		guifg=#9cdcfe
+hi qfSeparator		guifg=#9cdcfe
 hi qfMsbuildCsError	guifg=#ff5b5e
 hi qfMsbuildCsWarning	guifg=#feff5b
 
 "                                  Python
 " =============================================================================
-hi link pythonInclude		Type
+hi link pythonInclude		cDefine
 hi link pythonException		Type
 hi link pythonExceptions	csClass
 hi link pythonStatement		Type
 hi link pythonBuiltin		Type
-hi link pythonConditional	Type
+hi link pythonConditional	cConditional
 hi link pythonRepeat		Type
+hi link pythonOperator		Type
 
 "                                    XML
 " =============================================================================
@@ -141,16 +142,6 @@ hi swiftString			guifg=#ff8170 guibg=none gui=italic
 hi swiftDecimal			guifg=#a79df7 guibg=none gui=italic
 hi link swiftType		Default
 hi link swiftLineComment	swiftComment
-
-"                              Shell-Script
-" =============================================================================
-hi shDerefSimple	guifg=#a0d975 guibg=none
-hi link shVariable	shDerefSimple
-hi link shStatement	Constant
-hi link shSet		Constant
-hi link shRepeat	Constant
-hi link shCondition	Constant
-hi link shConditional	Constant
 
 "                                  Json
 " =============================================================================
@@ -187,21 +178,6 @@ hi link rustModPath		Default
 hi link rustModPathSep		rustModPath
 hi link rustPanic		Define
 hi link rustUnsafeKeyword	Type
-
-"                                  Markdown
-" =============================================================================
-hi link markdownH1		rustLifetime
-hi link markdownH2		rustLifetime
-hi link markdownH3		rustLifetime
-hi link markdownH4		rustLifetime
-hi link markdownH5		rustLifetime
-hi link markdownH6		rustLifetime
-hi link markdownH1Delimiter	rustLifetime
-hi link markdownH2Delimiter	rustLifetime
-hi link markdownH3Delimiter	rustLifetime
-hi link markdownH4Delimiter	rustLifetime
-hi link markdownH5Delimiter	rustLifetime
-hi link markdownH6Delimiter	rustLifetime
 
 "                                    C
 " =============================================================================
@@ -294,18 +270,27 @@ hi ExtraWhitespace	guifg=none	guibg=#ff5b5e
 
 "                                 cMake
 " =============================================================================
-hi link cmakeCommandConditional	rustKeyword
+hi link cmakeCommandConditional	cConditional
 hi link cmakeCommand		rustMacro
 hi link cmakeString		rustString
+hi link cmakeCommandRepeat	cConditional
 
 "                                  Git
 " =============================================================================
-hi diffRemoved		guifg=#ed1515	guibg=none
-hi diffAdded		guifg=#11d116	guibg=none
-hi diffLine		guifg=#1abc9c	guibg=none
-hi link diffFile	Default
-hi link diffIndexLine	Default
-hi link diffSubname	Default
+hi diffRemoved			guifg=#ed1515	guibg=none
+hi diffAdded			guifg=#11d116	guibg=none
+hi diffLine			guifg=#1abc9c	guibg=none
+hi gitconfigSection		guifg=#fc5e56
+hi gitcommitFirstLine		guifg=#fc6f65
+hi gitcommitSelectedFile	guifg=#11d116
+hi link gitcommitSelectedType	Comment
+hi link gitcommitBranch		Comment
+hi link gitcommitHeader		Comment
+hi link gitcommitUntrackedFile	cDefine
+hi link gitcommitSummary	gitcommitFirstLine
+hi link diffFile		Default
+hi link diffIndexLine		Default
+hi link diffSubname		Default
 
 "                                  Git Fugitive
 " =============================================================================
@@ -321,10 +306,6 @@ hi minpacPrgsString		guifg=#ffa14f
 hi minpacPrgsTitle		guifg=#909090
 hi link minpacPrgsInstalled	minpacPrgsUpdated
 
-"                                rst
-" =============================================================================
-hi rstSections		guifg=#1abc9c
-
 "                                  Echo
 " =============================================================================
 hi EchoError		guifg=#ed1515	guibg=none
@@ -336,3 +317,60 @@ hi DiagnosticError			guifg=#ff5b5e
 hi DiagnosticWarn			guifg=#fffb04
 hi DiagnosticInfo			guifg=#9cdcfe
 hi DiagnosticHint			guifg=#9cdcfe
+
+"                              Shell-Script
+" =============================================================================
+hi link shVariable	shDerefSimple
+hi link shStatement	cType
+hi link shSet		Constant
+hi link shRepeat	Constant
+hi link shCondition	Constant
+hi link shConditional	cConditional
+hi link shDerefSimple	csClass
+hi link shDerefVar	csClass
+hi link shVariable	csClass
+
+
+"                                  Markdown
+" =============================================================================
+hi markdownH1			guifg=#57a64a
+hi link markdownH2		markdownH1
+hi link markdownH3		markdownH1
+hi link markdownH4		markdownH1
+hi link markdownH5		markdownH1
+hi link markdownH6		markdownH1
+hi markdownH1Delimiter		guifg=#707070
+hi link markdownH2Delimiter	markdownH1Delimiter
+hi link markdownH3Delimiter	markdownH1Delimiter
+hi link markdownH4Delimiter	markdownH1Delimiter
+hi link markdownH5Delimiter	markdownH1Delimiter
+hi link markdownH6Delimiter	markdownH1Delimiter
+hi link markdownOrderedListMarker	Define
+hi link markdownListMarker		Define
+hi markdownCodeBlock		guifg=#a0a0a0
+hi link markdownCode		markdownCodeBlock
+
+"                                rst
+" =============================================================================
+hi rstDirective			guifg=#d97f26
+hi link rstSections		markdownH1
+hi link rstLiteralBlock		markdownCodeBlock
+hi link rstHyperlinkTarget	Type
+hi link rstInLineLiteral	markdownCodeBlock
+
+"                                Dockerfile
+" =============================================================================
+hi link dockerfileKeyword	Type
+
+"                                 Groovy
+" =============================================================================
+hi groovyELExpr		guifg=#11d116
+hi groovyParenT		guifg=#11d116
+hi groovyExternal	guifg=#A0A0A0
+hi link groovyUserLabel	Define
+hi link groovyStatement	Type
+hi link groovyConditional	cConditional
+
+"                                 Debian
+" =============================================================================
+hi link debcontrolKey	Define
