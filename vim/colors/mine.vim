@@ -374,3 +374,10 @@ hi link groovyConditional	cConditional
 "                                 Debian
 " =============================================================================
 hi link debcontrolKey	Define
+
+"                                 ZSH
+" =============================================================================
+hi link zshCommands		Type
+hi link zshOptStart		Type
+hi link zshDeref		diffAdded
+hi link zshOption		cPreProc

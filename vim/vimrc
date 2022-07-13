@@ -94,6 +94,10 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cs'] = ''
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:DevIconsDefaultFolderOpenSymbol=''
 let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol=''
+"                                  Airline
+" =============================================================================
+"
+let g:airline_theme='base16_flat'
 
 "                                  NERDTree
 " =============================================================================
@@ -224,6 +228,10 @@ call minpac#add('neovim/nvim-lspconfig')
 call minpac#add('vim-scripts/a.vim')
 call minpac#add('vim-scripts/a.vim')
 call minpac#add('editorconfig/editorconfig-vim')
+call minpac#add('vim-airline/vim-airline')
+call minpac#add('vim-airline/vim-airline-themes')
+call minpac#add('edkolev/tmuxline.vim')
+
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
 
