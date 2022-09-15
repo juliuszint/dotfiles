@@ -29,6 +29,8 @@ set shm+=I
 set cinoptions=N-s,g0
 set title
 set list
+set fillchars+=diff:\ 
+set diffopt=internal,filler,closeoff
 if !has('nvim')
 	set noesckeys
 endif
