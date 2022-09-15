@@ -206,6 +206,23 @@ let g:alternateNoDefaultAlternate=1
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 au FileType gitcommit let b:EditorConfig_disable = 1
 
+"                                NeoTerm
+" =============================================================================
+"
+let g:neoterm_automap_keys='<space>tt'
+
+"                                TmuxLine
+" =============================================================================
+"
+let g:tmuxline_preset = 'mine'
+
+let g:tmuxline_separators = {
+    \ 'left' : '',
+    \ 'left_alt': '',
+    \ 'right' : '',
+    \ 'right_alt' : '',
+    \ 'space' : ' '}
+
 "                                   minPack
 " =============================================================================
 "
