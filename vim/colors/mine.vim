@@ -13,23 +13,33 @@ hi CursorLine		guifg=none	guibg=#212121	gui=none cterm=none term=none
 hi CursorLineNr		guifg=#ffffff	cterm=none	term=none
 hi Pmenu		guifg=none	guibg=#5e5e5e
 hi PmenuSel		guifg=none	guibg=#0071CC
-hi Normal		guifg=#ffffff	guibg=#232627
+hi Normal		guifg=#ffffff	guibg=#181818
+hi SignColumn		guifg=NONE	guibg=#181818
+hi FoldColumn 		guifg=#ffffff	guibg=#181818
 hi LineNr		guifg=#555555
 hi Visual		guifg=none	guibg=#264f78
 hi Cursor		guifg=#FFFFFF	guibg=#ff2a62
-hi VertSplit		guifg=#232627	guibg=#111111
+hi VertSplit		guifg=#181818	guibg=#333333
 hi Note			guifg=none	guibg=#00ff00
 hi StatusLine		guifg=#ffffff	guibg=#333333	gui=bold cterm=bold term=bold
 hi StatusLineNC		guifg=none	guibg=#1F1F1F	gui=none cterm=none term=none
 hi ColorColumn		guifg=none	guibg=#333333
 hi NonText		guifg=#404040	guibg=none
 hi SpecialKey		guifg=#7f8c98
-hi SignColumn		guibg=#232627
 hi iCursor		guifg=#ffffff	guibg=#11d116
 hi nCursor		guifg=#ffffff	guibg=#ffb846
 hi TODO			guifg=none	guibg=none
 hi link MatchParen	Search
 hi link IncSearch	Search
+hi TabLineFill		guifg=#34495e	guibg=#34495e
+hi TabLine		guifg=#ffffff	guibg=#34495e	gui=none	cterm=none
+hi TabLineSel		guifg=#ffffff	guibg=#587da1	gui=none	cterm=none
+hi Title		guifg=#ffffff	guibg=none
+
+hi DiffAdd		guifg=NONE	guibg=#13370b
+hi DiffDelete		guifg=NONE	guibg=#481010
+hi DiffChange		guifg=NONE	guibg=#222a39
+hi DiffText		guifg=NONE	guibg=#2f3f5c
 
 "                               Generic Language
 " =============================================================================
@@ -154,11 +164,11 @@ hi rustEnum			guifg=#769acb
 hi rustCommentLineDoc		guifg=#8d8d8b
 hi rustEnumVariant		guifg=#ee6868
 hi rustLifetime			guifg=#d97f26
+hi rustAttribute		guifg=#ee6868
+hi link rustDeriveTrait		rustAttribute
+hi link rustDerive		rustAttribute
 hi link rustMacro		Define
 hi link rustString		String
-hi link rustAttribute		Default
-hi link rustDerive		Default
-hi link rustDeriveTrait		Default
 hi link rustQuestionMark	rustLifetime
 hi link rustEscape		rustLifetime
 hi link rustCharacter		String
@@ -280,6 +290,7 @@ hi link cmakeCommandRepeat	cConditional
 hi diffRemoved			guifg=#ed1515	guibg=none
 hi diffAdded			guifg=#11d116	guibg=none
 hi diffLine			guifg=#1abc9c	guibg=none
+
 hi gitconfigSection		guifg=#fc5e56
 hi gitcommitFirstLine		guifg=#fc6f65
 hi gitcommitSelectedFile	guifg=#11d116
@@ -364,10 +375,10 @@ hi link dockerfileKeyword	Type
 
 "                                 Groovy
 " =============================================================================
-hi groovyELExpr		guifg=#11d116
+hi groovyELExpr		guifg=#d97f26
 hi groovyParenT		guifg=#11d116
 hi groovyExternal	guifg=#A0A0A0
-hi link groovyUserLabel	Define
+hi groovyUserLabel	guifg=#9cdcfe
 hi link groovyStatement	Type
 hi link groovyConditional	cConditional
 
@@ -381,3 +392,15 @@ hi link zshCommands		Type
 hi link zshOptStart		Type
 hi link zshDeref		diffAdded
 hi link zshOption		cPreProc
+
+"                                 YAML
+" =============================================================================
+hi yamlComment			guifg=#969696
+hi yamlBlockMappingKey		guifg=#88a8c1
+hi yamlPlainScalar		guifg=#b5bd68
+hi yamlBool			guifg=#cc6666
+hi yamlInteger			guifg=#de945f
+hi link yamlAnchor		Normal
+hi link yamlKeyValueDelimiter	Normal
+hi link yamlFlowString		yamlPlainScalar
+hi link yamlFlowStringDelimiter	yamlPlainScalar
