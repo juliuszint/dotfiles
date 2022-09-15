@@ -231,6 +231,7 @@ call minpac#add('editorconfig/editorconfig-vim')
 call minpac#add('vim-airline/vim-airline')
 call minpac#add('vim-airline/vim-airline-themes')
 call minpac#add('edkolev/tmuxline.vim')
+call minpac#add('ntpeters/vim-better-whitespace')
 
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
