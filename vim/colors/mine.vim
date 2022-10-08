@@ -412,19 +412,15 @@ hi link luaTable		Default
 
 "                                 nvim-cmp
 " =============================================================================
-" gray
-highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
-" blue
-highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
-highlight! link CmpItemAbbrMatchFuzzy CmpItemAbbrMatch
-" light blue
-highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
-highlight! link CmpItemKindInterface CmpItemKindVariable
-highlight! link CmpItemKindText CmpItemKindVariable
-" pink
-highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
-highlight! link CmpItemKindMethod CmpItemKindFunction
-" front
-highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
-highlight! link CmpItemKindProperty CmpItemKindKeyword
-highlight! link CmpItemKindUnit CmpItemKindKeyword
+hi! CmpItemAbbrDeprecated	guibg=NONE	gui=strikethrough	guifg=#808080
+hi! CmpItemAbbrMatch		guibg=NONE	guifg=#569CD6
+hi! link CmpItemAbbrMatchFuzzy	CmpItemAbbrMatch
+hi! CmpItemKindVariable		guibg=NONE	guifg=#9CDCFE
+hi! link CmpItemKindInterface	CmpItemKindVariable
+hi! link CmpItemKindText	CmpItemKindVariable
+hi! CmpItemKindFunction		guibg=NONE	guifg=#C586C0
+hi! link CmpItemKindMethod	CmpItemKindFunction
+hi! CmpItemKindKeyword		guibg=NONE	guifg=#D4D4D4
+hi! link CmpItemKindProperty	CmpItemKindKeyword
+hi! link CmpItemKindUnit	CmpItemKindKeyword
+hi! CmpGhostText		guibg=NONE	guifg=#808080
