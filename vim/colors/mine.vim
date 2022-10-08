@@ -11,15 +11,16 @@ hi Default		guifg=#ffffff	guibg=none
 hi Search		guifg=#000000	guibg=#fffb04
 hi CursorLine		guifg=none	guibg=#212121	gui=none cterm=none term=none
 hi CursorLineNr		guifg=#ffffff	cterm=none	term=none
-hi Pmenu		guifg=none	guibg=#5e5e5e
+hi Pmenu		guifg=none	guibg=#2D2D30
 hi PmenuSel		guifg=none	guibg=#0071CC
-hi Normal		guifg=#ffffff	guibg=#181818
-hi SignColumn		guifg=NONE	guibg=#181818
-hi FoldColumn 		guifg=#ffffff	guibg=#181818
+hi Normal		guifg=#ffffff	guibg=#1E1E1E
+hi Normal		guifg=#ffffff	guibg=#1E1E1E
+hi SignColumn		guifg=NONE	guibg=#1E1E1E
+hi FoldColumn 		guifg=#ffffff	guibg=#1E1E1E
 hi LineNr		guifg=#555555
 hi Visual		guifg=none	guibg=#264f78
 hi Cursor		guifg=#FFFFFF	guibg=#ff2a62
-hi VertSplit		guifg=#181818	guibg=#333333
+hi VertSplit		guifg=#2E2E2E	guibg=#1E1E1E
 hi Note			guifg=none	guibg=#00ff00
 hi StatusLine		guifg=#ffffff	guibg=#333333	gui=bold cterm=bold term=bold
 hi StatusLineNC		guifg=none	guibg=#1F1F1F	gui=none cterm=none term=none
@@ -404,3 +405,26 @@ hi link yamlAnchor		Normal
 hi link yamlKeyValueDelimiter	Normal
 hi link yamlFlowString		yamlPlainScalar
 hi link yamlFlowStringDelimiter	yamlPlainScalar
+"                                 LUA
+" =============================================================================
+hi link luaStatement		Type
+hi link luaTable		Default
+
+"                                 nvim-cmp
+" =============================================================================
+" gray
+highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
+" blue
+highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
+highlight! link CmpItemAbbrMatchFuzzy CmpItemAbbrMatch
+" light blue
+highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
+highlight! link CmpItemKindInterface CmpItemKindVariable
+highlight! link CmpItemKindText CmpItemKindVariable
+" pink
+highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
+highlight! link CmpItemKindMethod CmpItemKindFunction
+" front
+highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
+highlight! link CmpItemKindProperty CmpItemKindKeyword
+highlight! link CmpItemKindUnit CmpItemKindKeyword
