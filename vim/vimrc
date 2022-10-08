@@ -114,7 +114,7 @@ let g:NERDTreeCascadeSingleChildDir=0
 
 nmap <Space>e :e .<cr>
 
-autocmd filetype nerdtree highlight folder_icon guifg=#3daee9 guibg=NONE
+autocmd filetype nerdtree highlight folder_icon guifg=#ffa500 guibg=NONE
 autocmd filetype nerdtree highlight csharp_icon guifg=#88d184 guibg=NONE
 autocmd filetype nerdtree highlight solution_icon guifg=#d294e2 guibg=NONE
 autocmd filetype nerdtree highlight batch_icon guifg=#82aef7 guibg=NONE

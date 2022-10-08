@@ -69,6 +69,7 @@ cmp.setup.filetype('rust', {
 cmp.setup.filetype({ 'text', 'rst' }, {
   sources = cmp.config.sources({
     { name = 'buffer' },
+    { name = 'path' }
   })
 })
 
