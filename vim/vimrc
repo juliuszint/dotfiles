@@ -123,7 +123,7 @@ autocmd filetype nerdtree highlight swift_icon guifg=#fa5637 guibg=NONE
 autocmd filetype nerdtree highlight rust_icon guifg=#ff8170 guibg=NONE
 autocmd filetype nerdtree highlight cxx_header_icon guifg=#11d116 guibg=NONE
 autocmd filetype nerdtree highlight cxx_source_icon guifg=#11d116 guibg=NONE
-autocmd filetype nerdtree highlight link script_icon csClass
+autocmd filetype nerdtree highlight script_icon guifg=#ff5b5e guibg=NONE
 
 autocmd filetype nerdtree syn match script_icon /  / containedin=NERDTreeFlags
 autocmd filetype nerdtree syn match folder_icon /  / containedin=NERDTreeFlags
