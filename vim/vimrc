@@ -1,11 +1,12 @@
 "                                     VIM
 " =============================================================================
+
 set encoding=utf8
 set number
 set nowrap
 set nobackup
 set cursorline
-set nowritebackup
+"set nowritebackup
 set noswapfile
 set laststatus=2
 set clipboard=unnamedplus
@@ -231,9 +232,9 @@ call minpac#init()
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 call minpac#add('jiangmiao/auto-pairs')
 call minpac#add('junegunn/fzf.vim')
-call minpac#add('SirVer/ultisnips')
+call minpac#add('sirver/ultisnips')
 call minpac#add('scrooloose/nerdtree')
-call minpac#add('OmniSharp/omnisharp-vim')
+call minpac#add('omnisharp/omnisharp-vim')
 call minpac#add('ryanoasis/vim-devicons')
 call minpac#add('rust-lang/rust.vim')
 call minpac#add('tpope/vim-fugitive')
@@ -248,8 +249,8 @@ call minpac#add('vim-scripts/a.vim')
 call minpac#add('editorconfig/editorconfig-vim')
 call minpac#add('vim-airline/vim-airline')
 call minpac#add('vim-airline/vim-airline-themes')
-call minpac#add('edkolev/tmuxline.vim')
 call minpac#add('ntpeters/vim-better-whitespace')
+call minpac#add('edkolev/tmuxline.vim')
 
 call minpac#add('hrsh7th/nvim-cmp')
 call minpac#add('hrsh7th/cmp-path')

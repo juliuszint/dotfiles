@@ -1,2 +1,2 @@
-set colorcolumn=74
-set nolist
+setlocal colorcolumn=74
+setlocal nolist

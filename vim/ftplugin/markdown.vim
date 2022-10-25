@@ -1,3 +1,4 @@
-﻿set colorcolumn=80
-set expandtab
-set shiftwidth=4
+﻿setlocal colorcolumn=80
+setlocal expandtab
+setlocal shiftwidth=4
+setlocal textwidth=80

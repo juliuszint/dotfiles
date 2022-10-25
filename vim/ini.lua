@@ -37,7 +37,12 @@ cmp.setup({
     ['<C-e>'] = cmp.mapping.abort(),
   }),
   sources = {
-    { name = 'path' },
+    {
+      name = 'path',
+      option = {
+        trailing_slash = true
+      },
+    },
     { name = 'ultisnips' },
   }
 })
@@ -46,12 +51,17 @@ cmp.setup({
 cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
-    { name = 'path' }
+    {
+      name = 'path',
+      option = {
+        trailing_slash = true
+      },
+    },
   })
 })
 
--- Set configuration for specific lua.
-cmp.setup.filetype('lua', {
+-- Set configuration for lsp languages.
+cmp.setup.filetype({'lua', 'rust', 'python'}, {
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
@@ -68,7 +78,6 @@ cmp.setup.filetype('rust', {
 -- Set configuration for specific textfiles.
 cmp.setup.filetype({ 'text', 'rst' }, {
   sources = cmp.config.sources({
-    { name = 'buffer' },
     { name = 'path' }
   })
 })
@@ -123,4 +132,10 @@ require 'lspconfig'.sumneko_lua.setup {
       },
     },
   },
+}
+
+-- Setup python LSP
+require'lspconfig'.pyright.setup {
+  capabilities = cap_lsp,
+  on_attach = on_attach
 }
