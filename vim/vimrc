@@ -105,7 +105,7 @@ let g:airline_theme='base16_flat'
 "                                  NERDTree
 " =============================================================================
 "
-let g:NERDTreeIgnore=['.*obj$[[dir]]', '.*bin$[[dir]]']
+let g:NERDTreeIgnore=['.*obj$[[dir]]', '.*bin$[[dir]]', '__pycache__$[[dir]]']
 let g:NERDTreeHijackNetrw=1
 let g:NERDTreeDirArrowCollapsible=''
 let g:NERDTreeDirArrowExpandable=''
@@ -223,6 +223,12 @@ let g:tmuxline_separators = {
     \ 'right' : '',
     \ 'right_alt' : '',
     \ 'space' : ' '}
+
+"                                UltiSnips
+" =============================================================================
+"
+let g:UltiSnipsJumpForwardTrigger = '<c-n>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-p>'
 
 "                                   minPack
 " =============================================================================

@@ -61,7 +61,7 @@ cmp.setup.cmdline(':', {
 })
 
 -- Set configuration for lsp languages.
-cmp.setup.filetype({'lua', 'rust', 'python'}, {
+cmp.setup.filetype({'lua', 'rust', 'python', 'cpp'}, {
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },

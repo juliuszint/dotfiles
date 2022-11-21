@@ -1,3 +1,3 @@
 ﻿setlocal expandtab
-setlocal shiftwidth=2
-setlocal colorcolumn=80
+setlocal shiftwidth=4
+setlocal colorcolumn=100
