@@ -77,6 +77,34 @@ autocmd BufRead,BufNewFile *.swift set filetype=swift
 autocmd filetype cs :setlocal syntax=off
 autocmd VimEnter * :clearjumps
 
+nnoremap <silent> gf :call GotoFileLineColumn()<cr>
+
+" log.txt
+" log.txt:9
+" log.txt:3:10
+function! GotoFileLineColumn()
+	let cfile=expand("<cfile>")
+	if !filereadable(cfile)
+		echo "This does not look like a file!"
+		return
+	endif
+	let command=":e "
+	let line=getline('.')
+	let offset=stridx(line, cfile) + len(cfile)
+	let offset_col=charidx(line, offset)
+	let line_col_match = matchlist(line, '\([:@ ]\*\)\?\(\d\+\)\(\([:@ ]\+\)\(\d\+\)\?\)\?', offset_col)
+	let column=get(line_col_match, 2, '')
+	let line=get(line_col_match, 5, '0')
+	if len(column) > 0
+		if len(line) <= 0
+			let line="0"
+		endif
+		let command=command."+call\\ cursor(".column.",".line.") "
+	endif
+	let command=command.cfile."\<cr>"
+	execute "normal \<C-w>w".command
+endfunction
+
 "                                  FZF(.vim)
 " =============================================================================
 set rtp+=/usr/local/opt/fzf
