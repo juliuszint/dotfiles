@@ -153,12 +153,14 @@ autocmd filetype nerdtree highlight rust_icon guifg=#ff8170 guibg=NONE
 autocmd filetype nerdtree highlight cxx_header_icon guifg=#11d116 guibg=NONE
 autocmd filetype nerdtree highlight cxx_source_icon guifg=#11d116 guibg=NONE
 autocmd filetype nerdtree highlight script_icon guifg=#ff5b5e guibg=NONE
+autocmd filetype nerdtree highlight python_icon guifg=#4F99BA guibg=NONE
 
 autocmd filetype nerdtree syn match script_icon /  / containedin=NERDTreeFlags
 autocmd filetype nerdtree syn match folder_icon /  / containedin=NERDTreeFlags
 autocmd filetype nerdtree syn match folder_icon /  / containedin=NERDTreeFlags
 autocmd filetype nerdtree syn match vim_icon /  / containedin=NERDTreeFlags
 autocmd filetype nerdtree syn match csharp_icon /  / containedin=NERDTreeFlags
+autocmd filetype nerdtree syn match python_icon /  / containedin=NERDTreeFlags
 autocmd filetype nerdtree syn match cxx_header_icon /  / containedin=NERDTreeFlags
 autocmd filetype nerdtree syn match cxx_source_icon /  / containedin=NERDTreeFlags
 autocmd filetype nerdtree syn match swift_icon /  / containedin=NERDTreeFlags

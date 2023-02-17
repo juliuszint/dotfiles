@@ -229,8 +229,9 @@ hi qtMacro		guifg=#beb7ff
 " =============================================================================
 hi NERDTreeHelp			guifg=#555555
 hi NERDTreeExecFile		guifg=#ffffff
-hi NERDTreeCWD			guifg=#9b9b9b
-hi NERDTreeLinkFile		guifg=#beb7ff
+hi NERDTreeCWD			guifg=#5e5e5d
+hi NERDTreeLinkTarget		guifg=#5ba808
+hi link NERDTreeLinkFile	Default
 hi link NERDTreeClosable	Default
 hi link NERDTreeDir		Default
 hi link NERDTreeOpenable	Default
@@ -424,3 +425,9 @@ hi! CmpItemKindKeyword		guibg=NONE	guifg=#D4D4D4
 hi! link CmpItemKindProperty	CmpItemKindKeyword
 hi! link CmpItemKindUnit	CmpItemKindKeyword
 hi! CmpGhostText		guibg=NONE	guifg=#808080
+
+"                                 kconfig
+" =============================================================================
+hi! kconfigKeyword		guifg=#FF5F5F
+hi! link kconfigConditional	cConditional
+hi! link kconfigHelpText		Comment
