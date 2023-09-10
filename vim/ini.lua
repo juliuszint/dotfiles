@@ -23,14 +23,12 @@ cmp.setup({
      ghost_text = { hl_group = 'CmpGhostText' }
   },
   window = {
-    completion = {},
-    documentation = {}
   },
   formatting = {
-    fields = { 'kind', 'abbr', 'menu', },
-    format = require("lspkind").cmp_format({
-      with_text = false,
-    })
+    -- fields = { 'kind', 'abbr', 'menu', },
+    -- format = require("lspkind").cmp_format({
+    --   with_text = false,
+    -- })
   },
   mapping = cmp.mapping.preset.insert({
     ['<tab>'] = cmp.mapping.confirm({ select = true }),
@@ -57,6 +55,9 @@ cmp.setup.cmdline(':', {
         trailing_slash = true
       },
     },
+    {
+      name = 'cmdline',
+    },
   })
 })
 
@@ -65,6 +66,7 @@ cmp.setup.filetype({'lua', 'rust', 'python', 'cpp'}, {
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
+    { name = 'ultisnips' },
   })
 })
 
