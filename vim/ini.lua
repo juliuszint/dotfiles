@@ -144,3 +144,64 @@ require'lspconfig'.pyright.setup {
   capabilities = cap_lsp,
   on_attach = on_attach
 }
+
+ts_enabled_for = {
+  ["cpp"] = true,
+  ["python"] = true,
+  ["devicetree"] = true,
+  ["json5"] = true,
+  ["yaml"] = true,
+}
+
+require'nvim-treesitter.configs'.setup {
+  sync_install = false,
+  auto_install = false,
+  highlight = {
+    enable = true,
+
+    disable = function(lang, bufnr)
+      return not ts_enabled_for[lang]
+    end,
+
+    additional_vim_regex_highlighting = false,
+  },
+  indent = {
+    enable = true,
+    disable = function(lang, bufnr)
+      return not ts_enabled_for[lang]
+    end,
+  }
+}
+
+-- improved links for tree-sitter based syntax highlighting
+vim.api.nvim_set_hl(0, "@include", { link = "PreProc" })
+vim.api.nvim_set_hl(0, "@repeat", { link = "cConditional" })
+vim.api.nvim_set_hl(0, "@conditional", { link = "cConditional" })
+vim.api.nvim_set_hl(0, "@punctuation.delimiter", { link = "Normal" })
+vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "Normal" })
+vim.api.nvim_set_hl(0, "@keyword.operator.c", { link = "Type" })
+
+vim.api.nvim_set_hl(0, "@constant.builtin", { link = "Type" })
+vim.api.nvim_set_hl(0, "@type.builtin", { link = "csClass" })
+
+vim.api.nvim_set_hl(0, "@exception", { link = "Type" })
+vim.api.nvim_set_hl(0, "@keyword", { link = "Type" })
+vim.api.nvim_set_hl(0, "@type.python", { link = "csClass" })
+vim.api.nvim_set_hl(0, "@variable.builtin.python", { link = "Type" })
+vim.api.nvim_set_hl(0, "@constructor.python", { link = "csClass" })
+vim.api.nvim_set_hl(0, "@constructor.python", { link = "csClass" })
+
+vim.api.nvim_set_hl(0, "@type.builtin.cpp", { link = "Type" })
+vim.api.nvim_set_hl(0, "@type.cpp", { link = "csClass" })
+
+vim.api.nvim_set_hl(0, "@constant.devicetree", { link = "PreProc" })
+vim.api.nvim_set_hl(0, "@namespace.devicetree", { link = "rustAttribute" })
+vim.api.nvim_set_hl(0, "@property.devicetree", { link = "vimHiKeyList" })
+
+vim.api.nvim_set_hl(0, "@keyword.json5", { link = "vimHiKeyList" })
+
+vim.api.nvim_set_hl(0, "@field.yaml", { link = "yamlField" })
+vim.api.nvim_set_hl(0, "@string.yaml", { link = "yamlString" })
+vim.api.nvim_set_hl(0, "@number.yaml", { link = "yamlInteger" })
+vim.api.nvim_set_hl(0, "@comment.yaml", { link = "yamlComment" })
+vim.api.nvim_set_hl(0, "@boolean.yaml", { link = "yamlBool" })
