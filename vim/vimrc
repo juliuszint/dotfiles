@@ -18,7 +18,7 @@ set incsearch
 set hlsearch
 set autoindent
 set secure
-set bomb
+set nobomb
 set nocompatible
 set termguicolors
 set completeopt=menu,menuone,noselect
@@ -260,6 +260,11 @@ let g:tmuxline_separators = {
 "
 let g:UltiSnipsJumpForwardTrigger = '<c-n>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-p>'
+
+"                                better-whitespace
+" =============================================================================
+"
+let g:better_whitespace_filetypes_blacklist = [ 'eml', 'mail', 'gitsendemail' ]
 
 "                                   minPack
 " =============================================================================
