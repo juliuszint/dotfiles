@@ -9,18 +9,17 @@ let g:colors_name = "mine"
 " =============================================================================
 hi Default		guifg=#ffffff	guibg=none
 hi Search		guifg=#000000	guibg=#fffb04
-hi CursorLine		guifg=none	guibg=#212121	gui=none cterm=none term=none
+hi CursorLine		guifg=none	guibg=#131313	gui=none cterm=none term=none
 hi CursorLineNr		guifg=#ffffff	cterm=none	term=none
 hi Pmenu		guifg=none	guibg=#2D2D30
 hi PmenuSel		guifg=none	guibg=#0071CC
-hi Normal		guifg=#ffffff	guibg=#1E1E1E
-hi Normal		guifg=#ffffff	guibg=#1E1E1E
-hi SignColumn		guifg=NONE	guibg=#1E1E1E
-hi FoldColumn 		guifg=#ffffff	guibg=#1E1E1E
+hi Normal		guifg=#ffffff	guibg=#101010
+hi SignColumn		guifg=NONE	guibg=#101010
+hi FoldColumn 		guifg=#ffffff	guibg=#101010
 hi LineNr		guifg=#555555
 hi Visual		guifg=none	guibg=#264f78
 hi Cursor		guifg=#FFFFFF	guibg=#ff2a62
-hi VertSplit		guifg=#2E2E2E	guibg=#1E1E1E
+hi VertSplit		guifg=#2E2E2E	guibg=#101010
 hi Note			guifg=none	guibg=#00ff00
 hi StatusLine		guifg=#ffffff	guibg=#333333	gui=bold cterm=bold term=bold
 hi StatusLineNC		guifg=none	guibg=#1F1F1F	gui=none cterm=none term=none
@@ -49,7 +48,7 @@ hi Type			guifg=#569cd6 gui=none
 hi Number		guifg=#b5cea8
 hi Constant		guifg=#ff7ab2
 hi Comment		guifg=#57a64a
-hi Define		guifg=#ffa14f
+hi! Define		guifg=#d97f26
 hi Identifier		guifg=none guibg=none ctermfg=none ctermbg=none cterm=none
 hi PreProc		guifg=#d97f26
 hi link Include		Default
@@ -154,10 +153,6 @@ hi swiftDecimal			guifg=#a79df7 guibg=none gui=italic
 hi link swiftType		Default
 hi link swiftLineComment	swiftComment
 
-"                                  Json
-" =============================================================================
-hi jsonKeyword		guifg=#d7ba7d
-
 "                                  Rust
 " =============================================================================
 hi rustKeyword			guifg=#ab8ac1
@@ -165,7 +160,7 @@ hi rustEnum			guifg=#769acb
 hi rustCommentLineDoc		guifg=#8d8d8b
 hi rustEnumVariant		guifg=#ee6868
 hi rustLifetime			guifg=#d97f26
-hi rustAttribute		guifg=#ee6868
+hi rustAttribute		guifg=#eb5e5e
 hi link rustDeriveTrait		rustAttribute
 hi link rustDerive		rustAttribute
 hi link rustMacro		Define
@@ -229,11 +224,11 @@ hi qtMacro		guifg=#beb7ff
 " =============================================================================
 hi NERDTreeHelp			guifg=#555555
 hi NERDTreeExecFile		guifg=#ffffff
-hi NERDTreeCWD			guifg=#5e5e5d
-hi NERDTreeLinkTarget		guifg=#5ba808
+hi! NERDTreeCWD		guifg=#41a2f1
+hi NERDTreeLinkTarget		guifg=#101010
+hi! NERDTreeDir		        guifg=#99ca2a
 hi link NERDTreeLinkFile	Default
 hi link NERDTreeClosable	Default
-hi link NERDTreeDir		Default
 hi link NERDTreeOpenable	Default
 hi link NERDTreeUp		NERDTreeHelp
 hi link NERDTreeFlags		Default
@@ -400,8 +395,10 @@ hi link zshOption		cPreProc
 hi yamlComment			guifg=#969696
 hi yamlBlockMappingKey		guifg=#88a8c1
 hi yamlPlainScalar		guifg=#b5bd68
-hi yamlBool			guifg=#cc6666
+hi yamlBool			guifg=#b294bb
 hi yamlInteger			guifg=#de945f
+hi yamlField			guifg=#81a2be
+hi yamlString			guifg=#b5bd68
 hi link yamlAnchor		Normal
 hi link yamlKeyValueDelimiter	Normal
 hi link yamlFlowString		yamlPlainScalar
@@ -431,3 +428,12 @@ hi! CmpGhostText		guibg=NONE	guifg=#808080
 hi! kconfigKeyword		guifg=#FF5F5F
 hi! link kconfigConditional	cConditional
 hi! link kconfigHelpText		Comment
+
+"                               json(5)
+" =============================================================================
+hi! link jsonBraces		Normal
+hi! link json5Braces		Normal
+hi! link jsonDelimiter		Normal
+hi! link json5Delimiter		Normal
+hi! link json5Key		jsonKeyword
+hi! link jsonKeyword		vimHiKeyList
