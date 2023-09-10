@@ -141,32 +141,29 @@ let g:NERDTreeCreatePrefix='silent keepalt keepjumps'
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeCascadeSingleChildDir=0
 
+autocmd FileType nerdtree syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
+
 nmap <Space>e :e .<cr>
 
-autocmd filetype nerdtree highlight folder_icon guifg=#ffa500 guibg=NONE
-autocmd filetype nerdtree highlight csharp_icon guifg=#88d184 guibg=NONE
-autocmd filetype nerdtree highlight solution_icon guifg=#d294e2 guibg=NONE
-autocmd filetype nerdtree highlight batch_icon guifg=#82aef7 guibg=NONE
-autocmd filetype nerdtree highlight vim_icon guifg=#6ed65f guibg=NONE
-autocmd filetype nerdtree highlight swift_icon guifg=#fa5637 guibg=NONE
-autocmd filetype nerdtree highlight rust_icon guifg=#ff8170 guibg=NONE
-autocmd filetype nerdtree highlight cxx_header_icon guifg=#11d116 guibg=NONE
-autocmd filetype nerdtree highlight cxx_source_icon guifg=#11d116 guibg=NONE
-autocmd filetype nerdtree highlight script_icon guifg=#ff5b5e guibg=NONE
-autocmd filetype nerdtree highlight python_icon guifg=#4F99BA guibg=NONE
+" NERDTrees File highlighting
+function! NERDTreeHighlightSymbol(symbol, highlight, guifg)
+   exec 'autocmd FileType nerdtree highlight ' . a:highlight .' guifg='. a:guifg
+   exec 'autocmd FileType nerdtree syn match ' . a:highlight .' /'. a:symbol .'/ containedin=NERDTreeFlags'
+endfunction
 
-autocmd filetype nerdtree syn match script_icon /  / containedin=NERDTreeFlags
-autocmd filetype nerdtree syn match folder_icon /  / containedin=NERDTreeFlags
-autocmd filetype nerdtree syn match folder_icon /  / containedin=NERDTreeFlags
-autocmd filetype nerdtree syn match vim_icon /  / containedin=NERDTreeFlags
-autocmd filetype nerdtree syn match csharp_icon /  / containedin=NERDTreeFlags
-autocmd filetype nerdtree syn match python_icon /  / containedin=NERDTreeFlags
-autocmd filetype nerdtree syn match cxx_header_icon /  / containedin=NERDTreeFlags
-autocmd filetype nerdtree syn match cxx_source_icon /  / containedin=NERDTreeFlags
-autocmd filetype nerdtree syn match swift_icon /  / containedin=NERDTreeFlags
-autocmd filetype nerdtree syn match solution_icon /  / containedin=NERDTreeFlags
-autocmd filetype nerdtree syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
-autocmd filetype nerdtree syn match rust_icon /  / containedin=NERDTreeFlags
+
+call NERDTreeHighlightSymbol('  ', 'folder_icon_open', '#41a2f1')
+call NERDTreeHighlightSymbol('  ', 'folder_icon_close', '#41a2f1')
+call NERDTreeHighlightSymbol('  ', 'script_icon', '#834f79')
+call NERDTreeHighlightSymbol('  ', 'python_icon', '#f09f17')
+call NERDTreeHighlightSymbol('  ', 'json_icon', '#f5c06f')
+call NERDTreeHighlightSymbol('  ', 'cxx_source_icon', '#689fb6')
+call NERDTreeHighlightSymbol('  ', 'cxx_header_icon', '#ae403f')
+call NERDTreeHighlightSymbol('  ', 'vim_icon', '#8faa54')
+call NERDTreeHighlightSymbol('  ', 'rust_icon', '#f16526')
+call NERDTreeHighlightSymbol('  ', 'solution_icon', '#d294e2')
+call NERDTreeHighlightSymbol('  ', 'csharp_icon', '#88d184')
+
 "                                 Omnisharp
 " =============================================================================
 "
