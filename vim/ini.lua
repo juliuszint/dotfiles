@@ -112,6 +112,11 @@ require 'lspconfig'.rust_analyzer.setup {
   on_attach = on_attach
 }
 
+require'lspconfig'.clangd.setup {
+  capabilities = cap_lsp,
+  on_attach = on_attach
+}
+
 -- Setup lua LSP
 require 'lspconfig'.lua_ls.setup {
   on_attach = on_attach,
