@@ -32,6 +32,10 @@ set title
 set list
 set fillchars+=diff:\ 
 set diffopt=internal,filler,closeoff
+set mouse=
+set nofixendofline
+set expandtab
+set shiftwidth=4
 if !has('nvim')
 	set noesckeys
 endif
