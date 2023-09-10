@@ -132,7 +132,7 @@ let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol=''
 "                                  Airline
 " =============================================================================
 "
-let g:airline_theme='base16_flat'
+let g:airline_theme='google_dark'
 
 "                                  NERDTree
 " =============================================================================
@@ -246,7 +246,7 @@ let g:neoterm_automap_keys='<space>tt'
 "                                TmuxLine
 " =============================================================================
 "
-let g:tmuxline_preset = 'mine'
+"let g:tmuxline_preset = 'mine'
 
 let g:tmuxline_separators = {
     \ 'left' : '',
