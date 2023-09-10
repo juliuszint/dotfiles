@@ -437,3 +437,10 @@ hi! link jsonDelimiter		Normal
 hi! link json5Delimiter		Normal
 hi! link json5Key		jsonKeyword
 hi! link jsonKeyword		vimHiKeyList
+
+"                               mail
+" =============================================================================
+"
+hi! mailQuoted1		guifg=#2ECC71
+hi! mailQuoted2		guifg=#3498DB
+hi! mailQutoed3		guifg=#9B59B6
