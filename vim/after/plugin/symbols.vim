@@ -31,7 +31,7 @@ command! CppTypes :call fzf#vim#grep(s:rg_cpp_type_command, 1, copy(s:fzf_option
 " C Symbols (functions, structs, enums)
 "
 let s:rg_c_type_options='--replace ''\$2'' -e ''(enum|struct)\s+(\w{4,})[\s{]*$'''
-let s:rg_c_function_options='--pcre2 --replace ''\$2'' -e ''(^|\w+(?<!return)\s+)(\w{3,})\('''
+let s:rg_c_function_options='--pcre2 --replace ''\$2'' -e ''(^|\w+(?<!return)\s+)\*?(\w{3,})\('''
 let s:rg_c_type_command_escaped='rg ' . s:rg_common_options . s:rg_c_type_options
 let s:rg_c_function_command_escaped='rg ' . s:rg_common_options . s:rg_c_function_options
 
