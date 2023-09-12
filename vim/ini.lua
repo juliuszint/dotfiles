@@ -147,12 +147,15 @@ require('lspconfig')['pyright'].setup {
   on_attach = on_attach
 }
 
+-- Setup nvim-treesitter configuration
 ts_enabled_for = {
   ["cpp"] = true,
   ["python"] = true,
-  ["devicetree"] = true,
+  ["devicetree" ] = true,
   ["json5"] = true,
+  ["json"] = true,
   ["yaml"] = true,
+  ["xml"] = true,
 }
 
 require'nvim-treesitter.configs'.setup {
@@ -175,7 +178,6 @@ require'nvim-treesitter.configs'.setup {
   }
 }
 
--- improved links for tree-sitter based syntax highlighting
 vim.api.nvim_set_hl(0, "@include", { link = "PreProc" })
 vim.api.nvim_set_hl(0, "@repeat", { link = "cConditional" })
 vim.api.nvim_set_hl(0, "@conditional", { link = "cConditional" })
@@ -199,11 +201,26 @@ vim.api.nvim_set_hl(0, "@type.cpp", { link = "csClass" })
 vim.api.nvim_set_hl(0, "@constant.devicetree", { link = "PreProc" })
 vim.api.nvim_set_hl(0, "@namespace.devicetree", { link = "rustAttribute" })
 vim.api.nvim_set_hl(0, "@property.devicetree", { link = "vimHiKeyList" })
+vim.api.nvim_set_hl(0, "@label.devicetree", { link = "PreProc" })
 
-vim.api.nvim_set_hl(0, "@keyword.json5", { link = "vimHiKeyList" })
+vim.api.nvim_set_hl(0, "@keyword.json5", { link = "yamlField" })
+vim.api.nvim_set_hl(0, "@string.json5", { link = "yamlString" })
+vim.api.nvim_set_hl(0, "@number.json5", { link = "yamlInteger" })
+vim.api.nvim_set_hl(0, "@boolean.json5", { link = "yamlBool" })
+
+vim.api.nvim_set_hl(0, "@label.json", { link = "yamlField" })
+vim.api.nvim_set_hl(0, "@string.json", { link = "yamlString" })
+vim.api.nvim_set_hl(0, "@number.json", { link = "yamlInteger" })
+vim.api.nvim_set_hl(0, "@boolean.json", { link = "yamlBool" })
 
 vim.api.nvim_set_hl(0, "@field.yaml", { link = "yamlField" })
 vim.api.nvim_set_hl(0, "@string.yaml", { link = "yamlString" })
 vim.api.nvim_set_hl(0, "@number.yaml", { link = "yamlInteger" })
 vim.api.nvim_set_hl(0, "@comment.yaml", { link = "yamlComment" })
 vim.api.nvim_set_hl(0, "@boolean.yaml", { link = "yamlBool" })
+
+vim.api.nvim_set_hl(0, "@tag.xml", { link = "yamlField" })
+vim.api.nvim_set_hl(0, "@string.xml", { link = "yamlString" })
+vim.api.nvim_set_hl(0, "@constant.xml", { link = "rustAttribute" })
+vim.api.nvim_set_hl(0, "@tag.attribute.xml", { link = "yamlInteger" })
+vim.api.nvim_set_hl(0, "@tag.delimiter.xml", { link = "yamlField" })
