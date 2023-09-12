@@ -11,6 +11,7 @@ lspSymbol('Hint', '')
 
 -- Set up nvim-cmp.
 local cmp = require 'cmp'
+local types = require('cmp.types')
 
 -- `/` global setup.
 cmp.setup({
@@ -25,10 +26,13 @@ cmp.setup({
   window = {
   },
   formatting = {
-    -- fields = { 'kind', 'abbr', 'menu', },
-    -- format = require("lspkind").cmp_format({
-    --   with_text = false,
-    -- })
+    fields = { 'kind', 'abbr', 'menu', },
+    format = require("lspkind").cmp_format({
+      with_text = false,
+    })
+  },
+  completion = {
+    autocomplete = false,
   },
   mapping = cmp.mapping.preset.insert({
     ['<tab>'] = cmp.mapping.confirm({ select = true }),
@@ -42,11 +46,17 @@ cmp.setup({
       },
     },
     { name = 'ultisnips' },
+    { name = 'buffer' }
   }
 })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
+  completion = {
+    autocomplete = {
+      types.cmp.TriggerEvent.TextChanged,
+    },
+  },
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
     {
@@ -63,6 +73,14 @@ cmp.setup.cmdline(':', {
 
 -- Set configuration for lsp languages.
 cmp.setup.filetype({'lua', 'rust', 'python', 'cpp'}, {
+  autocomplete = {
+    types.cmp.TriggerEvent.TextChanged,
+  },
+  completion = {
+    autocomplete = {
+      types.cmp.TriggerEvent.TextChanged,
+    },
+  },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
@@ -70,24 +88,8 @@ cmp.setup.filetype({'lua', 'rust', 'python', 'cpp'}, {
   })
 })
 
--- Set configuration for specific rust.
-cmp.setup.filetype('rust', {
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-  })
-})
-
--- Set configuration for specific textfiles.
-cmp.setup.filetype({ 'text', 'rst' }, {
-  sources = cmp.config.sources({
-    { name = 'path' }
-  })
-})
-
 -- LSP configuration
 local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
