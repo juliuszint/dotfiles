@@ -156,6 +156,8 @@ ts_enabled_for = {
   ["json"] = true,
   ["yaml"] = true,
   ["xml"] = true,
+  ["rst"] = true,
+  ["cmake"] = true,
 }
 
 require'nvim-treesitter.configs'.setup {
@@ -224,3 +226,9 @@ vim.api.nvim_set_hl(0, "@string.xml", { link = "yamlString" })
 vim.api.nvim_set_hl(0, "@constant.xml", { link = "rustAttribute" })
 vim.api.nvim_set_hl(0, "@tag.attribute.xml", { link = "yamlInteger" })
 vim.api.nvim_set_hl(0, "@tag.delimiter.xml", { link = "yamlField" })
+
+vim.api.nvim_set_hl(0, "@punctuation.special.rst", { link = "rustAttribute" })
+vim.api.nvim_set_hl(0, "@text.literal.rst", { link = "markdownCodeBlock" })
+vim.api.nvim_set_hl(0, "@text.title.rst", { link = "Comment" })
+
+vim.api.nvim_set_hl(0, "@variable.cmake", { link = "rustAttribute" })
