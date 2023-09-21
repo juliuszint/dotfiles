@@ -107,7 +107,7 @@ hi link csStruct	csClass
 
 "                                 Vim-Quickfix
 " =============================================================================
-hi qfFileName		guifg=#fc6f65
+hi qfFileName		guifg=#41ad5e
 hi qfLineNr		guifg=#9cdcfe
 hi qfSeparator		guifg=#9cdcfe
 hi qfMsbuildCsError	guifg=#ff5b5e
@@ -224,7 +224,7 @@ hi qtMacro		guifg=#beb7ff
 " =============================================================================
 hi NERDTreeHelp			guifg=#555555
 hi NERDTreeExecFile		guifg=#ffffff
-hi! NERDTreeCWD		guifg=#41a2f1
+hi! NERDTreeCWD		        guifg=#41a2f1
 hi NERDTreeLinkTarget		guifg=#101010
 hi! NERDTreeDir		        guifg=#99ca2a
 hi link NERDTreeLinkFile	Default
