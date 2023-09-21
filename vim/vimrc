@@ -51,12 +51,11 @@ nmap <C-s> :w<cr>
 nmap <Space>s :w<cr>
 nmap go <C-o>
 nmap gnh :noh<cr>
-map <C-n> :cn<cr>
-map <C-p> :cp<cr>
+nmap <C-n> :cn<cr>
+nmap <C-p> :cp<cr>
 vnoremap <Tab> > gv
 vnoremap <S-Tab> < gv
 imap <C-s> <esc>:w<cr>
-inoremap <C-o> <C-x><C-o>
 
 nnoremap gj <C-w>j
 nnoremap gk <C-w>k
@@ -116,6 +115,7 @@ nmap <Space>h :History:<cr>
 nmap <Space>c :Commands<cr>
 nmap <Space>b :Buffers<cr>
 nmap <Space>f :Files<cr>
+nmap <Space>j :Jumps<cr>
 
 if has('nvim')
 	autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
