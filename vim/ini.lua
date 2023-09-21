@@ -4,10 +4,10 @@ local function lspSymbol(name, icon)
   )
 end
 
-lspSymbol('Error', '')
-lspSymbol('Warn', '')
-lspSymbol('Info', '')
-lspSymbol('Hint', '')
+lspSymbol('Error', '')
+lspSymbol('Warn', '')
+lspSymbol('Info', '')
+lspSymbol('Hint', '')
 
 -- Set up nvim-cmp.
 local cmp = require 'cmp'

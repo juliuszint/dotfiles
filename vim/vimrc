@@ -139,8 +139,8 @@ let g:airline_theme='google_dark'
 "
 let g:NERDTreeIgnore=['.*obj$[[dir]]', '.*bin$[[dir]]', '__pycache__$[[dir]]']
 let g:NERDTreeHijackNetrw=1
-let g:NERDTreeDirArrowCollapsible=''
-let g:NERDTreeDirArrowExpandable=''
+let g:NERDTreeDirArrowCollapsible=''
+let g:NERDTreeDirArrowExpandable=''
 let g:NERDTreeCreatePrefix='silent keepalt keepjumps'
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeCascadeSingleChildDir=0
@@ -166,7 +166,7 @@ call NERDTreeHighlightSymbol('  ', 'cxx_header_icon', '#ae403f')
 call NERDTreeHighlightSymbol('  ', 'vim_icon', '#8faa54')
 call NERDTreeHighlightSymbol('  ', 'rust_icon', '#f16526')
 call NERDTreeHighlightSymbol('  ', 'solution_icon', '#d294e2')
-call NERDTreeHighlightSymbol('  ', 'csharp_icon', '#88d184')
+call NERDTreeHighlightSymbol(' 󰌛 ', 'csharp_icon', '#88d184')
 
 "                                 Omnisharp
 " =============================================================================
