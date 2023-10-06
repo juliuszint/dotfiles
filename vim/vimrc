@@ -168,45 +168,6 @@ call NERDTreeHighlightSymbol('  ', 'rust_icon', '#f16526')
 call NERDTreeHighlightSymbol('  ', 'solution_icon', '#d294e2')
 call NERDTreeHighlightSymbol(' 󰌛 ', 'csharp_icon', '#88d184')
 
-"                                 Omnisharp
-" =============================================================================
-"
-let g:OmniSharp_highlighting = 1
-let g:OmniSharp_server_stdio = 1
-let g:OmniSharp_highlight_debug = 0
-let g:OmniSharp_diagnostic_showid = 0
-let g:OmniSharp_loglevel = 'none'
-let g:OmniSharp_want_snippet = 1
-let g:OmniSharp_highlight_groups = {
-\ 'csString': ['string', "string - verbatim"],
-\ 'csClass': ['class name'],
-\ 'csDelegateName': ['delegate name'],
-\ 'csKeyword': ['keyword', 'keyword - control'],
-\ 'csComment': [
-    \ 'comment',
-    \ 'xml doc comment - text',
-    \ 'xml doc comment - name',
-    \ 'xml doc comment - delimiter'
-    \ ],
-\ 'csStruct': ['struct name'],
-\ 'csInterface': ['interface name'],
-\ 'csNumber': ['number'],
-\ 'csEnum': ['enum name'],
-\ 'csEnumMemberName': ['enum member name'],
-\ 'csPreprocessor' : [ 'preprocessor keyword', 'preprocessor text' ],
-\ 'csTypeParamName': ['type parameter name'],
-\ 'csExcludedCode': ['excluded code'],
-\}
-let g:OmniSharp_popup_options = {
-\ 'highlight': 'Normal',
-\ 'padding': [1, 2, 1, 2],
-\ 'border': [1, 1, 1, 1],
-\ 'borderchars': ['─', '│', '─', '│', '╭', '╮', '╯', '╰' ]
-\}
-
-nmap <C-q> :OmniSharpGetCodeActions<cr>
-nmap gd :OmniSharpGotoDefinition<cr>
-
 "                                  AutoPairs
 " =============================================================================
 let g:AutoPairsShortcutToggle=''
@@ -276,7 +237,6 @@ call minpac#add('jiangmiao/auto-pairs')
 call minpac#add('junegunn/fzf.vim')
 call minpac#add('sirver/ultisnips')
 call minpac#add('scrooloose/nerdtree')
-call minpac#add('omnisharp/omnisharp-vim')
 call minpac#add('ryanoasis/vim-devicons')
 call minpac#add('rust-lang/rust.vim')
 call minpac#add('tpope/vim-fugitive')
