@@ -31,7 +31,7 @@ set cinoptions=N-s,g0
 set title
 set list
 set fillchars+=diff:\ 
-set diffopt=internal,filler,closeoff
+set diffopt+=algorithm:histogram,indent-heuristic
 set mouse=
 set nofixendofline
 set expandtab
