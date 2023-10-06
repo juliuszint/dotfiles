@@ -24,7 +24,7 @@ set termguicolors
 set completeopt=menu,menuone,noselect
 set belloff=all
 set nolist
-set listchars=tab:»·
+set listchars=tab:»\ 
 set history=5000
 set shm+=I
 set cinoptions=N-s,g0
@@ -55,6 +55,7 @@ nmap <C-n> :cn<cr>
 nmap <C-p> :cp<cr>
 vnoremap <Tab> > gv
 vnoremap <S-Tab> < gv
+vnoremap p "_dP
 imap <C-s> <esc>:w<cr>
 
 nnoremap gj <C-w>j
@@ -125,7 +126,7 @@ endif
 let WebDevIconsUnicodeDecorateFolderNodesExactMatches = 0
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cs'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cs'] = '󰌛'
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:DevIconsDefaultFolderOpenSymbol=''
 let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol=''

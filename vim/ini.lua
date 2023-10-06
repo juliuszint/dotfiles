@@ -60,12 +60,6 @@ cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
     {
-      name = 'path',
-      option = {
-        trailing_slash = true
-      },
-    },
-    {
       name = 'cmdline',
     },
   })
@@ -109,7 +103,7 @@ end
 
 local cap_lsp = require 'cmp_nvim_lsp'.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
--- Setup lua LSP
+-- LSP config
 require 'lspconfig'.rust_analyzer.setup {
   capabilities = cap_lsp,
   on_attach = on_attach
@@ -120,7 +114,6 @@ require'lspconfig'.clangd.setup {
   on_attach = on_attach
 }
 
--- Setup lua LSP
 require 'lspconfig'.lua_ls.setup {
   on_attach = on_attach,
   capabilities = cap_lsp,
@@ -142,7 +135,6 @@ require 'lspconfig'.lua_ls.setup {
   },
 }
 
--- Setup python LSP
 require('lspconfig')['pyright'].setup {
   capabilities = cap_lsp,
   on_attach = on_attach
@@ -150,6 +142,7 @@ require('lspconfig')['pyright'].setup {
 
 -- Setup nvim-treesitter configuration
 ts_enabled_for = {
+  ["c"] = true,
   ["cpp"] = true,
   ["python"] = true,
   ["devicetree" ] = true,
@@ -233,3 +226,8 @@ vim.api.nvim_set_hl(0, "@text.literal.rst", { link = "markdownCodeBlock" })
 vim.api.nvim_set_hl(0, "@text.title.rst", { link = "Comment" })
 
 vim.api.nvim_set_hl(0, "@variable.cmake", { link = "rustAttribute" })
+
+vim.api.nvim_set_hl(0, "@type.c", { link = "csClass" })
+vim.api.nvim_set_hl(0, "@type.builtin.c", { link = "Type" })
+vim.api.nvim_set_hl(0, "@label.c", { link = "cConditional" })
+
