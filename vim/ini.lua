@@ -230,4 +230,5 @@ vim.api.nvim_set_hl(0, "@variable.cmake", { link = "rustAttribute" })
 vim.api.nvim_set_hl(0, "@type.c", { link = "csClass" })
 vim.api.nvim_set_hl(0, "@type.builtin.c", { link = "Type" })
 vim.api.nvim_set_hl(0, "@label.c", { link = "cConditional" })
-
+vim.api.nvim_set_hl(0, "@constant.c", { link = "rustAttribute" })
+vim.api.nvim_set_hl(0, "@character.c", { link = "String" })
