@@ -169,20 +169,6 @@ call NERDTreeHighlightSymbol('  ', 'rust_icon', '#f16526')
 call NERDTreeHighlightSymbol('  ', 'solution_icon', '#d294e2')
 call NERDTreeHighlightSymbol(' 󰌛 ', 'csharp_icon', '#88d184')
 
-"                                  AutoPairs
-" =============================================================================
-let g:AutoPairsShortcutToggle=''
-let g:AutoPairs = {
-\   '\w\zs<':'>',
-\   '(':')',
-\   '[':']',
-\   '{':'}',
-\   "'":"'",
-\   '"':'"',
-\   "`":"`",
-\}
-command! ToggleAutoPairs :call AutoPairsToggle()
-
 "                                   cursorword
 " =============================================================================
 "
@@ -234,7 +220,7 @@ let g:better_whitespace_filetypes_blacklist = [ 'eml', 'mail', 'gitsendemail' ]
 packadd minpac
 call minpac#init()
 call minpac#add('k-takata/minpac', {'type': 'opt'})
-call minpac#add('jiangmiao/auto-pairs')
+call minpac#add('windwp/nvim-autopairs')
 call minpac#add('junegunn/fzf.vim')
 call minpac#add('sirver/ultisnips')
 call minpac#add('scrooloose/nerdtree')

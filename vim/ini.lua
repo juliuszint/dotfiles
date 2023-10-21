@@ -65,6 +65,11 @@ cmp.setup.cmdline(':', {
   })
 })
 
+-- nvim-autopairs config
+require('nvim-autopairs').setup({
+  disable_in_visualblock = true,
+})
+
 -- Set configuration for lsp languages.
 cmp.setup.filetype({'lua', 'rust', 'python', 'cpp'}, {
   autocomplete = {
