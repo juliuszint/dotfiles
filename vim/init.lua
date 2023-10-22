@@ -71,60 +71,10 @@ vim.api.nvim_create_autocmd({"FileType"}, {
   callback = function() vim.keymap.set('t', '<esc>', '<esc>', { buffer = true }) end,
 })
 
-------------------
--- plugin devicons
-------------------
-vim.g.WebDevIconsUnicodeDecorateFolderNodesExactMatches = 0
-vim.g.WebDevIconsUnicodeDecorateFolderNodes = 1
-vim.g.WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = { cs = '󰌛' }
-vim.g.DevIconsEnableFoldersOpenClose = 1
-vim.g.DevIconsDefaultFolderOpenSymbol=''
-vim.g.WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol=''
-
 -----------------
 -- plugin airline
 -----------------
 vim.g.airline_theme='google_dark'
-
-------------------
--- plugin NERDTree
-------------------
-vim.g.NERDTreeHijackNetrw = 1
-vim.g.NERDTreeDirArrowCollapsible = ''
-vim.g.NERDTreeDirArrowExpandable = ''
-vim.g.NERDTreeCreatePrefix = 'silent keepalt keepjumps'
-vim.g.NERDTreeMinimalUI = 1
-vim.g.NERDTreeCascadeSingleChildDir = 0
-vim.g.NERDTreeIgnore = { '.*obj$[[dir]]', '.*bin$[[dir]]', '__pycache__$[[dir]]' }
-vim.keymap.set('n', '<Space>e', '<cmd>e .<cr>')
-
-vim.api.nvim_create_autocmd({"FileType"}, {
-  pattern = {"nerdtree"},
-  command = "syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained",
-})
-
-local function nerdTreeHighlightSymbol(symbol, highlight, guifg)
-  vim.api.nvim_create_autocmd({"FileType"}, {
-    pattern = {"nerdtree"},
-    command = string.format("highlight %s guifg=%s", highlight, guifg),
-  })
-  vim.api.nvim_create_autocmd({"FileType"}, {
-    pattern = {"nerdtree"},
-    command = string.format("syn match %s /%s/ containedin=NERDTreeFlags", highlight, symbol),
-  })
-end
-
-nerdTreeHighlightSymbol('  ', 'folder_icon_open', '#41a2f1')
-nerdTreeHighlightSymbol('  ', 'folder_icon_close', '#41a2f1')
-nerdTreeHighlightSymbol('  ', 'script_icon', '#834f79')
-nerdTreeHighlightSymbol('  ', 'python_icon', '#f09f17')
-nerdTreeHighlightSymbol('  ', 'json_icon', '#f5c06f')
-nerdTreeHighlightSymbol('  ', 'cxx_source_icon', '#689fb6')
-nerdTreeHighlightSymbol('  ', 'cxx_header_icon', '#ae403f')
-nerdTreeHighlightSymbol('  ', 'vim_icon', '#8faa54')
-nerdTreeHighlightSymbol('  ', 'rust_icon', '#f16526')
-nerdTreeHighlightSymbol('  ', 'solution_icon', '#d294e2')
-nerdTreeHighlightSymbol(' 󰌛 ', 'csharp_icon', '#88d184')
 
 -----------------
 -- nvim-autopairs
@@ -180,6 +130,45 @@ vim.api.nvim_create_autocmd({"FileType"}, {
   callback = function() vim.b.EditorConfig_disable = 1 end,
 })
 
+----------
+-- NeoTree
+----------
+require("neo-tree").setup({
+  close_if_last_window = true,
+  enable_diagnostics = false,
+  popup_border_style = "rounded",
+  default_component_configs = {
+    container = {
+      enable_character_fade = true
+    },
+    indent = {
+      indent_size = 2,
+      padding = 1, -- extra padding on left hand side
+      -- indent guides
+      with_markers = true,
+      indent_marker = "│",
+      last_indent_marker = "└",
+      highlight = "NeoTreeIndentMarker",
+      -- expander config, needed for nesting files
+      with_expanders = nil, -- if nil and file nesting is enabled, will enable expanders
+      expander_collapsed = "",
+      expander_expanded = "",
+      expander_highlight = "NeoTreeExpander",
+    },
+    icon = {
+      folder_closed = "",
+      folder_open = "",
+      folder_empty = "󰜌",
+      -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
+      -- then these will never be used.
+      default = "*",
+      highlight = "NeoTreeFileIcon"
+    },
+  }
+})
+
+
+vim.keymap.set('n', '<Space>e', '<cmd>Neotree position=current<cr>')
 ------------------
 -- plugin nvim-cmp
 ------------------
@@ -428,8 +417,10 @@ minpac_add('k-takata/minpac', {type = 'opt'})
 minpac_add('windwp/nvim-autopairs')
 minpac_add('junegunn/fzf.vim')
 minpac_add('sirver/ultisnips')
-minpac_add('scrooloose/nerdtree')
-minpac_add('ryanoasis/vim-devicons')
+minpac_add('nvim-neo-tree/neo-tree.nvim')
+minpac_add('nvim-tree/nvim-web-devicons')
+minpac_add('MunifTanjim/nui.nvim')
+minpac_add('nvim-lua/plenary.nvim')
 minpac_add('rust-lang/rust.vim')
 minpac_add('tpope/vim-fugitive')
 minpac_add('mbbill/undotree')
