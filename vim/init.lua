@@ -136,6 +136,7 @@ vim.api.nvim_create_autocmd({"FileType"}, {
 require("neo-tree").setup({
   close_if_last_window = true,
   enable_diagnostics = false,
+  enable_git_status = true,
   popup_border_style = "rounded",
   default_component_configs = {
     container = {
@@ -156,19 +157,31 @@ require("neo-tree").setup({
       expander_highlight = "NeoTreeExpander",
     },
     icon = {
-      folder_closed = "",
-      folder_open = "",
+      folder_closed = "",
+      folder_open = "",
       folder_empty = "󰜌",
-      -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
-      -- then these will never be used.
-      default = "*",
+      default = "",
       highlight = "NeoTreeFileIcon"
     },
+  },
+  window = {
+    position = "current",
+    mappings = {
+      ["x"] = "close_node",
+      ["<space>"] = "noop",
+      ["o"] = "open",
+      ["oc"] = "noop",
+      ["od"] = "noop",
+      ["og"] = "noop",
+      ["om"] = "noop",
+      ["on"] = "noop",
+      ["os"] = "noop",
+      ["ot"] = "noop",
+    }
   }
 })
 
-
-vim.keymap.set('n', '<Space>e', '<cmd>Neotree position=current<cr>')
+vim.keymap.set('n', '<Space>e', '<cmd>Neotree<cr>')
 ------------------
 -- plugin nvim-cmp
 ------------------
@@ -367,6 +380,7 @@ vim.api.nvim_set_hl(0, "@constructor.python", { link = "csClass" })
 
 vim.api.nvim_set_hl(0, "@type.builtin.cpp", { link = "Type" })
 vim.api.nvim_set_hl(0, "@type.cpp", { link = "csClass" })
+vim.api.nvim_set_hl(0, "@variable.builtin.cpp", { link = "Type" })
 
 vim.api.nvim_set_hl(0, "@constant.devicetree", { link = "PreProc" })
 vim.api.nvim_set_hl(0, "@namespace.devicetree", { link = "rustAttribute" })

@@ -220,19 +220,6 @@ hi link cppExceptions	cType
 " =============================================================================
 hi qtMacro		guifg=#beb7ff
 
-"                                NERDTree
-" =============================================================================
-hi NERDTreeHelp			guifg=#555555
-hi NERDTreeExecFile		guifg=#ffffff
-hi! NERDTreeCWD		        guifg=#41a2f1
-hi NERDTreeLinkTarget		guifg=#101010
-hi! NERDTreeDir		        guifg=#99ca2a
-hi link NERDTreeLinkFile	Default
-hi link NERDTreeClosable	Default
-hi link NERDTreeOpenable	Default
-hi link NERDTreeUp		NERDTreeHelp
-hi link NERDTreeFlags		Default
-
 "                                  UltiSnip
 " =============================================================================
 hi snipSnippetTrigger			guifg=#c586c0
@@ -444,3 +431,9 @@ hi! link jsonKeyword		vimHiKeyList
 hi! mailQuoted1		guifg=#2ECC71
 hi! mailQuoted2		guifg=#3498DB
 hi! mailQutoed3		guifg=#9B59B6
+
+"                             Neotree
+" =============================================================================
+hi! NeoTreeDirectoryName	guifg=#99ca2a
+hi! NeoTreeDirectoryIcon        guifg=#41a2f1
+hi! NeoTreeFileIcon             guifg=#d294e2
