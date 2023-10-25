@@ -11,7 +11,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.termguicolors = true
 vim.opt.completeopt = { "menu", "menuone", "noselect"}
-vim.opt.listchars:append({ tab = "» " })
+vim.opt.listchars = { tab = "» " }
 vim.opt.shm:append("I")
 vim.opt.cinoptions = "N-s,g0"
 vim.opt.title = true
@@ -167,8 +167,11 @@ require("neo-tree").setup({
   window = {
     position = "current",
     mappings = {
+      ["/"] = "noop",
       ["x"] = "close_node",
       ["<space>"] = "noop",
+      ["z"] = "noop",
+      ["l"] = "noop",
       ["o"] = "open",
       ["oc"] = "noop",
       ["od"] = "noop",
@@ -177,6 +180,18 @@ require("neo-tree").setup({
       ["on"] = "noop",
       ["os"] = "noop",
       ["ot"] = "noop",
+      ["yn"] = {
+        function(state)
+          vim.cmd(string.format("let @+='%s'", state.tree:get_node().name))
+        end,
+        desc = "yank_file_name",
+      },
+      ["yp"] = {
+        function(state)
+          vim.cmd(string.format("let @+='%s'", state.tree:get_node().path))
+        end,
+        desc = "yank_file_path",
+      },
     }
   }
 })
