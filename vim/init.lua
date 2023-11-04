@@ -193,6 +193,9 @@ require("neo-tree").setup({
         desc = "yank_file_path",
       },
     }
+  },
+  filesystem = {
+    use_libuv_file_watcher = true
   }
 })
 
@@ -446,7 +449,7 @@ minpac_add('k-takata/minpac', {type = 'opt'})
 minpac_add('windwp/nvim-autopairs')
 minpac_add('junegunn/fzf.vim')
 minpac_add('sirver/ultisnips')
-minpac_add('nvim-neo-tree/neo-tree.nvim')
+minpac_add('nvim-neo-tree/neo-tree.nvim', { branch = 'v3.x' })
 minpac_add('nvim-tree/nvim-web-devicons')
 minpac_add('MunifTanjim/nui.nvim')
 minpac_add('nvim-lua/plenary.nvim')

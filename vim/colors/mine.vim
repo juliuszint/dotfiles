@@ -437,3 +437,5 @@ hi! mailQutoed3		guifg=#9B59B6
 hi! NeoTreeDirectoryName	guifg=#99ca2a
 hi! NeoTreeDirectoryIcon        guifg=#41a2f1
 hi! NeoTreeFileIcon             guifg=#d294e2
+hi! link NeoTreeFileStatsHeader NeoTreeFileStats
+hi! link NeoTreeRootName        Default
