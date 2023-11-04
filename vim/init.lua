@@ -455,6 +455,7 @@ vim.call('minpac#init')
 local minpac_add = vim.fn['minpac#add']
 minpac_add('k-takata/minpac', {type = 'opt'})
 minpac_add('windwp/nvim-autopairs')
+minpac_add('junegunn/fzf.vim')
 minpac_add('sirver/ultisnips')
 minpac_add('nvim-neo-tree/neo-tree.nvim', { branch = 'v3.x' })
 minpac_add('nvim-tree/nvim-web-devicons')
