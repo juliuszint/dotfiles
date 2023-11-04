@@ -56,21 +56,6 @@ vim.api.nvim_create_autocmd({"FileType"}, {
 
 vim.cmd.colorscheme("mine")
 
--------------
--- plugin FZF
--------------
-vim.opt.rtp:append("/usr/local/opt/fzf")
-vim.keymap.set('n', '<Space>h', '<cmd>History:<cr>')
-vim.keymap.set('n', '<Space>c', '<cmd>Commands<cr>')
-vim.keymap.set('n', '<Space>b', '<cmd>Buffers<cr>')
-vim.keymap.set('n', '<Space>f', '<cmd>Files<cr>')
-vim.keymap.set('n', '<Space>j', '<cmd>Jumps<cr>')
-
-vim.api.nvim_create_autocmd({"FileType"}, {
-  pattern = {"fzf"},
-  callback = function() vim.keymap.set('t', '<esc>', '<esc>', { buffer = true }) end,
-})
-
 -----------------
 -- plugin airline
 -----------------
@@ -337,6 +322,29 @@ require('lspconfig')['pyright'].setup {
   on_attach = on_attach
 }
 
+-------------------
+-- plugin telescope
+-------------------
+require("telescope").setup {
+  defaults = {
+    mappings = {
+      i = {
+        ["<esc>"] = require('telescope.actions').close,
+        ["<C-j>"] = require('telescope.actions').move_selection_next,
+        ["<C-k>"] = require('telescope.actions').move_selection_previous,
+      },
+    }
+  },
+}
+
+vim.keymap.set('n', '<Space>f',  '<cmd>Telescope find_files<cr>')
+vim.keymap.set('n', '<Space>b',  '<cmd>Telescope buffers<cr>')
+vim.keymap.set('n', '<Space>h',  '<cmd>Telescope command_history<cr>')
+vim.keymap.set('n', '<Space>c',  '<cmd>Telescope commands<cr>')
+vim.keymap.set('n', '<Space>j',  '<cmd>Telescope jumplist<cr>')
+vim.keymap.set('n', '<Space>rr', '<cmd>Telescope live_grep<cr>')
+vim.keymap.set('n', '<Space>rb', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
+
 -------------------------
 -- plugin nvim-treesitter
 -------------------------
@@ -447,7 +455,6 @@ vim.call('minpac#init')
 local minpac_add = vim.fn['minpac#add']
 minpac_add('k-takata/minpac', {type = 'opt'})
 minpac_add('windwp/nvim-autopairs')
-minpac_add('junegunn/fzf.vim')
 minpac_add('sirver/ultisnips')
 minpac_add('nvim-neo-tree/neo-tree.nvim', { branch = 'v3.x' })
 minpac_add('nvim-tree/nvim-web-devicons')
@@ -478,5 +485,6 @@ minpac_add('quangnguyen30192/cmp-nvim-ultisnips')
 minpac_add('onsails/lspkind-nvim')
 minpac_add('GutenYe/json5.vim')
 minpac_add('nvim-treesitter/nvim-treesitter')
+minpac_add('nvim-telescope/telescope.nvim', { branch = '0.1.x' })
 vim.api.nvim_create_user_command('PackUpdate', 'call minpac#update()', {})
 vim.api.nvim_create_user_command('PackClean', 'call minpac#clean()', {})
