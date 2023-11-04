@@ -332,6 +332,7 @@ require("telescope").setup {
         ["<esc>"] = require('telescope.actions').close,
         ["<C-j>"] = require('telescope.actions').move_selection_next,
         ["<C-k>"] = require('telescope.actions').move_selection_previous,
+        ["<C-m>"] = require('telescope-live-grep-args.actions').quote_prompt({postfix = " -g"}),
       },
     }
   },
@@ -342,7 +343,8 @@ vim.keymap.set('n', '<Space>b',  '<cmd>Telescope buffers<cr>')
 vim.keymap.set('n', '<Space>h',  '<cmd>Telescope command_history<cr>')
 vim.keymap.set('n', '<Space>c',  '<cmd>Telescope commands<cr>')
 vim.keymap.set('n', '<Space>j',  '<cmd>Telescope jumplist<cr>')
-vim.keymap.set('n', '<Space>rr', '<cmd>Telescope live_grep<cr>')
+vim.keymap.set('n', '<Space>rr', ':lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>')
+vim.keymap.set('n', '<Space>rw', '<cmd>Telescope grep_string<cr>')
 vim.keymap.set('n', '<Space>rb', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
 
 -------------------------
@@ -455,7 +457,6 @@ vim.call('minpac#init')
 local minpac_add = vim.fn['minpac#add']
 minpac_add('k-takata/minpac', {type = 'opt'})
 minpac_add('windwp/nvim-autopairs')
-minpac_add('junegunn/fzf.vim')
 minpac_add('sirver/ultisnips')
 minpac_add('nvim-neo-tree/neo-tree.nvim', { branch = 'v3.x' })
 minpac_add('nvim-tree/nvim-web-devicons')
@@ -487,5 +488,6 @@ minpac_add('onsails/lspkind-nvim')
 minpac_add('GutenYe/json5.vim')
 minpac_add('nvim-treesitter/nvim-treesitter')
 minpac_add('nvim-telescope/telescope.nvim', { branch = '0.1.x' })
+minpac_add('nvim-telescope/telescope-live-grep-args.nvim')
 vim.api.nvim_create_user_command('PackUpdate', 'call minpac#update()', {})
 vim.api.nvim_create_user_command('PackClean', 'call minpac#clean()', {})
