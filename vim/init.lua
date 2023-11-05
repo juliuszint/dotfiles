@@ -333,7 +333,7 @@ require("telescope").setup {
         ["<esc>"] = require('telescope.actions').close,
         ["<C-j>"] = require('telescope.actions').move_selection_next,
         ["<C-k>"] = require('telescope.actions').move_selection_previous,
-        ["<C-m>"] = require('telescope-live-grep-args.actions').quote_prompt({postfix = " -g"}),
+        ["<C-f>"] = require('telescope-live-grep-args.actions').quote_prompt({postfix = " -g"}),
       },
     }
   },
