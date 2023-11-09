@@ -57,6 +57,80 @@ vim.api.nvim_create_autocmd({"FileType"}, {
 vim.cmd.colorscheme("mine")
 
 -----------------
+-- lazy.nvim
+-----------------
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+  { "windwp/nvim-autopairs" },
+  { "sirver/ultisnips" },
+  { "tpope/vim-fugitive" },
+  { "mbbill/undotree" },
+  { "tpope/vim-commentary" },
+  { "cespare/vim-toml" },
+  { "peterhoeg/vim-qml" },
+  { "itchyny/vim-cursorword" },
+  { "kassio/neoterm" },
+  { "vim-scripts/a.vim" },
+  { "nvim-treesitter/nvim-treesitter" },
+  { "ntpeters/vim-better-whitespace" },
+  { "GutenYe/json5.vim" },
+  { "editorconfig/editorconfig-vim" },
+  { "rust-lang/rust.vim" },
+  { "neovim/nvim-lspconfig" },
+  { "onsails/lspkind-nvim" },
+  {
+    "nvim-telescope/telescope.nvim",
+    branch = '0.1.x',
+    dependencies={
+      "nvim-telescope/telescope-live-grep-args.nvim",
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+      }
+    }
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    }
+  },
+  {
+    "vim-airline/vim-airline",
+    dependencies = {
+      "vim-airline/vim-airline-themes",
+      "edkolev/tmuxline.vim",
+    }
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
+      "quangnguyen30192/cmp-nvim-ultisnips",
+    }
+  },
+})
+
+-----------------
 -- plugin airline
 -----------------
 vim.g.airline_theme='google_dark'
@@ -338,6 +412,7 @@ require("telescope").setup {
     }
   },
 }
+require('telescope').load_extension('fzf')
 
 vim.keymap.set('n', '<Space>f',  '<cmd>Telescope find_files<cr>')
 vim.keymap.set('n', '<Space>b',  '<cmd>Telescope buffers<cr>')
@@ -450,45 +525,3 @@ vim.api.nvim_set_hl(0, "@label.c", { link = "cConditional" })
 vim.api.nvim_set_hl(0, "@constant.c", { link = "rustAttribute" })
 vim.api.nvim_set_hl(0, "@character.c", { link = "String" })
 
----------
--- minpac
----------
-vim.cmd('packadd minpac')
-vim.call('minpac#init')
-local minpac_add = vim.fn['minpac#add']
-minpac_add('k-takata/minpac', {type = 'opt'})
-minpac_add('windwp/nvim-autopairs')
-minpac_add('sirver/ultisnips')
-minpac_add('nvim-neo-tree/neo-tree.nvim', { branch = 'v3.x' })
-minpac_add('nvim-tree/nvim-web-devicons')
-minpac_add('MunifTanjim/nui.nvim')
-minpac_add('nvim-lua/plenary.nvim')
-minpac_add('rust-lang/rust.vim')
-minpac_add('tpope/vim-fugitive')
-minpac_add('mbbill/undotree')
-minpac_add('tpope/vim-commentary')
-minpac_add('cespare/vim-toml')
-minpac_add('peterhoeg/vim-qml')
-minpac_add('itchyny/vim-cursorword')
-minpac_add('kassio/neoterm')
-minpac_add('neovim/nvim-lspconfig')
-minpac_add('vim-scripts/a.vim')
-minpac_add('editorconfig/editorconfig-vim')
-minpac_add('vim-airline/vim-airline')
-minpac_add('vim-airline/vim-airline-themes')
-minpac_add('ntpeters/vim-better-whitespace')
-minpac_add('edkolev/tmuxline.vim')
-minpac_add('hrsh7th/nvim-cmp')
-minpac_add('hrsh7th/cmp-path')
-minpac_add('hrsh7th/cmp-buffer')
-minpac_add('hrsh7th/cmp-cmdline')
-minpac_add('hrsh7th/cmp-nvim-lsp')
-minpac_add('hrsh7th/cmp-nvim-lsp-signature-help')
-minpac_add('quangnguyen30192/cmp-nvim-ultisnips')
-minpac_add('onsails/lspkind-nvim')
-minpac_add('GutenYe/json5.vim')
-minpac_add('nvim-treesitter/nvim-treesitter')
-minpac_add('nvim-telescope/telescope.nvim', { branch = '0.1.x' })
-minpac_add('nvim-telescope/telescope-live-grep-args.nvim')
-vim.api.nvim_create_user_command('PackUpdate', 'call minpac#update()', {})
-vim.api.nvim_create_user_command('PackClean', 'call minpac#clean()', {})
