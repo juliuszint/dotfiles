@@ -254,7 +254,18 @@ require("neo-tree").setup({
     }
   },
   filesystem = {
-    use_libuv_file_watcher = true
+    use_libuv_file_watcher = true,
+    filtered_items = {
+      always_show = {
+        ".gitignore",
+        ".gitlab-ci.yml",
+        ".gitattributes",
+      },
+      hide_by_name = {
+        "__init__.py",
+        "__pycache__",
+      },
+    }
   }
 })
 
