@@ -90,17 +90,7 @@ require("lazy").setup({
   { "rust-lang/rust.vim" },
   { "neovim/nvim-lspconfig" },
   { "onsails/lspkind-nvim" },
-  {
-    "nvim-telescope/telescope.nvim",
-    branch = '0.1.x',
-    dependencies={
-      "nvim-telescope/telescope-live-grep-args.nvim",
-      {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
-      }
-    }
-  },
+  { "junegunn/fzf.vim" },
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
@@ -408,31 +398,36 @@ require('lspconfig')['pyright'].setup {
   on_attach = on_attach
 }
 
--------------------
--- plugin telescope
--------------------
-require("telescope").setup {
-  defaults = {
-    mappings = {
-      i = {
-        ["<esc>"] = require('telescope.actions').close,
-        ["<C-j>"] = require('telescope.actions').move_selection_next,
-        ["<C-k>"] = require('telescope.actions').move_selection_previous,
-        ["<C-f>"] = require('telescope-live-grep-args.actions').quote_prompt({postfix = " -g"}),
-      },
-    }
-  },
-}
-require('telescope').load_extension('fzf')
+----------
+-- fzf.vim
+----------
 
-vim.keymap.set('n', '<Space>f',  '<cmd>Telescope find_files<cr>')
-vim.keymap.set('n', '<Space>b',  '<cmd>Telescope buffers<cr>')
-vim.keymap.set('n', '<Space>h',  '<cmd>Telescope command_history<cr>')
-vim.keymap.set('n', '<Space>c',  '<cmd>Telescope commands<cr>')
-vim.keymap.set('n', '<Space>j',  '<cmd>Telescope jumplist<cr>')
-vim.keymap.set('n', '<Space>rr', ':lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>')
-vim.keymap.set('n', '<Space>rw', '<cmd>Telescope grep_string<cr>')
-vim.keymap.set('n', '<Space>rb', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
+vim.g.fzf_layout = { window = { width = 0.8, height = 0.9 } }
+vim.g.fzf_colors = {
+  [ "hl+" ] = { 'fg', 'Special' },
+  [ "hl" ]  = { 'fg', 'Special' },
+}
+
+vim.keymap.set('n', '<Space>h', '<cmd>History:<cr>')
+vim.keymap.set('n', '<Space>c', '<cmd>Commands<cr>')
+vim.keymap.set('n', '<Space>b', '<cmd>Buffers<cr>')
+vim.keymap.set('n', '<Space>f', '<cmd>Files<cr>')
+vim.keymap.set('n', '<Space>j', '<cmd>Jumps<cr>')
+vim.keymap.set('n', '<Space>rr', '<cmd>RG<cr>')
+
+vim.api.nvim_create_autocmd({"FileType"}, {
+  pattern = {"fzf"},
+  callback = function() vim.keymap.set('t', '<esc>', '<esc>', { buffer = true }) end,
+})
+
+-- vim.keymap.set('n', '<Space>f',  '<cmd>Telescope find_files<cr>')
+-- vim.keymap.set('n', '<Space>b',  '<cmd>Telescope buffers<cr>')
+-- vim.keymap.set('n', '<Space>h',  '<cmd>Telescope command_history<cr>')
+-- vim.keymap.set('n', '<Space>c',  '<cmd>Telescope commands<cr>')
+-- vim.keymap.set('n', '<Space>j',  '<cmd>Telescope jumplist<cr>')
+-- vim.keymap.set('n', '<Space>rr', ':lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>')
+-- vim.keymap.set('n', '<Space>rw', '<cmd>Telescope grep_string<cr>')
+-- vim.keymap.set('n', '<Space>rb', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
 
 -------------------------
 -- plugin nvim-treesitter

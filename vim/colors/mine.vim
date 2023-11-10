@@ -26,6 +26,7 @@ hi StatusLineNC		guifg=none	guibg=#1F1F1F	gui=none cterm=none term=none
 hi ColorColumn		guifg=none	guibg=#333333
 hi NonText		guifg=#404040	guibg=none
 hi SpecialKey		guifg=#7f8c98
+hi Special              guifg=#F9A50A
 hi iCursor		guifg=#ffffff	guibg=#11d116
 hi nCursor		guifg=#ffffff	guibg=#ffb846
 hi TODO			guifg=none	guibg=none
