@@ -401,11 +401,14 @@ require('lspconfig')['pyright'].setup {
 ----------
 -- fzf.vim
 ----------
-
 vim.g.fzf_layout = { window = { width = 0.8, height = 0.9 } }
 vim.g.fzf_colors = {
   [ "hl+" ] = { 'fg', 'Special' },
   [ "hl" ]  = { 'fg', 'Special' },
+}
+
+vim.g.fzf_action = {
+  [ "ctrl-q" ] = '',
 }
 
 vim.keymap.set('n', '<Space>h', '<cmd>History:<cr>')
@@ -413,20 +416,15 @@ vim.keymap.set('n', '<Space>c', '<cmd>Commands<cr>')
 vim.keymap.set('n', '<Space>b', '<cmd>Buffers<cr>')
 vim.keymap.set('n', '<Space>f', '<cmd>Files<cr>')
 vim.keymap.set('n', '<Space>j', '<cmd>Jumps<cr>')
-vim.keymap.set('n', '<Space>rr', '<cmd>RG<cr>')
+vim.keymap.set('n', '<Space>rr', '<cmd>Rx<cr>')
+vim.keymap.set('n', '<Space>rw', function() vim.cmd(string.format("Rx %s", vim.fn.expand("<cword>"))) end)
 
 vim.api.nvim_create_autocmd({"FileType"}, {
   pattern = {"fzf"},
   callback = function() vim.keymap.set('t', '<esc>', '<esc>', { buffer = true }) end,
 })
 
--- vim.keymap.set('n', '<Space>f',  '<cmd>Telescope find_files<cr>')
--- vim.keymap.set('n', '<Space>b',  '<cmd>Telescope buffers<cr>')
--- vim.keymap.set('n', '<Space>h',  '<cmd>Telescope command_history<cr>')
--- vim.keymap.set('n', '<Space>c',  '<cmd>Telescope commands<cr>')
--- vim.keymap.set('n', '<Space>j',  '<cmd>Telescope jumplist<cr>')
--- vim.keymap.set('n', '<Space>rr', ':lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>')
--- vim.keymap.set('n', '<Space>rw', '<cmd>Telescope grep_string<cr>')
+vim.cmd('command! -bang -nargs=* Rx call fzf#vim#grep2("vimesc rg --column --line-number --no-heading --color=always --smart-case --vim-esc-required --vim-esc ", <q-args>, fzf#vim#with_preview(), <bang>0)')
 -- vim.keymap.set('n', '<Space>rb', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
 
 -------------------------

@@ -1,0 +1,48 @@
+#!/usr/bin/env python
+import sys
+import subprocess as sp
+
+def odd_trailing_backslash(s: str):
+    result = 0
+    for c in reversed(s):
+        if c != "\\":
+            break
+        result += 1
+    return result % 2 != 0
+
+def vim_escape(a: str):
+    result = []
+    split = a.split(' ')
+    index = 0
+    for i, v in enumerate(split):
+        if odd_trailing_backslash(v) and i < len(split) - 1:
+            split[i] = split[i][0:-1]
+            continue
+        result.append(' '.join(split[index:i + 1]))
+        index = i + 1
+    return result
+
+def main():
+    process = []
+    required = False
+    has_vim_esc_args = False
+    args_range = iter(range(1, len(sys.argv)))
+    for i in args_range:
+        a = sys.argv[i]
+        if a.startswith("--vim-esc-required"):
+            required = True
+        elif a.startswith("--vim-esc"):
+            next(args_range, None)
+            parsed = vim_escape(sys.argv[i + 1])
+            has_vim_esc_args |= any(x for x in parsed if len(x))
+            process.extend(parsed)
+        else:
+            process.append(a)
+
+    if required and not has_vim_esc_args:
+        return 0
+    p = sp.run(process, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr)
+    return p.returncode
+
+if __name__ == "__main__":
+    sys.exit(main())
