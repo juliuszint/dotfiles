@@ -54,6 +54,8 @@ vim.api.nvim_create_autocmd({"FileType"}, {
   command = "wincmd J|resize 15|setlocal nocursorline",
 })
 
+vim.keymap.set('n', 'gm', '<cmd>FzfLua command_history<cr>')
+
 vim.cmd.colorscheme("mine")
 
 -----------------
@@ -74,15 +76,32 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   { "windwp/nvim-autopairs" },
-  { "sirver/ultisnips" },
+  {
+    "sirver/ultisnips",
+    init = function()
+      vim.g.UltiSnipsJumpForwardTrigger = '<c-n>'
+      vim.g.UltiSnipsJumpBackwardTrigger = '<c-p>'
+    end,
+  },
   { "tpope/vim-fugitive" },
   { "mbbill/undotree" },
   { "tpope/vim-commentary" },
   { "cespare/vim-toml" },
   { "peterhoeg/vim-qml" },
   { "itchyny/vim-cursorword" },
-  { "kassio/neoterm" },
-  { "vim-scripts/a.vim" },
+  {
+    "kassio/neoterm",
+    init = function()
+      vim.g.neoterm_automap_keys = '<space>tt'
+    end,
+  },
+  -- -- Disabled until I figure out why < in insert is screwed up by this plugin
+  -- {
+  --   "vim-scripts/a.vim",
+  --   init = function()
+  --     vim.g.alternateNoDefaultAlternate = 1
+  --   end,
+  -- },
   { "nvim-treesitter/nvim-treesitter" },
   { "ntpeters/vim-better-whitespace" },
   { "GutenYe/json5.vim" },
@@ -90,7 +109,33 @@ require("lazy").setup({
   { "rust-lang/rust.vim" },
   { "neovim/nvim-lspconfig" },
   { "onsails/lspkind-nvim" },
-  { "junegunn/fzf.vim" },
+  {
+    "ibhagwan/fzf-lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("fzf-lua").setup({
+        grep = {
+            rg_glob = true,
+        },
+        nbsp = '\xc2\xa0',
+        file_icon_padding = ' ',
+      })
+
+      vim.keymap.set("n", "<space>f", "<cmd>lua require('fzf-lua').files({ cmd = 'rg --files' })<CR>", { silent = true })
+      vim.keymap.set("n", "<space>h", "<cmd>lua require('fzf-lua').command_history()<CR>", { silent = true })
+      vim.keymap.set("n", "<space>c", "<cmd>lua require('fzf-lua').commands()<CR>", { silent = true })
+      vim.keymap.set("n", "<space>b", "<cmd>lua require('fzf-lua').buffers()<CR>", { silent = true })
+      vim.keymap.set("n", "<space>j", "<cmd>lua require('fzf-lua').jumps()<CR>", { silent = true })
+      vim.keymap.set("n", "<space>rb", "<cmd>lua require('fzf-lua').lgrep_curbuf()<CR>", { silent = true })
+      vim.keymap.set("n", "<space>rr", "<cmd>lua require('fzf-lua').live_grep()<CR>", { silent = true })
+      vim.keymap.set("n", "<space>rw", "<cmd>lua require('fzf-lua').grep_cword()<CR>", { silent = true })
+      -- vim.keymap.set('n', '<Space>rw', function()
+      --   vim.cmd(string.format("lua require('fzf-lua').live_grep({ fzf_opts = { ['--exact -1 --query'] = 'shibby' }})"))
+        -- vim.cmd(string.format("lua require('fzf-lua').live_grep(fzf_opts = {['--query'] = '\"test\"'})", vim.fn.expand("<cword>")))
+      -- end)
+      --require'fzf-lua'.files({fzf_opts = { ['--exact -1 --query'] = '\"'..vim.split(vim.fn.expand('%:t:r'), '.', true)[1]..' !'..vim.fn.expand('%:t'):gsub(vim.split(vim.fn.expand('%:t:r'), '.', true)[1], '')..'$'..' \"' } })
+    end
+  },
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
@@ -105,7 +150,10 @@ require("lazy").setup({
     dependencies = {
       "vim-airline/vim-airline-themes",
       "edkolev/tmuxline.vim",
-    }
+    },
+    init = function()
+      vim.g.airline_theme='google_dark'
+    end,
   },
   {
     "hrsh7th/nvim-cmp",
@@ -119,11 +167,6 @@ require("lazy").setup({
     }
   },
 })
-
------------------
--- plugin airline
------------------
-vim.g.airline_theme='google_dark'
 
 -----------------
 -- nvim-autopairs
@@ -142,17 +185,6 @@ vim.g.tmuxline_separators = {
      right_alt = '',
      space = ' '
 }
-
------------------
--- plugin NeoTerm
------------------
-vim.g.neoterm_automap_keys = '<space>tt'
-
--------------------
--- plugin UltiSnips
--------------------
-vim.g.UltiSnipsJumpForwardTrigger = '<c-n>'
-vim.g.UltiSnipsJumpBackwardTrigger = '<c-p>'
 
 ---------------------------
 -- plugin better-whitespace
@@ -217,6 +249,7 @@ require("neo-tree").setup({
     position = "current",
     mappings = {
       ["/"] = "noop",
+      ["y"] = "noop",
       ["x"] = "close_node",
       ["<space>"] = "noop",
       ["z"] = "noop",
@@ -232,12 +265,14 @@ require("neo-tree").setup({
       ["yn"] = {
         function(state)
           vim.cmd(string.format("let @+='%s'", state.tree:get_node().name))
+          print(string.format("Copied %s to clipboard", state.tree:get_node().name))
         end,
         desc = "yank_file_name",
       },
       ["yp"] = {
         function(state)
           vim.cmd(string.format("let @+='%s'", state.tree:get_node().path))
+          print(string.format("Copied %s to clipboard", state.tree:get_node().path))
         end,
         desc = "yank_file_path",
       },
@@ -398,34 +433,6 @@ require('lspconfig')['pyright'].setup {
   on_attach = on_attach
 }
 
-----------
--- fzf.vim
-----------
-vim.g.fzf_layout = { window = { width = 0.8, height = 0.9 } }
-vim.g.fzf_colors = {
-  [ "hl+" ] = { 'fg', 'Special' },
-  [ "hl" ]  = { 'fg', 'Special' },
-}
-
-vim.g.fzf_action = {
-  [ "ctrl-q" ] = '',
-}
-
-vim.keymap.set('n', '<Space>h', '<cmd>History:<cr>')
-vim.keymap.set('n', '<Space>c', '<cmd>Commands<cr>')
-vim.keymap.set('n', '<Space>b', '<cmd>Buffers<cr>')
-vim.keymap.set('n', '<Space>f', '<cmd>Files<cr>')
-vim.keymap.set('n', '<Space>j', '<cmd>Jumps<cr>')
-vim.keymap.set('n', '<Space>rr', '<cmd>Rx<cr>')
-vim.keymap.set('n', '<Space>rw', function() vim.cmd(string.format("Rx %s", vim.fn.expand("<cword>"))) end)
-
-vim.api.nvim_create_autocmd({"FileType"}, {
-  pattern = {"fzf"},
-  callback = function() vim.keymap.set('t', '<esc>', '<esc>', { buffer = true }) end,
-})
-
-vim.cmd('command! -bang -nargs=* Rx call fzf#vim#grep2("vimesc rg --column --line-number --no-heading --color=always --smart-case --vim-esc-required --vim-esc ", <q-args>, fzf#vim#with_preview(), <bang>0)')
--- vim.keymap.set('n', '<Space>rb', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
 
 -------------------------
 -- plugin nvim-treesitter
