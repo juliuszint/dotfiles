@@ -127,13 +127,19 @@ require("lazy").setup({
       vim.keymap.set("n", "<space>b", "<cmd>lua require('fzf-lua').buffers()<CR>", { silent = true })
       vim.keymap.set("n", "<space>j", "<cmd>lua require('fzf-lua').jumps()<CR>", { silent = true })
       vim.keymap.set("n", "<space>rb", "<cmd>lua require('fzf-lua').lgrep_curbuf()<CR>", { silent = true })
-      vim.keymap.set("n", "<space>rr", "<cmd>lua require('fzf-lua').live_grep()<CR>", { silent = true })
+
       vim.keymap.set("n", "<space>rw", "<cmd>lua require('fzf-lua').grep_cword()<CR>", { silent = true })
-      -- vim.keymap.set('n', '<Space>rw', function()
-      --   vim.cmd(string.format("lua require('fzf-lua').live_grep({ fzf_opts = { ['--exact -1 --query'] = 'shibby' }})"))
-        -- vim.cmd(string.format("lua require('fzf-lua').live_grep(fzf_opts = {['--query'] = '\"test\"'})", vim.fn.expand("<cword>")))
-      -- end)
-      --require'fzf-lua'.files({fzf_opts = { ['--exact -1 --query'] = '\"'..vim.split(vim.fn.expand('%:t:r'), '.', true)[1]..' !'..vim.fn.expand('%:t'):gsub(vim.split(vim.fn.expand('%:t:r'), '.', true)[1], '')..'$'..' \"' } })
+
+      -- vim.keymap.set("n", "<space>rr", "<cmd>lua require('fzf-lua').live_grep()<CR>", { silent = true })
+      vim.keymap.set('n', '<Space>rr', function()
+        config_dir = vim.fn.stdpath("config")
+        command = string.format('%s/vrg rg --column --line-number --no-heading --color=always --smart-case --vim-esc ', config_dir)
+        vim.cmd(string.format("lua require('fzf-lua').live_grep({ cmd = command })"))
+      end)
+
+      vim.keymap.set('n', '<Space>a', function()
+        --require'fzf-lua'.files({fzf_opts = { ['--exact -1 --query'] = '\"'..vim.split(vim.fn.expand('%:t:r'), '.', true)[1]..' !'..vim.fn.expand('%:t'):gsub(vim.split(vim.fn.expand('%:t:r'), '.', true)[1], '')..'$'..' \"' } })
+      end)
     end
   },
   {
