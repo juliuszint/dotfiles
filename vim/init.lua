@@ -179,6 +179,21 @@ require("lazy").setup({
   },
 })
 
+-----------
+-- tmuxline
+-----------
+vim.g.tmuxline_preset = {
+  a = "#S",
+  b = '#W',
+  c = '#H',
+  win = '#I #W#{?window_zoomed_flag, [Z] ,}',
+  cwin = '#I #W#{?window_zoomed_flag, [Z] ,}',
+  x = "%a",
+  y = '#W %R',
+  z = '#H',
+  options = { [ "status-justify" ] = "centre"}
+}
+
 -----------------
 -- nvim-autopairs
 -----------------
