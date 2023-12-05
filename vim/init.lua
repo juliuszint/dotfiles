@@ -103,7 +103,12 @@ require("lazy").setup({
   --   end,
   -- },
   { "nvim-treesitter/nvim-treesitter" },
-  { "ntpeters/vim-better-whitespace" },
+  {
+    "ntpeters/vim-better-whitespace",
+    init = function()
+      vim.g.better_whitespace_operator = ''
+    end,
+  },
   { "GutenYe/json5.vim" },
   { "editorconfig/editorconfig-vim" },
   { "rust-lang/rust.vim" },
