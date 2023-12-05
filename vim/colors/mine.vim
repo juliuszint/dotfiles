@@ -16,6 +16,7 @@ hi PmenuSel		guifg=none	guibg=#0071CC
 hi Normal		guifg=#ffffff	guibg=#101010
 hi SignColumn		guifg=NONE	guibg=#101010
 hi FoldColumn 		guifg=#ffffff	guibg=#101010
+hi! Folded		guifg=#ffffff	guibg=#3465A4
 hi LineNr		guifg=#555555
 hi Visual		guifg=none	guibg=#264f78
 hi Cursor		guifg=#FFFFFF	guibg=#ff2a62
