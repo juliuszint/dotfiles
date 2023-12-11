@@ -186,14 +186,22 @@ require("lazy").setup({
 -----------
 vim.g.tmuxline_preset = {
   a = "#S",
-  b = '#W',
-  c = '#H',
-  win = '#I #W#{?window_zoomed_flag, [Z] ,}',
-  cwin = '#I #W#{?window_zoomed_flag, [Z] ,}',
-  x = "%a",
-  y = '#W %R',
+  b = '#(python3 -c "import psutil;print(f\'MEM {psutil.virtual_memory().percent}%\')")',
+  c = '#(python3 -c "import psutil;print(f\'CPU {psutil.cpu_percent(1)}%\')")',
+  win = '#I #W#{?window_zoomed_flag, [Z],}',
+  cwin = '#I #W#{?window_zoomed_flag, [Z],}',
+  x = '%R',
+  y = '%d.%m.%Y',
   z = '#H',
   options = { [ "status-justify" ] = "centre"}
+}
+
+vim.g.tmuxline_separators = {
+     left = '',
+     left_alt = '',
+     right = '',
+     right_alt = '',
+     space = ' '
 }
 
 -----------------
@@ -202,17 +210,6 @@ vim.g.tmuxline_preset = {
 require('nvim-autopairs').setup({
   disable_in_visualblock = true,
 })
-
-------------------
--- plugin TmuxLine
-------------------
-vim.g.tmuxline_separators = {
-     left = '',
-     left_alt = '',
-     right = '',
-     right_alt = '',
-     space = ' '
-}
 
 ---------------------------
 -- plugin better-whitespace
