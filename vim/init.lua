@@ -24,6 +24,7 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.g.mapleader = "<space>"
 vim.api.nvim_create_user_command('Vb', ':normal! <C-v>', {})
+vim.api.nvim_create_user_command('DisableLsp', ':lua vim.api.nvim_clear_autocmds({ group = "lspconfig" })', {})
 
 vim.keymap.set('n', '<C-s>', '<cmd>w<cr>')
 vim.keymap.set('n', '<Space>s', '<cmd>w<cr>')
