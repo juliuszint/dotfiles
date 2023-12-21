@@ -396,6 +396,9 @@ hi link yamlFlowStringDelimiter	yamlPlainScalar
 " =============================================================================
 hi link luaStatement		Type
 hi link luaTable		Default
+hi link luaCond			cConditional
+hi link luaCondElse		cConditional
+hi link luaConstant		Number
 
 "                                 nvim-cmp
 " =============================================================================
