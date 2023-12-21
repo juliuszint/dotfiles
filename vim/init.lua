@@ -119,9 +119,16 @@ require("lazy").setup({
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
+      local rg_opts = ""
+      local config_dir = vim.fn.stdpath("config")
+      rg_opts = rg_opts .. " --vimgrep --column --line-number --no-heading"
+      rg_opts = rg_opts .. " --color=always --smart-case --max-columns=4096"
+      rg_opts = rg_opts .. " --vim-esc"
+      local rg_cmd = string.format('%s/vrg rg%s', config_dir, rg_opts)
       require("fzf-lua").setup({
         grep = {
-            rg_glob = true,
+          cmd = rg_cmd,
+          rg_glob = false,
         },
         nbsp = '\xc2\xa0',
         file_icon_padding = ' ',
@@ -133,19 +140,13 @@ require("lazy").setup({
       vim.keymap.set("n", "<space>b", "<cmd>lua require('fzf-lua').buffers()<CR>", { silent = true })
       vim.keymap.set("n", "<space>j", "<cmd>lua require('fzf-lua').jumps()<CR>", { silent = true })
       vim.keymap.set("n", "<space>rb", "<cmd>lua require('fzf-lua').lgrep_curbuf()<CR>", { silent = true })
-
-      vim.keymap.set("n", "<space>rw", "<cmd>lua require('fzf-lua').grep_cword()<CR>", { silent = true })
-
-      vim.keymap.set('n', '<Space>rr', function()
-        config_dir = vim.fn.stdpath("config")
-        command = string.format('%s/vrg rg --column --line-number --no-heading --color=always --smart-case --vim-esc ', config_dir)
-        vim.cmd(string.format("lua require('fzf-lua').live_grep({ cmd = command })"))
-      end)
+      vim.keymap.set("n", "<space>rr", "<cmd>lua require('fzf-lua').live_grep()<CR>", { silent = true })
+      vim.keymap.set("n", "<space>rw", "<cmd>lua require('fzf-lua').live_grep({ search = vim.fn.expand('<cword>') })<CR>", { silent = true })
 
       vim.keymap.set('n', '<Space>a', function()
-        fn = vim.fn.expand('%:t:r')
-        ext = vim.fn.expand('%:t:e')
-        query = string.format("\"%s !.%s$\"", fn, ext)
+        local fn = vim.fn.expand('%:t:r')
+        local ext = vim.fn.expand('%:t:e')
+        local query = string.format("\"%s !.%s$\"", fn, ext)
         require'fzf-lua'.files({fzf_opts = {['--exact -1 --query'] = query}, cmd="rg --files"})
       end)
     end
