@@ -460,6 +460,11 @@ require('lspconfig')['pyright'].setup {
   on_attach = on_attach
 }
 
+vim.api.nvim_set_hl(0, "@lsp.type.namespace.rust", { link = "Default" })
+vim.api.nvim_set_hl(0, "@lsp.type.interface.rust", { link = "csClass" })
+vim.api.nvim_set_hl(0, "@lsp.type.struct.rust", { link = "csClass" })
+vim.api.nvim_set_hl(0, "@lsp.type.enum.rust", { link = "csInterface" })
+vim.api.nvim_set_hl(0, "@lsp.type.enumMember.rust", { link = "csEnumMemberName" })
 
 -------------------------
 -- plugin nvim-treesitter
@@ -476,6 +481,7 @@ local ts_enabled_for = {
   ["rst"] = true,
   ["cmake"] = true,
   ["lua"] = true,
+  ["rst"] = true,
 }
 
 require('nvim-treesitter.configs').setup {
@@ -563,3 +569,7 @@ vim.api.nvim_set_hl(0, "@label.c", { link = "cConditional" })
 vim.api.nvim_set_hl(0, "@constant.c", { link = "rustAttribute" })
 vim.api.nvim_set_hl(0, "@character.c", { link = "String" })
 
+
+vim.api.nvim_set_hl(0, "@punctuation.special.md", { link = "rustAttribute" })
+vim.api.nvim_set_hl(0, "@text.literal.md", { link = "markdownCodeBlock" })
+vim.api.nvim_set_hl(0, "@text.title.md", { link = "Comment" })

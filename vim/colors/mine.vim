@@ -155,38 +155,6 @@ hi swiftDecimal			guifg=#a79df7 guibg=none gui=italic
 hi link swiftType		Default
 hi link swiftLineComment	swiftComment
 
-"                                  Rust
-" =============================================================================
-hi rustKeyword			guifg=#ab8ac1
-hi rustEnum			guifg=#769acb
-hi rustCommentLineDoc		guifg=#8d8d8b
-hi rustEnumVariant		guifg=#ee6868
-hi rustLifetime			guifg=#d97f26
-hi rustAttribute		guifg=#eb5e5e
-hi link rustDeriveTrait		rustAttribute
-hi link rustDerive		rustAttribute
-hi link rustMacro		Define
-hi link rustString		String
-hi link rustQuestionMark	rustLifetime
-hi link rustEscape		rustLifetime
-hi link rustCharacter		String
-hi link rustTypedef		rustKeyword
-hi link rustType		Default
-hi link rustTrait		Default
-hi link rustConditional		rustKeyword
-hi link rustRepeat		rustKeyword
-hi link rustSelf		rustEnumVariant
-hi link rustBoolean		rustEnumVariant
-hi link rustStructure		rustKeyword
-hi link rustSigil		rustKeyword
-hi link rustAssert		rustMacro
-hi link rustStringDelimiter	String
-hi link rustStorage		rustKeyword
-hi link rustModPath		Default
-hi link rustModPathSep		rustModPath
-hi link rustPanic		Define
-hi link rustUnsafeKeyword	Type
-
 "                                    C
 " =============================================================================
 hi cDefine		guifg=#9b9b9b
@@ -207,6 +175,17 @@ hi link cRepeat 	cConditional
 hi link cNumber 	cConstant
 hi link cLabel 		cDefine
 hi link cTypedef	cType
+
+"                                  Rust
+" =============================================================================
+hi link 	rustKeyword             Type
+hi link 	rustConditional         cConditional
+hi link 	rustRepeat              cConditional
+hi link         rustSelf                Type
+hi link         rustModPathSep          Normal
+hi link         rustStructure           Type
+hi link         rustDeriveTrait         csClass
+hi rustUnsafeKeyword  guifg=#eb5e5e
 
 "                                    C++
 " =============================================================================
