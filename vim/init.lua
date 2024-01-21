@@ -24,7 +24,7 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.g.mapleader = "<space>"
 vim.api.nvim_create_user_command('Vb', ':normal! <C-v>', {})
-vim.api.nvim_create_user_command('DisableLsp', ':lua vim.api.nvim_clear_autocmds({ group = "lspconfig" })', {})
+vim.api.nvim_create_user_command('LspDisable', ':lua vim.api.nvim_clear_autocmds({ group = "lspconfig" })', {})
 
 vim.keymap.set('n', '<C-s>', '<cmd>w<cr>')
 vim.keymap.set('n', '<Space>s', '<cmd>w<cr>')
@@ -142,6 +142,7 @@ require("lazy").setup({
       vim.keymap.set("n", "<space>rb", "<cmd>lua require('fzf-lua').lgrep_curbuf()<CR>", { silent = true })
       vim.keymap.set("n", "<space>rr", "<cmd>lua require('fzf-lua').live_grep()<CR>", { silent = true })
       vim.keymap.set("n", "<space>rw", "<cmd>lua require('fzf-lua').live_grep({ search = vim.fn.expand('<cword>') })<CR>", { silent = true })
+      vim.keymap.set("n", "<space>rp", "<cmd>lua require('fzf-lua').live_grep_resume()<CR>", { silent = true })
 
       vim.keymap.set('n', '<Space>a', function()
         local fn = vim.fn.expand('%:t:r')
