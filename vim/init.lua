@@ -189,8 +189,8 @@ require("lazy").setup({
 -----------
 vim.g.tmuxline_preset = {
   a = "#S",
-  b = '#(python3 -c "import psutil;print(f\'MEM {psutil.virtual_memory().percent}%\')")',
-  c = '#(python3 -c "import psutil;print(f\'CPU {psutil.cpu_percent(1)}%\')")',
+  b = '#(python3 -c "import psutil;print(f\'MEM \' + f\'{psutil.virtual_memory().percent}%\'.rjust(5))")',
+  c = '#(python3 -c "import psutil;print(f\'CPU \' + f\'{psutil.cpu_percent(1)}%\'.rjust(5))")',
   win = '#I #W#{?window_zoomed_flag, [Z],}',
   cwin = '#I #W#{?window_zoomed_flag, [Z],}',
   x = '%R',
