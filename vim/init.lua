@@ -89,6 +89,7 @@ require("lazy").setup({
   { "tpope/vim-commentary" },
   { "cespare/vim-toml" },
   { "peterhoeg/vim-qml" },
+  { "tpope/vim-surround" },
   { "itchyny/vim-cursorword" },
   {
     "kassio/neoterm",
