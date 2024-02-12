@@ -482,7 +482,7 @@ local ts_enabled_for = {
   ["rst"] = true,
   ["cmake"] = true,
   ["lua"] = true,
-  ["rst"] = true,
+  ["markdown"] = true,
 }
 
 require('nvim-treesitter.configs').setup {
