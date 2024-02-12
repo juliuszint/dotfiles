@@ -532,7 +532,7 @@ vim.api.nvim_set_hl(0, "@type.cpp", { link = "csClass" })
 vim.api.nvim_set_hl(0, "@variable.builtin.cpp", { link = "Type" })
 
 vim.api.nvim_set_hl(0, "@constant.devicetree", { link = "PreProc" })
-vim.api.nvim_set_hl(0, "@namespace.devicetree", { link = "rustAttribute" })
+vim.api.nvim_set_hl(0, "@namespace.devicetree", { link = "PreProc" })
 vim.api.nvim_set_hl(0, "@property.devicetree", { link = "vimHiKeyList" })
 vim.api.nvim_set_hl(0, "@label.devicetree", { link = "PreProc" })
 
@@ -554,23 +554,24 @@ vim.api.nvim_set_hl(0, "@boolean.yaml", { link = "yamlBool" })
 
 vim.api.nvim_set_hl(0, "@tag.xml", { link = "yamlField" })
 vim.api.nvim_set_hl(0, "@string.xml", { link = "yamlString" })
-vim.api.nvim_set_hl(0, "@constant.xml", { link = "rustAttribute" })
+vim.api.nvim_set_hl(0, "@constant.xml", { link = "PreProc" })
 vim.api.nvim_set_hl(0, "@tag.attribute.xml", { link = "yamlInteger" })
 vim.api.nvim_set_hl(0, "@tag.delimiter.xml", { link = "yamlField" })
 
-vim.api.nvim_set_hl(0, "@punctuation.special.rst", { link = "rustAttribute" })
+vim.api.nvim_set_hl(0, "@punctuation.special.rst", { link = "csEnumMemberName" })
 vim.api.nvim_set_hl(0, "@text.literal.rst", { link = "markdownCodeBlock" })
-vim.api.nvim_set_hl(0, "@text.title.rst", { link = "Comment" })
+vim.api.nvim_set_hl(0, "@text.title.rst", { link = "csEnum" })
+vim.api.nvim_set_hl(0, "@constant.rst", { link = "Special" })
 
-vim.api.nvim_set_hl(0, "@variable.cmake", { link = "rustAttribute" })
+vim.api.nvim_set_hl(0, "@variable.cmake", { link = "PreProc" })
 
 vim.api.nvim_set_hl(0, "@type.c", { link = "csClass" })
 vim.api.nvim_set_hl(0, "@type.builtin.c", { link = "Type" })
 vim.api.nvim_set_hl(0, "@label.c", { link = "cConditional" })
-vim.api.nvim_set_hl(0, "@constant.c", { link = "rustAttribute" })
+vim.api.nvim_set_hl(0, "@constant.c", { link = "PreProc" })
 vim.api.nvim_set_hl(0, "@character.c", { link = "String" })
 
 
-vim.api.nvim_set_hl(0, "@punctuation.special.md", { link = "rustAttribute" })
+vim.api.nvim_set_hl(0, "@punctuation.special.md", { link = "PreProc" })
 vim.api.nvim_set_hl(0, "@text.literal.md", { link = "markdownCodeBlock" })
 vim.api.nvim_set_hl(0, "@text.title.md", { link = "Comment" })

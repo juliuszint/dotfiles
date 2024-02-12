@@ -162,9 +162,9 @@ hi cType 		guifg=#569cd6
 hi cConditional 	guifg=#d8a0df
 hi cTodo		guifg=#47ff6a
 hi cIncluded 		guifg=#999999
-hi link cPreProc	rustLifetime
-hi link cPreCondit	rustLifetime
-hi link cInclude 	rustLifetime
+hi link cPreProc	PreProc
+hi link cPreCondit	PreProc
+hi link cInclude 	PreProc
 hi link cStatement 	cConditional
 hi link cStorageClass 	cType
 hi link cString 	String
@@ -246,8 +246,8 @@ hi ExtraWhitespace	guifg=none	guibg=#ff5b5e
 "                                 cMake
 " =============================================================================
 hi link cmakeCommandConditional	cConditional
-hi link cmakeCommand		rustMacro
-hi link cmakeString		rustString
+hi link cmakeCommand		PreProc
+hi link cmakeString		String
 hi link cmakeCommandRepeat	cConditional
 
 "                                  Git
