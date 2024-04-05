@@ -38,8 +38,7 @@ vim.keymap.set('n', 'gk', '<C-w>k')
 vim.keymap.set('n', 'gl', '<C-w>l')
 vim.keymap.set('n', 'gh', '<C-w>h')
 vim.keymap.set('i', '<C-s>', '<esc><cmd>w<cr>')
-vim.keymap.set('v', 'p', '"_dp')
-vim.keymap.set('v', 'P', '"_dP')
+vim.keymap.set('v', 'p', 'pgvy`>', { noremap = true})
 vim.keymap.set('v', '<Tab>', '> gv')
 vim.keymap.set('v', '<S-Tab>', '< gv')
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
@@ -317,7 +316,6 @@ require("neo-tree").setup({
         ".gitattributes",
       },
       hide_by_name = {
-        "__init__.py",
         "__pycache__",
       },
     }
