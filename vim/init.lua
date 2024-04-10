@@ -16,6 +16,7 @@ vim.opt.shm:append("I")
 vim.opt.cinoptions = "N-s,g0"
 vim.opt.title = true
 vim.opt.list = true
+vim.opt.relativenumber = true
 vim.opt.fillchars:append({diff = " "})
 vim.opt.diffopt:append({ algorithm = "histogram" }, { "indent-heuristic" })
 vim.opt.mouse = ""

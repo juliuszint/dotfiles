@@ -179,6 +179,7 @@ hi link cTypedef	cType
 "                                  Rust
 " =============================================================================
 hi link 	rustKeyword             Type
+hi link 	rustTypeDef             Type
 hi link 	rustConditional         cConditional
 hi link 	rustRepeat              cConditional
 hi link         rustSelf                Type
