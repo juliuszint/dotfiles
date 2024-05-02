@@ -247,7 +247,7 @@ vim.api.nvim_create_autocmd({"FileType"}, {
 require("neo-tree").setup({
   close_if_last_window = true,
   enable_diagnostics = false,
-  enable_git_status = true,
+  enable_git_status = false,
   popup_border_style = "rounded",
   default_component_configs = {
     container = {
@@ -314,6 +314,7 @@ require("neo-tree").setup({
       always_show = {
         ".gitignore",
         ".gitlab-ci.yml",
+        ".github",
         ".gitattributes",
       },
       hide_by_name = {
@@ -484,6 +485,8 @@ local ts_enabled_for = {
   ["cmake"] = true,
   ["lua"] = true,
   ["markdown"] = true,
+  ["c_sharp"] = true,
+  ["groovy"] = true,
 }
 
 require('nvim-treesitter.configs').setup {
@@ -531,6 +534,7 @@ vim.api.nvim_set_hl(0, "@constructor.python", { link = "csClass" })
 vim.api.nvim_set_hl(0, "@type.builtin.cpp", { link = "Type" })
 vim.api.nvim_set_hl(0, "@type.cpp", { link = "csClass" })
 vim.api.nvim_set_hl(0, "@variable.builtin.cpp", { link = "Type" })
+vim.api.nvim_set_hl(0, "@keyword.import.cpp", { link = "PreProc" })
 
 vim.api.nvim_set_hl(0, "@constant.devicetree", { link = "PreProc" })
 vim.api.nvim_set_hl(0, "@namespace.devicetree", { link = "PreProc" })
@@ -547,11 +551,13 @@ vim.api.nvim_set_hl(0, "@string.json", { link = "yamlString" })
 vim.api.nvim_set_hl(0, "@number.json", { link = "yamlInteger" })
 vim.api.nvim_set_hl(0, "@boolean.json", { link = "yamlBool" })
 
+vim.api.nvim_set_hl(0, "@property.yaml", { link = "yamlField" })
 vim.api.nvim_set_hl(0, "@field.yaml", { link = "yamlField" })
 vim.api.nvim_set_hl(0, "@string.yaml", { link = "yamlString" })
 vim.api.nvim_set_hl(0, "@number.yaml", { link = "yamlInteger" })
 vim.api.nvim_set_hl(0, "@comment.yaml", { link = "yamlComment" })
 vim.api.nvim_set_hl(0, "@boolean.yaml", { link = "yamlBool" })
+vim.api.nvim_set_hl(0, "@label.yaml", { link = "rustUnsafeKeyword" })
 
 vim.api.nvim_set_hl(0, "@tag.xml", { link = "yamlField" })
 vim.api.nvim_set_hl(0, "@string.xml", { link = "yamlString" })
@@ -559,10 +565,14 @@ vim.api.nvim_set_hl(0, "@constant.xml", { link = "PreProc" })
 vim.api.nvim_set_hl(0, "@tag.attribute.xml", { link = "yamlInteger" })
 vim.api.nvim_set_hl(0, "@tag.delimiter.xml", { link = "yamlField" })
 
-vim.api.nvim_set_hl(0, "@punctuation.special.rst", { link = "csEnumMemberName" })
-vim.api.nvim_set_hl(0, "@text.literal.rst", { link = "markdownCodeBlock" })
+vim.api.nvim_set_hl(0, "@markup.raw.rst", { link = "markdownCodeBlock" })
+vim.api.nvim_set_hl(0, "@markup.raw.block.rst", { link = "markdownCodeBlock" })
 vim.api.nvim_set_hl(0, "@text.title.rst", { link = "csEnum" })
 vim.api.nvim_set_hl(0, "@constant.rst", { link = "Special" })
+vim.api.nvim_set_hl(0, "@markup.list.rst", { link = "csEnumMemberName" })
+vim.api.nvim_set_hl(0, "@markup.heading.rst", { link = "csEnum" })
+vim.api.nvim_set_hl(0, "@markup.link.rst", { link = "Type" })
+vim.api.nvim_set_hl(0, "@function.rst", { link = "rustUnsafeKeyword" })
 
 vim.api.nvim_set_hl(0, "@variable.cmake", { link = "PreProc" })
 
@@ -572,7 +582,17 @@ vim.api.nvim_set_hl(0, "@label.c", { link = "cConditional" })
 vim.api.nvim_set_hl(0, "@constant.c", { link = "PreProc" })
 vim.api.nvim_set_hl(0, "@character.c", { link = "String" })
 
+vim.api.nvim_set_hl(0, "@include.c_sharp", { link = "Type" })
+vim.api.nvim_set_hl(0, "@type.c_sharp", { link = "csClass" })
+vim.api.nvim_set_hl(0, "@type.builtin.c_sharp", { link = "Type" })
+vim.api.nvim_set_hl(0, "@lsp.typemod.class.static.cs", { link = "csClass" })
+vim.api.nvim_set_hl(0, "@lsp.type.class.cs", { link = "csClass" })
+vim.api.nvim_set_hl(0, "@lsp.type.namespace.cs", { link = "Identifier" })
 
 vim.api.nvim_set_hl(0, "@punctuation.special.md", { link = "PreProc" })
 vim.api.nvim_set_hl(0, "@text.literal.md", { link = "markdownCodeBlock" })
 vim.api.nvim_set_hl(0, "@text.title.md", { link = "Comment" })
+
+vim.api.nvim_set_hl(0, "@keyword.import.python", { link = "PreProc" })
+vim.api.nvim_set_hl(0, "@keyword.directive.python", { link = "PreProc" })
+
