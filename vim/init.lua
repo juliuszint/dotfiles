@@ -27,6 +27,8 @@ vim.g.mapleader = "<space>"
 vim.api.nvim_create_user_command('Vb', ':normal! <C-v>', {})
 vim.api.nvim_create_user_command('LspDisable', ':lua vim.api.nvim_clear_autocmds({ group = "lspconfig" })', {})
 
+vim.keymap.set('n', '<S-Up>', '<C-u>')
+vim.keymap.set('n', '<S-Down>', '<C-d>')
 vim.keymap.set('n', '<C-s>', '<cmd>w<cr>')
 vim.keymap.set('n', '<Space>s', '<cmd>w<cr>')
 vim.keymap.set('n', 'gnh', '<cmd>noh<cr>')
@@ -305,6 +307,13 @@ require("neo-tree").setup({
           print(string.format("Copied %s to clipboard", state.tree:get_node().path))
         end,
         desc = "yank_file_path",
+      },
+      ["t"] = {
+        function(state)
+          print(string.format("Opening %s in Tmux split", state.tree:get_node().path))
+          vim.cmd(string.format("silent !tmux split-window -c '%s'", state.tree:get_node().path))
+        end,
+        desc = "open_in_tmux",
       },
     }
   },

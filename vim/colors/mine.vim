@@ -21,6 +21,7 @@ hi LineNr		guifg=#555555
 hi Visual		guifg=none	guibg=#264f78
 hi Cursor		guifg=#FFFFFF	guibg=#ff2a62
 hi VertSplit		guifg=#2E2E2E	guibg=#101010
+hi WinSeparator		guifg=#2E2E2E	guibg=#101010
 hi Note			guifg=none	guibg=#00ff00
 hi StatusLine		guifg=#ffffff	guibg=#333333	gui=bold cterm=bold term=bold
 hi StatusLineNC		guifg=none	guibg=#1F1F1F	gui=none cterm=none term=none
