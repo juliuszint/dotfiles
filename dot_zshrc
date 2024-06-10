@@ -1,0 +1,99 @@
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+if [ ! -d "${ZINIT_HOME}" ]; then
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+export PATH="/home/zij1hi/.local/bin:$PATH"
+export PATH="$HOME/code/bosch/other/toolbox:$PATH"
+export PATH="/opt/osd/bin:$PATH"
+export BAT_THEME="Visual Studio Dark+"
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
+
+source "${ZINIT_HOME}/zinit.zsh"
+
+zinit ice depth=1
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+
+zinit snippet OMZP::git
+zinit snippet OMZP::command-not-found
+
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+setopt extendedglob
+
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+    compinit
+else
+    compinit -C
+fi
+zinit cdreplay -q
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':completion:*' matcher-list 'r:|?=**'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+# FZF
+export FZF_DEFAULT_OPTS="--height 60% --reverse"
+export FZF_DEFAULT_COMMAND='rg --files'
+command -v fzf &> /dev/null && eval "$(fzf --zsh)"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# zoxide
+command -v zoxide &> /dev/null && eval "$(zoxide init --cmd cd zsh)"
+
+# aliases
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+alias gch='branch=$(git branch | fzf | tr -d "[:space:]") && git checkout $branch'
+alias grb='branch=$(git branch | fzf | tr -d "[:space:]") && git rebase $branch'
+alias rs='repo sync -d -q'
+alias cvim='nvim -c ":vsp" -c ":Tnew" -c ":winc l" -c ":e ."'
+
+bindkey '^j' autosuggest-execute
+
+# prompt
+export PROMPT=''
+# date
+export PROMPT="${PROMPT}%F{green}%D{%A %d.%m.%Y}%f"
+# separator
+export PROMPT="${PROMPT}:"
+# working directory
+export PROMPT="${PROMPT}%F{blue}%(4~|.../%3~|%~)%f"
+# return code
+export PROMPT="${PROMPT}%(?..%F{red}[%?])%f"
+# uid char
+export PROMPT="${PROMPT}%(!.#.$) "
+export PROMPT=''
+# date
+export PROMPT="${PROMPT}%F{green}%D{%A %d.%m.%Y}%f"
+# separator
+export PROMPT="${PROMPT}:"
+# working directory
+export PROMPT="${PROMPT}%F{blue}%(4~|.../%3~|%~)%f"
+# return code
+export PROMPT="${PROMPT}%(?..%F{red}[%?])%f"
+# uid char
+export PROMPT="${PROMPT}%(!.#.$) "
+
+[ -f ~/.local.zsh ] && source ~/.local.zsh
