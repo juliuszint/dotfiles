@@ -1,0 +1,11 @@
+﻿snippet ig "C / C++ header file include guards"
+`!p
+import os
+from datetime import date
+include_guard = snip.fn.upper().replace(".", "_")
+snip.rv =  "/* Copyright (c) BOSCH, {} */{}".format(date.today().year, os.linesep)
+snip.rv += "#ifndef {}{}".format(include_guard, os.linesep)
+snip.rv += "#define {}{}".format(include_guard, os.linesep * 2)
+snip.rv += "#endif /* {} */".format(include_guard)
+`
+endsnippet
