@@ -97,4 +97,13 @@ export PROMPT="${PROMPT}%(?..%F{red}[%?])%f"
 # uid char
 export PROMPT="${PROMPT}%(!.#.$) "
 
+# Make CTRL-O work in vi mode
+vi-cmd () {
+  local REPLY
+  zle .read-command -K vicmd &&
+      zle $REPLY -K vicmd
+}
+zle -N vi-cmd
+bindkey -v '^O' vi-cmd
+
 [ -f ~/.local.zsh ] && source ~/.local.zsh
