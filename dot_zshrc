@@ -77,8 +77,6 @@ alias grb='branch=$(git branch | fzf | tr -d "[:space:]") && git rebase $branch'
 alias rs='repo sync -d -q'
 alias cvim='nvim -c ":vsp" -c ":Tnew" -c ":winc l" -c ":e ."'
 
-bindkey '^j' autosuggest-execute
-
 # prompt
 export PROMPT=''
 # date
@@ -111,5 +109,8 @@ vi-cmd () {
 }
 zle -N vi-cmd
 bindkey -v '^O' vi-cmd
+bindkey '^j' autosuggest-execute
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
 
 [ -f ~/.local.zsh ] && source ~/.local.zsh
