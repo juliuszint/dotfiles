@@ -17,16 +17,6 @@ blocks:
         template: "{{ .Path }} "
         properties:
           style: full
-      - type: executiontime
-        style: diamond
-        trailing_diamond: " "
-        leading_diamond: 
-        foreground: "#ffffff"
-        background: "yellow"
-        template: " {{ .FormattedMs }}"
-        properties:
-          threshold: 500
-          style: austin
       - type: status
         style: diamond
         trailing_diamond: " "
@@ -40,3 +30,16 @@ blocks:
         style: plain
         foreground: "#E06C75"
         template: ""
+  - type: rprompt
+    alignment: right
+    segments:
+      - type: executiontime
+        style: diamond
+        trailing_diamond: " "
+        leading_diamond: 
+        foreground: "#ffffff"
+        background: "yellow"
+        template: " {{ .FormattedMs }}"
+        properties:
+          threshold: 500
+          style: austin
