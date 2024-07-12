@@ -1,6 +1,13 @@
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 TPM_HOME="${HOME}/.tmux/plugins/tpm"
 
+export PATH="/home/zij1hi/.local/bin:$PATH"
+export PATH="$HOME/code/bosch/other/toolbox:$PATH"
+export PATH="/opt/osd/bin:$PATH"
+export BAT_THEME="Visual Studio Dark+"
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
+
 if [ ! -d "${ZINIT_HOME}" ]; then
     mkdir -p "$(dirname $ZINIT_HOME)"
     git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
@@ -11,12 +18,13 @@ if [ ! -d "${TPM_HOME}" ]; then
     git clone https://github.com/tmux-plugins/tpm.git "$TPM_HOME"
 fi
 
-export PATH="/home/zij1hi/.local/bin:$PATH"
-export PATH="$HOME/code/bosch/other/toolbox:$PATH"
-export PATH="/opt/osd/bin:$PATH"
-export BAT_THEME="Visual Studio Dark+"
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
-export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
+if ! command -v oh-my-posh &> /dev/null
+then
+    vared -p "Run oh-my-posh installer? " -c yn
+    case $yn in
+        [Yy]* ) curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin ;;
+    esac
+fi
 
 source "${ZINIT_HOME}/zinit.zsh"
 
@@ -77,29 +85,7 @@ alias grb='branch=$(git branch | fzf | tr -d "[:space:]") && git rebase $branch'
 alias rs='repo sync -d -q'
 alias cvim='nvim -c ":vsp" -c ":Tnew" -c ":winc l" -c ":e ."'
 
-# prompt
-export PROMPT=''
-# date
-export PROMPT="${PROMPT}%F{green}%D{%A %d.%m.%Y}%f"
-# separator
-export PROMPT="${PROMPT}:"
-# working directory
-export PROMPT="${PROMPT}%F{blue}%(4~|.../%3~|%~)%f"
-# return code
-export PROMPT="${PROMPT}%(?..%F{red}[%?])%f"
-# uid char
-export PROMPT="${PROMPT}%(!.#.$) "
-export PROMPT=''
-# date
-export PROMPT="${PROMPT}%F{green}%D{%A %d.%m.%Y}%f"
-# separator
-export PROMPT="${PROMPT}:"
-# working directory
-export PROMPT="${PROMPT}%F{blue}%(4~|.../%3~|%~)%f"
-# return code
-export PROMPT="${PROMPT}%(?..%F{red}[%?])%f"
-# uid char
-export PROMPT="${PROMPT}%(!.#.$) "
+eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/config.yaml)"
 
 # Make CTRL-O work in vi mode
 vi-cmd () {
