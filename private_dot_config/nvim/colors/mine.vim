@@ -312,12 +312,12 @@ hi link shVariable	csClass
 
 "                                  Markdown
 " =============================================================================
-hi markdownH1			guifg=#57a64a
-hi link markdownH2		markdownH1
-hi link markdownH3		markdownH1
-hi link markdownH4		markdownH1
-hi link markdownH5		markdownH1
-hi link markdownH6		markdownH1
+hi markdownH1			guifg=#6ea9d5
+hi markdownH2		        guifg=#a8df8e
+hi markdownH3		        guifg=#f78ca2
+hi markdownH4		        guifg=#d2d2d2
+hi markdownH5		        guifg=#d2d2d2
+hi markdownH6		        guifg=#d2d2d2
 hi markdownH1Delimiter		guifg=#707070
 hi link markdownH2Delimiter	markdownH1Delimiter
 hi link markdownH3Delimiter	markdownH1Delimiter
@@ -329,6 +329,7 @@ hi link markdownListMarker		Define
 hi markdownCodeBlock		guifg=#a0a0a0
 hi link markdownCode		markdownCodeBlock
 
+@markup.heading.2.markdown
 "                                rst
 " =============================================================================
 hi rstDirective			guifg=#d97f26

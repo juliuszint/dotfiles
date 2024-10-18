@@ -328,6 +328,7 @@ require("neo-tree").setup({
       },
       hide_by_name = {
         "__pycache__",
+        "__init__.py",
       },
     }
   }
@@ -623,3 +624,9 @@ vim.api.nvim_set_hl(0, "@text.title.md", { link = "Comment" })
 vim.api.nvim_set_hl(0, "@keyword.import.python", { link = "PreProc" })
 vim.api.nvim_set_hl(0, "@keyword.directive.python", { link = "PreProc" })
 
+vim.api.nvim_set_hl(0, "@markup.heading.1.markdown", { link = "markdownH1" })
+vim.api.nvim_set_hl(0, "@markup.heading.2.markdown", { link = "markdownH2" })
+vim.api.nvim_set_hl(0, "@markup.heading.3.markdown", { link = "markdownH3" })
+vim.api.nvim_set_hl(0, "@markup.heading.4.markdown", { link = "markdownH4" })
+vim.api.nvim_set_hl(0, "@markup.heading.5.markdown", { link = "markdownH5" })
+vim.api.nvim_set_hl(0, "@markup.list.markdown", { link = "rustUnsafeKeyword" })

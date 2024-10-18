@@ -5,6 +5,13 @@ blocks:
   - type: prompt
     alignment: left
     segments:
+      - type: python
+        style: diamond
+        trailing_diamond: " "
+        leading_diamond: 
+        foreground: "#ffffff"
+        background: "yellow"
+        template: "  {{ .Venv }} "
       - type: time
         style: plain
         foreground: "green"
@@ -34,11 +41,10 @@ blocks:
     alignment: right
     segments:
       - type: executiontime
-        style: diamond
+        style: plain
         trailing_diamond: " "
         leading_diamond: 
-        foreground: "#ffffff"
-        background: "yellow"
+        foreground: "yellow"
         template: " {{ .FormattedMs }}"
         properties:
           threshold: 500
