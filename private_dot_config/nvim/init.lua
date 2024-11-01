@@ -46,6 +46,20 @@ vim.keymap.set('v', '<Tab>', '> gv')
 vim.keymap.set('v', '<S-Tab>', '< gv')
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 vim.keymap.set('t', '<C-v><Esc>', '<Esc>')
+vim.keymap.set('t', '<C-v><Esc>', '<Esc>')
+
+local vTextVisible = true
+vim.api.nvim_create_user_command(
+  'LspToggleDiagnostics',
+  function(_)
+    vTextVisible = not vTextVisible
+    vim.diagnostic.config({
+      virtual_text = vTextVisible,
+      underline = vTextVisible
+    })
+  end,
+  {}
+)
 
 vim.api.nvim_create_autocmd({"TermOpen"}, {
   command = "setlocal nonumber",
@@ -328,7 +342,6 @@ require("neo-tree").setup({
       },
       hide_by_name = {
         "__pycache__",
-        "__init__.py",
       },
     }
   }
