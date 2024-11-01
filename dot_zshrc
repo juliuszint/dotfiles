@@ -1,7 +1,7 @@
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 TPM_HOME="${HOME}/.tmux/plugins/tpm"
 
-export PATH="/home/zij1hi/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/code/bosch/other/toolbox:$PATH"
 export PATH="/opt/osd/bin:$PATH"
 export BAT_THEME="Visual Studio Dark+"
@@ -68,7 +68,9 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 export FZF_DEFAULT_OPTS="--height 60% --reverse"
 export FZF_DEFAULT_COMMAND='rg --files'
 command -v fzf &> /dev/null && eval "$(fzf --zsh)"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [ -f ~/.fzf.zsh ]; then
+    source ~/.fzf.zsh
+fi
 
 # zoxide
 command -v zoxide &> /dev/null && eval "$(zoxide init --cmd cd zsh)"
@@ -98,4 +100,6 @@ bindkey '^j' autosuggest-execute
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 
-[ -f ~/.local.zsh ] && source ~/.local.zsh
+if [ -f ~/.local.zsh ]; then
+    source ~/.local.zsh
+fi
