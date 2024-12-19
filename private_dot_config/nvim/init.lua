@@ -162,6 +162,18 @@ require("lazy").setup({
       vim.keymap.set("n", "<space>rw", "<cmd>lua require('fzf-lua').live_grep({ search = vim.fn.expand('<cword>') })<CR>", { silent = true })
       vim.keymap.set("n", "<space>rp", "<cmd>lua require('fzf-lua').live_grep_resume()<CR>", { silent = true })
 
+      vim.keymap.set('n', '<space>ri', function()
+        local c = vim.fn.getcharstr()
+        vim.fn.setreg("q", "")
+        local vim_normal = '"qyi' .. c
+        vim.cmd.normal(vim_normal)
+        local regexpr = vim.fn.getreg("q")
+        require('fzf-lua').live_grep({
+          search = regexpr,
+          no_esc = true,
+        })
+      end, {silent = true})
+
       vim.keymap.set('n', '<Space>a', function()
         local fn = vim.fn.expand('%:t:r')
         local ext = vim.fn.expand('%:t:e')
