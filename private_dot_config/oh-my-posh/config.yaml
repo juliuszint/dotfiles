@@ -1,51 +1,60 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
-final_space: true
-version: 2
+
 blocks:
-  - type: prompt
-    alignment: left
-    segments:
-      - type: python
-        style: diamond
-        trailing_diamond: " "
-        leading_diamond: 
-        foreground: "#ffffff"
-        background: "yellow"
-        template: "  {{ .Venv }} "
-      - type: time
-        style: plain
-        foreground: "green"
-        template: "{{ .CurrentDate | date .Format }} "
-        properties:
-          time_format: Monday 02.01.2006
-      - type: path
-        style: plain
-        foreground: "blue"
-        template: "{{ .Path }} "
-        properties:
-          style: full
-      - type: status
-        style: diamond
-        trailing_diamond: " "
-        leading_diamond: 
-        foreground: "#ffffff"
-        background: "red"
-        template: " {{ .String }}"
-        properties:
-          always_enabled: false
-      - type: text
-        style: plain
-        foreground: "#E06C75"
-        template: ""
-  - type: rprompt
-    alignment: right
-    segments:
-      - type: executiontime
-        style: plain
-        trailing_diamond: " "
-        leading_diamond: 
-        foreground: "yellow"
-        template: " {{ .FormattedMs }}"
-        properties:
-          threshold: 500
-          style: austin
+- type: prompt
+  alignment: left
+  segments:
+  - properties:
+      cache_duration: none
+    leading_diamond: 
+    trailing_diamond: "\ue0b4 "
+    template: " \ue235 {{ .Venv }} "
+    foreground: "#ffffff"
+    background: yellow
+    type: python
+    style: diamond
+  - properties:
+      cache_duration: none
+      time_format: Monday 02.01.2006
+    template: "{{ .CurrentDate | date .Format }} "
+    foreground: green
+    type: time
+    style: plain
+  - properties:
+      cache_duration: none
+      style: full
+    template: "{{ .Path }} "
+    foreground: blue
+    type: path
+    style: plain
+  - properties:
+      always_enabled: false
+      cache_duration: none
+    leading_diamond: 
+    trailing_diamond: "\ue0b4 "
+    template:  {{ .String }}
+    foreground: "#ffffff"
+    background: red
+    type: status
+    style: diamond
+  - properties:
+      cache_duration: none
+    template: 
+    foreground: "#E06C75"
+    type: text
+    style: plain
+- type: rprompt
+  alignment: right
+  segments:
+  - properties:
+      cache_duration: none
+      style: austin
+      threshold: 500
+    leading_diamond: 
+    trailing_diamond: "\ue0b4 "
+    template:  {{ .FormattedMs }}
+    foreground: yellow
+    type: executiontime
+    style: plain
+version: 3
+final_space: true
