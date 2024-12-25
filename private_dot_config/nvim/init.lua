@@ -119,13 +119,20 @@ require("lazy").setup({
       vim.g.neoterm_automap_keys = '<space>tt'
     end,
   },
-  -- -- Disabled until I figure out why < in insert is screwed up by this plugin
-  -- {
-  --   "vim-scripts/a.vim",
-  --   init = function()
-  --     vim.g.alternateNoDefaultAlternate = 1
-  --   end,
-  -- },
+  {
+    "https://github.com/rgroli/other.nvim.git",
+    config = function()
+      require("other-nvim").setup({
+        showMissingFiles = false,
+        mappings = {
+          "c",
+          "python",
+          "rust",
+        },
+      })
+      vim.keymap.set("n", "<space>a", "<cmd>Other<CR>", { silent = true })
+    end,
+  },
   { "nvim-treesitter/nvim-treesitter" },
   {
     "ntpeters/vim-better-whitespace",
@@ -178,13 +185,6 @@ require("lazy").setup({
           no_esc = true,
         })
       end, {silent = true})
-
-      vim.keymap.set('n', '<Space>a', function()
-        local fn = vim.fn.expand('%:t:r')
-        local ext = vim.fn.expand('%:t:e')
-        local query = string.format("\"%s !.%s$\"", fn, ext)
-        require'fzf-lua'.files({fzf_opts = {['--exact -1 --query'] = query}, cmd="rg --files"})
-      end)
     end
   },
   {
@@ -440,7 +440,10 @@ cmp.setup.filetype({'lua', 'rust', 'python', 'cpp', 'cs'}, {
   })
 })
 
--- LSP configuration
+-------------
+-- lsp config
+-------------
+
 local function lspSymbol(name, icon)
   vim.fn.sign_define('DiagnosticSign' .. name,
     { text = icon, texthl = 'DiagnosticSign' .. name }
@@ -516,12 +519,6 @@ require('lspconfig')['pyright'].setup {
   on_attach = on_attach
 }
 
-vim.api.nvim_set_hl(0, "@lsp.type.namespace.rust", { link = "Default" })
-vim.api.nvim_set_hl(0, "@lsp.type.interface.rust", { link = "csClass" })
-vim.api.nvim_set_hl(0, "@lsp.type.struct.rust", { link = "csClass" })
-vim.api.nvim_set_hl(0, "@lsp.type.enum.rust", { link = "csInterface" })
-vim.api.nvim_set_hl(0, "@lsp.type.enumMember.rust", { link = "csEnumMemberName" })
-
 -------------------------
 -- plugin nvim-treesitter
 -------------------------
@@ -566,6 +563,12 @@ require('nvim-treesitter.configs').setup {
     end,
   }
 }
+
+vim.api.nvim_set_hl(0, "@lsp.type.namespace.rust", { link = "Default" })
+vim.api.nvim_set_hl(0, "@lsp.type.interface.rust", { link = "csClass" })
+vim.api.nvim_set_hl(0, "@lsp.type.struct.rust", { link = "csClass" })
+vim.api.nvim_set_hl(0, "@lsp.type.enum.rust", { link = "csInterface" })
+vim.api.nvim_set_hl(0, "@lsp.type.enumMember.rust", { link = "csEnumMemberName" })
 
 vim.api.nvim_set_hl(0, "@include", { link = "PreProc" })
 vim.api.nvim_set_hl(0, "@repeat", { link = "cConditional" })
