@@ -44,11 +44,18 @@ local function cpp_types_symbols(opts)
   grep_for_symbols(opts)
 end
 
+local function rust_symbols(opts)
+  opts.rg_opts = [[--replace '$2']]
+  opts.regex = [[\b(struct|enum|fn|trait)\s+(\w{4,})]]
+  grep_for_symbols(opts)
+end
+
 vim.api.nvim_create_user_command("PythonSymbols", python_symbols, {})
 vim.api.nvim_create_user_command("CSharpSymbols", csharp_symbols, {})
 vim.api.nvim_create_user_command("CTypeSymbols", c_types_symbols, {})
 vim.api.nvim_create_user_command("CFunctionSymbols", c_function_symbols, {})
 vim.api.nvim_create_user_command("CppTypeSymbols", cpp_types_symbols, {})
+vim.api.nvim_create_user_command("RustSymbols", rust_symbols, {})
 
 local id = vim.api.nvim_create_augroup("symbols-auto", {})
 vim.api.nvim_create_autocmd({"FileType"}, {
@@ -67,6 +74,10 @@ vim.api.nvim_create_autocmd({"FileType"}, {
     if ev.match == "cpp" or ev.FileType == "hpp" then
       vim.keymap.set('n', '<Space>sf', function() c_function_symbols({}) end, { buffer = true })
       vim.keymap.set('n', '<Space>st', function() cpp_types_symbols({}) end, { buffer = true })
+    end
+    if ev.match == "rust" then
+      vim.keymap.set('n', '<Space>s', function() rust_symbols({}) end, { buffer = true })
+      vim.keymap.set('n', '<Space>ws', function() rust_symbols({cword=true}) end, { buffer = true })
     end
   end
 })
