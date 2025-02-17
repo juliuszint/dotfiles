@@ -126,8 +126,17 @@ require("lazy").setup({
         showMissingFiles = false,
         mappings = {
           "c",
+          "cpp",
           "python",
           "rust",
+          {
+              pattern = "(.*).cpp$",
+              target = "%1.h",
+          },
+          {
+              pattern = "(.*).h$",
+              target = "%1.cpp",
+          },
         },
       })
       vim.keymap.set("n", "<space>a", "<cmd>Other<CR>", { silent = true })
@@ -524,6 +533,7 @@ require('lspconfig')['pyright'].setup {
 -------------------------
 local ts_enabled_for = {
   ["c"] = true,
+  ["toml"] = true,
   ["cpp"] = true,
   ["python"] = true,
   ["devicetree" ] = true,
@@ -663,3 +673,6 @@ vim.api.nvim_set_hl(0, "@markup.heading.3.markdown", { link = "markdownH3" })
 vim.api.nvim_set_hl(0, "@markup.heading.4.markdown", { link = "markdownH4" })
 vim.api.nvim_set_hl(0, "@markup.heading.5.markdown", { link = "markdownH5" })
 vim.api.nvim_set_hl(0, "@markup.list.markdown", { link = "rustUnsafeKeyword" })
+
+vim.api.nvim_set_hl(0, "@property.toml", { link = "csEnumMemberName" })
+vim.api.nvim_set_hl(0, "@punctuation.bracket.toml", { link = "PreProc" })
