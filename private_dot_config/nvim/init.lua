@@ -603,6 +603,7 @@ vim.api.nvim_set_hl(0, "@type.builtin.cpp", { link = "Type" })
 vim.api.nvim_set_hl(0, "@type.cpp", { link = "csClass" })
 vim.api.nvim_set_hl(0, "@variable.builtin.cpp", { link = "Type" })
 vim.api.nvim_set_hl(0, "@keyword.import.cpp", { link = "PreProc" })
+vim.api.nvim_set_hl(0, "@lsp.type.class.cpp", { link = "csClass" })
 
 vim.api.nvim_set_hl(0, "@constant.devicetree", { link = "PreProc" })
 vim.api.nvim_set_hl(0, "@namespace.devicetree", { link = "PreProc" })
