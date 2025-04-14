@@ -154,6 +154,7 @@ require("lazy").setup({
   { "rust-lang/rust.vim" },
   { "neovim/nvim-lspconfig" },
   { "onsails/lspkind-nvim" },
+  { "sindrets/diffview.nvim" },
   {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
