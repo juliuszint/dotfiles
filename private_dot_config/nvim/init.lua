@@ -453,17 +453,18 @@ cmp.setup.filetype({'lua', 'rust', 'python', 'cpp', 'cs'}, {
 -------------
 -- lsp config
 -------------
-
-local function lspSymbol(name, icon)
-  vim.fn.sign_define('DiagnosticSign' .. name,
-    { text = icon, texthl = 'DiagnosticSign' .. name }
-  )
-end
-
-lspSymbol('Error', '')
-lspSymbol('Warn', '')
-lspSymbol('Info', '')
-lspSymbol('Hint', '')
+vim.diagnostic.config({
+    virtual_text = true,
+    underline = true,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = '',
+            [vim.diagnostic.severity.WARN] = '',
+            [vim.diagnostic.severity.INFO] = '',
+            [vim.diagnostic.severity.HINT] = '',
+        },
+    },
+})
 
 local on_attach = function(_, bufnr)
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
