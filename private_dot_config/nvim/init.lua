@@ -160,6 +160,9 @@ require("lazy").setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("fzf-lua").setup({
+        files = {
+          hidden = false
+        },
         grep = {
           rg_glob = true,
           rg_glob_fn = function(query, opts)
