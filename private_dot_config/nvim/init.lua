@@ -159,16 +159,18 @@ require("lazy").setup({
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      local rg_opts = ""
-      local config_dir = vim.fn.stdpath("config")
-      rg_opts = rg_opts .. " --vimgrep --column --line-number --no-heading"
-      rg_opts = rg_opts .. " --color=always --smart-case --max-columns=4096"
-      rg_opts = rg_opts .. " --vim-esc"
-      local rg_cmd = string.format('%s/vrg rg%s', config_dir, rg_opts)
       require("fzf-lua").setup({
         grep = {
-          cmd = rg_cmd,
-          rg_glob = false,
+          rg_glob = true,
+          rg_glob_fn = function(query, opts)
+            local query_len = string.len(query)
+            local sep_start, sep_end = string.find(query, opts.glob_separator)
+            if sep_start == nil or sep_end == nil then
+              return query, ""
+            end
+            local q, f = string.sub(query, 0, sep_start - 1), string.sub(query, sep_end + 1, query_len)
+            return q, f
+          end,
         },
         nbsp = '\xc2\xa0',
         file_icon_padding = ' ',
