@@ -155,6 +155,7 @@ require("lazy").setup({
   { "neovim/nvim-lspconfig" },
   { "onsails/lspkind-nvim" },
   { "sindrets/diffview.nvim" },
+  { "godlygeek/tabular" },
   {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
