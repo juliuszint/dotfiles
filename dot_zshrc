@@ -86,7 +86,7 @@ alias grb='branch=$(git branch | fzf | tr -d "[:space:]") && git rebase $branch'
 alias rs='repo sync -d -q'
 alias cvim='nvim -c ":vsp" -c ":Tnew" -c ":winc l" -c ":e ."'
 
-eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/config.yaml)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/config.toml)"
 
 # Make CTRL-O work in vi mode
 vi-cmd () {

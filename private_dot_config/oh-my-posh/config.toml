@@ -1,0 +1,84 @@
+version = 3
+final_space = true
+
+[upgrade]
+  source = 'cdn'
+  interval = '168h'
+  auto = false
+  notice = false
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+
+  [[blocks.segments]]
+    leading_diamond = ''
+    trailing_diamond = ' '
+    template = '  {{ .Venv }} '
+    foreground = '#ffffff'
+    background = 'yellow'
+    type = 'python'
+    style = 'diamond'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '{{ .CurrentDate | date .Format }} '
+    foreground = 'green'
+    type = 'time'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      time_format = 'Monday 02.01.2006'
+
+  [[blocks.segments]]
+    template = '{{ .Path }} '
+    foreground = 'blue'
+    type = 'path'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      style = 'full'
+
+  [[blocks.segments]]
+    leading_diamond = ''
+    trailing_diamond = ' '
+    template = ' {{ .String }}'
+    foreground = '#ffffff'
+    background = 'red'
+    type = 'status'
+    style = 'diamond'
+
+    [blocks.segments.properties]
+      always_enabled = false
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = ''
+    foreground = '#E06C75'
+    type = 'text'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+[[blocks]]
+  type = 'rprompt'
+  alignment = 'right'
+
+  [[blocks.segments]]
+    leading_diamond = ''
+    trailing_diamond = ' '
+    template = ' {{ .FormattedMs }}'
+    foreground = 'yellow'
+    type = 'executiontime'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      style = 'austin'
+      threshold = 500
+
