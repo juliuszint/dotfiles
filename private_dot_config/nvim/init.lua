@@ -109,7 +109,6 @@ require("lazy").setup({
   { "tpope/vim-fugitive" },
   { "mbbill/undotree" },
   { "tpope/vim-commentary" },
-  { "cespare/vim-toml" },
   { "peterhoeg/vim-qml" },
   { "tpope/vim-surround" },
   { "itchyny/vim-cursorword" },
@@ -174,6 +173,7 @@ require("lazy").setup({
         },
         grep = {
           rg_glob = true,
+          RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH,
           rg_glob_fn = function(query, opts)
             local query_len = string.len(query)
             local sep_start, sep_end = string.find(query, opts.glob_separator)
