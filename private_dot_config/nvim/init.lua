@@ -17,7 +17,7 @@ vim.opt.cinoptions = "N-s,g0"
 vim.opt.title = true
 vim.opt.list = true
 vim.opt.relativenumber = true
-vim.opt.fillchars:append({diff = " "})
+vim.opt.fillchars:append({diff = "╱"})
 vim.opt.diffopt:append({ algorithm = "histogram" }, { "indent-heuristic" })
 vim.opt.mouse = ""
 vim.opt.fixendofline = false
@@ -154,7 +154,15 @@ require("lazy").setup({
   { "rust-lang/rust.vim" },
   { "neovim/nvim-lspconfig" },
   { "onsails/lspkind-nvim" },
-  { "sindrets/diffview.nvim" },
+  {
+    "sindrets/diffview.nvim",
+    init = function()
+      require("diffview").setup({
+        enhanced_diff_hl = true,
+        enhanced_diff_hl_group = "DiffFiller",
+      })
+    end
+  },
   { "godlygeek/tabular" },
   {
     "ibhagwan/fzf-lua",
