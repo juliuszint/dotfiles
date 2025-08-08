@@ -116,7 +116,7 @@ require("lazy").setup({
   {
     "kassio/neoterm",
     init = function()
-      vim.g.neoterm_automap_keys = '<space>tt'
+      vim.g.neoterm_automap_keys = '<space>xt'
     end,
   },
   {
@@ -182,6 +182,7 @@ require("lazy").setup({
 
       vim.keymap.set("n", "<space>f", "<cmd>lua require('fzf-lua').files({ cmd = 'rg --files' })<CR>", { silent = true })
       vim.keymap.set("n", "<space>h", "<cmd>lua require('fzf-lua').command_history()<CR>", { silent = true })
+      vim.keymap.set("n", "<space>t", "<cmd>lua require('fzf-lua').tags()<CR>", { silent = true })
       vim.keymap.set("n", "<space>c", "<cmd>lua require('fzf-lua').commands()<CR>", { silent = true })
       vim.keymap.set("n", "<space>b", "<cmd>lua require('fzf-lua').buffers()<CR>", { silent = true })
       vim.keymap.set("n", "<space>j", "<cmd>lua require('fzf-lua').jumps()<CR>", { silent = true })
