@@ -148,6 +148,7 @@ require("lazy").setup({
       vim.g.better_whitespace_operator = ''
     end,
   },
+  { "cespare/vim-toml" },
   { "GutenYe/json5.vim" },
   { "editorconfig/editorconfig-vim" },
   { "rust-lang/rust.vim" },
@@ -550,7 +551,7 @@ require('lspconfig')['pyright'].setup {
 -------------------------
 local ts_enabled_for = {
   ["c"] = true,
-  ["toml"] = true,
+  ["toml"] = false,
   ["cpp"] = true,
   ["python"] = true,
   ["devicetree" ] = true,
