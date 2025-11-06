@@ -496,17 +496,19 @@ end
 
 local cap_lsp = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-require('lspconfig').rust_analyzer.setup {
+vim.lsp.config("rust_analyzer", {
   capabilities = cap_lsp,
   on_attach = on_attach
-}
+})
+vim.lsp.enable("rust_analyzer")
 
-require('lspconfig').clangd.setup {
+vim.lsp.config("clangd", {
   capabilities = cap_lsp,
   on_attach = on_attach
-}
+})
+vim.lsp.enable("clangd")
 
-require'lspconfig'.omnisharp.setup {
+vim.lsp.config("omnisharp",  {
   cmd = { "/home/zij1hi/.omnisharp/v1.39.9/run" },
   enable_editorconfig_support = true,
   enable_ms_build_load_projects_on_demand = false,
@@ -517,9 +519,10 @@ require'lspconfig'.omnisharp.setup {
   analyze_open_documents_only = false,
   capabilities = cap_lsp,
   on_attach = on_attach
-}
+})
+vim.lsp.enable("omnisharp")
 
-require('lspconfig').lua_ls.setup {
+vim.lsp.config("lua_ls", {
   on_attach = on_attach,
   capabilities = cap_lsp,
   settings = {
@@ -539,12 +542,14 @@ require('lspconfig').lua_ls.setup {
       },
     },
   },
-}
+})
+vim.lsp.enable("lua_ls")
 
-require('lspconfig')['pyright'].setup {
+vim.lsp.config('pyright', {
   capabilities = cap_lsp,
   on_attach = on_attach
-}
+})
+vim.lsp.enable("pyright")
 
 -------------------------
 -- plugin nvim-treesitter
