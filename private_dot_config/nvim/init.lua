@@ -27,8 +27,7 @@ vim.g.mapleader = "<space>"
 vim.api.nvim_create_user_command('Vb', ':normal! <C-v>', {})
 vim.api.nvim_create_user_command('LspDisable',
   function(_)
-    vim.api.nvim_clear_autocmds({ group = "lspconfig" })
-    vim.cmd.LspStop()
+    vim.lsp.stop_client(vim.lsp.get_clients())
   end, {}
 )
 
@@ -330,8 +329,10 @@ require("neo-tree").setup({
       folder_closed = "",
       folder_open = "",
       folder_empty = "󰜌",
+      folder_empty_open = "󰜌",
       default = "",
-      highlight = "NeoTreeFileIcon"
+      highlight = "NeoTreeFileIcon",
+      use_filtered_colors = false,
     },
   },
   window = {
