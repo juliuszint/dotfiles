@@ -1,9 +1,6 @@
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 TPM_HOME="${HOME}/.tmux/plugins/tpm"
 
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/code/bosch/other/toolbox:$PATH"
-export PATH="/opt/osd/bin:$PATH"
 export BAT_THEME="Visual Studio Dark+"
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
