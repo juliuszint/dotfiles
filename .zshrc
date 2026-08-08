@@ -85,6 +85,8 @@ alias gch='branch=$(git branch | fzf | tr -d "[:space:]") && git checkout $branc
 alias grb='branch=$(git branch | fzf | tr -d "[:space:]") && git rebase $branch'
 alias rs='repo sync -d -q'
 alias cvim='nvim -c ":vsp" -c ":Tnew" -c ":winc l" -c ":e ."'
+alias neomutt='neomutt -F "~/.config/neomutt/accounts/`cd ~/.config/neomutt/accounts/;fzf`"'
+
 # dotfiles setup from: https://wiki.archlinux.org/title/Dotfiles
 #     git clone --bare <git-repo-url> $HOME/.dotfiles
 #     alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
