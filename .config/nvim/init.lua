@@ -29,7 +29,7 @@ vim.api.nvim_create_user_command('Vb', ':normal! <C-v>', {})
 vim.api.nvim_create_user_command(
   'Num2Dec',
   function(args)
-    local sub = [[s/\<\(0x\|0b\)\?[0-9a-f]\+\>/\=printf("%d", submatch(0))/|:noh]]
+    local sub = [[s/\<\(0x\|0b\)\?[0-9a-f]\+\>/\=printf("%d", submatch(0))/g|:noh]]
     local cmd = string.format(":%d,%d%s", args.line1, args.line2, sub)
     vim.cmd(cmd)
   end,
@@ -39,7 +39,7 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
   'Num2Hex',
   function(args)
-    local sub = [[s/\<\(0x\|0b\)\?[0-9a-f]\+\>/\=printf("0x%x", submatch(0))/|:noh]]
+    local sub = [[s/\<\(0x\|0b\)\?[0-9a-f]\+\>/\=printf("0x%x", submatch(0))/g|:noh]]
     local cmd = string.format(":%d,%d%s", args.line1, args.line2, sub)
     vim.cmd(cmd)
   end,
@@ -49,7 +49,7 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
   'Num2Bin',
   function(args)
-    local sub = [[s/\<\(0x\|0b\)\?[0-9a-f]\+\>/\=printf("0b%b", submatch(0))/|:noh]]
+    local sub = [[s/\<\(0x\|0b\)\?[0-9a-f]\+\>/\=printf("0b%b", submatch(0))/g|:noh]]
     local cmd = string.format(":%d,%d%s", args.line1, args.line2, sub)
     vim.cmd(cmd)
   end,
