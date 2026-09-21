@@ -209,6 +209,12 @@ require("lazy").setup({
             return q, f
           end,
         },
+        winopts = {
+          fullscreen = true,
+          preview = {
+            hidden = true,
+          },
+        },
         nbsp = '\xc2\xa0',
         file_icon_padding = ' ',
       })
