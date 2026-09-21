@@ -410,6 +410,13 @@ require("neo-tree").setup({
           require('fzf-lua').live_grep({ cwd=state.tree:get_node().path })
         end,
         desc = "live_grep",
+      },
+      ["gf"] = {
+        function(state)
+          print(string.format("Live grep in %s", state.tree:get_node().path))
+          require('fzf-lua').files({ cwd=state.tree:get_node().path })
+        end,
+        desc = "fzf_files",
       }
     }
   },
