@@ -398,6 +398,13 @@ require("neo-tree").setup({
         end,
         desc = "open_in_tmux",
       },
+      ["gr"] = {
+        function(state)
+          print(string.format("Live grep in %s", state.tree:get_node().path))
+          require('fzf-lua').live_grep({ cwd=state.tree:get_node().path })
+        end,
+        desc = "live_grep",
+      }
     }
   },
   filesystem = {
