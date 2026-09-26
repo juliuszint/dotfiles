@@ -366,6 +366,10 @@ require("neo-tree").setup({
       highlight = "NeoTreeFileIcon",
       use_filtered_colors = false,
     },
+    file_size = { enabled = false },
+    type = { enabled = false },
+    last_modified = { enabled = false, format = "" },
+    created = { enabled = false, format = "" },
   },
   window = {
     position = "current",
