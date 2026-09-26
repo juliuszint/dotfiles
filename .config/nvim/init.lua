@@ -362,6 +362,7 @@ require("neo-tree").setup({
       folder_empty = "󰜌",
       folder_empty_open = "󰜌",
       default = "",
+      selected = "󰐾",
       highlight = "NeoTreeFileIcon",
       use_filtered_colors = false,
     },
